@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><base target="_top"><script>window.addEventListener('error',function(e){var b=document.createElement('div');b.style.cssText='position:fixed;top:0;left:0;right:0;background:#b3261e;color:#fff;padding:8px 14px;z-index:99999;font:13px Arial,sans-serif';b.textContent='Page error: '+(e.message||'unknown')+(e.lineno?' (line '+e.lineno+')':'');(document.body||document.documentElement).appendChild(b)});</script><meta charset="utf-8">
 <script>const WANT_REG = <?= reg ? 'true' : 'false' ?>;</script>
-<script>const let WANT_PROG = '<?= prog ?>';</script>
+<script>let WANT_PROG = '<?= prog ?>';</script>
 <script>
 (function(){
   var KEY='mrh_theme',root=document.documentElement,mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
@@ -1175,6 +1175,82 @@ html[data-theme=dark] .shchip.sh-pending{
   color:#DCE7FF !important;
   border:1px solid #40558A !important;
 }
+}
+</style>
+<style id="auth-layout">
+/* panel: no inner scrolling, width animates between sign-in and register */
+#login .hp-panel{width:100%;max-width:430px;max-height:none;overflow:visible;
+ transition:max-width .45s cubic-bezier(.4,.2,.2,1),padding .45s cubic-bezier(.4,.2,.2,1)}
+#login .hp-panel.hp-wide{max-width:1040px;padding:36px 44px 40px}
+
+/* content fades while the panel resizes */
+#login .hp-panel>*{transition:opacity .2s ease,transform .2s ease}
+#login .hp-panel.hp-swap>*:not(.hp-x){opacity:0;transform:translateY(10px)}
+
+/* register form: two columns on desktop, one on small screens */
+#login #regbox{display:grid;grid-template-columns:1fr;gap:0 22px}
+#login #regbox>.hp-field:has(#rpw){order:1}       /* password sits next to birth date */
+#login #gbox{order:2;grid-column:1/-1}
+#login #gbox:not(.hidden){display:grid;grid-template-columns:1fr;gap:0 22px}
+#login #gbox .hp-warn{grid-column:1/-1}
+#login #regbox>.hp-full{order:3;grid-column:1/-1}
+@media(min-width:760px){
+ #login .hp-wide #regbox,
+ #login .hp-wide #gbox:not(.hidden){grid-template-columns:repeat(2,minmax(0,1fr))}
+ #login .hp-wide #regbox>.hp-full{justify-self:center;width:min(100%,420px)}
+}
+@media(max-width:600px){#login .hp-panel.hp-wide{padding:26px 20px}}
+</style>
+<style id="stepper-v2">
+@media screen{
+.rhead{overflow:visible!important}
+.stp{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-rows:auto;gap:10px;
+ overflow:visible!important;height:auto!important;min-height:0;padding:14px 0 6px!important;margin-top:12px;border-top:1px solid var(--line)}
+.stpi{display:block!important;position:relative;box-sizing:border-box;width:100%;height:auto!important;min-height:92px!important;
+ flex:none!important;text-align:left;padding:10px 12px 16px!important;background:#f8fafc;
+ border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;
+ transition:background .15s,border-color .15s,box-shadow .15s,transform .12s}
+.stpi+.stpi:before{content:none!important}
+.stpi:hover{background:#fff;border-color:#bcd0f7;transform:translateY(-1px)}
+
+.stph{display:flex!important;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px}
+.stpc{width:30px!important;height:30px!important;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;
+ font:800 13px Inter,sans-serif;background:#e2e8f0;color:#475569}
+.stpc svg{width:15px;height:15px}
+.stps{font:700 11px Inter,sans-serif;font-style:normal;color:var(--mut)}
+.stpt{display:block!important;min-width:0}
+.stpt b{display:block;font-size:13px;line-height:1.25;color:var(--navy)}
+.stpt small{display:block;margin-top:2px;font-size:11.5px;color:var(--mut);white-space:normal}
+
+.stpb{position:absolute;left:0;right:0;bottom:0;height:4px;background:#e2e8f0;display:block}
+.stpb u{display:block;height:100%;background:var(--blue);border-radius:0 4px 4px 0;transition:width .35s ease;text-decoration:none}
+
+.stpi.part .stpc{background:#dbeafe;color:#1d4ed8}.stpi.part .stps{color:#1d4ed8}
+.stpi.on{background:#fff;border-color:var(--blue);box-shadow:0 0 0 3px #2563eb26,0 6px 16px #2563eb1f}
+.stpi.on .stpc{background:var(--blue);color:#fff;box-shadow:none}.stpi.on .stps{color:var(--blue)}
+.stpi.ok{background:#f0fdf4;border-color:#bbf7d0}
+.stpi.ok .stpc{background:#16a34a;color:#fff}.stpi.ok .stps{color:#15803d}.stpi.ok .stpb u{background:#16a34a}
+.stpi.ok.on{background:#fff;border-color:#16a34a;box-shadow:0 0 0 3px #16a34a26,0 6px 16px #16a34a1f}
+
+/* inside the New Enrollee pop-up and on narrow screens: swipe sideways */
+@media(max-width:1100px){
+ .stp{display:flex!important;overflow-x:auto!important;scroll-snap-type:x proximity;scrollbar-width:none}
+ .stp::-webkit-scrollbar{display:none}
+ .stpi{flex:0 0 160px!important;width:160px;scroll-snap-align:start}
+}
+
+html[data-theme=dark] .stpi{background:#0e1538;border-color:var(--line)}
+html[data-theme=dark] .stpi:hover{background:#141d4a}
+html[data-theme=dark] .stpb{background:rgba(150,170,255,.18)}
+html[data-theme=dark] .stpc{background:rgba(150,170,255,.18);color:#c5d0ee}
+html[data-theme=dark] .stpt b{color:#e9edff}
+html[data-theme=dark] .stpi.on{background:#16204f;border-color:var(--blue);box-shadow:0 0 0 3px rgba(111,147,255,.28)}
+html[data-theme=dark] .stpi.on .stpc{background:var(--blue);color:#fff}
+html[data-theme=dark] .stpi.ok{background:rgba(74,222,128,.09);border-color:rgba(74,222,128,.35)}
+html[data-theme=dark] .stpi.ok .stpc{background:#16a34a;color:#fff}
+html[data-theme=dark] .stpi.ok .stps{color:#4ade80}
+html[data-theme=dark] .stpi.part .stpc{background:rgba(111,147,255,.22);color:#c9d6ff}
+html[data-theme=dark] .stpi.part .stps,html[data-theme=dark] .stpi.on .stps{color:#9db6ff}
 }
 </style>
 </head>
@@ -3709,9 +3785,7 @@ button.sv-k{cursor:pointer}button.sv-k:hover{background:var(--soft)}
 /* students: blue theme class, no collapsed rail, amber Scholarships block */
 new MutationObserver(()=>{const b=document.body;if(b.classList.contains('stu')&&b.classList.contains('sbc'))b.classList.remove('sbc')}).observe(document.body,{attributes:true,attributeFilter:['class']});
 const _bootSv=boot;
-boot=function(){const stu=!A();document.body.classList.toggle('stu',stu);_bootSv();
- if(stu){const me=document.querySelector('#side .me');
-  if(me&&!me.querySelector('.stprem'))me.insertAdjacentHTML('afterbegin','<button class="stprem" data-act="nav" data-v="sch"><span class="stpi">'+I.star+'</span><span>Scholarships</span></button>')}};
+boot=function(){const stu=!A();document.body.classList.toggle('stu',stu);_bootSv()};
 
 /* ---------- pieces ---------- */
 const SVSTAR=on=>`<svg viewBox="0 0 24 24" width="20" height="20" class="sv-s${on?' on':''}" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
@@ -4691,17 +4765,35 @@ dxDraw=function(X,H){_dxDrawTh(X,H);
  if(S.dsh&&S.dsh.stats)maDraw(S.dsh.stats);
  else google.script.run.withSuccessHandler(r=>{if(r&&r.success){S.dsh=r.data;maDraw(r.data.stats)}}).withFailureHandler(()=>{}).dashboard(S.token)};
 
- /* ===== Sign-in panel: Sign in <-> Create an account (driven by whether #regbox is visible) ===== */
+/* ===== Sign-in <-> Create an account with a smooth transition ===== */
 (function(){
- const rb=$('regbox');if(!rb)return;
- function sync(){const on=!rb.classList.contains('hidden');
-  $('sibox').classList.toggle('hidden',on);
-  $('hpt').textContent=on?'Create an account':'Welcome back';
-  $('hps').textContent=on?'Fill in your details to start your application':'Sign in to continue';
-  $('hpsw').textContent=on?'Already have an account? Sign in':'New enrollee? Create an account'}
- new MutationObserver(sync).observe(rb,{attributes:true,attributeFilter:['class']});
- if(typeof WANT_REG!=='undefined'&&String(WANT_REG)==='true'){rb.classList.remove('hidden');setTimeout(()=>{const f=$('rs');if(f)f.focus()},150)}else{rb.classList.add('hidden')}
- sync()
+ const rb=$('regbox'),sb=$('sibox'),pn=document.querySelector('#login .hp-panel'),lk=$('hpsw'),eb=pn.querySelector('.hp-eyebrow');
+ const T={true:['Create an account','Fill in your details to start your application','Already have an account? Sign in','New enrollee'],
+          false:['Welcome back','Sign in to continue','New enrollee? Create an account','Student & staff portal']};
+ let reg=false,busy=false;
+
+ function apply(on){reg=on;const t=T[on];
+  sb.classList.toggle('hidden',on);rb.classList.toggle('hidden',!on);pn.classList.toggle('hp-wide',on);
+  $('hpt').textContent=t[0];$('hps').textContent=t[1];lk.textContent=t[2];eb.textContent=t[3]}
+
+ function go(on){
+  if(busy||on===reg)return;
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){apply(on);return}
+  busy=true;pn.classList.add('hp-swap');                 /* 1. fade the current content out */
+  setTimeout(()=>{
+   apply(on);window.scrollTo({top:0});                   /* 2. swap content while invisible; panel width animates */
+   requestAnimationFrame(()=>pn.classList.remove('hp-swap'));   /* 3. fade the new content in */
+   setTimeout(()=>{busy=false;const f=$(on?'rs':'u');if(f)f.focus({preventScroll:true})},450)
+  },200)}
+
+ act.showreg=()=>go(!reg);
+
+ /* anything else that shows/hides #regbox (registration success, ?reg=1 link) still stays in sync */
+ new MutationObserver(()=>{const on=!rb.classList.contains('hidden');if(on!==reg&&!busy)apply(on)})
+  .observe(rb,{attributes:true,attributeFilter:['class']});
+
+ if(typeof WANT_REG!=='undefined'&&String(WANT_REG)==='true'){apply(true);setTimeout(()=>{const f=$('rs');if(f)f.focus()},150)}
+ else apply(false);
 })();
 /* ===== Reports & Analytics v3, Phase 1 + school-year filter =====
    Replaces rep(), selRep() and runRep(). Reuses blockHTML, printReport, pickerHTML, secOpts, rfGrade and every existing act.* hook. */
@@ -4873,4 +4965,11 @@ boot = function () {
     setTimeout(() => { nav('sch'); setTimeout(() => act.schk(k), 700); }, 400);
   }
 };
+/* ===== Wizard stepper v2: adds the progress bar, % label and "in progress" state ===== */
+stepperInner=function(t){const o=stepStat(t);
+ return STEPS.map((s,i)=>{const n=i+1,x=o[n],done=x.n>0&&x.d===x.n,part=x.d>0&&!done,pc=x.n?Math.round(x.d/x.n*100):0;
+  return `<button type="button" class="stpi ${t.step===n?'on':''} ${done?'ok':''} ${part?'part':''}" data-act="wstep" data-v="${n}" title="${esc(s[0])}"${t.step===n?' aria-current="step"':''}>
+   <span class="stph"><span class="stpc">${done?CHK2:n}</span><em class="stps">${done?'Done':x.n?pc+'%':''}</em></span>
+   <span class="stpt"><b>${esc(STSHORT[i])}</b><small>${x.n?x.d+' / '+x.n+(n===4?' submitted':' complete'):'Review &amp; confirm'}</small></span>
+   ${x.n?`<i class="stpb"><u style="width:${pc}%"></u></i>`:''}</button>`}).join('')};
 </script></body></html>
