@@ -285,11 +285,11 @@ transferred:all.filter(r=>r.EnrollStatus==='Transferred Out').length,cancelled:a
 const GROUPS = ['Preschool','Elementary','Junior High School','Senior High \u2013 Grade 11','Senior High \u2013 Grade 12'];
 const CATS = ['PUB-QVR','TLC','REGULAR','ESC','TLC-OVAP','QVA PASSER','IS'];
 const grpOf_ = g => { const i = GRADES.indexOf(g); return i<0 ? '' : i<3 ? GROUPS[0] : i<9 ? GROUPS[1] : i<13 ? GROUPS[2] : GROUPS[i===13?3:4]; };
-function report(token, type, arg) {
+function report(token, type, arg, sy) {
   try {
     const _u = who_(token,'admin'); if (_u.Clearance==='Encoder' && type!=='daily') throw new Error('Encoders do not have access to reports.');
-    audit_(_u, 'report.view', type, '');
-    const all = rowsSY_(), s = all.filter(r=>r.EnrollStatus!=='Cancelled'&&r.EnrollStatus!=='Transferred Out'), to = all.filter(r=>r.EnrollStatus==='Transferred Out'), n = (a,f)=>a.filter(f).length;
+    audit_(_u, 'report.view', type, 'SY ' + reportSY_(sy));
+    const SYX = reportSY_(sy), all = rowsForSY_(SYX), s = all.filter(r=>r.EnrollStatus!=='Cancelled'&&r.EnrollStatus!=='Transferred Out'), to = all.filter(r=>r.EnrollStatus==='Transferred Out'), n = (a,f)=>a.filter(f).length;
     const asof = 'Data as of '+Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'EEEE, MMMM dd, yyyy  h:mm:ss a');
     const tb = (title,label,rows,fn,num) => { const m={}; rows.forEach(r=>{ const v=fn(r)||'(NONE)'; m[v]=(m[v]||0)+1; });
       let e = Object.entries(m); e = num ? e.sort((a,b)=>String(a[0]).localeCompare(String(b[0]),undefined,{numeric:true})) : e.sort((a,b)=>b[1]-a[1]);
@@ -449,7 +449,7 @@ function report(token, type, arg) {
         rows:s.filter(r=>r.ReferredBy===arg).map(r=>[r.FullName,r.GradeLevel+(r.Section?' \u2013 '+r.Section:''),r.Department,r.EnrollStatus==='Enrolled'?r.CreatedAt.slice(0,10):'']) }] })
     };
     if (!Object.prototype.hasOwnProperty.call(R, type)) throw new Error('Unknown report.');
-    const out = R[type](); out.asof = asof; return ok(out);
+    const out = R[type](); out.asof = 'School Year ' + SYX + '  \u2022  ' + asof; out.sy = SYX; return ok(out);
   } catch(e) { return fail(e); }
 }
 
