@@ -11,52 +11,72 @@ if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved())
 })();
 </script>
 <title>Moreh Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#102A56;--blue:#155EEF;--blue2:#287CEB;--sky:#38BDF8;--soft:#EAF2FF;--bg:#F5F8FC;--ink:#172B4D;--mut:#5a6b82;--line:#E5EAF2;--sh:0 12px 35px #102a5619;--g:linear-gradient(120deg,#155EEF,#287CEB 55%,#38BDF8);--f:'Plus Jakarta Sans',Inter,Arial,sans-serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+:root{--navy:#102A56;--blue:#155EEF;--blue2:#287CEB;--sky:#38BDF8;--orange:#FF9D50;--soft:#EAF2FF;--bg:#F5F8FC;--ink:#172B4D;--mut:#5a6b82;--line:#E5EAF2;--sh:0 12px 35px #102a5619;--g:linear-gradient(120deg,#155EEF,#287CEB 55%,#38BDF8);--f:'Plus Jakarta Sans',Inter,Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;font:16px/1.6 Inter,system-ui,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:var(--f);margin:0;color:var(--navy);letter-spacing:-.03em;line-height:1.12}
 a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.w{max-width:1180px;margin:0 auto;padding:0 24px}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:12px;border:1px solid transparent;font:700 14px Inter;transition:transform .2s}
-.btn:hover{transform:translateY(-2px)}.b1{background:var(--g);color:#fff;box-shadow:0 9px 20px #155eef30}.b2{background:#fff;color:var(--navy);border-color:#D5DEEB}
+.skip{position:fixed;left:12px;top:-60px;z-index:100;background:#fff;color:var(--navy);padding:10px 16px;border-radius:10px;border:2px solid var(--blue);font-weight:700}.skip:focus{top:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:12px;border:1px solid transparent;font:700 14px Inter;transition:transform .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}.b1{background:var(--g);color:#fff;box-shadow:0 9px 20px #155eef30}.b2{background:#fff;color:var(--navy);border-color:#D5DEEB}.sm{min-height:40px;padding:0 16px}
 header{position:sticky;top:0;z-index:30;background:#fffffff0;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nv{display:flex;align-items:center;gap:20px;height:70px}.br{display:flex;align-items:center;gap:11px;margin-right:auto;font:800 15px var(--f);color:var(--navy)}
+.nv{display:flex;align-items:center;gap:18px;height:70px}.br{display:flex;align-items:center;gap:11px;margin-right:auto;font:800 15px var(--f);color:var(--navy);white-space:nowrap}
 .br img{width:40px;height:40px;border-radius:50%;object-fit:cover;background:#fff}.br small{display:block;font:500 12px Inter;color:var(--mut)}
-.nl{display:flex;gap:24px;font-size:14px;color:#52637b}.nl a:hover{color:var(--blue)}.mb{display:none;background:#fff;border:1px solid var(--line);border-radius:10px;width:44px;height:44px}
+.nl{display:flex;gap:22px;font-size:14px;color:#52637b;white-space:nowrap}.nl a{padding:6px 0;border-bottom:2px solid transparent}.nl a:hover{color:var(--blue)}.nl a.on{color:var(--blue);border-color:var(--orange);font-weight:600}
+.mb{display:none;background:#fff;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;color:var(--navy)}
 .hero{padding:76px 0 100px;background:linear-gradient(180deg,#fff,var(--bg))}.hg{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-.ey{color:var(--blue);font:700 13px Inter;margin-bottom:14px}h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.05em}h1 em{font-style:normal;color:var(--blue)}
+.ey{display:inline-block;color:var(--blue);font:700 13px Inter;margin-bottom:14px;padding-bottom:6px;border-bottom:3px solid var(--orange)}
+h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-.05em}h1 em{font-style:normal;color:var(--blue)}
 .hero p{color:var(--mut);max-width:34em;margin:20px 0 28px}.cta{display:flex;gap:12px;flex-wrap:wrap}
-.hc{background:#fff;border-radius:20px;padding:34px;text-align:center;box-shadow:0 22px 55px #102a5630;max-width:380px;margin:auto;border:1px solid var(--line)}
-.hc img{width:120px;height:120px;border-radius:50%;object-fit:cover;box-shadow:0 14px 34px #155eef35}.hc h2{font-size:28px;margin:18px 0 6px}.hc p{margin:0;font-size:14px}
+.hv{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3.4;max-width:480px;margin:auto;width:100%;box-shadow:0 22px 55px #102a5630;background:linear-gradient(145deg,#287CEB,#102A56);display:flex;align-items:center;justify-content:center}
+.hv>img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hv .lc{position:relative;text-align:center;color:#fff;padding:30px}.hv .lc img{width:120px;height:120px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 14px 34px #0004}.hv .lc h2{color:#fff;font-size:28px;margin:18px 0 6px}.hv .lc p{color:#dce9ff;margin:0;font-size:14px}
+.hv .cap{position:absolute;inset:auto 0 0;padding:34px 18px 14px;background:linear-gradient(transparent,#06122ccc);color:#fff;font-size:14px}
 .st{max-width:1000px;margin:-44px auto 0;position:relative;z-index:2;padding:0 24px}.si{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh);padding:22px 8px;text-align:center}
-.si div+div{border-left:1px solid var(--line)}.si b{font:800 30px var(--f);color:var(--blue);display:block}.si span{font-size:13px;color:var(--mut)}
+.si div{padding:0 14px}.si div+div{border-left:1px solid var(--line)}.si b{font:800 30px var(--f);color:var(--blue);display:block}.si strong{display:block;color:var(--navy);font-size:14px}.si span{font-size:13px;color:var(--mut);display:block;line-height:1.4;margin-top:2px}
 section{padding:92px 0}.sh{max-width:680px;margin-bottom:36px}.sh h2{font-size:clamp(30px,4vw,44px)}.sh p{color:var(--mut);margin:12px 0 0}
 .alt{background:#fff}.dk{background:linear-gradient(120deg,#102A56,#155EEF 70%,#287CEB);color:#fff}.dk h2,.dk h3{color:#fff}.dk .sh p{color:#DCE9FF}
 .cd{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 25px #102a560a}.cd h3{font-size:21px;margin-bottom:8px}.cd p{margin:0;color:var(--mut);font-size:14px}
 .g2,.g3,.g4{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-.vm p{white-space:pre-line}.tl{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:16px;overflow-x:auto;margin-top:16px;padding-bottom:8px}
+.vm p{white-space:pre-line}.vm .cd{border-left:4px solid var(--blue)}.lab{font:700 12px Inter;color:var(--blue);margin-bottom:8px;display:block}
+.vi{width:40px;height:40px;border-radius:12px;background:var(--soft);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:14px}.vi svg{width:20px;height:20px}
+.tl{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:16px;overflow-x:auto;margin-top:16px;padding-bottom:8px}
 .tl .cd{border-top:4px solid var(--blue)}.tl b{font:800 22px var(--f);color:var(--blue)}.sub{font:800 22px var(--f);color:var(--navy);margin:40px 0 16px}
-.sc{border-top:4px solid var(--c)}.tag{display:inline-block;background:var(--soft);color:var(--navy);border-radius:999px;padding:3px 12px;font:600 12px Inter;margin-bottom:12px}
+.sc{border-top:4px solid var(--c);display:flex;flex-direction:column}.sc p{flex:1}.tag{display:inline-block;background:var(--soft);color:var(--navy);border-radius:999px;padding:3px 12px;font:600 12px Inter;margin-bottom:12px;align-self:flex-start}
+.el{font-size:12.5px;color:var(--mut);margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}.el b{color:var(--navy)}
 .lk{display:inline-block;margin-top:14px;font:700 14px Inter;color:var(--blue)}
-.cl{background:#ffffff14;border:1px solid #ffffff30;border-radius:16px;padding:22px}.cl p{color:#DCE9FF;font-size:14px;margin:6px 0 14px}.ch{display:flex;flex-wrap:wrap;gap:8px}.ch i{font-style:normal;background:#ffffff24;border-radius:999px;padding:3px 12px;font-size:13px}
-.qz{max-width:720px}.bar{height:8px;border-radius:8px;background:var(--line);margin-bottom:20px;overflow:hidden}.bar u{display:block;height:100%;background:var(--g);transition:width .3s}
-.qo{display:block;width:100%;text-align:left;background:var(--bg);border:2px solid transparent;border-radius:12px;padding:14px 16px;margin:10px 0;min-height:48px;color:var(--ink)}.qo:hover{border-color:var(--blue)}
-.res{background:var(--g);color:#fff;border-radius:16px;padding:24px}.res h3{color:#fff;font-size:26px}.res p{margin:8px 0 16px}
+.cl{background:#ffffff14;border:1px solid #ffffff30;border-radius:16px;padding:22px}.cl h3{display:flex;align-items:center;gap:10px}.cl h3:before{content:'';width:10px;height:10px;border-radius:3px;background:var(--orange)}
+.cl p{color:#DCE9FF;font-size:14px;margin:6px 0 14px}.ch{display:flex;flex-wrap:wrap;gap:8px}.ch i{font-style:normal;background:#ffffff24;border-radius:999px;padding:3px 12px;font-size:13px}
+.note{margin-top:18px;font-size:13px;color:#DCE9FF}
+.qz{max-width:720px}.bar{height:8px;border-radius:8px;background:var(--line);margin-bottom:10px;overflow:hidden}.bar u{display:block;height:100%;background:var(--g);transition:width .3s}.qc{font-size:13px;color:var(--mut);margin-bottom:12px;font-weight:600}
+.qo{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--bg);border:2px solid transparent;border-radius:12px;padding:12px 16px;margin:10px 0;min-height:48px;color:var(--ink)}.qo:hover{border-color:var(--blue)}
+.qo i{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #b8c4d8}.qo.on{border-color:var(--blue);background:var(--soft)}.qo.on i{border-color:var(--blue);background:radial-gradient(var(--blue) 45%,transparent 50%)}
+.qn{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.qe{color:#b3261e;font-size:13px;min-height:20px;margin-top:6px}
+.res{background:var(--g);color:#fff;border-radius:16px;padding:24px}.res h3{color:#fff;font-size:26px}.res p{margin:8px 0 16px;color:#fff;max-width:none}
 .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gal figure{margin:0;border-radius:16px;overflow:hidden;aspect-ratio:4/3;position:relative;background:linear-gradient(145deg,#287CEB,#102A56)}
-.gal figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}.gal img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
-.gal figcaption{position:absolute;inset:auto 0 0;padding:26px 14px 12px;background:linear-gradient(transparent,#06122ccc);color:#fff;font-size:14px}
+.gal.n1{grid-template-columns:1fr;max-width:760px}.gal.n2{grid-template-columns:1fr 1fr}
+.gal.n4{grid-template-columns:repeat(4,1fr)}.gal.n4 figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.gal.n5 figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}.gal.n5{grid-template-columns:repeat(4,1fr)}
+.gal.n3 figure:first-child{grid-column:span 3;aspect-ratio:21/9}
+.gal button.pic{all:unset;display:block;width:100%;height:100%;cursor:zoom-in}.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gal figcaption{position:absolute;inset:auto 0 0;padding:26px 14px 12px;background:linear-gradient(transparent,#06122ccc);color:#fff;font-size:14px;pointer-events:none}
+.gal .soon{display:flex;align-items:center;justify-content:center;color:#dce9ff;text-align:center;padding:20px;aspect-ratio:21/6}
 .sk{width:100%;height:100%;min-height:150px;background:linear-gradient(90deg,#287CEB,#3b8cf0,#287CEB);background-size:200% 100%;animation:s 1.4s linear infinite}@keyframes s{to{background-position:-200% 0}}
-.stp{counter-reset:n}.stp .cd:before{counter-increment:n;content:counter(n);display:flex;width:36px;height:36px;border-radius:50%;background:var(--g);color:#fff;font:800 16px var(--f);align-items:center;justify-content:center;margin-bottom:14px}
+.stp{counter-reset:n;position:relative}.stp .cd{position:relative}.stp .cd:before{counter-increment:n;content:counter(n);display:flex;width:36px;height:36px;border-radius:50%;background:var(--g);color:#fff;font:800 16px var(--f);align-items:center;justify-content:center;margin-bottom:14px}
+.stp .cd h3{font-size:18px}
 .ev{margin-top:24px}.ev .cd{padding:16px 20px}.ev b{display:block;color:var(--navy)}.ev small{color:var(--mut)}
-footer{background:#0B1730;color:#aab5c3;padding:56px 0 100px;font-size:14px}footer h3{color:#fff;font-size:16px;margin-bottom:10px}footer p{margin:0 0 10px}footer a{color:#fff}
-.fg{display:grid;grid-template-columns:1.2fr 1.4fr 1fr;gap:32px}.cp{border-top:1px solid #ffffff1f;margin-top:32px;padding-top:18px;font-size:13px}
+.fin{padding:70px 0}.fin .w{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+footer{background:#0B1730;color:#aab5c3;padding:56px 0 40px;font-size:14px}footer h3{color:#fff;font-size:16px;margin-bottom:10px}footer p{margin:0 0 10px}footer a{color:#fff}footer a:hover{text-decoration:underline}
+.fg{display:grid;grid-template-columns:1.2fr 1.4fr 1fr 1fr;gap:32px}.fg ul{list-style:none;margin:0;padding:0}.fg li{margin:0 0 8px}.cp{border-top:1px solid #ffffff1f;margin-top:32px;padding-top:18px;font-size:13px}
 #lb{position:fixed;inset:0;z-index:80;background:#06122ccc;display:none;align-items:center;justify-content:center;padding:16px;cursor:zoom-out}#lb.on{display:flex}#lb img{max-width:100%;max-height:92vh;border-radius:12px}
 .rv{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
-@media(max-width:900px){.hg,.g2,.fg{grid-template-columns:1fr}.g3,.g4{grid-template-columns:1fr 1fr}.mb{display:block}.nb{display:none}
-.nl{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;flex-direction:column}.nl.open{display:flex}.hero{padding:52px 0 80px}}
-@media(max-width:600px){.g3,.g4{grid-template-columns:1fr}.gal{grid-template-columns:1fr 1fr}section{padding:68px 0}.si b{font-size:22px}}
+@media(max-width:1023px){.mb{display:block}.nl{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;flex-direction:column;gap:6px}.nl.open{display:flex}.nb{display:none}}
+@media(max-width:900px){.hg,.g2{grid-template-columns:1fr}.g3,.g4{grid-template-columns:1fr 1fr}.hero{padding:52px 0 80px}.fg{grid-template-columns:1fr 1fr}.gal.n4,.gal.n5{grid-template-columns:1fr 1fr}.gal.n3{grid-template-columns:1fr 1fr}.gal.n3 figure:first-child{grid-column:span 2}}
+@media(max-width:600px){.g3,.g4,.fg{grid-template-columns:1fr}.gal{grid-template-columns:1fr 1fr!important}.gal figure:first-child{grid-column:span 2;aspect-ratio:4/3!important}section{padding:68px 0}.si{grid-template-columns:1fr;gap:14px}.si div+div{border-left:0;border-top:1px solid var(--line);padding-top:14px}.br small{display:none}.nv{gap:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.rv{opacity:1;transform:none}}
 .theme-switch{position:relative;display:inline-flex;align-items:center;justify-content:space-between;width:64px;height:34px;padding:0 9px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#78839f;flex:none;cursor:pointer}
 .theme-switch svg{width:16px;height:16px;position:relative;z-index:1}
@@ -66,98 +86,131 @@ html[data-theme=dark] .theme-switch{background:#161f46;color:#8f9bc6}
 html[data-theme=dark] .theme-switch .knob{transform:translateX(30px);background:linear-gradient(135deg,#8b7bff,#4f6bff);box-shadow:0 4px 14px #6e6eff99}
 html[data-theme=dark] .theme-switch .i-sun{color:#8f9bc6}html[data-theme=dark] .theme-switch .i-moon{color:#fff}
 html[data-theme=dark]{color-scheme:dark;--navy:#e9edff;--ink:#e9edff;--mut:#9aa8d0;--line:#2a3558;--bg:#070b1f;--soft:#1b2757;--blue:#6f93ff;--sh:0 12px 35px #0008}
-html[data-theme=dark] body{background:#070b1f}
-html[data-theme=dark] header{background:#0a1030f0}
+html[data-theme=dark] body{background:#070b1f}html[data-theme=dark] header{background:#0a1030f0}
 html[data-theme=dark] .hero{background:linear-gradient(180deg,#0b1033,#070b1f)}
-html[data-theme=dark] .hc,html[data-theme=dark] .si,html[data-theme=dark] .cd,html[data-theme=dark] .alt{background:#10173a}
-html[data-theme=dark] .alt{background:#0b1033}
-html[data-theme=dark] .b2{background:#161f4a;color:#e9edff;border-color:#2f3d70}
-html[data-theme=dark] .mb{background:#161f4a;color:#e9edff;border-color:#2f3d70}
-html[data-theme=dark] .nl,html[data-theme=dark] .nl a{color:#c5d0ee}
-html[data-theme=dark] .qo{background:#0a1030;border-color:#2a3558}
-html[data-theme=dark] .qo:hover{border-color:#6f93ff}
-html[data-theme=dark] .nl{background:#0a1030}
-@media(max-width:900px){.nl{position:absolute}}
-.nl .mnav{display:none}
-@media(max-width:900px){.nl .mnav{display:block;font-weight:700;color:var(--blue)}}
+html[data-theme=dark] .si,html[data-theme=dark] .cd,html[data-theme=dark] .alt{background:#10173a}html[data-theme=dark] .alt{background:#0b1033}
+html[data-theme=dark] .b2,html[data-theme=dark] .mb,html[data-theme=dark] .skip{background:#161f4a;color:#e9edff;border-color:#2f3d70}
+html[data-theme=dark] .nl,html[data-theme=dark] .nl a{color:#c5d0ee}html[data-theme=dark] .nl{background:#0a1030}html[data-theme=dark] .nl a.on{color:#8fb0ff}
+html[data-theme=dark] .qo{background:#0a1030;border-color:#2a3558}html[data-theme=dark] .qo:hover,html[data-theme=dark] .qo.on{border-color:#6f93ff}html[data-theme=dark] .qo.on{background:#16204f}
+html[data-theme=dark] .qe{color:#ff9fb0}
 </style></head><body>
+<a class="skip" href="#top">Skip to main content</a>
 <header><div class="w nv"><a class="br" href="#top"><img class="lg" src="https://i.imgur.com/roCMSYf.jpeg" alt=""><span>Moreh Academy<small>School of Righteousness &amp; Excellence</small></span></a>
-<nav class="nl" id="nl" aria-label="Sections"><a href="#about">Our school</a><a href="#scholarships">Scholarships</a><a href="#clusters">Senior High</a><a href="#campus">Campus</a><a href="#enroll">How to enroll</a><a class="pl mnav" href="#">Sign in</a><a class="pr mnav" href="#">Begin application</a></nav>
-<button type="button" class="theme-switch" aria-label="Switch to night mode" aria-pressed="false" onclick="MRH_THEME.toggle()"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="knob"></span></button><a class="btn b2 pl nb" href="#">Sign in</a><a class="btn b1 pr nb" href="#">Begin application</a><button class="mb" id="mb" aria-label="Menu" aria-expanded="false" aria-controls="nl">&#9776;</button></div></header>
+<nav class="nl" id="nl" aria-label="Sections"><a href="#about">Our school</a><a href="#scholarships">Scholarships</a><a href="#clusters">Senior High</a><a href="#campus">Campus</a><a href="#enroll">How to enroll</a><a class="pr mnav" href="#" style="font-weight:700;color:var(--blue)">Begin application</a></nav>
+<button type="button" class="theme-switch" aria-label="Switch to night mode" aria-pressed="false" onclick="MRH_THEME.toggle()"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="knob"></span></button>
+<a class="btn b2 sm pl" href="#">Sign in</a><a class="btn b1 sm pr nb" href="#">Begin application</a><button class="mb" id="mb" aria-label="Menu" aria-expanded="false" aria-controls="nl">&#9776;</button></div></header>
 <main id="top">
 <div class="hero"><div class="w hg"><div><div class="ey">Admissions for School Year <span class="sy">2026&ndash;2027</span></div><h1>Discover the <em>Moreh</em> difference.</h1>
 <p>A place to grow in knowledge, character and purpose. Explore our community, find the pathway that fits you, and take the next step toward a meaningful future.</p>
 <div class="cta"><a class="btn b1 pr" href="#">Begin application</a><a class="btn b2" href="#enroll">See how to enroll</a></div></div>
-<div class="hc"><img class="lg" src="https://i.imgur.com/roCMSYf.jpeg" alt="Moreh Academy logo"><h2>Begin here.</h2><p>Nursery to Grade 12 in one community, in the heart of Taguig.</p></div></div></div>
-<div class="st"><div class="si"><div><b>Nursery&ndash;12</b><span>Learning pathway</span></div><div><b>5</b><span>School levels</span></div><div><b>4</b><span>Scholarship programs</span></div></div></div>
+<div class="hv" id="hv"><div class="lc"><img class="lg" src="https://i.imgur.com/roCMSYf.jpeg" alt="Moreh Academy logo"><h2>Begin here.</h2><p>Nursery to Grade 12 in one community, in the heart of Taguig.</p></div></div></div></div>
+<div class="st"><div class="si"><div><b>Nursery&ndash;12</b><strong>Complete education</strong><span>From early learning to senior high school</span></div><div><b>5</b><strong>Learning divisions</strong><span>Five stages of academic development</span></div><div><b>4</b><strong>Scholarship opportunities</strong><span>Programs supporting student success</span></div></div></div>
 
 <section id="about"><div class="w"><div class="sh rv"><h2>An education shaped by purpose.</h2><p>Get to know the principles and milestones that guide Moreh Academy.</p></div>
 <div class="g2 vm" id="vm"></div><div class="sub" id="vh" hidden>Core values</div><div class="g4" id="vl"></div><div class="sub" id="th" hidden>Our history</div><div class="tl" id="tl"></div></div></section>
 
-<section id="scholarships" class="alt"><div class="w"><div class="sh rv"><h2>Scholarship programs</h2><p>Four programs can cover tuition. Sign in to the portal to read the full requirements for your program.</p></div><div class="g4" id="sg"></div></div></section>
+<section id="scholarships" class="alt"><div class="w"><div class="sh rv"><h2>Scholarship programs</h2><p>Four programs can cover tuition. Open a program to read its requirements in the portal.</p></div><div class="g4" id="sg"></div></div></section>
 
-<section id="clusters" class="dk"><div class="w"><div class="sh rv"><h2>Senior High clusters</h2><p>Choose the path that matches where you want to go after Grade 12.</p></div><div class="g3" id="cg"></div></div></section>
+<section id="clusters" class="dk"><div class="w"><div class="sh rv"><h2>Senior High clusters</h2><p>Choose the path that matches where you want to go after Grade 12.</p></div><div class="g3" id="cg"></div><p class="note">Careers shown are sample pathways, not guaranteed outcomes.</p></div></section>
 
-<section id="quiz"><div class="w"><div class="sh rv"><h2>Which cluster fits me?</h2><p>Five quick questions, no sign-in needed. It is only a guide, so talk to our guidance counselor before you decide.</p></div><div class="cd qz" id="qz"></div></div></section>
+<section id="quiz"><div class="w"><div class="sh rv"><h2>Which cluster fits me?</h2><p>Five quick questions, no sign-in needed. It is only a guide, so talk to our guidance counselor before you decide.</p></div><div class="cd qz" id="qz" aria-live="polite"></div></div></section>
 
-<section id="campus" class="alt"><div class="w"><div class="sh rv"><h2>A campus made for discovery.</h2><p>Three learning centers in Bicutan, Taguig City.</p></div><div class="gal" id="gl"></div>
+<section id="campus" class="alt"><div class="w"><div class="sh rv"><h2>A campus made for discovery.</h2><p>Three learning centers in Bicutan, Taguig City.</p></div><div class="gal n1" id="gl"></div>
 <a class="btn b1" style="margin-top:22px" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Moreh+Academy+Learning+Center+3+Reyes+St+Central+Bicutan+Taguig">Get directions to the Admissions Office</a></div></section>
 
-<section id="enroll"><div class="w"><div class="sh rv"><h2>How to enroll</h2><p>Four steps from account to classroom.</p></div><div class="g4 stp" id="gd">
-<div class="cd"><h3>Complete your profile</h3><p>Create an account with your LRN and email, then fill in your student profile.</p></div>
-<div class="cd"><h3>Print the consent form</h3><p>Your parent or legal guardian signs the Parental Consent &amp; Data Privacy form.</p></div>
-<div class="cd"><h3>Submit requirements</h3><p>Bring your documents to the Admissions Office.</p></div>
-<div class="cd"><h3>Check your status</h3><p>Sign in any time to see your requirements and enrollment status.</p></div></div>
+<section id="enroll"><div class="w"><div class="sh rv"><h2>How to enroll</h2><p>Six steps from account to classroom.</p></div><div class="g3 stp" id="gd">
+<div class="cd"><h3>Create an account</h3><p>Register with your LRN and email to open your portal account.</p></div>
+<div class="cd"><h3>Complete your student profile</h3><p>Fill out all required personal, family and emergency contact details in the portal.</p></div>
+<div class="cd"><h3>Print the Student Enrollment Form</h3><p>Print the form and have it signed by you and your parent or legal guardian.</p></div>
+<div class="cd"><h3>Print the Parental Consent &amp; Data Privacy Undertaking Form</h3><p>This form is filled out and signed only by your parent or legal guardian.</p></div>
+<div class="cd"><h3>Submit your requirements</h3><p>Bring all required physical documents to the Admissions Office in person.</p></div>
+<div class="cd"><h3>Track your status</h3><p>Sign in any time to see your requirements and enrollment status.</p></div></div>
 <div class="g3 ev" id="ev"></div></div></section>
 
-<section class="dk" style="padding:70px 0"><div class="w" style="display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap"><div><h2>Your application, in one place.</h2><p style="color:#DCE9FF;margin:10px 0 0">Sign in to continue your application, check requirements and follow your status.</p></div><a class="btn b2 pl" href="#">Sign in to the portal</a></div></section>
+<section class="dk fin"><div class="w"><div><h2>Your application, in one place.</h2><p style="color:#DCE9FF;margin:10px 0 0">Start your application, or sign in to check requirements and follow your status.</p></div><div class="cta"><a class="btn b2 pr" href="#" style="background:#fff">Begin application</a><a class="btn b2 pl" href="#" style="background:transparent;color:#fff;border-color:#ffffff80">Sign in</a></div></div></section>
 </main>
-<footer><div class="w"><div class="fg"><div><h3>Moreh Academy</h3><p>School of Righteousness &amp; Excellence. A community where learners grow in knowledge, character and purpose.</p></div>
-<div><h3>Our learning centers</h3><p><b style="color:#fff">Learning Center 1</b><br>Ricahuerta St. cor. A. Bonifacio Avenue, Upper Bicutan, Taguig City</p><p><b style="color:#fff">Learning Center 2</b><br>Ricahuerta St., Upper Bicutan, Taguig City</p><p><b style="color:#fff">Learning Center 3 (Admissions Office)</b><br>Reyes St. cor. Makintar St., Central Bicutan, Taguig City</p></div>
-<div><h3>Contact us</h3><p>Admissions: <a target="_top" href="tel:09618766886">0961 876 6886</a><br>Registrar: <a target="_top" href="tel:09708609433">0970 860 9433</a><br>College: <a target="_top" href="tel:09273410437">0927 341 0437</a><br><a target="_top" href="mailto:morehians@gmail.com">morehians@gmail.com</a></p><p>Admissions hours: Mon&ndash;Fri 8:00 AM&ndash;5:00 PM, Sat 8:00 AM&ndash;3:00 PM</p><p><a class="pl" href="#">Sign in to the portal</a></p></div></div>
+<footer><div class="w"><div class="fg"><div><h3>Moreh Academy</h3><p>School of Righteousness &amp; Excellence. A community where learners grow in knowledge, character and purpose.</p>
+<p>Follow us<br><a target="_blank" rel="noopener" href="https://www.facebook.com/ilovemoreh">Moreh Academy Taguig</a><br><a target="_blank" rel="noopener" href="https://www.facebook.com/morehcollege">Moreh College</a><br><a target="_blank" rel="noopener" href="https://www.facebook.com/MorehGlobal2019">Moreh Global</a></p></div>
+<div><h3>Our learning centers</h3><p><b style="color:#fff">Learning Center 1</b><br>Ricahuerta St., corner A. Bonifacio Avenue, Upper Bicutan, Taguig City</p><p><b style="color:#fff">Learning Center 2</b><br>Ricahuerta St., Upper Bicutan, Taguig City</p><p><b style="color:#fff">Learning Center 3 (Admissions Office)</b><br>Reyes St. cor. Makintar St., Central Bicutan, Taguig City</p></div>
+<div><h3>Contact us</h3><p>Admissions: <a href="tel:09618766886">0961 876 6886</a><br>Registrar: <a href="tel:09708609433">0970 860 9433</a><br>College: <a href="tel:09273410437">0927 341 0437</a><br>Landline: <a href="tel:88390135">8 839 01 35</a></p><p><a href="mailto:morehians@gmail.com">morehians@gmail.com</a><br><a href="mailto:registrar@morehacademy.com">registrar@morehacademy.com</a></p><p>Admissions hours:<br>Mon&ndash;Fri 8:00 AM&ndash;5:00 PM<br>Sat 8:00 AM&ndash;3:00 PM</p></div>
+<div><h3>Quick links</h3><ul><li><a href="#about">Our school</a></li><li><a href="#scholarships">Scholarships</a></li><li><a href="#clusters">Senior High</a></li><li><a href="#quiz">Find my cluster</a></li><li><a href="#campus">Campus</a></li><li><a href="#enroll">How to enroll</a></li><li><a class="pl" href="#">Sign in to the portal</a></li></ul></div></div>
 <div class="cp">&copy; <span id="yr"></span> Moreh Academy. All rights reserved.</div></div></footer>
-<div id="lb"><img alt=""></div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer"><img alt=""></div>
 <script>
+/* ===== Stock photo placeholders: paste image URLs here, or leave '' to use the logo card / blue tile. Replaced automatically by your Facilities gallery photos once you upload them. ===== */
+const STOCK_HERO='', STOCK_CAMPUS=[];
+
 MRH_THEME.sync();
-document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();const h=a.getAttribute('href'),t=h.length>1&&document.getElementById(h.slice(1));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});$('nl').classList.remove('open');$('mb').setAttribute('aria-expanded','false')});
 const $=id=>document.getElementById(id),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href');if(h==='#'||h.length<2)return;e.preventDefault();const t=document.getElementById(h.slice(1));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});$('nl').classList.remove('open');$('mb').setAttribute('aria-expanded','false')});
 $('mb').onclick=()=>{const o=$('nl').classList.toggle('open');$('mb').setAttribute('aria-expanded',String(o))};
 $('yr').textContent=new Date().getFullYear();
-const SCH=[['TLC','TLC Scholarship','Taguig City Government scholarship for public elementary graduates of Taguig.','Grade 7\u201312','#155EEF'],['ESC','ESC Program','DepEd\u2013PEAC subsidy for incoming Grade 7 learners in private junior high school.','Grade 7\u201312','#16a34a'],['QVR','SHS Voucher (QVR)','Automatic senior high voucher for public school Grade 10 completers.','Grade 11\u201312','#7c3aed'],['QVA','SHS Voucher (QVA)','OVAP-based voucher for private school, ALS and PEPT completers.','Grade 11\u201312','#d97706']];
-const CL={ASSH:['Arts, Social Sciences, and Humanities','Culture, human behavior, media, law and communication.',['Lawyer','Journalist','Psychologist','Educator']],BE:['Business and Entrepreneurship','Enterprise, financial planning and marketing.',['Entrepreneur','Accountant','Marketing lead']],STEM:['Science, Technology, Engineering, and Mathematics','Scientific discovery, healthcare, engineering and research.',['Engineer','Doctor','Architect','Data scientist']],ICT:['ICT Support and Computer Programming','Software, web development, networks and hardware.',['Developer','Cybersecurity','Systems admin']],HT:['Hospitality and Tourism','Guest experience, culinary arts and event planning.',['Hotel manager','Chef','Event producer']]};
-const K=['ASSH','BE','STEM','ICT','HT'],Q=[['In a group project, you volunteer to\u2026',['Write and present the ideas','Manage the budget and timeline','Run the calculations and tests','Build slides and fix tech glitches','Organize logistics and host guests']],['Your free time looks like\u2026',['Reading and discussing social issues','Planning side hustles','Experiments and logic puzzles','Coding or tinkering with computers','Cooking or planning trips']],['Which club would you join?',['Debate or Journalism','Young Entrepreneurs','Robotics or Math League','Computer Science Club','Culinary or Tourism Club']],['Which problem do you want to solve?',['Protect rights and well-being','Create jobs through ethical business','Cure diseases, clean energy','Protect data, close the tech gap','Promote sustainable tourism and food']],['In 10 years you see yourself as\u2026',['An attorney or journalist','A business founder','An engineer or doctor','A software or security architect','A resort manager or chef']]];
-$('sg').innerHTML=SCH.map(s=>`<article class="cd sc" style="--c:${s[4]}"><span class="tag">${s[3]}</span><h3>${s[1]}</h3><p>${s[2]}</p><a class="lk pl" href="#">Read requirements in the portal</a></article>`).join('');
-const PORTAL = '<?= ScriptApp.getService().getUrl() + "?page=portal" ?>';
+/* active section in the menu */
+(function(){const L=[...document.querySelectorAll('#nl a[href^="#"]')].filter(a=>a.getAttribute('href').length>1),S=L.map(a=>document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){L.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}}),{rootMargin:'-45% 0px -50% 0px'});S.forEach(s=>io.observe(s))})();
 
-/** Points every portal button at the portal. Sign-in links go to the login; "Begin application" opens the register form. */
+const SCH=[['TLC','TLC Scholarship','Taguig City Government scholarship for public elementary graduates of Taguig.','Grade 7\u201312','#155EEF','Eligible: Taguig public elementary graduates'],['ESC','ESC Program','DepEd\u2013PEAC subsidy for incoming Grade 7 learners in private junior high school.','Grade 7\u201312','#16a34a','Eligible: incoming Grade 7 learners'],['QVR','SHS Voucher (QVR)','Automatic senior high voucher for public school Grade 10 completers.','Grade 11\u201312','#7c3aed','Eligible: public school Grade 10 completers'],['QVA','SHS Voucher (QVA)','OVAP-based voucher for private school, ALS and PEPT completers.','Grade 11\u201312','#d97706','Eligible: private school, ALS and PEPT completers']];
+const CL={ASSH:['Arts, Social Sciences, and Humanities','Culture, human behavior, media, law and communication.',['Lawyer','Journalist','Psychologist','Educator']],BE:['Business and Entrepreneurship','Enterprise, financial planning and marketing.',['Entrepreneur','Accountant','Marketing lead']],STEM:['Science, Technology, Engineering, and Mathematics','Scientific discovery, healthcare, engineering and research.',['Engineer','Doctor','Architect','Data scientist']],ICT:['ICT Support and Computer Programming Technologies','Software, web development, networks and hardware.',['Developer','Cybersecurity','Systems admin']],HT:['Hospitality and Tourism','Guest experience, culinary arts and event planning.',['Hotel manager','Chef','Event producer']]};
+const K=['ASSH','BE','STEM','ICT','HT'],Q=[['In a group project, you volunteer to\u2026',['Write and present the ideas','Manage the budget and timeline','Run the calculations and tests','Build slides and fix tech glitches','Organize logistics and host guests']],['Your free time looks like\u2026',['Reading and discussing social issues','Planning side hustles','Experiments and logic puzzles','Coding or tinkering with computers','Cooking or planning trips']],['Which club would you join?',['Debate or Journalism','Young Entrepreneurs','Robotics or Math League','Computer Science Club','Culinary or Tourism Club']],['Which problem do you want to solve?',['Protect rights and well-being','Create jobs through ethical business','Cure diseases, clean energy','Protect data, close the tech gap','Promote sustainable tourism and food']],['In 10 years you see yourself as\u2026',['An attorney or journalist','A business founder','An engineer or doctor','A software or security architect','A resort manager or chef']]];
+$('sg').innerHTML=SCH.map(s=>`<article class="cd sc" style="--c:${s[4]}"><span class="tag">${s[3]}</span><h3>${s[1]}</h3><p>${s[2]}</p><div class="el"><b>${s[5]}</b></div><a class="lk pl" data-prog="${s[0]}" href="#" aria-label="Read ${s[1]} requirements in the portal">Read requirements in the portal</a></article>`).join('');
+const PORTAL = '<?= ScriptApp.getService().getUrl() + "?page=portal" ?>';
+/** Portal links: Sign in -> login, Begin application -> register form, scholarship cards -> that program's page after sign-in. */
 function wirePortalLinks(base) {
   if (!base) return;
-  document.querySelectorAll('a.pl').forEach(a => { a.href = base + '&reg=0'; a.target = '_top'; });
+  document.querySelectorAll('a.pl').forEach(a => { a.href = base + '&reg=0' + (a.dataset.prog ? '&prog=' + a.dataset.prog : ''); a.target = '_top'; });
   document.querySelectorAll('a.pr').forEach(a => { a.href = base + '&reg=1'; a.target = '_top'; });
 }
 wirePortalLinks(PORTAL);
 $('cg').innerHTML=K.map(k=>`<article class="cl"><h3>${k}</h3><p><b>${CL[k][0]}.</b> ${CL[k][1]}</p><div class="ch">${CL[k][2].map(x=>`<i>${x}</i>`).join('')}</div></article>`).join('');
-let qi=0,sc=[];
-function quiz(){const q=$('qz');if(qi>=Q.length){const n={};sc.forEach(k=>n[k]=(n[k]||0)+1);const m=Math.max(...Object.values(n)),t=K.filter(k=>n[k]===m);
- q.innerHTML=`<div class="res"><h3>${t.join(' or ')}</h3><p>${t.map(k=>CL[k][0]).join(' / ')}. ${t.length>1?'Your answers are tied, so read both clusters.':''}</p><button class="btn b2" id="rt">Retake</button> <a class="btn b2" href="#clusters">See clusters</a></div>`;$('rt').onclick=()=>{qi=0;sc=[];quiz()};return}
- q.innerHTML=`<div class="bar"><u style="width:${qi/Q.length*100}%"></u></div><h3 style="font-size:20px">${Q[qi][0]}</h3>`+Q[qi][1].map((o,i)=>`<button class="qo" data-i="${i}">${o}</button>`).join('');
- q.querySelectorAll('.qo').forEach(b=>b.onclick=()=>{sc.push(K[+b.dataset.i]);qi++;quiz()})}
+
+/* quiz: pick an answer, then Next. Scoring is unchanged (most picks wins, ties shown together). */
+let qi=0,ans=[];
+function quiz(){const q=$('qz');
+ if(qi>=Q.length){const n={};ans.forEach(k=>n[k]=(n[k]||0)+1);const m=Math.max(...Object.values(n)),t=K.filter(k=>n[k]===m);
+  q.innerHTML=`<div class="res" tabindex="-1" id="qr"><h3>${t.join(' or ')}</h3><p>${t.map(k=>CL[k][0]).join(' / ')}. ${t.length>1?'Your answers are tied, so read both clusters. ':''}This is only a guide. Please talk to our guidance counselor before you choose a cluster.</p><button class="btn b2" id="rt">Retake</button> <a class="btn b2" href="#clusters">See clusters</a></div>`;$('rt').onclick=()=>{qi=0;ans=[];quiz()};$('qr').focus();return}
+ const sel=ans[qi];
+ q.innerHTML=`<div class="qc">Question ${qi+1} of ${Q.length}</div><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${Q.length}" aria-valuenow="${qi+1}"><u style="width:${(qi+1)/Q.length*100}%"></u></div><h3 style="font-size:20px">${Q[qi][0]}</h3><div role="radiogroup" aria-label="${esc(Q[qi][0])}">`+Q[qi][1].map((o,i)=>`<button class="qo${sel===K[i]?' on':''}" role="radio" aria-checked="${sel===K[i]}" data-i="${i}"><i></i>${o}</button>`).join('')+`</div><div class="qe" id="qe" role="alert"></div><div class="qn"><button class="btn b2" id="qb" ${qi?'':'disabled style="opacity:.5"'}>Back</button><button class="btn b1" id="qx">${qi===Q.length-1?'See my match':'Next'}</button></div>`;
+ q.querySelectorAll('.qo').forEach(b=>b.onclick=()=>{ans[qi]=K[+b.dataset.i];quiz();const f=q.querySelector('.qo.on');if(f)f.focus()});
+ $('qb').onclick=()=>{if(qi){qi--;quiz()}};
+ $('qx').onclick=()=>{if(!ans[qi]){$('qe').textContent='Choose an answer to continue.';return}qi++;quiz()}}
 quiz();
-$('lb').onclick=()=>$('lb').classList.remove('on');document.addEventListener('keydown',e=>{if(e.key==='Escape')$('lb').classList.remove('on')});
+$('lb').onclick=()=>closeLb();document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('lb').classList.contains('on'))closeLb()});
+let lbFrom=null;function openLb(src,from){lbFrom=from;$('lb').querySelector('img').src=src;$('lb').classList.add('on')}function closeLb(){$('lb').classList.remove('on');if(lbFrom&&lbFrom.focus)lbFrom.focus()}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 function setLogo(u){document.querySelectorAll('img.lg').forEach(i=>i.src=u)}
-/* live content */
+
+/* hero image: a gallery photo when available, otherwise a stock URL, otherwise the logo card */
+function setHero(src,cap){const h=$('hv');if(!h||!src)return;const im=new Image();im.onload=()=>{h.insertAdjacentHTML('afterbegin',`<img class="ph" alt="${esc(cap||'Moreh Academy campus')}" src="${src}">`);const lc=h.querySelector('.lc');if(lc)lc.style.display='none';if(cap)h.insertAdjacentHTML('beforeend',`<div class="cap">${esc(cap)}</div>`)};im.src=src}
+if(STOCK_HERO)setHero(STOCK_HERO,'');
+
+/* campus gallery: layout follows the number of photos that actually load; failed photos are removed, never left as a skeleton */
+const FT=[];let gOk=0,gLeft=0;
+function galLayout(){const g=$('gl');const n=g.querySelectorAll('figure').length;g.className='gal n'+Math.min(Math.max(n,1),5)}
+function galDone(){if(--gLeft>0)return;const g=$('gl');if(!g.querySelector('figure')){g.className='gal n1';g.innerHTML='<figure class="soon">Campus photos are coming soon.</figure>'}else galLayout()}
+function galPhoto(f,src,cap){const im=new Image();im.onload=()=>{f.innerHTML=`<button class="pic" aria-label="View larger: ${esc(cap||'campus photo')}"><img alt="${esc(cap||'Moreh Academy campus')}" src="${src}"></button>${cap?`<figcaption>${esc(cap)}</figcaption>`:''}`;f.querySelector('button').onclick=e=>openLb(src,e.currentTarget);gOk++;if(gOk===1&&!$('hv').querySelector('.ph'))setHero(src,'');galDone()};im.onerror=()=>{f.remove();galDone()};im.src=src}
+function buildGallery(g){const gl=$('gl');
+ const list=g.length?g.slice(0,5).map(p=>({id:p.id,cap:String(p.cap||'').replace(/^[^:|]{2,30}[:|]\s*/,'')})):STOCK_CAMPUS.slice(0,5).map(u=>({url:u,cap:''}));
+ if(!list.length){gl.className='gal n1';gl.innerHTML='<figure class="soon">Campus photos are coming soon.</figure>';return}
+ gLeft=list.length;gl.className='gal n'+Math.min(list.length,5);gl.innerHTML=list.map((p,i)=>`<figure data-i="${i}"><div class="sk"></div></figure>`).join('');
+ let i=0;(function next(){if(i>=list.length)return;const p=list[i],f=gl.querySelector('[data-i="'+i+'"]');i++;
+  if(p.url){galPhoto(f,p.url,p.cap);next();return}
+  google.script.run.withSuccessHandler(x=>{if(f&&x&&x.success&&x.data)galPhoto(f,x.data,p.cap);else{if(f)f.remove();galDone()}next()}).withFailureHandler(()=>{if(f)f.remove();galDone();next()}).getPublicPhoto(p.id)})()}
+buildGallery([]);   /* instant fallback; replaced once the server answers */
+
 google.script.run.withSuccessHandler(r=>{if(r&&r.success&&r.data)setLogo(r.data)}).getLogo();
 google.script.run.withSuccessHandler(r=>{if(!r||!r.success)return;const d=r.data;
-if(!PORTAL)wirePortalLinks(d.portal);document.querySelectorAll('.sy').forEach(s=>s.textContent=String(d.sy).replace('-','\u2013'));
- if(d.guide&&/<li>/.test(d.guide)){const t=document.createElement('div');t.innerHTML=d.guide;const li=[...t.querySelectorAll('li')].slice(0,4);if(li.length>1)$('gd').innerHTML=li.map((x,i)=>`<div class="cd"><h3>Step ${i+1}</h3><p>${x.innerHTML}</p></div>`).join('')}
+ if(!PORTAL)wirePortalLinks(d.portal);document.querySelectorAll('.sy').forEach(s=>s.textContent=String(d.sy).replace('-','\u2013'));
  $('ev').innerHTML=(d.events||[]).map(e=>`<div class="cd"><b>${esc(e.t)}</b><small>${esc(new Date(e.d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}))}${e.v?' \u00b7 '+esc(e.v):''}</small></div>`).join('');
- const g=d.gallery||[],gl=$('gl');gl.innerHTML=g.length?g.slice(0,5).map(p=>`<figure data-id="${esc(p.id)}"><div class="sk"></div></figure>`).join(''):'<figure><figcaption>Photos are coming soon.</figcaption></figure>';
- let i=0;(function next(){if(i>=Math.min(g.length,5))return;const p=g[i++];google.script.run.withSuccessHandler(x=>{const f=gl.querySelector('[data-id="'+p.id+'"]');if(f&&x&&x.success&&x.data){const c=String(p.cap||'').replace(/^[^:|]{2,30}[:|]\s*/,'');f.innerHTML=`<img alt="${esc(c)}" src="${x.data}">${c?`<figcaption>${esc(c)}</figcaption>`:''}`;f.querySelector('img').onclick=()=>{$('lb').querySelector('img').src=x.data;$('lb').classList.add('on')}}next()}).withFailureHandler(next).getPublicPhoto(p.id)})()
-}).getPublicContent();
-google.script.run.withSuccessHandler(r=>{if(!r||!r.success)return;const a=r.data,card=(h,t)=>t?`<article class="cd"><h3>${esc(h)}</h3><p>${esc(t)}</p></article>`:'';
- $('vm').innerHTML=card(a.vision.title||'Our vision',a.vision.text)+card(a.mission.title||'Our mission',a.mission.text);
- if(a.values.length){$('vh').hidden=false;$('vl').innerHTML=a.values.map(v=>card(v.title,v.text)).join('')}
+ if((d.gallery||[]).length)buildGallery(d.gallery);
+}).withFailureHandler(()=>{}).getPublicContent();
+
+/* About: real content when saved, a friendly fallback when not */
+const VI=['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z','M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM8.21 13.89L7 23l5-3 5 3-1.21-9.12','M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z','M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'];
+const vic=i=>`<span class="vi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${VI[i%4]}"/></svg></span>`;
+google.script.run.withSuccessHandler(r=>{if(!r||!r.success)return;const a=r.data,card=(l,h,t)=>t?`<article class="cd"><span class="lab">${l}</span><h3>${esc(h)}</h3><p>${esc(t)}</p></article>`:'';
+ const vm=card('Our vision',a.vision.title||'Our vision',a.vision.text)+card('Our mission',a.mission.title||'Our mission',a.mission.text);
+ $('vm').innerHTML=vm||`<article class="cd"><span class="lab">Our school</span><h3>Moreh Academy</h3><p>A school community in Taguig City where learners grow in knowledge, character and purpose, from Nursery to Grade 12.</p></article>`;
+ if(a.values.length){$('vh').hidden=false;$('vl').innerHTML=a.values.map((v,i)=>`<article class="cd">${vic(i)}<h3>${esc(v.title)}</h3>${v.text?`<p>${esc(v.text)}</p>`:''}</article>`).join('')}
  if(a.timeline.length){$('th').hidden=false;$('tl').innerHTML=a.timeline.map(t=>`<article class="cd"><b>${esc(t.year)}</b><h3 style="font-size:17px;margin-top:6px">${esc(t.title)}</h3><p>${esc(t.text)}</p></article>`).join('')}
 }).withFailureHandler(()=>{}).getPublicAbout();
 </script></body></html>

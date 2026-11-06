@@ -93,3 +93,6 @@ function removeGalleryPhoto(token, page, id) {
     return ok(g.list, 'Photo removed');
   } catch (e) { return fail(e); } finally { try { lock.releaseLock(); } catch (_) {} }
 }
+function galBust_() {
+  try { CacheService.getScriptCache().remove('pubc_v1_' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd')); } catch (_) {}
+}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><base target="_top"><script>window.addEventListener('error',function(e){var b=document.createElement('div');b.style.cssText='position:fixed;top:0;left:0;right:0;background:#b3261e;color:#fff;padding:8px 14px;z-index:99999;font:13px Arial,sans-serif';b.textContent='Page error: '+(e.message||'unknown')+(e.lineno?' (line '+e.lineno+')':'');(document.body||document.documentElement).appendChild(b)});</script><meta charset="utf-8">
 <script>const WANT_REG = <?= reg ? 'true' : 'false' ?>;</script>
+<script>const let WANT_PROG = '<?= prog ?>';</script>
 <script>
 (function(){
   var KEY='mrh_theme',root=document.documentElement,mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
@@ -4864,4 +4865,12 @@ const rpSoon=(t,p,w,ids,lbl)=>`<div class="card"><div class="ch"><h3>${t}</h3><s
 function rpAn(el){el.innerHTML=rpSoon('Analytics Dashboard','Phase 3','Trend charts, year-over-year comparisons and drill-down are planned for Phase 3. Until then, these reports already include charts:',['overview','demographic','scholar','section'],'Reports with charts')}
 function rpSv(el){const f=rpFav();el.innerHTML=rpSoon('Saved Reports','Phase 4','Saved filter configurations are planned for Phase 4. For now, favorites are kept on this device.',f,f.length?'Your favorites':'')+(f.length?'':'<div class="card"><div class="aemp">No favorites yet. Use the star on any report.</div></div>')}
 function rpHi(el){const r=rrGet();el.innerHTML=rpSoon('Report History','Phase 4','A full history with user, format and status is planned for Phase 4. Every report view is already recorded in the Audit sheet. Reports you opened on this device:',r,r.length?'Recently used':'')+(r.length?'':'<div class="card"><div class="aemp">Nothing opened on this device yet.</div></div>')}
+const _bootProg = boot;
+boot = function () {
+  _bootProg();
+  if (typeof WANT_PROG === 'string' && WANT_PROG && !S.user.MustChange) {
+    const k = WANT_PROG; WANT_PROG = '';
+    setTimeout(() => { nav('sch'); setTimeout(() => act.schk(k), 700); }, 400);
+  }
+};
 </script></body></html>
