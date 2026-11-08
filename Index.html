@@ -1253,6 +1253,133 @@ html[data-theme=dark] .stpi.part .stpc{background:rgba(111,147,255,.22);color:#c
 html[data-theme=dark] .stpi.part .stps,html[data-theme=dark] .stpi.on .stps{color:#9db6ff}
 }
 </style>
+<style id="night-fix">
+@media screen{
+/* ---------- white surfaces that still carried light text ---------- */
+html[data-theme=dark] .shchip{background:rgba(140,160,255,.14);border-color:var(--heroline);color:#e9edff}
+html[data-theme=dark] .fct{background:#161f4a;color:#e9edff;border-color:var(--heroline)}
+html[data-theme=dark] .fct:hover{background:#1e2a60}
+html[data-theme=dark] .fct.on{background:#3b5bdb;color:#fff;border-color:#3b5bdb}
+html[data-theme=dark] .evbig{background:#161f4a;border-color:var(--heroline);color:#e9edff}
+html[data-theme=dark] .evbig small{color:#9aa8d0}
+html[data-theme=dark] .dxb,html[data-theme=dark] .qb,html[data-theme=dark] .tdate{background:#161f4a;border-color:var(--line);color:#e9edff}
+html[data-theme=dark] .admbar,html[data-theme=dark] .rhd,html[data-theme=dark] .act.acb{background:#10173a;border-color:var(--line);color:var(--txt)}
+html[data-theme=dark] .alp{background:#1b2757;color:#e9edff}
+html[data-theme=dark] .avb{background:#161f4a;border-color:var(--heroline);color:#c9d6ff}
+html[data-theme=dark] .sv-job{background:#161f4a}
+html[data-theme=dark] .top .av{background-color:#243069!important;color:#fff!important;border-color:var(--line)!important}
+html[data-theme=dark] .clchip{background:color-mix(in srgb,var(--cc) 22%,#10173a);border-color:color-mix(in srgb,var(--cc) 45%,#10173a);color:#e9edff}
+html[data-theme=dark] .cgl li{background:color-mix(in srgb,var(--cc) 16%,#10173a);border-color:color-mix(in srgb,var(--cc) 35%,#10173a);color:#e9edff}
+html[data-theme=dark] .rb.x,html[data-theme=dark] .evw.x{background:rgba(150,170,255,.15);color:#b8c4ea}
+html[data-theme=dark] .seg button:hover{background:rgba(255,255,255,.08);color:#fff}
+html[data-theme=dark] .gtabs button:hover{background:rgba(255,255,255,.08);color:#fff}
+html[data-theme=dark] #load{background:rgba(7,11,31,.72)}
+html[data-theme=dark] #load i{border-color:rgba(150,170,255,.25);border-top-color:#6f93ff}
+
+/* ---------- dark gray text on dark surfaces ---------- */
+html[data-theme=dark] .f label{color:#b8c4ea}
+html[data-theme=dark] .lr{color:#b8c4ea}
+html[data-theme=dark] .lr b{color:#e9edff}
+html[data-theme=dark] .pl .pn{color:#dbe3ff}
+html[data-theme=dark] .pl em{color:#9aa8d0}
+html[data-theme=dark] .gct td:first-child{color:#b8c4ea}
+html[data-theme=dark] .gct tr.z td{color:#8d9bc6}
+html[data-theme=dark] .hbc span.d,html[data-theme=dark] .gsr2 span,html[data-theme=dark] .nhl div,html[data-theme=dark] .abtt span.t{color:#cdd6f6}
+html[data-theme=dark] .qa span{color:#334155}
+html[data-theme=dark] .ptr{background:rgba(150,170,255,.18)}
+
+/* ---------- low contrast: raise it ---------- */
+html[data-theme=dark] .hint{color:#fbbf24}
+html[data-theme=dark] .ferr,html[data-theme=dark] .f.bad label{color:#ff9fb0}
+html[data-theme=dark] .ch a,html[data-theme=dark] .hm .ch a{color:#8fb0ff}
+html[data-theme=dark] .shs{filter:brightness(1.5)}
+html[data-theme=dark] .bn-js.n b{color:#8fb0ff}
+html[data-theme=dark] .tab.on,html[data-theme=dark] .pill.on,html[data-theme=dark] .gtabs button.on{background:#3b5bdb;border-color:#3b5bdb;color:#fff}
+
+/* ---------- status colours that the generic dark rules had flattened ---------- */
+html[data-theme=dark] .chip.ok{background:var(--okbg);color:var(--ok);border-color:transparent}
+html[data-theme=dark] .chip.no{background:var(--badbg);color:var(--bad);border-color:transparent}
+html[data-theme=dark] .chip.warn{background:var(--warnbg);color:var(--warn);border-color:transparent}
+html[data-theme=dark] .stsel.ok{background-color:var(--okbg);color:var(--ok)}
+html[data-theme=dark] .stsel.no{background-color:var(--badbg);color:var(--bad)}
+html[data-theme=dark] .stsel.warn{background-color:var(--warnbg);color:var(--warn)}
+
+/* ---------- report tables with a frozen first column (rows had turned white again) ---------- */
+html[data-theme=dark] .rt.wide tbody tr:nth-child(even) td:first-child{background:#141c45}
+html[data-theme=dark] .rt.wide tbody tr:hover td:first-child{background:#1a2456}
+html[data-theme=dark] .rt.wide tr.tt td:first-child{background:#161f4a}
+}
+@media screen and (max-width:767px){
+html[data-theme=dark] .at.stk tr{background:#10173a;border-color:var(--line)}
+}
+</style>
+<style id="mobile-ui">
+@media screen{
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:contain}
+a,button,input,select,textarea,summary,[data-act],.pill,.nav{touch-action:manipulation}
+html.nolock,html.nolock body{overflow:hidden}
+}
+@media (hover:none){
+body .btn:hover,body .shc:hover,body .qb:hover,body .qa:hover,body .gk:hover,body .bn-g:hover,body .bn-qb:hover,
+body .wst:hover,body .sprow:hover,body .galc:hover,body .dxb:hover,body .rc:hover,body .shbtn:hover{transform:none}
+}
+@media screen and (max-width:1023px){
+body aside{height:auto;padding-bottom:env(safe-area-inset-bottom,0px)}
+body #login .hp-hero{min-height:calc(100dvh - 74px)!important}
+body main{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+}
+@media screen and (max-width:767px){
+/* no iOS zoom on focus */
+body .f input,body .f select,body .f textarea,body .sb input,body .lf input,body .hp-field input,
+body .admsel,body .rsrch input,body #gs,body .stsel{font-size:16px}
+/* touch targets */
+body .btn,body .pill,body .tab,body .seg button,body .gtabs button,body .stsel,body .evcc,
+body .ai,body .dd button,body .nav.sub,body .stpi,body .qb,body .bn-qb{min-height:44px}
+body .f input,body .f select,body .admsel{min-height:46px}
+body .chk input,body .rad input,body .sel,body input[type=checkbox]{min-width:20px;min-height:20px}
+/* compact shell */
+body main{padding-top:10px;padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+body .top{padding:8px 10px;top:6px;gap:8px}
+body .top h1{font-size:17px}
+body .shero{padding:14px}
+body .sht h2{font-size:20px}
+body .shk{grid-template-columns:1fr 1fr;gap:10px}
+body .shv{font-size:21px}
+body .card{padding:16px}
+body .gcl{grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr))}
+body .chr{grid-template-columns:90px 1fr 38px}
+body .at td,body .at th{font-size:14px}
+/* dialogs become bottom sheets */
+body .mod{padding:0;align-items:flex-end}
+body .mod>div{max-width:none!important;width:100%;max-height:92dvh;border-radius:18px 18px 0 0}
+body .mod>img{margin:auto;max-width:96vw}
+body .mod .bd{padding:18px 16px}
+body .mod .ft{padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));gap:8px}
+body .mod .ft .btn{flex:1 1 auto;justify-content:center}
+body #nm>div{max-height:100dvh;height:100%;border-radius:0}
+body #om>div,body #rgm>div,body #rm>div,body #idm>div{max-height:92dvh}
+/* requirements editor: stacked instead of sideways scroll */
+body .rqg{grid-template-columns:1fr;min-width:0;gap:6px}
+body .rqh{display:none}
+body .rqn{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+body .rqg>.f:nth-child(3n+2):before{content:'Remarks';display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
+body .rqg>.f:nth-child(3n):before{content:'Date submitted';display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
+/* keyboard open: get the fixed bars out of the way */
+body.kb #bnav{display:none}
+body.kb .fbar{bottom:12px}
+/* COR preview fits a phone */
+body [style*="zoom:.62"]{zoom:.4!important}
+}
+@media screen and (max-width:600px){
+body .stsel{height:auto}
+body .evfg{grid-template-columns:1fr}
+body .acf{grid-template-columns:1fr}
+body .wnav{flex-wrap:wrap}
+body .wnav .btn{flex:1 1 40%;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){body .mod>div{animation:none!important}}
+</style>
 </head>
 <body>
 <div id="login">
@@ -2169,7 +2296,7 @@ function eventsPage(){head('Campus Bulletin',A()?'Post and manage events and ann
 I.users=ic('M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75');
 act.umtoggle=v=>{const q=String(v).split('|'),u=q[0],on=q[1]==='1';if(confirm((on?'Activate':'Deactivate')+' the account '+u+'?'+(on?'':' They will no longer be able to sign in until you activate it again.')))call('setStaffActive',[T(),u,on],r=>{toast(r.message||(on?'Account activated.':'Account deactivated.'));usersPage()})};
 function usersPage(){head('User Management','Create and manage staff accounts. Encoders have admin privileges.');call('listUsers',[T()],r=>{
- $('view').innerHTML=`<div class="card"><h3>Add staff user</h3><div class="g"><div class="f"><label>Full name</label><input id="uF"></div><div class="f"><label>Username (min. 4 characters)</label><input id="uU" autocomplete="off"></div><div class="f"><label>Email (required for sign-in codes)</label><input id="uE" type="email"></div><div class="f"><label>Department (optional)</label><input id="uD" maxlength="60" autocomplete="off"></div><div class="f"><label>Account type</label><select id="uT"><option>Encoder</option><option value="Manager">System Manager</option><option>Guidance</option><option>Accounting</option></select></div><div class="f"><label>Temporary password (blank = auto-generate)</label><input id="uP" type="password" autocomplete="new-password"></div></div><small style="color:var(--mut)">Teachers and Head Teachers are created under Academics &rarr; Staff accounts.</small><div class="act" style="position:static"><button class="btn" data-act="umcreate">Create account</button></div></div>
+ $('view').innerHTML=`<div class="card"><h3>Add staff user</h3><div class="g"><div class="f"><label>Full name</label><input id="uF"></div><div class="f"><label>Username (min. 4 characters)</label><input id="uU" autocomplete="off"></div><div class="f"><label>Email (required for sign-in codes)</label><input id="uE" type="email"></div><div class="f"><label>Department</label><input id="uD" maxlength="60" autocomplete="off"></div><div class="f"><label>Account type</label><select id="uT"><option>Encoder</option><option value="Manager">System Manager</option><option>Guidance</option><option>Accounting</option></select></div><div class="f"><label>Temporary password (blank = auto-generate)</label><input id="uP" type="password" autocomplete="new-password"></div></div><small style="color:var(--mut)">Teachers and Head Teachers are created under Academics &rarr; Staff accounts.</small><div class="act" style="position:static"><button class="btn" data-act="umcreate">Create account</button></div></div>
  <div class="card"><h3>Staff accounts</h3><div class="tw"><table><thead><tr><th>Name</th><th>Username</th><th>Role</th><th>Department</th><th>Email</th><th>Status</th><th></th></tr></thead><tbody>${r.data.map(u=>{const off=u.Active==='0'||u.Active===false,f=u.Clearance==='Full';return `<tr${off?' style="opacity:.7"':''}><td><b>${esc(tc(u.FullName))}</b></td><td>${esc(u.Username)}</td><td><span class="chip ${f?'':'warn'}">${u.Clearance==='Manager'?'System Manager':f?'Administrator':u.Clearance==='HeadTeacher'?'Head Teacher':u.Clearance==='Teacher'?'Teacher':['Guidance','Accounting','Academic'].includes(u.Clearance)?u.Clearance+' Office':'Encoder'}</span></td><td>${esc(u.Department)}</td><td>${esc(u.Email)}</td><td><span class="chip ${off?'no':'ok'}">${off?'Deactivated':'Active'}</span></td><td style="white-space:nowrap">${f?'':`<button class="btn alt" data-act="umtoggle" data-v="${esc(u.Username)}|${off?1:0}">${off?'Activate':'Deactivate'}</button> <button class="btn alt" data-act="umreset" data-v="${esc(u.Username)}">Reset password</button> <button class="btn red" data-act="umdel" data-v="${esc(u.Username)}">Remove</button>`}</td></tr>`}).join('')}</tbody></table></div></div>`})}
 act.umteach = u => {
   const r = prompt('Convert ' + u + ' to:\n1 = Teacher\n2 = Head Teacher');
@@ -4840,7 +4967,7 @@ const RP_F={daily:'none',overview:'none',referral:'none',noconsent:'none',sectio
 const RPT=[['ov','Overview'],['lib','Reports Library'],['an','Analytics'],['sv','Saved Reports'],['hi','Report History']];
 const rpR=id=>RL().find(x=>x[0]===id),rpCat=id=>RP_CATS.find(c=>c.ids.includes(id)),rpPc=(a,b)=>b?(Math.round(a/b*1000)/10).toFixed(1)+'%':'0.0%';
 const rpLs=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||'null')||d}catch(e){return d}};
-const rpFav=()=>rpLs('mrh_rf',[]).filter(k=>RP_F[k]),rpUse=()=>rpLs('mrh_ru',{});
+const rpFav=()=>(S.rprefs?S.rprefs.favs:rpLs('mrh_rf',[])).filter(k=>RP_F[k]),rpUse=()=>rpLs('mrh_ru',{});
 function rpTouch(id){try{localStorage.setItem(RRK,JSON.stringify([id].concat(rrGet().filter(k=>k!==id)).slice(0,6)));const u=rpUse();u[id]=(u[id]||0)+1;localStorage.setItem('mrh_ru',JSON.stringify(u))}catch(e){}}
 const rpYrs=()=>{if(S.ryrs&&S.ryrs.length)return S.ryrs;const a=parseInt(String(S.cfg.sy).slice(0,4),10),o=[];for(let y=a;y>=2025;y--)o.push(y+'-'+(y+1));return o};
 const rpStar=(id,on)=>`<button type="button" class="rpx-star ${on?'on':''}" data-act="rfav" data-v="${id}" aria-pressed="${on}" aria-label="${on?'Remove from favorites':'Add to favorites'}">${I.star}</button>`;
@@ -4872,7 +4999,7 @@ function rpHome(){const id=++S.rhid,sy=S.rsy;S.rh=null;if(S.rv==='ov'&&$('rpmain
  google.script.run.withSuccessHandler(r=>{if(id!==S.rhid)return;
    if(r&&r.success){S.ryrs=r.data.years;rpYearSel();fin(r.data)}
    else{if(r&&/Session expired/.test(r.error))setTimeout(()=>location.reload(),1500);fin({err:(r&&r.error)||'Could not load the overview.'})}})
-  .withFailureHandler(()=>fin({err:'The Reports service is not available yet. Add Reports.gs and deploy a new version.'})).reportsHome(S.token,sy)}
+  .withFailureHandler(()=>fin({err:'The Reports service is not available yet. Add Reports.gs and deploy a new version.'})).reportsHome(S.token,sy,S.rfresh)}
 
 function rpOv(el){const h=S.rh;let top;
  if(!h)top='<div class="kpis">'+'<div class="kpi"><i class="galsk" style="height:64px;border-radius:12px"></i></div>'.repeat(6)+'</div>';
@@ -4972,4 +5099,1222 @@ stepperInner=function(t){const o=stepStat(t);
    <span class="stph"><span class="stpc">${done?CHK2:n}</span><em class="stps">${done?'Done':x.n?pc+'%':''}</em></span>
    <span class="stpt"><b>${esc(STSHORT[i])}</b><small>${x.n?x.d+' / '+x.n+(n===4?' submitted':' complete'):'Review &amp; confirm'}</small></span>
    ${x.n?`<i class="stpb"><u style="width:${pc}%"></u></i>`:''}</button>`}).join('')};
+   /* ===== Student Home: Admission Dashboard (matches Moreh_Academy_Admission_Dashboard.png) =====
+   PASTE at the very END of the main script in Index.html, after the last block (before the closing script tag).
+   REPLACES homeStudent() only. Admin, office and teacher homes are untouched. No backend changes.
+   If you pasted the earlier bento block, this one overrides it (it is later in the file).
+   Everything shown comes from real data: getStudent(), getEvents(), requirement dates. Nothing is invented. */
+
+const AD_HERO = '';   // optional: public URL of a campus photo for the banner's right side. Leave '' for the plain blue banner.
+
+(function () {
+  const s = document.createElement('style');
+  s.textContent = `
+@media screen{
+.ad-hero{position:relative;overflow:hidden;border-radius:18px;padding:26px 28px;min-height:150px;border:1px solid var(--heroline);
+ background:linear-gradient(100deg,#dbe8ff 0%,#eaf2ff 48%,#a9c8f6 100%);display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.ad-hero.ph{background-size:cover;background-position:right center}
+.ad-hero h2{font:800 30px/1.15 Inter,sans-serif;color:var(--navy);margin:0 0 6px}
+.ad-hero p{margin:0 0 14px;color:var(--navy)}
+.ad-no{display:inline-block;background:#ffffffb3;border:1px solid var(--heroline);border-radius:10px;padding:7px 14px;font-weight:600;color:var(--navy)}
+.ad-no b{color:var(--blue);margin-left:6px}
+.ad-bell{width:46px;height:46px;border-radius:50%;border:0;background:#fff;box-shadow:var(--sh);cursor:pointer;color:var(--navy);font-size:20px;flex:none}
+.ad-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px;margin:16px 0}
+.ad-k{display:flex;gap:14px;align-items:center;padding:16px 18px;margin:0}
+.ad-ki{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.ad-ki svg{width:24px;height:24px}
+.ad-k small{display:block;color:var(--mut);font-size:13px}
+.ad-k b{display:block;color:var(--navy);font-size:19px;line-height:1.25}
+.ad-k a{font-size:13px;font-weight:600}
+.ad-k .mbar{margin-top:6px}
+.ad-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+.ad-col{display:grid;gap:16px;min-width:0}
+.ad-col>.card,.ad-two>.card{margin:0}
+.ad-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px}
+.ad-j{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));margin-top:6px}
+.ad-js{position:relative;text-align:center;padding:0 4px;font-size:12.5px;color:var(--mut);line-height:1.35}
+.ad-js:before{content:'';position:absolute;top:15px;left:-50%;width:100%;height:3px;background:var(--line)}
+.ad-js:first-child:before{display:none}
+.ad-js.d:before,.ad-js.n:before{background:#16a34a}
+.ad-jc{position:relative;z-index:1;width:32px;height:32px;margin:0 auto 8px;border-radius:50%;background:#e2e8f0;color:#64748b;display:flex;align-items:center;justify-content:center;font:700 13px Inter,sans-serif}
+.ad-jc svg{width:16px;height:16px}
+.ad-js.d .ad-jc{background:#16a34a;color:#fff}
+.ad-js.n .ad-jc{background:var(--blue);color:#fff;box-shadow:0 0 0 4px #2563eb2b}
+.ad-js b{display:block;color:var(--navy);font-size:13px}
+.ad-js.t b{color:var(--mut);font-weight:600}
+.ad-next{background:#fff4dd;border:1px solid #f3d6a6}
+.ad-next h3{display:flex;justify-content:space-between;align-items:center;color:#12204a}
+.ad-next p{font-size:16px;line-height:1.5;color:#12204a;margin:0 0 16px}
+.ad-next .btn{width:100%;justify-content:center;padding:13px}
+.ad-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.ad-r:first-of-type{border-top:0}
+.ad-r b{color:var(--navy);font-size:14px}
+.ad-r small{grid-column:1/-1;color:var(--mut);font-size:12.5px}
+.ad-s{display:flex;gap:14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.ad-s:first-child{border-top:0}
+.ad-dt{width:56px;flex:none;text-align:center;border-radius:12px;background:var(--soft);color:var(--blue);padding:6px 0}
+.ad-dt small{display:block;font:700 11px Inter,sans-serif}.ad-dt b{display:block;font:800 22px/1.1 Inter,sans-serif}
+.ad-s b{display:block;color:var(--navy);font-size:14px}.ad-s small{display:block;color:var(--mut);font-size:12.5px;line-height:1.4}
+.ad-a{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:13.5px}
+.ad-a i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:6px}
+.ad-a span{color:var(--mut);margin-right:6px;white-space:nowrap}
+.ad-ph{display:flex;gap:14px;align-items:center;background:linear-gradient(120deg,#e8f0fe,#f1f6ff);border:1px solid var(--heroline)}
+.ad-ph b{display:block;color:var(--navy);font-size:17px}.ad-ph small{display:block;color:var(--mut);line-height:1.6}
+.ad-ph .btn{margin-top:8px}
+.ad-more{display:grid;gap:16px;margin-top:16px}.ad-more>*{margin:0}
+@media(max-width:1100px){.ad-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+ .ad-hero h2{font-size:23px}
+ .ad-j{grid-template-columns:1fr;gap:12px}
+ .ad-js{display:flex;gap:12px;align-items:center;text-align:left}
+ .ad-js:before{display:none}.ad-jc{margin:0;flex:none}
+}
+html[data-theme=dark] .ad-hero{background:linear-gradient(100deg,#18214f,#121a40 60%,#1e3a8a)}
+html[data-theme=dark] .ad-hero.ph{background-blend-mode:multiply}
+html[data-theme=dark] .ad-no{background:#ffffff14}
+html[data-theme=dark] .ad-bell{background:#161f4a;color:#e9edff}
+html[data-theme=dark] .ad-next{background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35)}
+html[data-theme=dark] .ad-next h3,html[data-theme=dark] .ad-next p{color:#ffe2a3}
+html[data-theme=dark] .ad-ph{background:linear-gradient(120deg,#17214f,#121a40);border-color:var(--heroline)}
+}`;
+  document.head.appendChild(s);
+})();
+
+const adDate = v => String(v || '').slice(0, 10);
+const adFmt = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+const AD_CHK = SVG('M5 12l5 5L20 7', 16).replace('stroke-width="1.8"', 'stroke-width="3"');
+
+/** Fills the schedule, announcements and the two date cards once events arrive. Safe if the user already left the page. */
+function adEvents() {
+  google.script.run.withSuccessHandler(r => {
+    const sch = $('ad-sch'), ann = $('ad-ann'); if (!sch || !ann) return;
+    const E = r && r.success ? r.data : [];
+    const up = E.filter(x => x.Category !== 'Announcement' && evIn(x.EventDate) >= 0)
+      .sort((a, b) => (a.EventDate + a.EventTime).localeCompare(b.EventDate + b.EventTime));
+    const an = E.filter(x => x.Category === 'Announcement')
+      .sort((a, b) => String(b.UpdatedAt).localeCompare(String(a.UpdatedAt)));
+    const nx = up[0];
+    if ($('ad-nd')) { $('ad-nd').textContent = nx ? adFmt(nx.EventDate) : 'None scheduled'; $('ad-ns').textContent = nx ? nx.Title : 'Check the bulletin for updates'; }
+    if ($('ad-la')) {
+      const l = an[0]; $('ad-la').innerHTML = l ? esc(l.Title) : 'No announcements yet';
+      $('ad-lb').innerHTML = '<a href="javascript:void(0)" data-act="nav" data-v="ev">View all &rarr;</a>';
+    }
+    sch.innerHTML = up.length ? up.slice(0, 3).map(x => {
+      const d = evDate(x.EventDate);
+      return `<div class="ad-s"><div class="ad-dt"><small>${esc(d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase())}</small><b>${d.getDate()}</b></div><div><b>${esc(x.Title)}</b><small>${esc([x.EventTime, x.Venue].filter(Boolean).join(' \u00b7 ') || evWhen(evIn(x.EventDate)))}</small></div></div>`;
+    }).join('') : '<div class="aemp">No upcoming events.</div>';
+    ann.innerHTML = an.length ? an.slice(0, 3).map(x => {
+      const d = adDate(x.UpdatedAt) || x.EventDate;
+      return `<div class="ad-a"><i></i><div><span>${esc(adFmt(d).replace(/, \d{4}$/, ''))}</span><b style="color:var(--navy)">${esc(x.Title)}</b>${x.Details ? `<small style="display:block;color:var(--mut)">${esc(x.Details.slice(0, 90))}${x.Details.length > 90 ? '\u2026' : ''}</small>` : ''}</div></div>`;
+    }).join('') : '<div class="aemp">No announcements yet.</div>';
+  }).withFailureHandler(() => {
+    const a = $('ad-ann'), c = $('ad-sch'); if (a) a.innerHTML = '<div class="aemp">Could not load. Refresh to try again.</div>'; if (c) c.innerHTML = '';
+  }).getEvents(S.token);
+}
+
+/* ---------- the student Home page (REPLACES homeStudent) ---------- */
+homeStudent = function () {
+  head('Dashboard', 'Your admission at a glance');
+  call('getStudent', [T()], r => {
+    const s = r.data, st = s.EnrollStatus || 'Not Enrolled', name = tc(s.FirstName || S.user.FullName || 'Student'),
+      R = reqsFor(s), docs = S.fields.filter(f => f[0] === 'req' && f[3] !== 'date' && R.show.includes(f[1])),
+      got = k => s[k] && s[k] !== 'None', rdone = R.req.filter(got).length, rp = R.req.length ? Math.round(rdone / R.req.length * 100) : 0,
+      G = k => gStat(k, s) || { done: false, msg: '', btn: null };
+
+    /* journey: only stages the portal really tracks. Add Exam / Interview / Decision here when the school records them. */
+    const steps = [
+      { t: 'Registration Completed', done: true, sub: adFmt(adDate(s.CreatedAt)) },
+      Object.assign({ t: 'Profile Completed', h: 'Complete your student profile.' }, G('profile')),
+      Object.assign({ t: 'Consent Form', h: 'Submit the signed Parental Consent form to the Admissions Office.' }, G('consent')),
+      Object.assign({ t: 'Requirements Submitted', h: 'Submit your remaining requirements in person to the Admissions Office.' }, G('requirement')),
+      Object.assign({ t: 'Enrollment', h: 'Your documents are in. The office is confirming your enrollment.' }, { done: st === 'Enrolled' || st === 'Temporary', btn: null, msg: '' })
+    ];
+    const idx = steps.findIndex(x => !x.done), next = idx < 0 ? null : steps[idx];
+    const journey = steps.map((x, i) => {
+      const c = x.done ? 'd' : i === idx ? 'n' : 't';
+      return `<div class="ad-js ${c}"><div class="ad-jc">${x.done ? AD_CHK : i + 1}</div><div><b>${esc(x.t)}</b>${x.done ? (x.sub || 'Done') : i === idx ? 'In progress' : 'Pending'}</div></div>`;
+    }).join('');
+
+    /* requirements: status comes from what the office recorded, never from the applicant */
+    const rows = docs.slice(0, 6).map(f => {
+      const v = s[f[1]], d = s[f[1] + 'Date'], ok = got(f[1]), need = R.req.includes(f[1]),
+        hint = (S.cfg.reqHints[R.level] || {})[f[1]] || '';
+      return `<div class="ad-r"><b>${esc(f[2])}</b><span class="rb ${ok ? 'g' : need ? 'y' : 'x'}">${ok ? 'Received' : need ? 'Not Yet Submitted' : 'If applicable'}</span><small>${ok ? esc(v) + (d ? ' \u00b7 ' + esc(adFmt(d)) : '') : esc(hint)}</small></div>`;
+    }).join('') || '<div class="aemp">Choose your grade level in your profile to see your requirements.</div>';
+
+    /* activity: only events with a real date in the record */
+    const act2 = [[adDate(s.CreatedAt), 'Account registered']];
+    if (s.StatusChangedAt) act2.push([adDate(s.StatusChangedAt), 'Enrollment status changed to: ' + st]);
+    docs.forEach(f => { const d = s[f[1] + 'Date']; if (d && got(f[1])) act2.push([d, f[2] + ' received']); });
+    act2.sort((a, b) => b[0].localeCompare(a[0]));
+    const activity = act2.slice(0, 4).map(x => `<div class="ad-a"><i></i><div><span>${esc(adFmt(x[0]))}</span>${esc(x[1])}</div></div>`).join('');
+
+    const nextBtn = next && next.btn ? `<button class="btn" data-act="${next.btn[1]}"${next.btn[2] ? ` data-v="${next.btn[2]}"` : ''}>${esc(next.btn[0])}</button>`
+      : `<button class="btn" data-act="nav" data-v="ev">View bulletin</button>`;
+    const stc2 = st === 'Enrolled' ? 'g' : st === 'Temporary' ? 'y' : st === 'Not Enrolled' ? 'y' : 'r';
+
+    const kp = (cls, ic, body) => `<div class="card ad-k"><span class="ad-ki ${cls}">${ic}</span><div style="min-width:0">${body}</div></div>`;
+    const top = kp('c1', I.rep, `<small>Application Status</small><span class="rb ${stc2}" style="font-size:15px;padding:3px 14px">${esc(st)}</span><small style="margin-top:4px">Since ${esc(adFmt(adDate(s.StatusChangedAt || s.CreatedAt)))}</small>`)
+      + kp('c2', I.home, `<small>Requirements Progress</small><b>${rdone} of ${R.req.length} Complete</b><em class="mbar"><u style="width:${rp}%"></u></em>`)
+      + kp('c4', I.cal, `<small>Next Important Date</small><b id="ad-nd">Loading&hellip;</b><small id="ad-ns"></small>`)
+      + kp('c5', I.mega, `<small>Latest Announcement</small><b id="ad-la" style="font-size:15px">Loading&hellip;</b><span id="ad-lb"></span>`);
+
+    $('view').innerHTML = holdBanner(s)
+      + `<div class="ad-hero${AD_HERO ? ' ph' : ''}"${AD_HERO ? ` style="background-image:linear-gradient(100deg,#dbe8ffee 0%,#eaf2ffcc 45%,transparent 75%),url('${esc(AD_HERO)}')"` : ''}><div><h2>Welcome, ${esc(name)}!</h2><p>Here&rsquo;s the latest update on your admission application.</p><span class="ad-no">Application No.<b>${esc(s.StudentID || '\u2014')}</b></span></div><button class="ad-bell" data-act="bell" aria-label="Notifications">&#128276;</button></div>`
+      + `<div class="ad-top">${top}</div>`
+      + `<div class="ad-grid"><div class="ad-col">
+        <div class="card"><div class="ch"><h3>Your Admission Journey</h3></div><div class="ad-j" style="--n:${steps.length}">${journey}</div></div>
+        <div class="ad-two">
+         <div class="card"><div class="ch"><h3>My Admission Requirements</h3><a href="javascript:void(0)" data-act="nav" data-v="rq">View All &rarr;</a></div>${rows}<p class="dxn" style="margin:10px 0 0">Submit original or required physical copies to the Admissions Office. The portal is for status monitoring only.</p></div>
+         <div class="card"><div class="ch"><h3>Upcoming Schedule</h3><a href="javascript:void(0)" data-act="nav" data-v="ev">View Calendar &rarr;</a></div><div id="ad-sch"><div class="aemp">Loading&hellip;</div></div></div>
+        </div>
+        <div class="ad-two">
+         <div class="card"><div class="ch"><h3>Recent Activity</h3></div>${activity}</div>
+         <div class="card ad-ph"><div><b>Need Help?</b><small>Our Admissions Office is ready to assist you.<br>0961 876 6886<br>morehians@gmail.com<br>Mon&ndash;Fri 8:00 AM &ndash; 5:00 PM &middot; Sat 8:00 AM &ndash; 3:00 PM</small><button class="btn alt" data-act="nav" data-v="faq">View FAQs &rarr;</button></div></div>
+        </div></div>
+       <div class="ad-col">
+        <div class="card ad-next"><h3>Next Action Required</h3><p>${esc(next ? next.h : 'You\u2019re all set. Watch the bulletin for announcements.')}</p>${nextBtn}</div>
+        <div class="card"><div class="ch"><h3>Announcements</h3><a href="javascript:void(0)" data-act="nav" data-v="ev">View All &rarr;</a></div><div id="ad-ann"><div class="aemp">Loading&hellip;</div></div></div>
+       </div></div>`
+      + `<div class="ad-more"><details class="card scs cpd"><summary class="sch"><span class="ao c1">${SICO.list}</span><h3>Enrollment guide</h3><span class="cpch">${CPCH}</span></summary><div class="scb"><div id="guidebox" class="pvs">${GUIDE0}</div></div></details>${polDetails()}</div>`;
+
+    loadGuide();
+    adEvents();
+  });
+};
+/* ===== Reports & Analytics v3, Phase 2: export menu, column chooser, preview summary =====
+   Paste AFTER the Phase 1 block. Replaces rpOut, rpErr, act.prrep, act.csv, act.exptoday. */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+.rpx-sum{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.rpx-sum .chip{font-size:12.5px}
+.rpx-cols{display:grid;gap:8px;max-height:50vh;overflow:auto}
+.rpx-cols label{display:flex;gap:10px;align-items:center;padding:9px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+.rpx-cols input{width:18px;height:18px;margin:0}
+html[data-theme=dark] .rpx-cols label{border-color:var(--line);background:#0e1538}
+}`;document.head.appendChild(s)})();
+
+CLOSEA.push('rcx');
+S.rhide=S.rhide||{};
+/* reports where choosing columns makes sense (Personal Data already has its own field picker) */
+const RP_COLS=['requirements','advisory'];
+
+/* ---------- context + export view ---------- */
+function rpCtx(){const t=S.rtype;
+ if(['advisory','personal','requirements'].includes(t)&&S.rf)return S.rf.grade+' \u00b7 '+(S.rf.section==='*'?'All sections':S.rf.section==='(none)'?'Unassigned':S.rf.section);
+ if(t==='scholar')return S.rlv&&S.rlv!=='All'?S.rlv:'All levels';
+ return ''}
+/** The report exactly as the person sees it (hidden columns removed). Print, CSV and Excel all use this. */
+function rpView(){const d=S.rep,h=S.rhide[S.rtype]||[],ctx=rpCtx();
+ const blocks=(d.blocks||[]).map(b=>{if(!b.cols||!h.length)return b;
+  const keep=b.cols.map((c,i)=>i===0||!h.includes(c));if(keep.every(Boolean))return b;
+  const map={};let n=0;keep.forEach((k,i)=>{if(k)map[i]=n++});
+  const rm=o=>{if(!o)return o;const r={};Object.keys(o).forEach(k=>{if(k in map)r[map[k]]=o[k]});return r};
+  return Object.assign({},b,{cols:b.cols.filter((c,i)=>keep[i]),rows:b.rows.map(r=>r.filter((c,i)=>keep[i])),
+   num:(b.num||[]).filter(i=>i in map).map(i=>map[i]),bcols:rm(b.bcols),hcols:rm(b.hcols),
+   pctCol:b.pctCol!=null&&(b.pctCol in map)?map[b.pctCol]:undefined})});
+ return Object.assign({},d,{blocks:blocks,asof:(ctx?ctx+'  \u2022  ':'')+d.asof})}
+const rpFile=()=>String(S.rep.title||'report').replace(/[^A-Za-z0-9]+/g,'_').replace(/^_|_$/g,'').toLowerCase()+'_sy'+String(S.rep.sy||S.cfg.sy).replace('-','_');
+const rpRows=d=>(d.blocks||[]).filter(b=>b.cols).reduce((a,b)=>a+b.rows.filter(r=>String(r[0])!=='TOTAL').length,0);
+
+/* ---------- preview ---------- */
+rpOut=function(t){const o=$('rout');if(!S.rep||!o)return;const d=rpView(),x=rpR(({refd:'referral',advd:'adviser'})[t]||t)||['','','','c1',I.rep],
+ hid=(S.rhide[t]||[]).length,tbl=(d.blocks||[]).filter(b=>b.cols).length,n=rpRows(d),ctx=rpCtx();
+ const body=(d.blocks||[]).map((b,i)=>{if(!rpLim(b))return blockHTML(b,t);const k=S.rlim[i]||100;
+  return blockHTML(Object.assign({},b,{rows:b.rows.slice(0,k)}),t)+(k<b.rows.length?`<div style="text-align:center;margin:-8px 0 18px"><button class="btn alt" data-act="rmore" data-v="${i}">Show more</button><div style="color:var(--mut);font-size:12.5px;margin-top:6px">Showing ${k} of ${b.rows.length}. Print, CSV and Excel include every row.</div></div>`:'')}).join('');
+ o.innerHTML=`<div class="rhd"><div class="rht"><span class="ao ${x[3]}">${x[4]}</span><div><h3>${esc(d.title)}</h3><small>${esc(d.asof)}</small></div></div><div class="rha">${RP_COLS.includes(t)?`<button class="btn alt" data-act="rcols">Columns${hid?' ('+hid+' hidden)':''}</button>`:''}<button class="btn alt" data-act="prrep">Print / PDF</button><button class="btn alt" data-act="csv">CSV</button><button class="btn alt" data-act="xlsx">Excel</button>${t==='refd'?'<button class="btn" data-act="prref">Print referral form</button>':''}${t==='advd'?'<button class="btn alt" data-act="advback">&larr; Back to adviser report</button>':''}</div></div>
+ <div class="rpx-sum"><span class="chip">School Year ${esc(S.rep.sy||S.cfg.sy)}</span>${ctx?`<span class="chip">${esc(ctx)}</span>`:''}<span class="chip">${tbl} table${tbl===1?'':'s'}</span>${tbl?`<span class="chip">${nfmt(n)} row${n===1?'':'s'}</span>`:''}${hid?`<span class="chip warn">${hid} column${hid===1?'':'s'} hidden</span>`:''}</div>
+ <div>${body||'<div class="card"><div class="aemp">No data for this selection.</div></div>'}</div>`;
+ if(S.rsy!==S.cfg.sy)o.querySelectorAll('[data-act=delc]').forEach(b=>b.remove())};
+
+/* ---------- errors and empty states ---------- */
+rpErr=function(msg,t,a){const o=$('rout');if(!o)return;S.rlast=[t,a];
+ if(/Session expired/.test(msg))setTimeout(()=>location.reload(),1500);
+ if(/No learners found/.test(msg))return o.innerHTML=`<div class="card"><div class="emp"><i>${I.search}</i><b>No learners in this class</b><p>${esc(msg)} Try another section or school year.</p></div></div>`;
+ o.innerHTML=`<div class="card"><div class="emp"><i>${I.rep}</i><b>The report could not be generated</b><p>${esc(msg)}</p><button class="btn alt" data-act="rpretry">Try again</button></div></div>`};
+
+/* ---------- column chooser ---------- */
+act.rcols=()=>{const t=S.rtype,b=((S.rep&&S.rep.blocks)||[]).find(x=>x.cols);if(!b)return;
+ const old=$('rcm');if(old)old.remove();const m=document.createElement('div');m.className='mod';m.id='rcm';
+ m.innerHTML=`<div style="max-width:460px"><div class="bd"><h3 style="color:var(--navy);margin:0 0 4px">Columns</h3><p style="color:var(--mut);margin:0 0 12px">Hidden columns are left out of the preview, print, CSV and Excel. The first column always stays.</p><div class="rpx-cols">${b.cols.slice(1).map(c=>`<label><input type="checkbox" data-act="rcol" data-v="${esc(c)}" ${(S.rhide[t]||[]).includes(c)?'':'checked'}> ${esc(c)}</label>`).join('')}</div></div><div class="ft"><button class="btn alt" data-act="rcreset">Show all</button><button class="btn" data-act="rcx">Done</button></div></div>`;
+ document.body.appendChild(m)};
+act.rcol=c=>{const t=S.rtype,h=S.rhide[t]||(S.rhide[t]=[]),i=h.indexOf(c);if(i>=0)h.splice(i,1);else h.push(c);rpOut(t)};
+act.rcreset=()=>{S.rhide[S.rtype]=[];rpOut(S.rtype);act.rcols()};
+act.rcx=()=>{const m=$('rcm');if(m)m.remove()};
+
+/* ---------- exports ---------- */
+act.prrep=()=>{if(S.rep)printReport(rpView(),S.rtype)};
+act.csv=()=>{if(!S.rep)return;const d=rpView();
+ dl(rpFile()+'.csv',(d.blocks||[]).filter(b=>b.cols).map(b=>(b.plain?[]:[csvCell(b.title)]).concat([b.cols.map(csvCell).join(',')],b.rows.map(r=>r.map(csvCell).join(','))).join('\n')).join('\n\n'))};
+act.exptoday=()=>call('report',[T(),'daily',''],r=>{S.rep=r.data;S.rtype='daily';act.csv()});
+act.xlsx=async()=>{if(!S.rep)return;const d=rpView(),tb=(d.blocks||[]).filter(b=>b.cols);
+ if(!tb.length)return toast('This report has no tables to export.',false);
+ $('load').classList.remove('hidden');
+ try{if(!window.XLSX)await loadJs('https:\x2f\x2fcdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js');
+  const wb=XLSX.utils.book_new(),used={};
+  tb.forEach(b=>{const base=String(b.title||'Report').replace(/[\\\/?*\[\]:]/g,' ').replace(/\s+/g,' ').trim().slice(0,28)||'Sheet';let k=base,j=2;
+   while(used[k.toLowerCase()])k=base.slice(0,26)+' '+j++;used[k.toLowerCase()]=1;
+   const ws=XLSX.utils.aoa_to_sheet([b.cols].concat(b.rows.map(r=>r.map(c=>c==null?'':c))));   /* text stays text: nothing is evaluated as a formula */
+   ws['!cols']=b.cols.map((c,i)=>({wch:Math.min(40,Math.max(String(c).length,...b.rows.slice(0,200).map(r=>String(r[i]==null?'':r[i]).length))+2)}));
+   XLSX.utils.book_append_sheet(wb,ws,k)});
+  XLSX.writeFile(wb,rpFile()+'.xlsx');toast('Downloaded '+rpFile()+'.xlsx')}
+ catch(e){toast('Excel export failed: '+e.message,false)}finally{$('load').classList.add('hidden')}};
+ 
+/* ===== Reports & Analytics v3, Phase 3: Analytics dashboard + drill-down ===== */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+.anr{display:grid;grid-template-columns:minmax(90px,170px) 1fr auto;gap:10px;align-items:center;width:100%;border:0;background:none;padding:6px 8px;border-radius:8px;cursor:pointer;font:inherit;color:inherit;text-align:left}
+.anr:hover{background:var(--soft)}.anr>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;color:var(--mut)}
+.anb{height:10px;border-radius:6px;background:#eef2f9;overflow:hidden}.anb i{display:block;height:100%;border-radius:6px}
+.anr b{color:var(--navy);font-variant-numeric:tabular-nums}
+.ancols{display:flex;gap:6px;align-items:flex-end;height:150px;overflow-x:auto;padding:4px 2px 0}
+.ancol{flex:1 0 34px;max-width:70px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;border:0;background:none;cursor:pointer;font:inherit;color:var(--mut);font-size:11.5px;padding:0}
+.ancol i{display:block;width:100%;background:#2563eb;border-radius:6px 6px 0 0;min-height:3px}.ancol:hover i{background:#1d4ed8}.ancol b{color:var(--navy);font-size:12px}
+.anl{border:0;background:none;color:var(--blue);font:700 inherit;cursor:pointer;padding:2px 6px;border-radius:6px;font-family:inherit;font-size:inherit}
+.anl:hover{background:var(--soft);text-decoration:underline}
+.angap{display:flex;gap:8px;flex-wrap:wrap}
+.andef{margin:0;padding-left:20px;line-height:1.8;color:var(--mut);font-size:13px}
+html[data-theme=dark] .anb,html[data-theme=dark] .ancol{background-color:transparent}html[data-theme=dark] .anb{background:#0e1538}
+}`;document.head.appendChild(s)})();
+
+CLOSEA.push('anx');
+S.an=S.an||{lvl:'',from:'',to:''};S.ranid=0;
+const anKey=()=>[S.rsy,S.an.lvl,S.an.from,S.an.to].join('|');
+const AN_C=['#2563eb','#16a34a','#f59e0b','#7c3aed','#e11d48','#0891b2','#db2777','#64748b','#94a3b8'];
+
+/** Clickable horizontal bars. items = [{l, v, key}] */
+function anBars(items,kind,color){const mx=Math.max(1,...items.map(x=>x.v));
+ return items.length?`<div>${items.map((x,i)=>`<button type="button" class="anr" data-act="andr" data-v="${esc(JSON.stringify([kind,x.key==null?x.l:x.key]))}" title="Show learners"><span title="${esc(x.l)}">${esc(x.l)}</span><div class="anb"><i style="width:${x.v/mx*100}%;background:${color||AN_C[i%AN_C.length]}"></i></div><b>${nfmt(x.v)}</b></button>`).join('')}</div>`:'<div class="aemp">No data for this selection.</div>'}
+/** Donut with a clickable legend. */
+function anDonut(items,kind,center){const tot=items.reduce((a,x)=>a+x.v,0);let acc=0;
+ const seg=tot?items.filter(x=>x.v).map((x,i)=>{const c=AN_C[items.indexOf(x)%AN_C.length],st=acc;acc+=x.v/tot*100;return `${c} ${st}% ${acc}%`}).join(','):'#e6ebf3 0% 100%';
+ return `<div class="dn"><div class="donut"><div class="pie2" style="background:conic-gradient(${seg})"></div><div class="dctr"><b>${nfmt(tot)}</b><small>${esc(center)}</small></div></div><div class="dlg" style="min-width:200px">${items.map((x,i)=>`<button type="button" class="anr" style="grid-template-columns:12px 1fr auto auto;gap:8px" data-act="andr" data-v="${esc(JSON.stringify([kind,x.key==null?x.l:x.key]))}"><i style="width:12px;height:12px;border-radius:4px;background:${AN_C[i%AN_C.length]}"></i><span>${esc(x.l)}</span><b>${tot?Math.round(x.v/tot*100):0}%</b><b style="color:var(--mut)">${nfmt(x.v)}</b></button>`).join('')}</div></div>`}
+const anCard=(t,sub,body,def)=>`<div class="card"><div class="ch"><h3>${t}</h3>${sub?`<span style="color:var(--mut);font-size:13px">${sub}</span>`:''}</div>${body}${def?`<p class="rpx-n" style="margin:12px 0 0;font-size:12.5px"><b>Definition:</b> ${def}</p>`:''}</div>`;
+const anMon=k=>new Date(k+'-01T00:00:00').toLocaleDateString('en-US',{month:'short',year:'2-digit'});
+
+/* ---------- load ---------- */
+function anLoad(){const id=++S.ranid,key=anKey(),a=S.an;S.ran=null;
+ google.script.run.withSuccessHandler(r=>{if(id!==S.ranid)return;
+   S.ran=r&&r.success?{key:key,d:r.data}:{key:key,err:(r&&r.error)||'Could not load analytics.'};
+   if(r&&r.success){S.rupd=new Date();rpUpd()}else if(r&&/Session expired/.test(r.error))setTimeout(()=>location.reload(),1500);
+   if(S.rv==='an'&&$('rpmain'))rpBody()})
+  .withFailureHandler(()=>{if(id!==S.ranid)return;S.ran={key:key,err:'Analytics is not available yet. Add the Phase 3 functions to Reports.gs and deploy a new version.'};if(S.rv==='an'&&$('rpmain'))rpBody()})
+  .reportsAnalytics(S.token,S.rsy,a.lvl,a.from,a.to,S.rfresh)}
+
+const _rpYearAn=rpYear;rpYear=function(v){_rpYearAn(v);if(S.rv==='an')anLoad()};
+const _rfAn=act.rprefresh;act.rprefresh=()=>{_rfAn();if(S.rv==='an')anLoad()};
+act.anlvl=v=>{S.an.lvl=v;anLoad();rpBody()};
+act.anapply=()=>{const f=$('anf').value,t=$('ant').value;if(f&&t&&f>t)return toast('The start date is after the end date.',false);S.an.from=f;S.an.to=t;anLoad();rpBody()};
+act.anclr=()=>{S.an={lvl:S.an.lvl,from:'',to:''};anLoad();rpBody()};
+
+/* ---------- view (REPLACES rpAn) ---------- */
+rpAn=function(el){
+ const a=S.an,filt=`<div class="card"><div class="rpx-row"><div class="rpills" role="group" aria-label="School level">${['All'].concat(RGROUPS).map(g=>{const v=g==='All'?'':g;return `<button class="pill ${a.lvl===v?'on':''}" data-act="anlvl" data-v="${esc(v)}">${g==='All'?'All levels':esc(g)}</button>`}).join('')}</div></div>
+  <div class="rpx-row"><span class="rpx-lb">Admissions date range</span><input type="date" id="anf" class="rpx-sy" value="${esc(a.from)}" aria-label="From"><input type="date" id="ant" class="rpx-sy" value="${esc(a.to)}" aria-label="To"><button class="btn" data-act="anapply">Apply</button>${a.from||a.to?'<button class="btn alt" data-act="anclr">Clear dates</button>':''}<span class="rpx-n" style="font-size:12.5px">Applies to the funnel and monthly trend only (by registration date).</span></div></div>`;
+ if(!S.ran||S.ran.key!==anKey()){if(S.ranPend!==anKey())anLoad();return el.innerHTML=filt+'<div class="card"><i class="galsk" style="height:220px;border-radius:12px"></i></div>'}
+ if(S.ran.err)return el.innerHTML=filt+`<div class="card"><div class="emp"><i>${I.rep}</i><b>Analytics could not be loaded</b><p>${esc(S.ran.err)}</p><button class="btn alt" data-act="rprefresh">Try again</button></div></div>`;
+ const d=S.ran.d,lv=d.lvl||'All levels',pc=rpPc;
+ const gaps=[['sex',d.gaps.sex,'sex'],['religion',d.gaps.religion,'religion'],['scholarship category',d.gaps.category,'category'],['previous school',d.gaps.prevSchool,'previous school']].filter(x=>x[1]>0);
+ const kp=`<div class="kpis">${kpi('c1',I.adm,'Learners in scope',nfmt(d.population),lv+', SY '+esc(d.sy))}${kpi('c2',I.home,'Active (not cancelled / transferred)',nfmt(d.live),pc(d.live,d.population)+' of scope')}${kpi('c4',I.cal,'Conversion',pc(d.funnel.enrolled,d.funnel.total),'Enrolled \u00f7 registered'+(d.from||d.to?' in range':''))}${kpi('c3',I.rep,'Requirements complete',pc(d.compliance.complete,d.live),nfmt(d.compliance.complete)+' of '+nfmt(d.live)+' active')}</div>`;
+ const gapN=gaps.length?`<div class="scn" style="margin:0 0 16px">${SICO.info}<div><b>Incomplete data.</b> Among active learners, ${gaps.map(x=>nfmt(x[1])+' have no '+x[2]).join(', ')}. They are shown as "Not specified" or left out of those charts.</div></div>`:'';
+ /* enrollment by level */
+ const lvT=`<div class="tw"><table class="at"><thead><tr><th>Level</th><th class="n">Enrolled</th><th class="n">Not enrolled</th><th class="n">Cancelled / transferred</th><th class="n">Total</th></tr></thead><tbody>${d.byLevel.map(x=>{const b=(n,k)=>n?`<button class="anl" data-act="andr" data-v="${esc(JSON.stringify(['lvl',x.g+'|'+k]))}">${nfmt(n)}</button>`:'0';return `<tr><td><b>${esc(x.g)}</b></td><td class="n">${b(x.enrolled,'enrolled')}</td><td class="n">${b(x.pending,'pending')}</td><td class="n">${b(x.closed,'closed')}</td><td class="n"><b>${nfmt(x.enrolled+x.pending+x.closed)}</b></td></tr>`}).join('')||'<tr><td colspan="5" style="color:var(--mut)">No learners found.</td></tr>'}</tbody></table></div>`;
+ const lvC=d.byLevel.length?chartHTML({type:'stack',title:'',labels:d.byLevel.map(x=>x.g),series:[{name:'Enrolled',color:'#16a34a',values:d.byLevel.map(x=>x.enrolled)},{name:'Not enrolled',color:'#f59e0b',values:d.byLevel.map(x=>x.pending)},{name:'Cancelled / transferred',color:'#dc2626',values:d.byLevel.map(x=>x.closed)}]}):'';
+ /* funnel */
+ const f=d.funnel,fun=f.total?chartHTML({type:'funnel',title:'',stages:[{label:'Registered',value:f.total,color:'#2563eb'},{label:'Active',value:f.active,color:'#7c3aed'},{label:'Enrolled',value:f.enrolled,color:'#16a34a'}]})+`<div class="angap" style="margin-top:12px">${[['Registered','total',f.total],['Active','active',f.active],['Enrolled','enrolled',f.enrolled]].map(x=>`<button class="pill" data-act="andr" data-v="${esc(JSON.stringify(['funnel',x[1]]))}">${x[0]} (${nfmt(x[2])})</button>`).join('')}</div>`:'<div class="aemp">No registrations in this period.</div>';
+ /* monthly */
+ const mx=Math.max(1,...d.monthly.map(x=>x[1])),mon=d.monthly.length?`<div class="ancols">${d.monthly.map(x=>`<button type="button" class="ancol" data-act="andr" data-v="${esc(JSON.stringify(['month',x[0]]))}" title="${esc(anMon(x[0]))}: ${x[1]}"><b>${x[1]}</b><i style="height:${Math.max(3,x[1]/mx*100)}%"></i>${esc(anMon(x[0]))}</button>`).join('')}</div>`:'<div class="aemp">No registration dates in this period.</div>';
+ /* demographics */
+ const rel=d.religion.map(x=>({l:x[0],v:x[1]})).concat(d.religionOther?[{l:'Other religions',v:d.religionOther,key:'\u0000'}]:[]);
+ /* year over year */
+ const yo=d.yoy,ym=Math.max(1,...yo.map(x=>x.total)),yoyT=`<div class="tw"><table class="at"><thead><tr><th>School year</th><th class="n">Registered</th><th class="n">Enrolled</th><th class="n">Conversion</th><th style="min-width:140px"></th></tr></thead><tbody>${yo.map(x=>`<tr${x.sy===d.sy?' style="background:var(--soft)"':''}><td><b>${esc(x.sy)}</b>${x.sy===S.cfg.sy?' <span class="chip">active</span>':''}</td><td class="n">${nfmt(x.total)}</td><td class="n">${nfmt(x.enrolled)}</td><td class="n">${pc(x.enrolled,x.total)}</td><td><div class="anb"><i style="width:${x.total/ym*100}%;background:#cbd5e1"></i></div><div class="anb" style="margin-top:3px"><i style="width:${x.enrolled/ym*100}%;background:#16a34a"></i></div></td></tr>`).join('')}</tbody></table></div>`;
+ /* compliance */
+ const cm=d.compliance,comp=anDonut([{l:'Complete',v:cm.complete,key:'__c'},{l:'Missing documents',v:cm.incomplete,key:'__i'}].filter(x=>x.v),'__none','Active');
+ const compD=`<div class="dn"><div class="donut"><div class="pie2" style="background:conic-gradient(#16a34a 0 ${d.live?cm.complete/d.live*100:0}%,#dc2626 0)"></div><div class="dctr"><b>${pc(cm.complete,d.live)}</b><small>Complete</small></div></div><div class="dlg" style="min-width:200px"><div><i style="background:#16a34a"></i><span>Complete</span><b></b><em>${nfmt(cm.complete)}</em></div><div><i style="background:#dc2626"></i><span>Missing documents</span><b></b><em>${nfmt(cm.incomplete)}</em></div></div></div>`;
+ const missB=anBars(cm.missing.map(x=>({l:x[1],v:x[2],key:x[0]})),'req','#dc2626')+(cm.noConsent?anBars([{l:'Consent form outstanding',v:cm.noConsent,key:'consent'}],'consent','#d97706'):'');
+ el.innerHTML=filt+kp+gapN
+ +anCard('Enrollment by level','SY '+esc(d.sy),lvC+lvT,'Enrolled = status Enrolled. Not enrolled = Not Enrolled and Temporary. Cancelled / transferred are shown separately. Numbers open the learner list.')
+ +`<div class="row2">`+anCard('Applicant funnel',d.from||d.to?'Registered '+esc(d.from||'\u2026')+' to '+esc(d.to||'\u2026'):'All registrations',fun,'Registered = every record in the scope. Active excludes cancelled and transferred out. Enrolled = status Enrolled. Conversion = Enrolled \u00f7 Registered.')
+ +anCard('Monthly admissions','By registration month',mon,'Count of records by the month they were registered.')+`</div>`
+ +anCard('Enrolled learners by grade','Active enrolled only',anBars(d.byGrade.map(x=>({l:x[0],v:x[1]})),'grade'),'Learners with status Enrolled, by grade level.')
+ +`<div class="row2">`+anCard('Sex','Active learners',anDonut(d.sex.map(x=>({l:x[0],v:x[1]})),'sex','Learners'),'Legal sex as recorded. Blank = Not specified.')
+ +anCard('Religion','Top 8, active learners',anBars(rel,'religion'),'Religion as recorded ("Others, specify" shows the typed value).')+`</div>`
+ +anCard('Learners per section','Largest 30, active learners',anBars(d.sections.map(x=>({l:x[0],v:x[1],key:x[2]})),'section','#2563eb'),'Active learners with an assigned section. Unassigned learners are not listed.')
+ +anCard('Scholarship beneficiaries','Active learners by category',anDonut(d.scholar.map(x=>({l:x[0],v:x[1]})),'scholar','Learners'),'Category as recorded on the learner record.')
+ +`<div class="row2">`+anCard('Requirements compliance','Active learners',compD,'Complete = every mandatory document for the learner\u2019s level is submitted (the consent form is tracked separately below).')
+ +anCard('Missing documents','Click a bar for the list',missB,'Learners for whom the document is mandatory and not yet submitted.')+`</div>`
+ +anCard('Year over year','Up to the last 5 school years',yoyT,'Past years are rebuilt from Enrollment History plus records not yet re-enrolled, so statuses are as archived. Grey bar = registered, green bar = enrolled. Scope follows the level filter.')};
+
+/* ---------- drill-down ---------- */
+const AN_T={funnel:{total:'Registered',active:'Active',enrolled:'Enrolled'},lvl:0,grade:0,month:0};
+function anTitle(k,key){const T=AN_T;
+ if(k==='funnel')return 'Funnel: '+T.funnel[key];
+ if(k==='lvl'){const p=key.split('|');return p[0]+': '+({enrolled:'Enrolled',pending:'Not enrolled',closed:'Cancelled / transferred'}[p[1]]||'')}
+ if(k==='grade')return key+': enrolled';if(k==='month')return 'Registered in '+anMon(key);
+ if(k==='sex')return 'Sex: '+key;if(k==='religion')return 'Religion: '+key;if(k==='scholar')return 'Category: '+key;
+ if(k==='section')return 'Section: '+key.replace('|',' ');if(k==='req')return 'Missing: '+anReqLabel(key);if(k==='consent')return 'Consent form outstanding';return 'Learners'}
+const anReqLabel=k=>{const f=S.fields.find(x=>x[1]===k);return f?f[2]:k};
+act.andr=v=>{let q;try{q=JSON.parse(v)}catch(e){return}if(q[0]==='none'||q[1]==='\u0000')return;const a=S.an;
+ call('reportsDrill',[T(),S.rsy,a.lvl,a.from,a.to,q[0],q[1]],r=>{const d=r.data,old=$('anm');if(old)old.remove();const m=document.createElement('div');m.className='mod';m.id='anm';
+  const act1=S.rsy===S.cfg.sy;
+  m.innerHTML=`<div style="max-width:900px"><div class="bd"><h3 style="color:var(--navy);margin:0 0 4px">${esc(anTitle(q[0],q[1]))}</h3><p style="color:var(--mut);margin:0 0 12px">${nfmt(d.total)} learner${d.total===1?'':'s'} \u00b7 SY ${esc(S.rsy)}${d.capped?' \u00b7 showing the first '+d.rows.length:''}</p>${d.rows.length?`<div class="tw"><table class="at"><thead><tr><th>Learner</th><th>Class</th><th>Category</th><th>Status</th>${act1?'<th></th>':''}</tr></thead><tbody>${d.rows.map(r=>`<tr><td>${holdWho(r.name,r.id,'')}</td><td>${esc(tc(r.cls))||'\u2014'}</td><td>${esc(r.cat)||'\u2014'}</td><td><span class="chip ${stc(r.status)}">${esc(r.status)}</span></td>${act1?`<td><button class="btn alt" data-act="andopen" data-v="${esc(r.id)}">Open</button></td>`:''}</tr>`).join('')}</tbody></table></div>`:'<div class="aemp">No learners in this group.</div>'}</div><div class="ft"><button class="btn alt" data-act="anx">Close</button></div></div>`;
+  document.body.appendChild(m)})};
+act.anx=()=>{const m=$('anm');if(m)m.remove()};
+act.andopen=id=>{act.anx();act.flopen(id)};
+
+/* ===== Reports & Analytics v3, Phase 4: saved reports, account favorites, history ===== */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+.svr{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
+.svr b{color:var(--navy);font-size:15px}.svr p{margin:0;color:var(--mut);font-size:13px;line-height:1.5}
+.svr .rpx-cf{margin-top:auto}
+.svr .chips{display:flex;gap:6px;flex-wrap:wrap}
+html[data-theme=dark] .svr{background:#10173a}
+}`;document.head.appendChild(s)})();
+
+CLOSEA.push('rsx');
+S.rprefs=null;S.rhi=null;S.rhist='';S.rhil=false;
+
+/* ---------- preferences (favorites + saved) ---------- */
+function rpPrefLoad(cb){google.script.run.withSuccessHandler(r=>{
+  if(r&&r.success){S.rprefs=r.data;
+   try{const loc=JSON.parse(localStorage.getItem('mrh_rf')||'[]').filter(k=>RP_F[k]);   /* one-time move of this device's old favorites to the account */
+    if(!localStorage.getItem('mrh_rf_m')){localStorage.setItem('mrh_rf_m','1');
+     if(loc.length&&!S.rprefs.favs.length){S.rprefs.favs=loc;google.script.run.withFailureHandler(()=>{}).saveFavorites(S.token,loc)}}}catch(e){}}
+  if(cb)cb()}).withFailureHandler(()=>{if(cb)cb()}).reportsPrefs(S.token)}
+
+const _repP4=rep;
+rep=function(){_repP4();S.rhi=null;rpPrefLoad(()=>{if($('rpmain')&&(S.rv==='ov'||S.rv==='sv'||(S.rv==='lib'&&!S.rw)))rpBody()})};
+
+const _rtP4=act.rptab;
+act.rptab=v=>{if(v==='hi')S.rhi=null;if(v==='sv')rpPrefLoad(()=>{if(S.rv==='sv'&&$('rpmain'))rpBody()});_rtP4(v)};
+const _rfP4=act.rprefresh;
+act.rprefresh=()=>{if(S.rv==='hi')S.rhi=null;if(S.rv==='sv')rpPrefLoad(()=>{if(S.rv==='sv'&&$('rpmain'))rpBody()});_rfP4()};
+
+/* favorites now follow the account */
+act.rfav=id=>{const p=S.rprefs||(S.rprefs={favs:[],saved:[]}),f=p.favs.filter(k=>RP_F[k]),i=f.indexOf(id);
+ if(i>=0)f.splice(i,1);else f.push(id);p.favs=f;
+ google.script.run.withSuccessHandler(r=>{if(r&&!r.success)toast(r.error,false)}).withFailureHandler(()=>toast('Favorites could not be saved.',false)).saveFavorites(S.token,f);
+ const on=f.includes(id);
+ document.querySelectorAll('[data-act=rfav][data-v="'+id+'"]').forEach(b=>{b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);b.setAttribute('aria-label',on?'Remove from favorites':'Add to favorites')});
+ if(S.rv==='lib'&&!S.rw&&S.rtab==='fav')rpList();else if(S.rv==='ov'||S.rv==='sv')rpBody()};
+
+/* ---------- save a report configuration ---------- */
+const _rpWorkP4=rpWork;
+rpWork=function(el){_rpWorkP4(el);const st=el.querySelector('.rpx-row [data-act=rfav]');
+ if(st&&!el.querySelector('[data-act=rpsave]'))st.insertAdjacentHTML('beforebegin','<button class="btn alt" data-act="rpsave">Save report</button>')};
+
+function rpCfg(){const id=S.rw,k=RP_F[id],c={};
+ if(k==='class'){c.grade=($('rfg')||{}).value||S.rf.grade;c.section=($('rfs')||{}).value||S.rf.section}
+ if(k==='level')c.level=S.rlv&&S.rlv!=='All'?S.rlv:'';
+ if(id==='personal'){const f=[...document.querySelectorAll('.pfx:checked')].map(x=>x.value);c.fields=f.length?f:(S.pf||[])}
+ c.hide=(S.rhide&&S.rhide[id])||[];return c}
+function rpCfgSum(c,type){const g=c.cfg,p=[];
+ if(g.grade)p.push(g.grade+' / '+(g.section==='*'||!g.section?'All sections':g.section==='(none)'?'Unassigned':g.section));
+ if(g.level)p.push(g.level);else if(RP_F[type]==='level')p.push('All levels');
+ if(g.fields&&g.fields.length)p.push(g.fields.length+' data fields');
+ if(g.hide&&g.hide.length)p.push(g.hide.length+' hidden column'+(g.hide.length===1?'':'s'));
+ return p.join(' \u00b7 ')||'No extra filters'}
+
+act.rpsave=()=>{const id=S.rw;if(!id)return;const x=rpR(id),old=$('rsm');if(old)old.remove();
+ const m=document.createElement('div');m.className='mod';m.id='rsm';
+ m.innerHTML=`<div style="max-width:460px"><div class="bd"><h3 style="color:var(--navy);margin:0 0 4px">Save this report</h3><p style="color:var(--mut);margin:0 0 14px">Saves the report and its filters. It always regenerates from current data.</p>
+ <div class="f" style="margin-bottom:12px"><label>Name</label><input id="rsn" maxlength="60" value="${esc(x[1])}" style="text-transform:none" autocomplete="off"></div>
+ <label class="chk" style="margin-bottom:6px"><input type="checkbox" id="rsa" ${S.rsy===S.cfg.sy?'checked':''}> Always use the active school year (${esc(S.cfg.sy)})</label>
+ <label class="chk"><input type="checkbox" id="rss"> Share with other report users</label></div>
+ <div class="ft"><button class="btn alt" data-act="rsx">Cancel</button><button class="btn" data-act="rsok">Save</button></div></div>`;
+ document.body.appendChild(m);$('rsn').focus();$('rsn').select()};
+act.rsx=()=>{const m=$('rsm');if(m)m.remove()};
+act.rsok=()=>{const id=S.rw,sy=$('rsa').checked?'':S.rsy;
+ call('saveReportConfig',[T(),{name:$('rsn').value,type:id,sy:sy,shared:$('rss').checked,cfg:rpCfg()}],r=>{act.rsx();toast(r.message);rpPrefLoad(()=>{})})};
+
+/* ---------- Saved Reports view (REPLACES rpSv) ---------- */
+rpSv=function(el){const p=S.rprefs;
+ if(!p)return el.innerHTML='<div class="card"><i class="galsk" style="height:140px;border-radius:12px"></i></div>';
+ const q=(S.rq||'').trim().toLowerCase(),L=p.saved.filter(c=>!q||(c.name+' '+(rpR(c.type)||[,''])[1]).toLowerCase().includes(q)),fav=rpFav();
+ const cards=L.map(c=>{const x=rpR(c.type)||['','','','c1',I.rep],cat=rpCat(c.type);
+  return `<div class="svr"><div class="rpx-ct"><span class="ao ${x[3]}">${x[4]}</span><div class="chips">${c.shared?`<span class="chip">${c.mine?'Shared by you':'Shared by '+esc(tc(c.owner))}</span>`:'<span class="chip">Private</span>'}</div></div>
+   <b>${esc(c.name)}</b><p>${esc(x[1])}${cat?' \u00b7 '+esc(cat.n):''}<br>${esc(rpCfgSum(c,c.type))}<br>${c.sy?'School Year '+esc(c.sy):'Follows the active school year'}</p>
+   <div class="rpx-cf"><span style="color:var(--mut);font-size:12px">Updated ${esc(String(c.updated).slice(0,10))}</span><span style="display:flex;gap:6px"><button class="btn" data-act="rsrun" data-v="${esc(c.id)}">Run</button>${c.mine||SYS()?`<button class="btn red" data-act="rsdel" data-v="${esc(c.id)}">Delete</button>`:''}</span></div></div>`}).join('');
+ el.innerHTML=`<div class="card"><div class="ch"><h3>Saved reports</h3><span style="color:var(--mut);font-size:13px">${L.length} saved</span></div>${L.length?`<div class="rpx-grid">${cards}</div>`:`<div class="emp"><i>${I.rep}</i><b>${p.saved.length?'No matching saved reports':'No saved reports yet'}</b><p>${p.saved.length?'Try another word.':'Open a report from the Library, set its filters, then click Save report.'}</p><button class="btn alt" data-act="rptab" data-v="lib">Open the Library</button></div>`}</div>
+ <div class="card"><div class="ch"><h3>Favorites</h3><span style="color:var(--mut);font-size:13px">Follow your account on any device</span></div>${fav.length?`<div class="rpx-grid">${fav.map(i=>rpCard(i)).join('')}</div>`:'<div class="aemp">No favorites yet. Use the star on any report.</div>'}</div>`};
+
+act.rsrun=id=>{const c=(S.rprefs&&S.rprefs.saved||[]).find(x=>x.id===id);if(!c)return;const k=RP_F[c.type],g=c.cfg;
+ S.rsy=c.sy||S.cfg.sy;rpYearSel();
+ if(g.grade)S.rf={grade:g.grade,section:g.section||'*'};
+ S.rlv=g.level||'All';if(g.fields&&g.fields.length)S.pf=g.fields;
+ S.rhide[c.type]=g.hide||[];
+ selRep(c.type);rpNote();rpUpd();rpHome();
+ if(k==='class'){const a={grade:S.rf.grade,section:S.rf.section};if(c.type==='personal')a.fields=S.pf||PDEF;runRep(c.type,a)}};
+act.rsdel=id=>{if(confirm('Remove this saved report? Reports it created are not affected.'))call('deleteReportConfig',[T(),id],r=>{toast(r.message);rpPrefLoad(()=>{if(S.rv==='sv'&&$('rpmain'))rpBody()})})};
+
+/* ---------- logging exports and failures ---------- */
+const rpLogC=(f,st,d)=>{if(!S.rep||!S.rtype)return;google.script.run.withFailureHandler(()=>{}).reportLog(S.token,S.rtype,f,S.rep.sy||S.rsy,st,d||'')};
+const _prP4=act.prrep;act.prrep=()=>{_prP4();rpLogC('Print / PDF','Success')};
+const _csvP4=act.csv;act.csv=()=>{_csvP4();rpLogC('CSV','Success')};
+const _xlP4=act.xlsx;act.xlsx=async()=>{await _xlP4();rpLogC('Excel',window.XLSX?'Success':'Failed',window.XLSX?'':'Excel library not loaded')};
+const _reP4=rpErr;
+rpErr=function(m,t,a){_reP4(m,t,a);if(!/Session expired/.test(m))google.script.run.withFailureHandler(()=>{}).reportLog(S.token,t,'Preview',S.rsy,'Failed',String(m).slice(0,120))};
+
+/* ---------- Report History view (REPLACES rpHi) ---------- */
+function rpHiLoad(){if(S.rhil)return;S.rhil=true;
+ google.script.run.withSuccessHandler(r=>{S.rhil=false;S.rhi=r&&r.success?r.data:{err:(r&&r.error)||'Could not load the history.'};
+   if(r&&!r.success&&/Session expired/.test(r.error))setTimeout(()=>location.reload(),1500);if(S.rv==='hi'&&$('rpmain'))rpBody()})
+  .withFailureHandler(()=>{S.rhil=false;S.rhi={err:'History is not available yet. Add the Phase 4 functions to Reports.gs and deploy a new version.'};if(S.rv==='hi'&&$('rpmain'))rpBody()}).reportHistory(S.token)}
+rpHi=function(el){
+ if(!S.rhi){rpHiLoad();return el.innerHTML='<div class="card"><i class="galsk" style="height:180px;border-radius:12px"></i></div>'}
+ if(S.rhi.err)return el.innerHTML=`<div class="card"><div class="emp"><i>${I.rep}</i><b>History could not be loaded</b><p>${esc(S.rhi.err)}</p><button class="btn alt" data-act="rprefresh">Try again</button></div></div>`;
+ const q=(S.rq||'').trim().toLowerCase(),st=S.rhist,all=S.rhi.all;
+ const L=S.rhi.rows.filter(r=>(!st||r.status===st)&&(!q||(r.name+' '+r.by+' '+r.fmt+' '+r.detail).toLowerCase().includes(q)));
+ el.innerHTML=`<div class="card"><div class="ch"><h3>Report history</h3><span style="color:var(--mut);font-size:13px">${all?'All users':'Your activity'} \u00b7 latest ${S.rhi.rows.length}</span></div>
+  <div class="rpills" style="margin-bottom:14px">${[['','All'],['Success','Success'],['Failed','Failed']].map(x=>`<button class="pill ${st===x[0]?'on':''}" data-act="rhst" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>
+  ${L.length?`<div class="tw"><table class="at"><thead><tr><th>Report</th>${all?'<th>Generated by</th>':''}<th>When</th><th>School year</th><th>Format</th><th>Status</th><th></th></tr></thead><tbody>${L.map((r,i)=>`<tr><td><b>${esc(r.name)}</b>${r.detail?`<br><small style="color:var(--mut)">${esc(r.detail)}</small>`:''}</td>${all?`<td>${esc(tc(r.by))}</td>`:''}<td style="white-space:nowrap">${esc(r.when)}</td><td>${esc(r.sy)||'\u2014'}</td><td>${esc(r.fmt)}</td><td><span class="chip ${r.status==='Success'?'ok':'no'}">${esc(r.status)}</span></td><td>${RP_F[r.type]?`<button class="btn alt" data-act="rhopen" data-v="${esc(r.type+'|'+r.sy)}">Open report</button>`:''}</td></tr>`).join('')}</tbody></table></div>`
+  :`<div class="emp"><i>${I.rep}</i><b>No history yet</b><p>Previews, prints and exports will be listed here.</p></div>`}
+  <p class="rpx-n" style="margin:12px 0 0;font-size:12.5px">Only the report, school year, class or level, format and status are recorded. No learner data is stored.</p></div>`};
+act.rhst=v=>{S.rhist=v;rpBody()};
+act.rhopen=v=>{const q=v.split('|');if(q[1]&&RP_SY_RE.test(q[1])){S.rsy=q[1];rpYearSel()}selRep(q[0]);rpNote();rpUpd()};
+/* ===== Custom dialogs: replaces native alert / confirm / prompt ("An embedded page says...") ===== */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+#toast{z-index:120}
+#dlg{z-index:105}
+#dlg>div{max-width:440px;border-radius:20px;overflow:hidden}
+.dlgb{padding:28px 26px 6px;text-align:center;overflow:auto}
+.dlgi{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
+.dlgi svg{width:28px;height:28px}
+.dlgi.info{background:#e4ecfc;color:#2563eb}.dlgi.ok{background:#dcfce7;color:#15803d}
+.dlgi.warn{background:#fff1cc;color:#b45309}.dlgi.danger{background:#fee2e2;color:#b91c1c}
+.dlgb h3{margin:0 0 6px;font-size:19px;color:var(--navy)}
+.dlgm{color:var(--mut);font-size:14px;line-height:1.6;white-space:pre-line;overflow-wrap:anywhere}
+.dlgf{text-align:left;margin-top:14px}
+.dlgc{display:grid;gap:8px;margin-top:16px;text-align:left}
+.dlgc>div{display:flex;align-items:center;gap:10px;background:#f1f5f9;border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 12px}
+.dlgc span{font-size:11px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;min-width:76px}
+.dlgc code{flex:1;font:700 14px ui-monospace,Menlo,Consolas,monospace;color:var(--navy);overflow-wrap:anywhere;user-select:all}
+.dlgc .btn{padding:6px 12px;font-size:12.5px}
+#dlg .ft{justify-content:center;background:none;border-top:0;padding:18px 26px 24px;border-radius:0}
+#dlg .ft .btn{flex:1;justify-content:center;min-width:110px}
+.btn.dng{background:linear-gradient(180deg,#ef4444,#dc2626);border-color:#b91c1c}
+.btn.dng:hover{background:linear-gradient(180deg,#e23a3a,#c81e1e)}
+html[data-theme=dark] .dlgc>div{background:#0e1538}
+html[data-theme=dark] .dlgi.info{background:rgba(111,147,255,.18)}
+html[data-theme=dark] .dlgi.ok{background:rgba(74,222,128,.16)}
+html[data-theme=dark] .dlgi.warn{background:rgba(251,191,36,.16)}
+html[data-theme=dark] .dlgi.danger{background:rgba(255,107,133,.16)}
+}`;document.head.appendChild(s)})();
+
+CLOSEA.push('dlgno','dlgyes');
+let DLGQ=Promise.resolve(),DLGR=null;
+const DLGI={info:SICO.info,ok:SICO.ok,
+ warn:SVG('M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01'),
+ danger:SVG('M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6')};
+
+/** o = {type,title,msg,fields:[[label,value]],inputs:[{label,value,placeholder,type}],ok,cancel}
+    Resolves: true/false (no inputs) or an array of input values / null (with inputs). */
+function dlgOpen(o){
+ return DLGQ=DLGQ.then(()=>new Promise(res=>{
+  const old=$('dlg');if(old)old.remove();
+  const ty=o.type||'info',fl=o.fields||[],ins=o.inputs||[],m=document.createElement('div');
+  m.className='mod';m.id='dlg';
+  m.innerHTML=`<div><div class="dlgb"><div class="dlgi ${ty}">${DLGI[ty]||DLGI.info}</div><h3>${esc(o.title||'Notice')}</h3>${o.msg?`<div class="dlgm">${esc(o.msg)}</div>`:''}`
+   +(fl.length?`<div class="dlgc">${fl.map((x,i)=>`<div><span>${esc(x[0])}</span><code>${esc(x[1])}</code><button class="btn alt" data-act="dlgcp" data-v="${i}">Copy</button></div>`).join('')}${fl.length>1?'<button class="btn alt" data-act="dlgcpall" style="justify-content:center">Copy all</button>':''}</div>`:'')
+   +ins.map(x=>`<div class="f dlgf"><label>${esc(x.label||'')}</label><input data-dl="1" type="${x.type||'text'}" value="${esc(x.value||'')}" placeholder="${esc(x.placeholder||'')}" autocomplete="off" style="text-transform:none"></div>`).join('')
+   +`</div><div class="ft">${o.cancel?`<button class="btn alt" data-act="dlgno">${esc(o.cancel)}</button>`:''}<button class="btn${ty==='danger'?' dng':''}" data-act="dlgyes">${esc(o.ok||'OK')}</button></div></div>`;
+  DLGR={res:res,o:o};document.body.appendChild(m);
+  setTimeout(()=>{const f=m.querySelector('[data-dl]')||m.querySelector('[data-act=dlgyes]');if(f)f.focus()},40)}))}
+const dlgDone=v=>{const r=DLGR;if(!r)return;const m=$('dlg');DLGR=null;if(m)m.remove();r.res(v)};
+act.dlgyes=()=>{const m=$('dlg');if(!m||!DLGR)return;dlgDone(DLGR.o.inputs?[...m.querySelectorAll('[data-dl]')].map(i=>i.value):true)};
+act.dlgno=()=>{if(DLGR)dlgDone(DLGR.o.inputs?null:false)};
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.dl){e.preventDefault();act.dlgyes()}});
+
+function dlgCopy(t){const ok=()=>toast('Copied');
+ (navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(t):Promise.reject()).then(ok).catch(()=>{const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){toast('Copy failed. Select the text and copy it manually.',false)}a.remove()})}
+act.dlgcp=i=>{const f=DLGR&&DLGR.o.fields&&DLGR.o.fields[+i];if(f)dlgCopy(f[1])};
+act.dlgcpall=()=>{if(DLGR&&DLGR.o.fields)dlgCopy(DLGR.o.fields.map(x=>x[0]+': '+x[1]).join('\n'))};
+
+const dlgAlert=(msg,title,type)=>dlgOpen({type:type||'info',title:title||'Notice',msg:String(msg==null?'':msg),ok:'OK'});
+const dlgConfirm=(msg,o)=>{o=o||{};return dlgOpen({type:o.type||(o.danger?'danger':'warn'),title:o.title||'Please confirm',msg:msg,ok:o.ok||'Yes, continue',cancel:o.cancel||'Cancel'})};
+const dlgPrompt=(label,value,o)=>{o=o||{};return dlgOpen({type:'info',title:o.title||'Enter a value',msg:o.msg||'',inputs:[{label:label,value:value||''}],ok:o.ok||'Save',cancel:'Cancel'}).then(v=>v?v[0]:null)};
+const dlgForm=dlgOpen;
+const dlgCred=(title,msg,fields)=>dlgOpen({type:'ok',title:title,msg:msg,fields:fields,ok:'Done'});
+const dc=(msg,o,fn)=>dlgConfirm(msg,o).then(y=>{if(y)fn()});
+window.alert=m=>{dlgAlert(m)};   // safety net for any leftover alert()
+
+/* ---------- staff accounts ---------- */
+act.umcreate=()=>{const em=$('uE').value;call('createStaff',[T(),{fullName:$('uF').value,username:$('uU').value,email:em,password:$('uP').value,type:$('uT').value,department:$('uD').value}],r=>{usersPage();
+ dlgCred('Account created','Write this down now. It is not shown again.'+(em?'\nThe login details were also emailed.':''),[['Username',r.data.username],['Temporary password',r.data.password]])})};
+act.umreset=u=>dc('Reset the password of '+u+'? A new temporary password will be generated.',{title:'Reset password',ok:'Reset password'},()=>call('resetStaffPassword',[T(),u],r=>dlgCred('Password reset','Write this down now. It is not shown again.',[['Username',r.data.username],['Temporary password',r.data.password]])));
+act.umdel=u=>dc('Remove the account '+u+'? They will no longer be able to sign in.',{title:'Remove account',ok:'Remove',danger:1},()=>call('removeStaff',[T(),u],r=>{toast(r.message);usersPage()}));
+act.umtoggle=v=>{const q=String(v).split('|'),u=q[0],on=q[1]==='1';
+ dc((on?'Activate':'Deactivate')+' the account '+u+'?'+(on?'':' They will no longer be able to sign in until you activate it again.'),{title:on?'Activate account':'Deactivate account',ok:on?'Activate':'Deactivate',type:on?'info':'warn'},
+  ()=>call('setStaffActive',[T(),u,on],r=>{toast(r.message||(on?'Account activated.':'Account deactivated.'));usersPage()}))};
+act.acstaffnew=()=>{const g=i=>$(i).value;call('createAcademicStaff',[T(),{fullName:g('acsn'),username:g('acsu'),email:g('acse'),role:g('acsr'),scope:g('acss')}],r=>{
+ dlgCred('Account created','Write this down now. It is not shown again.',[['Username',r.data.username],['Temporary password',r.data.password]]);acStaffLoad();acReload()})};
+
+/* ---------- student accounts ---------- */
+act.acct=id0=>{const id=id0||S.t.rec.StudentID;
+ dlgForm({type:'info',title:'Create portal account',msg:'Leave a field blank to use the default.',inputs:[{label:'Username (blank = use the LRN)'},{label:'Temporary password (blank = auto-generate)'}],ok:'Create account',cancel:'Cancel'}).then(v=>{if(!v)return;
+  call('createLogin',[T(),id,v[0],v[1]],r=>dlgCred('Account created',r.data.emailed?'The login details were also emailed to the student.':'No email on file. Give these to the student personally.',[['Username',r.data.username],['Temporary password',r.data.password]]))})};
+act.rstacct=()=>{const id=S.t.rec.StudentID;if(!id)return;
+ dc('Issue a new temporary password for '+id+' and unlock the account if it is locked?',{title:'Reset password / Unlock',ok:'Reset'},()=>call('resetStudentAccount',[T(),id],r=>
+  dlgCred(r.data.wasLocked?'Account unlocked':'Password reset','Give this to the student in person. It is not shown again. They must choose a new password at sign-in.',[['Username',r.data.username],['Temporary password',r.data.password]])))};
+
+/* "Create a portal account now?" after saving a new learner */
+persist=function(){const wasNew=!S.t.rec.StudentID,ph=S.t.rec.Photo,rec=Object.assign({},S.t.rec);delete rec.Photo;
+ call('saveStudent',[T(),rec],r=>{r.data.Photo=ph;if(S.t.key)S.t.key=r.data.StudentID;S.t.rec=r.data;S.t.edit=false;
+  if(!A()){S.t.base=Object.assign({},r.data);S.t.draftAt=null;draftClear()}
+  if(S.cur!=='stu')S.cur=S.t.key;const miss=certRequired(r.data)&&!r.data.CertNo;
+  toast(miss?r.message+'. Reminder: the Certificate Number is still blank. You may submit it later.':r.message,miss?'warn':true);paint();
+  if(wasNew&&A()){const id=r.data.StudentID;dc('Create a portal account for this student now?',{title:'Portal account',ok:'Create account',type:'info',cancel:'Not now'},()=>act.acct(id))}})};
+persistNM=function(){const t=S.nm,rec=Object.assign({},t.rec);delete rec.Photo;
+ call('saveStudent',[T(),rec],r=>{const d=r.data,miss=certRequired(d)&&!d.CertNo;
+  closeNM();S.tabs.push({key:d.StudentID,rec:d,edit:false});S.cur=d.StudentID;adm();
+  toast(miss?r.message+'. Reminder: the Certificate Number is still blank. You may submit it later.':r.message,miss?'warn':true);
+  if(A())dc('Create a portal account for this student now?',{title:'Portal account',ok:'Create account',type:'info',cancel:'Not now'},()=>act.acct(d.StudentID))})};
+
+/* ---------- confirmations ---------- */
+act.out=()=>{const go=()=>{S.idleOut=false;_out();if(!S.token){try{sessionStorage.removeItem('mrh_t')}catch(e){}}};
+ if(S.idleOut){draftSave();return go()}
+ if(S.user&&!A()&&S.token){
+  if(draftExists())return dc('You have an unsaved draft. If you sign out now it will be discarded. Sign out anyway?',{title:'Unsaved draft',ok:'Sign out anyway'},()=>{draftClear();go()});
+  draftClear()}
+ go()};
+act.evdel=id=>dc('Delete this event?',{title:'Delete post',ok:'Delete',danger:1},()=>call('deleteEvent',[T(),id],r=>{toast(r.message);eventsPage()}));
+act.nextsy=()=>dc('Start enrollment for the next school year? New Enrollment IDs will use the new starting year.',{title:'Start next school year',ok:'Start enrollment'},()=>call('startNextSY',[T()],r=>{toast(r.message);settingsPage()}));
+act.schdel=i=>{schCollect();dc('Delete this box?',{title:'Delete section',ok:'Delete',danger:1},()=>{S.schEdit.splice(+i,1);schRender()})};
+act.delc=id=>{if(S.rsy!==S.cfg.sy)return toast('Records can only be deleted from the active school year.',false);
+ dc('Permanently delete '+id+' and their portal login?',{title:'Delete record',ok:'Delete',danger:1},()=>call('deleteStudent',[T(),id],r=>{toast(r.message);runRep('noconsent')}))};
+act.del=()=>{const id=S.t.rec.StudentID,k=S.t.key;if(!id)return;
+ dc('Delete '+id+'? A copy is kept in the Deleted Students sheet.',{title:'Delete record',ok:'Delete',danger:1},()=>call('deleteStudent',[T(),id],r=>{act.close(k);toast(r.message)}))};
+act.bulk=st=>{const ids=S.allSel?S.ids:[...document.querySelectorAll('.sel:checked')].map(x=>x.value);
+ if(!ids.length)return toast('Select at least one learner',false);
+ dc('Set '+ids.length+' learner(s) to '+st+'? No emails are sent automatically.'+(S.allSel?'\n\nThis applies to every matching learner, not only the ones on screen. Cancelled records are skipped.':''),{title:'Change status',ok:'Set to '+st},
+  ()=>call('setStatus',[T(),ids,st],r=>{toast(r.message);S.allSel=false;admLoad()}))};
+act.bulkmail=()=>{const ids=S.allSel?S.ids:[...document.querySelectorAll('.sel:checked')].map(x=>x.value);
+ if(!ids.length)return toast('Select at least one learner',false);
+ dc('Email the current enrollment status to '+Math.min(ids.length,100)+' learner(s)?\n\nFree Gmail allows only about 60 of these a day, and a click sends at most 100.',{title:'Send emails',ok:'Send',type:'info'},()=>call('emailStatus',[T(),ids],r=>toast(r.message)))};
+act.mailone=()=>{const r=S.t.rec;if(!r.Email)return toast('This learner has no email address.',false);const id=r.StudentID;
+ dc('Email the current status ('+(r.EnrollStatus||'Not Enrolled')+') to '+r.Email+'?',{title:'Send email',ok:'Send',type:'info'},()=>call('emailStatus',[T(),[id]],q=>toast(q.message)))};
+act.reen1=v=>{const r=S.t.rec,retain=v==='retain',id=r.StudentID;
+ dc('Re-enroll '+r.FullName+' for '+r.NeedsReenroll+(retain?' in the SAME grade ('+r.GradeLevel+')':' and promote to the next grade')+'?\n\nThe current record is saved to the learner history, the status becomes Not Enrolled, and the section and some requirements are cleared.',{title:'Re-enroll learner',ok:'Re-enroll',type:'info'},
+  ()=>call('reenrollRun',[T(),{ids:[id],retain:retain}],q=>{toast(q.message);call('getStudent',[T(),id],g=>{S.t.rec=g.data;paint()})}))};
+act.reenall=()=>{const g=$('rg').value;
+ dc('Re-enroll every eligible learner'+(g==='*'?'':' in '+g)+' and promote them one grade?\n\nA backup copy of the spreadsheet is made first. Learners who must REPEAT the grade should be re-enrolled with "retain grade" from their own record BEFORE you do this.',{title:'Re-enroll all eligible',ok:'Re-enroll all'},
+  ()=>call('reenrollRun',[T(),{grade:g}],r=>{toast(r.message);act.reenp()}))};
+act.canceledit=()=>{const t=S.t;
+ dc('Discard your unsaved changes?',{title:'Discard changes',ok:'Discard',cancel:'Keep editing',danger:1},()=>{
+  if(!t.rec.StudentID){act.close(t.key);return}
+  if(!A()){draftClear();S.st=null;stuProfile();return}
+  call('getStudent',[T(),t.rec.StudentID],r=>{t.rec=r.data;t.edit=false;paint()})})};
+act.draftx=()=>dc('Discard the restored draft and reload your saved profile?',{title:'Discard draft',ok:'Discard',danger:1},()=>{draftClear();S.st=null;stuProfile()});
+act.nmclose=()=>dc('Close this form? Anything you have entered and not saved will be lost.',{title:'Close form',ok:'Close form',cancel:'Keep editing',danger:1},closeNM);
+act.guidereset=()=>dc('Replace the text with the default guide? Click Save guide to keep it.',{title:'Restore default text',ok:'Replace'},()=>{$('gbody').innerHTML=GUIDE0});
+act.fclear=id=>dc('Clear this hold?',{title:'Clear hold',ok:'Clear hold',type:'info'},()=>call('clearFlag',[T(),id],r=>{toast(r.message);S.flc=null;if($('flbox')&&S.t)loadFlagBox(S.t.rec.StudentID,true);else flagsPage()}));
+act.abcancel=()=>dc('Discard your changes?',{title:'Discard changes',ok:'Discard',cancel:'Keep editing',danger:1},aboutPage);
+act.abclr=()=>{abCollect();dc('Remove the previous About page text? This cannot be undone.',{title:'Clear previous text',ok:'Remove',danger:1},()=>call('saveBlock',[T(),'about',''],r=>{S.ab.legacy='';toast('Previous text cleared');abRender()}))};
+act.accopy=()=>dc('Copy last school year\u2019s subjects, teacher loads and advisers into '+S.ac.sy+'?\n\nAnything that already exists is skipped, and so are loads or advisers whose teacher is no longer active.',{title:'Copy from last year',ok:'Copy',type:'info'},()=>call('copyForward',[T()],r=>{toast(r.message);acReload()}));
+act.acsubdel=id=>dc('Remove this subject?',{title:'Remove subject',ok:'Remove',danger:1},()=>call('deleteSubject',[T(),id],r=>{toast(r.message);acReload()}));
+act.acloaddel=id=>dc('Remove this teacher load?',{title:'Remove load',ok:'Remove',danger:1},()=>call('deleteLoad',[T(),id],r=>{toast(r.message);acReload()}));
+act.acadvdel=v=>{const q=v.split('|'),g=acF().g;dc('Remove this adviser?',{title:'Remove adviser',ok:'Remove',danger:1},()=>call('deleteAdviser',[T(),{GradeLevel:g,Cluster:q[1],Section:q[0]}],r=>{toast(r.message);acReload()}))};
+
+/* ---------- prompts ---------- */
+act.acsubren=id=>{const s=S.ac.subjects.find(x=>x.SubjectID===id);
+ dlgPrompt('Subject name',s?s.SubjectName:'',{title:'Rename subject'}).then(v=>{if(v===null)return;call('saveSubject',[T(),{SubjectID:id,SubjectName:v}],r=>{toast(r.message);acReload()})})};
+act.galcap=id=>{const c=S.cp,p=c.gal.find(x=>x.id===id);if(!p)return;
+ dlgPrompt('Caption (max 120 characters)',p.cap||'',{title:'Photo caption',msg:'To file it under a filter chip, start with a category and a colon, for example "Laboratories: Chemistry lab".'}).then(v=>{if(v===null)return;
+  call('setGalleryCaption',[T(),c.id,id,v],r=>{c.gal=r.data;toast(r.message);galDraw();galFill()})})};
+act.galdel=id=>{const c=S.cp;dc('Remove this photo from the page? It is moved to the Drive trash.',{title:'Remove photo',ok:'Remove',danger:1},()=>call('removeGalleryPhoto',[T(),c.id,id],r=>{c.gal=r.data;delete S.gp[id];toast(r.message);galDraw()}))};
+/* gallery upload: capture-phase handler replaces the old one that used prompt() */
+document.addEventListener('change',e=>{if(e.target.id!=='galf')return;e.stopImmediatePropagation();
+ const f=e.target.files[0];e.target.value='';if(!f)return;const c=S.cp,im=new Image();
+ im.onerror=()=>toast('That file could not be read as an image.',false);
+ im.onload=()=>{const k=Math.min(1,1000/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.round(im.width*k);cv.height=Math.round(im.height*k);
+  const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);cx.drawImage(im,0,0,cv.width,cv.height);
+  const url=cv.toDataURL('image/jpeg',.8);
+  if(url.length>2100000)return toast('Photo is still too large after resizing. Try a smaller image.',false);
+  dlgPrompt('Caption (optional, max 120 characters)','',{title:'Add photo',ok:'Upload',msg:'Tip: start with a category and a colon, for example "Laboratories: Science lab".'}).then(cap=>{if(cap===null)return;
+   call('addGalleryPhoto',[T(),c.id,url,cap],r=>{c.gal=r.data.list;S.gp[r.data.id]=url;toast(r.message);if(S.cp===c)galDraw()})})};
+ im.src=URL.createObjectURL(f)},true);
+
+ /* ===== Reports & Analytics v3, Phase 5: fixes, refresh bypass, responsive polish ===== */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen and (max-width:600px){
+.rpx-ctl{width:100%}.rpx-sy{flex:1;min-width:0}.rpx-row .btn{flex:1 1 auto}
+.anr{grid-template-columns:minmax(70px,120px) 1fr auto}.ancols{height:130px}
+.rpx-title{min-width:0}.rpx-title h2{font-size:18px}
+}`;document.head.appendChild(s)})();
+
+/* analytics: remember which key is loading so a stale result reloads exactly once */
+const _anLoad5=anLoad;
+anLoad=function(){S.ranPend=anKey();_anLoad5()};
+
+/* Refresh skips the 5-minute server cache */
+const _rfP5=act.rprefresh;
+act.rprefresh=()=>{S.rfresh=true;try{_rfP5()}finally{S.rfresh=false}};
+
+/* favorites: do not save until the account's favorites have loaded */
+const _rfavP5=act.rfav;
+act.rfav=id=>{if(!S.rprefs)return toast('Loading your favorites. Try again in a moment.','warn');_rfavP5(id)};
+
+/* keyboard: keep focus on the selected tab after arrow keys, and mark the content area */
+const _rpTabsP5=rpTabs;
+rpTabs=function(){_rpTabsP5();segFocus()};
+const _repP5=rep;
+rep=function(){_repP5();const m=$('rpmain');if(m)m.setAttribute('role','tabpanel')};
+
+/* ===== Smooth page transitions ===== */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+#nbar{position:fixed;left:0;top:0;height:3px;width:100%;z-index:97;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .2s}
+#nbar.on{opacity:1}
+#nbar:before{content:'';position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,#2563eb,#38bdf8,transparent);animation:nbar 1s ease-in-out infinite}
+@keyframes nbar{from{left:-40%}to{left:100%}}
+#view{transition:opacity .15s ease}
+#view.vbusy{opacity:.5;pointer-events:none}
+#view.vin{animation:vin .22s ease-out}
+@keyframes vin{from{opacity:0}to{opacity:1}}
+#app:not(.hidden),#login:not(.hidden){animation:vin .3s ease-out}
+body{animation:vin .3s ease-out;transition:opacity .18s}
+body.leaving{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){#view.vin,#app:not(.hidden),#login:not(.hidden),body{animation:none!important}#nbar:before{animation-duration:2s}}`;
+document.head.appendChild(s)})();
+
+const nbEl=document.createElement('div');nbEl.id='nbar';nbEl.setAttribute('aria-hidden','true');document.body.appendChild(nbEl);
+
+/* call(): page loads show a top bar + dimmed page (after 90 ms); actions keep the overlay but only after 180 ms.
+   Page loads started by nav() (and loads chained from them) are dropped if the user has already moved on. */
+let BZa=0,BZn=0;
+call=function(fn,a,cb){
+ const nv=S.inNav?S.navSeq:null,isNav=nv!==null;let shown=false;
+ const t=setTimeout(()=>{shown=true;
+  if(isNav){BZn++;$('nbar').classList.add('on');$('view').classList.add('vbusy')}
+  else{BZa++;$('load').classList.remove('hidden')}},isNav?90:180);
+ const end=()=>{clearTimeout(t);if(!shown)return;shown=false;
+  if(isNav){if(--BZn<=0){BZn=0;$('nbar').classList.remove('on');$('view').classList.remove('vbusy')}}
+  else if(--BZa<=0){BZa=0;$('load').classList.add('hidden')}};
+ google.script.run
+  .withSuccessHandler(r=>{try{
+    if(isNav&&nv!==S.navSeq)return;                         // stale answer: a newer page was requested
+    if(!r.success){toast(r.error,false);if(/Session expired/.test(r.error))setTimeout(()=>location.reload(),1500);return}
+    const pi=S.inNav;S.inNav=isNav;try{cb(r)}finally{S.inNav=pi}   // chained calls inherit the page-load behaviour
+   }finally{end()}})
+  .withFailureHandler(e=>{end();toast(e.message,false)})[fn](...a)};
+
+/* nav(): tag everything started by this navigation; the first render into #view fades in and scrolls to the top */
+const _navSmooth=nav;
+nav=function(id){const pi=S.inNav;S.navSeq=(S.navSeq||0)+1;S.inNav=true;S.vWait=1;
+ clearTimeout(S.vWt);S.vWt=setTimeout(()=>{S.vWait=0},8000);
+ try{_navSmooth(id)}finally{S.inNav=pi}};
+
+(function(){const vw=$('view');
+ new MutationObserver(()=>{if(!S.vWait)return;S.vWait=0;clearTimeout(S.vWt);
+  window.scrollTo(0,0);vw.classList.remove('vin');void vw.offsetWidth;vw.classList.add('vin')}).observe(vw,{childList:true});
+ vw.addEventListener('animationend',e=>{if(e.target===vw)vw.classList.remove('vin')})})();
+
+/* sign-in page "Back to homepage": fade out, then leave */
+document.addEventListener('click',e=>{const a=e.target.closest('#hphome,#hphome0');
+ if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button||!a.href||/#$/.test(a.href)||/^javascript:/i.test(a.href))return;
+ e.preventDefault();document.body.classList.add('leaving');setTimeout(()=>window.open(a.href,'_top'),170)});
+ /* ===== Mobile behaviour ===== */
+
+/* 1. Every .at table becomes stacked cards on phones (the CSS for .stk already exists) */
+function mobTables(){document.querySelectorAll('table.at:not(.stk):not([data-mt])').forEach(t=>{t.dataset.mt=1;
+ const h=[...t.querySelectorAll('thead th')].map(x=>x.textContent.trim());if(!h.length)return;t.classList.add('stk');
+ t.querySelectorAll('tbody tr').forEach(tr=>[...tr.children].forEach((td,i)=>{if(td.colSpan>1||!h[i]){td.classList.add('nolab');return}td.dataset.label=h[i]}))})}
+
+/* 2. Keyboard-friendly fields */
+function mobAttrs(){document.querySelectorAll('input:not([data-ma])').forEach(i=>{i.dataset.ma=1;const k=i.dataset.k||'',id=i.id;
+ if(/Email$/.test(k)||['em','re','ge','uE','cfe'].includes(id)){i.setAttribute('inputmode','email');i.setAttribute('autocapitalize','off');i.setAttribute('spellcheck','false')}
+ else if(['u','uU','fpid'].includes(id)){i.setAttribute('autocapitalize','off');i.setAttribute('autocorrect','off');i.setAttribute('spellcheck','false')}
+ else if(i.type==='text'&&k&&!/Facebook$/.test(k))i.setAttribute('autocapitalize','characters');
+ if(['q','fq','gs','rsq'].includes(id))i.setAttribute('enterkeyhint','search')})}
+
+let MBT=0;
+new MutationObserver(()=>{if(MBT)return;MBT=requestAnimationFrame(()=>{MBT=0;mobTables();mobAttrs()})}).observe(document.body,{childList:true,subtree:true});
+mobTables();mobAttrs();
+
+/* 3. Hide the bottom nav while the keyboard is open */
+const kbT=e=>e&&/^(INPUT|TEXTAREA|SELECT)$/.test(e.tagName)&&!/^(checkbox|radio|button|submit|file|range)$/.test(e.type||'');
+document.addEventListener('focusin',e=>{if(innerWidth<768&&kbT(e.target))document.body.classList.add('kb')});
+document.addEventListener('focusout',()=>setTimeout(()=>{if(!kbT(document.activeElement))document.body.classList.remove('kb')},120));
+
+/* 4. Lock page scroll behind a dialog or an open drawer */
+function lockSync(){const o=!!document.querySelector('.mod')||(innerWidth<1024&&$('side').classList.contains('open'));document.documentElement.classList.toggle('nolock',o)}
+new MutationObserver(lockSync).observe(document.body,{childList:true});
+new MutationObserver(lockSync).observe($('side'),{attributes:true,attributeFilter:['class']});
+
+/* 5. Swipe from the left edge opens the drawer, swipe left closes it */
+let tX=0,tY=0,tT=0;
+document.addEventListener('touchstart',e=>{const t=e.touches[0];tX=t.clientX;tY=t.clientY;tT=Date.now()},{passive:true});
+document.addEventListener('touchend',e=>{if(innerWidth>=1024||!S.token||document.querySelector('.mod'))return;
+ const t=e.changedTouches[0],dx=t.clientX-tX,dy=t.clientY-tY;if(Math.abs(dy)>60||Math.abs(dx)<70||Date.now()-tT>600)return;
+ const s=$('side'),open=s.classList.contains('open');
+ if(!open&&dx>0&&tX<24)s.classList.add('open');else if(open&&dx<0)s.classList.remove('open')},{passive:true});
+
+/* 6. "More" in the bottom nav opens the full menu */
+const _bnMob=bnInit;
+bnInit=function(){_bnMob();$('bnav').insertAdjacentHTML('beforeend','<button data-act="menu" data-ids="" aria-label="Open menu">'+ic('M4 6h16M4 12h16M4 18h16')+'<span>More</span></button>')};
+
+/* 7. Coming back from another app: check the session right away */
+document.addEventListener('visibilitychange',()=>{if(document.hidden||!S.token)return;
+ google.script.run.withSuccessHandler(r=>{if(r&&!r.success&&/Session expired/.test(r.error)){try{draftSave()}catch(e){}
+  toast('Your session expired while the app was in the background. Please sign in again.','warn');
+  setTimeout(()=>{try{sessionStorage.removeItem('mrh_t')}catch(e){}location.reload()},2500)}}).withFailureHandler(()=>{}).ping(S.token)});
+
+/* 8. Phones cannot print from the Apps Script frame: single-page forms download as PDF instead.
+      Reports and ID cards keep the normal print dialog. */
+const _phMob=printHTML;
+printHTML=function(h,full,title,page){
+ const forms=(String(h).match(/class="ef[ "]/g)||[]).length;
+ if(matchMedia('(pointer:coarse)').matches&&innerWidth<1024&&forms===1&&String(h).indexOf('idpg')<0){
+  const m=String(page||'').match(/([\d.]+)mm\s+([\d.]+)mm/);
+  return savePdf(h,title||'document',m?[parseFloat(m[1]),parseFloat(m[2])]:[210,297])}
+ return _phMob(h,full,title,page)};
+
+ /* ===== Admin dashboard: KPI cards in a 2-column grid on mobile ===== */
+(function () {
+  const s = document.createElement('style');
+  s.textContent = `
+@media screen and (max-width:767px){
+  .gkr.sd{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+  .gkr.sd .gk:last-child:nth-child(odd){grid-column:1/-1}   /* 7 cards: the last one spans the full row */
+  .gkr.sd .gk{padding:10px 12px 12px}
+  .gkr.sd .gkt{font-size:12px}
+  .gkr.sd .gkt i{width:28px;height:28px;border-radius:8px}
+  .gkr.sd .gkt svg{width:16px;height:16px}
+  .gkr.sd .gkv{font-size:21px}
+  .gkr.sd .gkd{font-size:11.5px;min-height:0}
+  .gkr.sd .gkb:not(.bar){position:static;width:100%;height:24px;margin-top:4px}
+}`;
+  document.head.appendChild(s);
+})();
+
+/* ===== Student Home v4: follows the approved mockup =====
+   Replaces homeStudent(), the student sidebar and the student bottom bar.
+   KEEP the earlier blocks: Student Home v2 (HS, polDetails), Student dashboard v3 and the live guide checklist (gStat, loadGuide).
+   The "Message us" button needs Contact.gs deployed (the Help Center already uses it). */
+
+(function () {
+  const s = document.createElement('style');
+  s.textContent = `
+@media screen{
+.sd{display:grid;gap:18px}
+.sd-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.sd-top h2{font:800 clamp(24px,3.2vw,34px)/1.15 Inter,sans-serif;color:var(--navy);margin:0}
+.sd-ring{display:flex;gap:12px;align-items:center;background:#e4edff;border-radius:999px;padding:8px 22px 8px 10px}
+.sd-ring svg{width:52px;height:52px;flex:none}
+.sd-ring b{display:block;font:800 18px/1.1 Inter,sans-serif;color:var(--navy)}
+.sd-ring small{color:var(--mut);font-size:12.5px}
+.sd-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px;align-items:start}
+.sd-col{display:grid;gap:18px;min-width:0}
+.sd-col .card{margin:0}
+.sd-hero{position:relative;overflow:hidden;border-radius:20px;padding:26px 28px 28px;color:#fff;background:linear-gradient(120deg,#0b3aa8,#2563eb 70%,#3b8cff);box-shadow:0 10px 28px #2563eb40}
+.sd-hero:after{content:'';position:absolute;right:-40px;top:-40px;width:260px;height:260px;border-radius:50%;background:var(--lg) center/cover;opacity:.12}
+.sd-hero>*{position:relative;z-index:1}
+.sd-hero small{display:inline-block;font:600 15px Inter,sans-serif;border-bottom:2px solid #ffffff80;padding-bottom:4px;margin-bottom:12px}
+.sd-hero h3{font:800 clamp(24px,3vw,34px)/1.15 Inter,sans-serif;color:#fff;margin:0 0 8px;max-width:20ch}
+.sd-hero p{margin:0;color:#e3ecff;max-width:44ch;line-height:1.55}
+.sd-btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;min-height:46px;padding:0 22px;border:0;border-radius:999px;background:#fff;color:#1d4ed8;font:700 15px Inter,sans-serif;cursor:pointer;box-shadow:0 4px 14px #0003}
+.sd-btn:hover{background:#eaf1ff}
+.sd-btn svg{width:18px;height:18px}
+.sd-art{position:absolute!important;right:28px;bottom:22px;width:96px;height:96px;border-radius:24px;background:#ffffff26;display:flex;align-items:center;justify-content:center}
+.sd-art svg{width:52px;height:52px;color:#fff}
+.sd-h{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.sd-h h3{margin:0!important;font-size:19px}
+.sd-h .sd-i{width:30px;height:30px;font-size:16px}
+.sd-i{flex:none;width:22px;height:22px;border-radius:50%;background:#e8780f;color:#fff;font:800 13px/1 Inter,sans-serif;display:flex;align-items:center;justify-content:center}
+.sd-i.ok{background:#16a34a}.sd-i svg{width:14px;height:14px}
+.sd-ml{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.sd-ml li{display:flex;gap:12px;align-items:flex-start}
+.sd-ml b{display:block;color:var(--navy);font-size:15.5px;line-height:1.3}
+.sd-ml small{display:block;color:var(--mut);font-size:12.5px;line-height:1.4;margin-top:1px}
+.sd-ft{display:flex;gap:10px;align-items:center;margin:16px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--mut);font-size:13.5px}
+.sd-ft svg{width:18px;height:18px;flex:none}
+.sd-ev{display:flex;gap:14px;align-items:center;width:100%;text-align:left;border:0;background:none;padding:10px 0;border-top:1px solid var(--line);font:inherit;color:inherit;cursor:pointer}
+.sd-ev:first-of-type{border-top:0}
+.sd-d{flex:none;width:54px;border-radius:12px;background:#eaf1ff;color:var(--navy);text-align:center;padding:6px 0;font:700 11px Inter,sans-serif}
+.sd-d b{display:block;font:800 21px/1.1 Inter,sans-serif}
+.sd-t{flex:1;min-width:0}.sd-t b{display:block;color:var(--navy);font-size:15px}.sd-t small{color:var(--mut);font-size:13px}
+.sd-ch{color:var(--blue);font-size:22px}
+.sd-help{background:#eaf1ff;border:1px solid #d6e2fb}
+.sd-help p{margin:0 0 14px;color:#334155}
+.sd-pri{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:50px;border:0;border-radius:999px;background:#1d4ed8;color:#fff;font:700 15px Inter,sans-serif;cursor:pointer}
+.sd-pri:hover{background:#1e40af}.sd-pri svg{width:20px;height:20px}
+.sd-ct{display:flex;gap:10px 18px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #c9d8fb;font-size:13.5px;color:#334155}
+.sd-ct a{color:inherit;font-weight:600;text-decoration:none}
+.sd-qk{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sd-qk button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border:0;border-radius:16px;background:#fff;box-shadow:var(--sh);font:700 13.5px Inter,sans-serif;color:var(--navy);cursor:pointer}
+.sd-qk svg{width:28px;height:28px;color:var(--blue)}
+.sd-more{margin-top:4px}
+@media(max-width:900px){.sd-grid{grid-template-columns:1fr}}
+@media(max-width:767px){
+ .sd-help{display:none}.sd-qk{display:grid}
+ .sd-hero{padding:20px}.sd-art{display:none}
+ .sd-ring svg{width:42px;height:42px}.sd-ring{padding:6px 16px 6px 8px}
+}
+html[data-theme=dark] .sd-ring{background:rgba(111,147,255,.18)}
+html[data-theme=dark] .sd-help{background:#121a40;border-color:var(--line)}
+html[data-theme=dark] .sd-help p,html[data-theme=dark] .sd-ct{color:#cdd6f6}
+html[data-theme=dark] .sd-ct{border-color:var(--line)}
+html[data-theme=dark] .sd-d{background:#1b2757;color:#e9edff}
+html[data-theme=dark] .sd-qk button{background:#10173a}
+}`;
+  document.head.appendChild(s);
+})();
+
+/* ---------- student sidebar: plain labels, no groups for the main pages ---------- */
+const _menuSd = menuFor;
+menuFor = function () {
+  if (A()) return _menuSd();
+  const more = [['about', 'About Moreh Academy', I.bldg]];
+  if (S.cl) more.push(['cluster', 'Senior High Cluster Guide', I.sch], ['ce', 'Career Evaluation', ABI.target]);
+  more.push(['handbook', 'Student Handbook', I.book], ['facilities', 'Facilities & Campus Tour', I.bldg], ['pp', 'Data Privacy Policy', I.rep]);
+  return [
+    ['home', 'Home', I.home], ['sp', 'Profile', I.me], ['rq', 'Requirements', I.rep], ['tf', 'Fees', I.tf],
+    ['sch', 'Scholarships', I.sch], ['ev', 'Bulletin', I.mega], ['faq', 'Help', I.help],
+    { g: 'More', i: I.book, items: more }
+  ];
+};
+
+/* the profile menu keeps the account page, with a clearer name (My Profile was confusing next to Profile) */
+const _topInitSd = topInit;
+topInit = function () {
+  _topInitSd();
+  if (!A()) { const b = document.querySelector('#dd [data-v=me]'); if (b) b.innerHTML = I.me + 'Account &amp; password'; }
+};
+
+/* phone bottom bar: Home, Enrollment, Bulletin, Help, Profile */
+const _bnSd = bnInit;
+bnInit = function () {
+  _bnSd();
+  if (A()) return;
+  $('bnav').innerHTML = [['Home', 'home', 'home', I.home], ['Enrollment', 'rq', 'rq,tf,sch', I.rep], ['Bulletin', 'ev', 'ev', I.mega], ['Help', 'faq', 'faq', I.help], ['Profile', 'sp', 'sp,me', I.me]]
+    .map(x => `<button data-act="nav" data-v="${x[1]}" data-ids="${x[2]}">${x[3]}<span>${x[0]}</span></button>`).join('');
+};
+
+/* ---------- events card ---------- */
+function sdEvents() {
+  google.script.run
+    .withSuccessHandler(r => {
+      const el = $('sd-ev'); if (!el) return;
+      const E = (r && r.success ? r.data : []).filter(x => x.Category !== 'Announcement' && evIn(x.EventDate) >= 0)
+        .sort((a, b) => (a.EventDate + a.EventTime).localeCompare(b.EventDate + b.EventTime));
+      let L = E.filter(x => evIn(x.EventDate) <= 6), t = 'This week';
+      if (!L.length) { L = E.slice(0, 2); t = 'Coming up'; }
+      $('sd-evt').textContent = t;
+      el.innerHTML = L.length ? L.slice(0, 3).map(x => {
+        const d = evDate(x.EventDate);
+        return `<button class="sd-ev" data-act="nav" data-v="ev"><span class="sd-d"><b>${d.getDate()}</b>${d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span><span class="sd-t"><b>${esc(x.Title)}</b><small>${esc(x.EventTime || 'All day')}</small></span><span class="sd-ch" aria-hidden="true">&rsaquo;</span></button>`;
+      }).join('') : '<div class="aemp">No upcoming events.</div>';
+    })
+    .withFailureHandler(() => { const el = $('sd-ev'); if (el) el.innerHTML = '<div class="aemp">Could not load events. Refresh the page to try again.</div>'; })
+    .getEvents(S.token);
+}
+
+/* ---------- the student Home page (REPLACES homeStudent) ---------- */
+homeStudent = function () {
+  head('Dashboard', 'Your enrollment at a glance');
+  call('getStudent', [T()], r => {
+    const s = r.data, sy = String(s.SchoolYear || S.cfg.sy).replace('-', '\u2013'),
+      name = tc(s.FirstName || S.user.FullName || 'Student'),
+      steps = HS.map(x => Object.assign({ k: x[0], t: x[1], msg: '', done: false }, gStat(x[0], s) || {})),
+      done = steps.filter(x => x.done).length, n = steps.length, next = steps.find(x => !x.done),
+      lv = reqsFor(s), hint = S.cfg.reqHints[lv.level] || {},
+      lab = k => { const f = S.fields.find(x => x[1] === k); return f ? f[2] : k; },
+      miss = lv.req.filter(k => !s[k] || s[k] === 'None'),
+      first = miss.find(k => k !== 'ReqConsent'),
+      arrow = SVG('M5 12h14M13 6l6 6-6 6', 18), pc = Math.round(done / n * 100);
+
+    /* 1. the single next step */
+    let h1, sub, b = null;
+    if (!next) { h1 = 'You\u2019re all set for School Year ' + sy; sub = 'Your enrollment is confirmed. Check the bulletin for announcements.'; }
+    else if (next.k === 'profile') { h1 = 'Complete your student profile'; sub = next.msg; b = next.btn; }
+    else if (next.k === 'consent') { h1 = 'Submit the signed parental consent form'; sub = 'Print it, have your parent or legal guardian sign it, then bring it to the Admissions Office.'; b = next.btn; }
+    else if (next.k === 'requirement') { h1 = 'Submit your ' + (first ? lab(first) : 'school requirements'); sub = next.msg + '.'; b = ['View requirements', 'nav', 'rq']; }
+    else { h1 = 'Your documents are in'; sub = 'The Admissions Office is confirming your enrollment. You will be notified when it changes.'; }
+    const btn = b ? `<button class="sd-btn" data-act="${b[1]}"${b[2] ? ` data-v="${b[2]}"` : ''}>${esc(b[0])} ${arrow}</button>` : '';
+
+    /* 2. missing documents */
+    let miss2;
+    if (!lv.level) miss2 = `<div class="sd-h"><span class="sd-i">!</span><h3>Missing documents</h3></div><p style="margin:0;color:var(--mut)">Choose your grade level in your profile to see which documents you need.</p><button class="btn" data-act="nav" data-v="sp" style="margin-top:12px">Open my profile</button>`;
+    else if (!miss.length) miss2 = `<div class="sd-h"><span class="sd-i ok">${SVG('M5 12l5 5L20 7', 14).replace('stroke-width="1.8"', 'stroke-width="3"')}</span><h3>All documents submitted</h3></div><p style="margin:0;color:var(--mut)">The office has recorded every required document for your level. Thank you!</p>`;
+    else miss2 = `<div class="sd-h"><span class="sd-i">!</span><h3>Missing documents (${miss.length})</h3></div><ul class="sd-ml">${miss.slice(0, 5).map(k => `<li><i class="sd-i">!</i><span><b>${esc(lab(k))}</b>${hint[k] ? `<small>${esc(hint[k])}</small>` : ''}</span></li>`).join('')}</ul>${miss.length > 5 ? `<p style="margin:12px 0 0"><a href="javascript:void(0)" data-act="nav" data-v="rq" style="color:var(--blue);font-weight:600">See all ${miss.length} documents</a></p>` : ''}<div class="sd-ft">${I.cal}<span>Bring these to the Admissions Office, Mon&ndash;Fri 8 AM to 5 PM, Sat 8 AM to 3 PM.</span></div>`;
+
+    const ring = `<div class="sd-ring" role="img" aria-label="${done} of ${n} steps done"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="#cfe0ff" stroke-width="5"/>${pc ? `<circle cx="22" cy="22" r="18" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="${pc} 100" transform="rotate(-90 22 22)"/>` : ''}</svg><div><b>${done}/${n}</b><small>steps done</small></div></div>`;
+
+    const chat = SVG('M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2zM8 9h8M8 13h5', 22);
+    const help = `<div class="card sd-help"><div class="sd-h"><span class="ao c1" style="width:34px;height:34px;border-radius:50%">${I.help}</span><h3>Need help?</h3></div><p>Our Admissions Office is here to assist you.</p><button class="sd-pri" data-act="cfopen">${chat} Message the Admissions Office</button><div class="sd-ct"><a href="tel:09618766886">${ic(CIC.tel)} 0961 876 6886</a><span>Mon&ndash;Fri 8 AM &ndash; 5 PM &middot; Sat 8 AM &ndash; 3 PM</span></div></div>`;
+
+    const qk = `<div class="sd-qk"><button data-act="cfopen">${chat}Message us</button><button data-act="nav" data-v="tf">${I.tf}Fees</button><button data-act="nav" data-v="sch">${I.sch}Scholarships</button></div>`;
+
+    const more = `<details class="card scs cpd sd-more" ontoggle="if(this.open&&!this.dataset.l){this.dataset.l=1;loadGuide()}"><summary class="sch"><span class="ao c1">${SICO.list}</span><h3>Enrollment guide, reminders and policies</h3><span class="cpch">${CPCH}</span></summary><div class="scb"><div id="guidebox" class="pvs">${GUIDE0}</div><ul style="line-height:1.8;margin:14px 0;padding-left:20px"><li><b>Cancellation or withdrawal:</b> a &#8369;1,000.00 processing fee applies on or before June 30. Requests after June 30 are recalculated by the Principal\u2019s and Accounting Offices.</li><li><b>Visit us:</b> Ground Floor, Moreh Academy Learning Center 3, Reyes St. cor. Makintar St., Central Bicutan, Taguig City.</li></ul>${polDetails()}</div></details>`;
+
+    $('view').innerHTML = holdBanner(s) + `<div class="sd" style="--lg:url('${LOGO}')">
+      <div class="sd-top"><h2>${greet()}, ${esc(name)} &#128075;</h2>${ring}</div>
+      <div class="sd-grid">
+        <div class="sd-col">
+          <section class="sd-hero" aria-labelledby="sdh"><small>Your next step</small><h3 id="sdh">${esc(h1)}</h3><p>${esc(sub)}</p>${btn}<div class="sd-art" aria-hidden="true">${I.rep}</div></section>
+          <div class="card">${miss2}</div>
+        </div>
+        <div class="sd-col">
+          <div class="card"><div class="sd-h"><span class="ao c4" style="width:34px;height:34px;border-radius:10px">${I.cal}</span><h3 id="sd-evt">This week</h3></div><div id="sd-ev"><i class="galsk" style="height:90px;border-radius:12px"></i></div></div>
+          ${qk}${help}
+        </div>
+      </div>${more}</div>`;
+    sdEvents();
+  });
+};
+/* ===== Student dashboard identity strip + read-only Profile mode =====
+   Students only. Admin / office / teacher screens are untouched. */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+.idst{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
+.idc2{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--sh);min-width:0}
+.idc2 small{display:block;font:700 11px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.idc2 b{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px;font:800 16px/1.3 Inter,sans-serif;color:var(--navy);overflow-wrap:anywhere}
+.idc2 .chip{font-size:13px}
+.idb{border:0;background:var(--soft);color:var(--blue);border-radius:8px;padding:3px 9px;font:600 12px Inter,sans-serif;cursor:pointer}
+.idb:hover{background:#dbe7ff}
+.idn{grid-column:1/-1;display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--mut);font-size:13px}
+.idn .btn{padding:6px 12px;font-size:12.5px}
+.pf-h{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.pf-av{width:76px;height:76px;border-radius:50%;flex:none;background:linear-gradient(135deg,#dbeafe,#e0e7ff) center/cover no-repeat;color:#1e3a8a;display:flex;align-items:center;justify-content:center;font:800 26px Inter,sans-serif;border:3px solid #fff;box-shadow:0 0 0 2px var(--heroline),var(--sh)}
+.pf-hm{flex:1 1 260px;min-width:0}
+.pf-hm h2{font:800 22px/1.2 Inter,sans-serif;color:var(--navy);margin:0 0 6px}
+.pf-ch{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.pf-ids{display:flex;gap:8px;align-items:center;color:var(--mut);font-size:13px}.pf-ids b{color:var(--navy)}
+.pf-ac{display:flex;gap:8px;flex-wrap:wrap}
+.pf-dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px 24px}
+.pf-i small{display:flex;align-items:center;gap:5px;font:600 12px Inter,sans-serif;color:var(--mut);margin-bottom:2px}
+.pf-i small svg{width:12px;height:12px;color:#94a3b8}
+.pf-i b{display:block;font:600 14.5px/1.4 Inter,sans-serif;color:var(--txt);overflow-wrap:anywhere}
+.pf-i b.em{color:#94a3b8;font-weight:500;font-style:italic}
+.pf-ms{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.pf-ms button{border:0;cursor:pointer}
+html[data-theme=dark] .idc2{background:#10173a;border-color:var(--line)}
+html[data-theme=dark] .idb{background:rgba(140,160,255,.15);color:#9db6ff}
+html[data-theme=dark] .pf-av{background:linear-gradient(135deg,#27358a,#3a2a7a);color:#dfe6ff;border-color:#10173a}
+@media(max-width:900px){.idst{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.idst{grid-template-columns:1fr}}
+}`;document.head.appendChild(s)})();
+
+/* ---------- shared helpers ---------- */
+/** "Grade 11 · STEM · Paul" (Senior High) or "Grade 7 · Charity". Strand = abbreviation only. */
+const pfClass=r=>{const g=String(r.GradeLevel||'');if(!g)return '';const sh=g==='Grade 11'||g==='Grade 12';
+ return [g,sh?(abbr(r.Cluster)||''):'',tc(r.Section||'')].filter(Boolean).join(' \u00b7 ')};
+const lrnMask=v=>v?'\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'+String(v).slice(-4):'';
+const pfLab=f=>String(f[2]).replace(/\s*\([^)]*\)\s*$/,'');
+function cpyFb(v,d){const t=document.createElement('textarea');t.value=v;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();
+ try{document.execCommand('copy');d()}catch(e){toast('Could not copy.',false)}t.remove()}
+act.cpy=k=>{const s=(S.navId==='sp'&&S.st&&S.st.rec)||S.hrec||{},v=k==='lrn'?s.LRN:s.StudentID;if(!v)return;
+ const d=()=>toast('Copied to clipboard.');
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(String(v)).then(d,()=>cpyFb(String(v),d));else cpyFb(String(v),d)};
+act.lrnv=()=>{S.lrnShow=!S.lrnShow;const e=$('idst');if(e){e.remove();idStrip()}};
+
+/* ---------- 1. Dashboard identity strip ---------- */
+const _hbPf=holdBanner;
+holdBanner=function(s){S.hrec=s;return _hbPf(s)};          // remember the record the Home page just loaded
+
+function idStrip(){if(A()||!S.hrec||S.navId!=='home'||$('idst'))return;
+ const bento=document.querySelector('#view .bento');if(!bento)return;
+ const s=S.hrec,st=s.EnrollStatus||'Not Enrolled',cl=pfClass(s),shown=!!S.lrnShow,
+  steps=HS.map(x=>Object.assign({h:x[2],done:false},gStat(x[0],s)||{})),nx=steps.find(x=>!x.done),
+  upd=(s.StatusChangedAt||'').slice(0,10),
+  lrnTxt=s.LRN?(shown?esc(s.LRN):lrnMask(s.LRN)):'Not set yet',
+  lrnBtn=s.LRN?'<button class="idb" data-act="lrnv">'+(shown?'Hide':'Show')+'</button><button class="idb" data-act="cpy" data-v="lrn">Copy</button>':'',
+  idBtn=s.StudentID?'<button class="idb" data-act="cpy" data-v="id">Copy</button>':'',
+  nb=nx&&nx.btn&&!(nx.btn[1]==='nav'&&nx.btn[2]==='home')?'<button class="btn" data-act="'+nx.btn[1]+'"'+(nx.btn[2]?' data-v="'+nx.btn[2]+'"':'')+'>'+esc(nx.btn[0])+'</button>':'';
+ bento.insertAdjacentHTML('beforebegin',
+  '<div class="idst" id="idst" role="group" aria-label="Your enrollment details">'
+  +'<div class="idc2"><small>Enrollment status</small><b><span class="chip '+stc(st)+'">'+esc(st)+'</span></b></div>'
+  +'<div class="idc2"><small>Grade \u00b7 Strand \u00b7 Section</small><b>'+(cl?esc(cl):'Not set yet')+'</b></div>'
+  +'<div class="idc2"><small>LRN</small><b><span id="idlrn">'+lrnTxt+'</span>'+lrnBtn+'</b></div>'
+  +'<div class="idc2"><small>Enrollment ID</small><b>'+esc(s.StudentID||'Not set yet')+idBtn+'</b></div>'
+  +'<div class="idn"><span>'+(nx?'<b style="color:var(--navy)">Next:</b> '+esc(nx.h):'All enrollment steps are done.')+'</span>'+nb
+  +(upd?'<span style="margin-left:auto">Status updated '+esc(fmtS(upd))+'</span>':'')+'</div></div>');
+ const g=document.querySelector('#view .bn-cl .bn-gv');if(g&&cl)g.textContent=cl}   // Class tile uses the same label
+
+const _bnEPf=bnEvents;
+bnEvents=function(){_bnEPf();try{idStrip()}catch(e){console.error(e)}};
+
+/* ---------- 2. Profile mode (read-only) ---------- */
+const PF_STEP={academic:1,prev:1,personal:2,family:3,living:3,rel:3,emergency:3,guard:3};
+/* key details used for "Missing" chips: [step, key or [any of keys], label] */
+const PF_KEYS=[[1,'Surname','Surname'],[1,'FirstName','First name'],[1,'LRN','LRN'],[1,'GradeLevel','Grade level'],
+ [2,'Birthdate','Birth date'],[2,'SexualOrient','Legal sex'],[2,'AddressLine1','Address'],[2,'City','City'],[2,'Mobile','Contact number'],
+ [3,['FatherName','MotherName'],'Parent name'],[3,'EmName','Primary contact'],[3,'EmMobile','Primary contact number']];
+const pfMissing=r=>PF_KEYS.filter(x=>!(Array.isArray(x[1])?x[1].some(k=>r[k]):r[x[1]])).map(x=>({step:x[0],l:x[2]}));
+
+function pfVal(f,r){const k=f[1],t=f[3];let v=r[k]||'';
+ if(t==='auto')v=k==='Age'?(r.Birthdate?ageOf(r.Birthdate):''):k==='RelAge'?(r.RelBirthdate?ageOf(r.RelBirthdate):''):v;
+ if((k==='EmAddress'&&r.EmSameAddr==='Yes')||(k==='RelAddress'&&r.RelSameAddr==='Yes'))v=addrOf(r);
+ if(k==='Cluster'||k==='PrevCluster')v=abbr(v)||v;
+ if(t==='date'&&v)return fmtD(v);
+ if(t==='chk')return v?'Yes':'No';
+ return String(v)}
+
+function pfRow(f,r){const k=f[1];
+ if(/(Religion|Gender)Other$/.test(k)&&r[k.replace('Other','')]!=='Others, specify')return '';
+ if(/^Guard/.test(k)&&!guardOn(r))return '';
+ if(k==='ConsentAt'||k==='ReferredBy')return '';
+ if(k==='CancelReasonOther'&&r.CancelReason!=='Other')return '';
+ if(k==='CertNo'&&!certNeeded(r))return '';
+ const v=pfVal(f,r),lock=r.EnrollStatus==='Enrolled'&&IDLOCK_C.includes(k);
+ return '<div class="pf-i"><small>'+esc(pfLab(f))+(lock?'<span title="Locked after enrollment. Contact the Admissions Office to change.">'+SVG('M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zM7 11V7a5 5 0 0 1 10 0v4',12)+'</span>':'')+'</small><b class="'+(v?'':'em')+'">'+(v?esc(v):'Not provided')+'</b></div>'}
+
+function pfSec(k,r){const fs=S.fields.filter(f=>f[0]===k&&f[3]!=='src');let body;
+ if(k==='req'){const R=reqsFor(r),docs=S.fields.filter(f=>f[0]==='req'&&R.show.includes(f[1]));
+  body=R.level?'<div class="tw"><table class="at"><thead><tr><th>Document</th><th>Remarks</th><th>Date submitted</th></tr></thead><tbody>'
+   +docs.map(f=>{const v=r[f[1]],d=r[f[1]+'Date'];return '<tr><td><b>'+esc(f[2])+'</b></td><td><span class="chip '+(v&&v!=='None'?'ok':'no')+'">'+esc(v||'None')+'</span></td><td>'+(d?esc(fmtD(d)):'\u2014')+'</td></tr>'}).join('')
+   +'</tbody></table></div>':'<div class="aemp">Choose your grade level to see your requirements.</div>'}
+ else if(k==='status'){const st=r.EnrollStatus||'Not Enrolled';
+  body='<div class="pf-dl"><div class="pf-i"><small>Enrollment status</small><b><span class="chip '+stc(st)+'">'+esc(st)+'</span></b></div>'
+   +(r.TempUntil?'<div class="pf-i"><small>Temporary until</small><b>'+esc(fmtD(r.TempUntil))+'</b></div>':'')
+   +(r.StatusChangedAt?'<div class="pf-i"><small>Status last updated</small><b>'+esc(fmtD(r.StatusChangedAt.slice(0,10)))+'</b></div>':'')+'</div>'}
+ else if(k==='family')body=['Father','Mother'].map(p=>'<div class="sec" style="margin:12px 0 8px">'+p.toUpperCase()+'\u2019S DATA</div><div class="pf-dl">'+fs.filter(f=>f[1].indexOf(p)===0).map(f=>pfRow(f,r)).join('')+'</div>').join('');
+ else body='<div class="pf-dl">'+fs.map(f=>pfRow(f,r)).join('')+'</div>';
+ const ed=PF_STEP[k]?'<button class="btn alt" data-act="pfsec" data-v="'+PF_STEP[k]+'">Edit</button>':'';
+ return '<div class="card"><div class="ch"><h3>'+esc(SECT[k])+'</h3>'+ed+'</div>'+body+'</div>'}
+
+function profileHTML(t){const r=t.rec,st=r.EnrollStatus||'Not Enrolled',cl=pfClass(r),o=stepStat({rec:r}).all,pc=o.n?Math.round(o.d/o.n*100):0,
+ miss=pfMissing(r),ph=S.user&&S.user.Photo,nm=tc(r.FullName||[r.Surname,r.FirstName].filter(Boolean).join(', '))||'Student',
+ ini=((r.Surname||nm)[0]||'S')+((r.FirstName||'')[0]||''),
+ secs=STEPS.reduce((a,x)=>a.concat(x[1]),[]).filter(k=>showSec(k,r));
+ return holdBanner(r)
+ +'<div class="card pf-h"><div class="pf-av" style="'+(ph?'background-image:url('+ph+')':'')+'">'+(ph?'':esc(ini.toUpperCase()))+'</div>'
+ +'<div class="pf-hm"><h2>'+esc(nm)+'</h2><div class="pf-ch"><span class="chip '+stc(st)+'">'+esc(st)+'</span>'+(cl?'<span class="chip">'+esc(cl)+'</span>':'')+(r.SchoolYear?'<span class="chip">SY '+esc(r.SchoolYear)+'</span>':'')+'</div>'
+ +'<div class="pf-ids"><span>Enrollment ID <b>'+esc(r.StudentID||'\u2014')+'</b></span>'+(r.StudentID?'<button class="idb" data-act="cpy" data-v="id">Copy</button>':'')+'</div></div>'
+ +'<div class="pf-ac"><button class="btn" data-act="pfedit">Edit profile</button><button class="btn alt" data-act="slip">Print form</button><button class="btn alt" data-act="eformpdf">Download PDF</button></div></div>'
+ +'<div class="card"><div class="ch"><h3>Profile completeness</h3><b style="color:var(--blue)">'+pc+'%</b></div><span class="mbar"><u style="width:'+pc+'%"></u></span>'
+ +'<small style="display:block;margin-top:6px;color:var(--mut)">'+o.d+' of '+o.n+' key details filled in</small>'
+ +(miss.length?'<div class="pf-ms">'+miss.slice(0,8).map(m=>'<button class="chip warn" data-act="pfsec" data-v="'+m.step+'" title="Fix this">Missing: '+esc(m.l)+'</button>').join('')+'</div>':'<div class="pf-ms"><span class="chip ok">All key details are filled in</span></div>')+'</div>'
+ +secs.map(k=>pfSec(k,r)).join('')}
+
+/** REPLACES stuProfile: read-only profile by default, the form only while editing. */
+stuProfile=function(keep){head('Student Profile','Your information');S.cur='stu';
+ const show=()=>{if(S.st.edit){$('view').innerHTML=draftBanner(S.st)+formHTML(S.st)}
+  else{S.t=S.st;$('view').innerHTML=profileHTML(S.st);window.scrollTo(0,0)}};
+ if(keep===true)return show();
+ call('getStudent',[T()],r=>{S.st={rec:r.data,edit:false,base:Object.assign({},r.data)};
+  const d=draftLoad();
+  if(d){const okk=new Set(draftKeys(r.data));Object.keys(d.f).forEach(k=>{if(okk.has(k))S.st.rec[k]=d.f[k]});S.st.edit=true;S.st.draftAt=d.at}   // a saved draft reopens in form mode
+  show()})};
+
+act.pfedit=()=>{if(!S.st)return;S.st.step=1;S.t=S.st;act.edit()};
+act.pfsec=v=>{if(!S.st)return;S.st.step=+v;S.t=S.st;act.edit()};
+
+/* ===== Learner profile view v3 (admin read-only layout, modelled on the Student Profile mockup) =====
+   Edit button still opens the existing 5-step wizard. Students, New Enrollee pop-up and academic staff are untouched. */
+(function(){const s=document.createElement('style');s.textContent=`
+@media screen{
+.pv3{display:grid;gap:18px}
+.pv-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pv-back{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.pv-back:hover{background:var(--soft)}
+.pv-tt{margin-right:auto;min-width:0}.pv-tt h2{margin:0;font:800 18px Inter,sans-serif;color:var(--navy)}.pv-tt small{color:var(--mut)}
+.pv-ac{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn.dk{background:#0f172a;border-color:#0f172a;color:#fff}.btn.dk:hover{background:#1e293b}
+.pv-main{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+.pv-card{display:grid;grid-template-columns:240px minmax(0,1fr);background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--sh)}
+.pv-l{background:#f4f6fb;padding:28px 16px;text-align:center;border-right:1px solid var(--line)}
+.pv-ph{width:150px;height:150px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(135deg,#dbeafe,#e0e7ff) center/cover no-repeat;display:flex;align-items:center;justify-content:center;font:800 42px Inter,sans-serif;color:#1e3a8a;border:4px solid #fff;box-shadow:var(--sh)}
+.pv-l h3{margin:0 0 2px;font:800 19px Inter,sans-serif;color:var(--navy)}
+.pv-l p{margin:0 0 12px;color:var(--mut);font-size:14px}
+.pv-r{padding:26px 28px;min-width:0}
+.pv-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.pv-h h2{margin:0;font:800 28px/1.15 Inter,sans-serif;color:var(--navy)}
+.pv-h .sub{color:var(--mut);margin-top:6px}
+.pv-ad{text-align:right}.pv-ad small{display:block;font:700 11.5px Inter,sans-serif;letter-spacing:.06em;color:var(--mut);text-transform:uppercase}.pv-ad b{font-size:16px;color:var(--navy)}
+.pv-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 22px}
+.pkv small{display:flex;gap:6px;align-items:center;font:700 11.5px Inter,sans-serif;letter-spacing:.06em;color:var(--mut);text-transform:uppercase;margin-bottom:4px}
+.pkv small svg{width:15px;height:15px}
+.pkv b{display:block;font-size:15px;color:var(--navy);font-weight:600;overflow-wrap:anywhere}
+.pcp{display:flex;gap:8px;align-items:center}
+.cpb{border:0;background:none;color:var(--mut);cursor:pointer;padding:4px;border-radius:6px;display:flex}.cpb:hover{background:var(--soft);color:var(--blue)}.cpb svg{width:16px;height:16px}
+.pv-s{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--sh);display:grid;gap:14px}
+.pv-s h4{margin:0 0 2px;font:700 13px Inter,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.pv-box{background:#f4f6fb;border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--mut);text-align:center}
+.pv-tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+.pv-tabs::-webkit-scrollbar{display:none}
+.pv-tabs button{border:0;background:none;padding:14px 18px;font:600 15px Inter,sans-serif;color:var(--mut);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.pv-tabs button:hover{color:var(--navy)}.pv-tabs button.on{color:var(--navy);border-color:#22c55e}
+.pv-ct h5{margin:6px 0 18px;font:700 14px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.pv-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.pv-col>h6{display:flex;gap:8px;align-items:center;margin:0 0 12px;font:700 16px Inter,sans-serif;color:var(--navy)}
+.pv-col>h6 svg{width:18px;height:18px;color:var(--mut)}
+.pv-col .in{border-left:1px solid var(--line);padding-left:18px;display:grid;gap:14px}
+@media(max-width:1250px){.pv-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1100px){.pv-main{grid-template-columns:1fr}}
+@media(max-width:700px){.pv-card{grid-template-columns:1fr}.pv-l{border-right:0;border-bottom:1px solid var(--line)}.pv-g,.pv-cols{grid-template-columns:1fr}.pv-ad{text-align:left}.pv-r{padding:18px}}
+html[data-theme=dark] .pv-card,html[data-theme=dark] .pv-s,html[data-theme=dark] .pv-back{background:#10173a;border-color:var(--line)}
+html[data-theme=dark] .pv-l,html[data-theme=dark] .pv-box{background:#0e1538}
+}`;document.head.appendChild(s)})();
+
+const PVCOPY=ic('M9 9h11v11H9zM5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1');
+const PVTABS=[['ov','Overview'],['ac','Academic'],['pe','Personal'],['fa','Family'],['rq','Requirements'],['st','Status & Holds'],['hi','History']];
+const pvKV=(l,v,ico)=>`<div class="pkv"><small>${ico||''}${esc(l)}</small><b>${esc(v)||'\u2014'}</b></div>`;
+const pvCopy=(l,v,ico)=>`<div class="pkv"><small>${ico||''}${esc(l)}</small><div class="pcp"><b>${esc(v)||'\u2014'}</b>${v?`<button class="cpb" data-act="pvcopy" data-v="${esc(v)}" aria-label="Copy ${esc(l)}" title="Copy">${PVCOPY}</button>`:''}</div></div>`;
+const pvSex=r=>[r.SexualOrient,r.GenderOrient].filter(Boolean).join(' / ');
+const pvRel=(r,p)=>{const k=p?p+'Religion':'Religion';return r[k]==='Others, specify'?r[k+'Other']:r[k]};
+
+/** Every filled field of the given sections, as label / value pairs (used by the detail tabs). */
+function pvSec(r,keys){return keys.map(k=>{
+ const fs=S.fields.filter(f=>f[0]===k&&f[3]!=='src'&&f[1]!=='FullName'&&!/Other$/.test(f[1])&&r[f[1]]!=null&&String(r[f[1]]).trim()!=='');
+ if(!fs.length||!showSec(k,r))return '';
+ return `<div class="card"><h3>${esc(SECT[k])}</h3><div class="pv-g">${fs.map(f=>pvKV(flab(f),f[3]==='date'?fmtD(r[f[1]]):r[f[1]]==='Yes'&&f[3]==='chk'?'Yes':r[f[1]])).join('')}</div></div>`}).join('')||'<div class="card"><div class="aemp">No information recorded yet.</div></div>'}
+
+function pvOverview(r){
+ const col=(t,ico,rows)=>`<div class="pv-col"><h6>${ico}${t}</h6><div class="in">${rows.map(x=>pvKV(x[0],x[1])).join('')}</div></div>`;
+ return `<div class="pv-ct"><h5>Detailed profile information</h5><div class="pv-cols">`
+ +col('Personal Details',I.me,[['Full name',r.FullName?tc(r.FullName):''],['Birth place',r.BirthPlace],['Age',r.Birthdate?String(ageOf(r.Birthdate)):''],['Religion',pvRel(r)],['Sex / gender identity',pvSex(r)],['Facebook',r.Facebook]])
+ +col('Academic Details',I.bldg,[['School year',r.SchoolYear],['Classification',r.Classification],['Category',r.Category],['Cluster',abbr(r.Cluster)||''],['LRN',r.LRN],['Previous school',r.PrevSchool]])
+ +col('Family Details',I.users,[["Father's name",r.FatherName?tc(r.FatherName):''],["Father's phone",r.FatherMobile],["Mother's name",r.MotherName?tc(r.MotherName):''],["Mother's phone",r.MotherMobile],['Living with',r.LivingWith]])
+ +col('System Details',I.rep,[['Enrollment status',r.EnrollStatus||'Not Enrolled'],['Registered',String(r.CreatedAt||'').slice(0,10)],['Last processed by',r.ProcessedBy],['Processed on',r.ProcessedDate?fmtD(r.ProcessedDate):''],r.EnrollStatus==='Temporary'?['Temporary until',r.TempUntil?fmtD(r.TempUntil):'']:['Student ID card',r.IDNumber]])
+ +`</div></div>`}
+
+function pvReq(r){const R=reqsFor(r),hint=(S.cfg.reqHints[R.level])||{};
+ if(!R.level)return '<div class="card"><div class="aemp">Set the grade level to see the requirements.</div></div>';
+ const docs=S.fields.filter(f=>f[0]==='req'&&R.show.includes(f[1]));
+ return `<div class="card"><div class="tw"><table class="at"><thead><tr><th>Document</th><th>Remarks</th><th>Date submitted</th></tr></thead><tbody>${docs.map(f=>{const v=r[f[1]],d=r[f[1]+'Date'];return `<tr><td><b>${esc(f[2])}</b>${R.req.includes(f[1])?'':' <span class="chip">if applicable</span>'}${hint[f[1]]?`<br><small style="color:var(--mut)">${esc(hint[f[1]])}</small>`:''}</td><td><span class="chip ${v&&v!=='None'?'ok':'no'}">${esc(v||'None')}</span></td><td>${d?esc(fmtD(d)):'\u2014'}</td></tr>`}).join('')}</tbody></table></div>${r.ReqRemarks&&r.ReqRemarks!=='None'?`<p style="margin:14px 0 0"><b>Remarks:</b> ${esc(r.ReqRemarks)}</p>`:''}</div>`}
+
+function profileView(t){S.t=t;const r=t.rec,id=r.StudentID,st=r.EnrollStatus||'Not Enrolled',tab=t.vtab||'ov',
+ nm=r.FullName?tc(r.FullName):'Learner',holds=r.HoldOffices||[],
+ ini=((String(r.FullName||'?').split(',')[0].trim()[0]||'?')+((String(r.FullName||'').split(',')[1]||'').trim()[0]||'')).toUpperCase(),
+ mi=(a,l,v,red)=>`<button data-act="${a}"${v?` data-v="${v}"`:''}${red?' style="color:#c0392b"':''}>${l}</button>`,
+ mn=(k,l,items,cls)=>items.length?`<div style="position:relative"><button class="btn ${cls||'alt'}" data-act="gmenu" data-v="${k}">${l} &#9662;</button><div class="dd hidden" id="gm-${k}" style="top:46px;right:0;left:auto;min-width:230px">${items.join('')}</div></div>`:'';
+ const acts=[mi('acct','Create account'),mi('rstacct','Reset password / Unlock'),mi('mailone','Email status notice'),
+  r.NeedsReenroll?mi('reen1','Re-enroll for '+esc(r.NeedsReenroll),'promote'):'',r.NeedsReenroll?mi('reen1','Re-enroll (retain grade)','retain'):'',mi('cancelen','Cancel enrollment'),
+  FULL()?'<div style="height:1px;background:var(--line);margin:4px 0"></div>'+mi('del','Delete record','',1):''].filter(Boolean).filter(x=>FULL()||!/Create account/.test(x)),
+  prt=[mi('slip','Confirmation slip (print)'),mi('slippdf','Confirmation slip (PDF)'),mi('eform','Enrollment form (print)'),mi('eformpdf','Enrollment form (PDF)'),cxOn(r)?mi('cform','Cancellation form (print / PDF)'):'',idOk(r)?mi('idcard','Student ID card (TLC)'):'',idOk(r)?mi('corform','Certificate of Registration (TLC)'):''].filter(Boolean);
+ const pcon=r.EmName||[r.FatherName,r.MotherName].filter(Boolean)[0]||'',pnum=r.Mobile||r.EmMobile||'';
+ let body;
+ if(tab==='ov')body=pvOverview(r);
+ else if(tab==='ac')body=pvSec(r,['academic','prev']);
+ else if(tab==='pe')body=pvSec(r,['personal']);
+ else if(tab==='fa')body=pvSec(r,['family','living','rel','emergency','guard']);
+ else if(tab==='rq')body=pvReq(r);
+ else if(tab==='st')body=pvSec(r,['status','cancel','dest','audit'])+flagPanel(r);
+ else body=histCard(r)||'<div class="card"><div class="aemp">No earlier school years on record.</div></div>';
+ return `<div class="pv3">
+ <div class="pv-top"><button class="pv-back" data-act="tab" data-v="search" aria-label="Back to search">${ic('M19 12H5M12 19l-7-7 7-7')}</button><div class="pv-tt"><h2>Student Profile</h2><small>Manage academic and personal records</small></div>
+  <div class="pv-ac">${mn('prt','Print / PDF',prt)}<button class="btn alt" data-act="edit">Edit</button>${mn('acts','Actions',acts,'dk')}</div></div>
+ <div class="pv-main"><div class="pv-card"><div class="pv-l"><div class="pv-ph" style="${r.Photo?`background-image:url(${r.Photo})`:''}">${r.Photo?'':esc(ini)}</div><h3>${esc(nm)}</h3><p>${esc(id)}</p><span class="chip ${stc(st)}">${esc(st.toUpperCase())}</span></div>
+  <div class="pv-r"><div class="pv-h"><div><h2>${esc(nm)}</h2><div class="sub">${esc(gsLabel(r)||'Grade not set')}${r.SchoolYear?' \u00b7 SY '+esc(r.SchoolYear):''}${r.LRN?' \u00b7 LRN '+esc(r.LRN):''}</div></div><div class="pv-ad"><small>Registered</small><b>${esc(fmtD(String(r.CreatedAt||'').slice(0,10))||'\u2014')}</b></div></div>
+   <div class="pv-g">${pvKV('Primary contact',pcon?tc(pcon):'',I.me.replace('width="20" height="20"','width="15" height="15"'))}${pvCopy('Contact number',pnum,ic(CIC.tel).replace('width="20" height="20"','width="15" height="15"'))}${pvCopy('Email address',r.Email,ic(CIC.mail).replace('width="20" height="20"','width="15" height="15"'))}
+   ${pvKV('Date of birth',r.Birthdate?fmtD(r.Birthdate):'')}${pvKV('Sex / gender',pvSex(r))}${pvKV('Category',r.Category)}</div></div></div>
+  <div class="pv-s"><h4>Holds &amp; address</h4>${holds.length?`<div>${holds.map(o=>`<span class="chip warn">${esc(o)} hold</span>`).join(' ')}</div>`:'<div class="pv-box">No active holds</div>'}
+   ${st==='Temporary'?`<div class="pv-box">Temporary enrollment${r.TempUntil?' until <b>'+esc(fmtD(r.TempUntil))+'</b>':''}</div>`:''}
+   ${pvKV('Current residence',addrOf(r),ic(CIC.pin).replace('width="20" height="20"','width="15" height="15"'))}${r.AcctLocked?'<span class="chip no">Portal account locked</span>':''}</div></div>
+ <div class="pv-tabs" role="tablist">${PVTABS.map(x=>`<button role="tab" class="${tab===x[0]?'on':''}" aria-selected="${tab===x[0]}" data-act="pvtab" data-v="${x[0]}">${x[1]}</button>`).join('')}</div>
+ <div>${body}</div></div>`}
+
+/* admins see the profile view for saved records; editing and everyone else keep the wizard */
+const _formPv=formHTML;
+formHTML=function(t){return(A()&&!t.edit&&t.rec.StudentID&&!(S.nm&&t===S.nm)&&!ACD())?profileView(t):_formPv(t)};
+act.pvtab=v=>{S.t.vtab=v;paint()};
+act.pvcopy=v=>{const done=()=>toast('Copied');(navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(v).then(done):Promise.reject()).catch(()=>{const x=document.createElement('textarea');x.value=v;document.body.appendChild(x);x.select();try{document.execCommand('copy')}catch(e){}x.remove();done()})};
+/* clicking Edit on this view should start at Step 1 */
+const _editPv=act.edit;
+act.edit=()=>{S.t.step=1;_editPv()};
 </script></body></html>

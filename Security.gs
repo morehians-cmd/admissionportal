@@ -119,6 +119,7 @@ function who_(token, role, allowMustChange) {
   if (s.v !== svGet_(s.u)) { cache.remove('s_' + token); throw expired; }
   const u = userCached_(s.u);
   if (!u) { cache.remove('s_' + token); throw expired; }
+  if (role && u.Role !== role) throw new Error('Not allowed.');
   if (role === 'admin' && (OFFICE_CL.indexOf(u.Clearance) >= 0 || ACAD_ROLES.indexOf(u.Clearance) >= 0)) throw new Error('Not allowed.');   // office accounts reach only the Holds functions
   if (u.MustChange === '1' && !allowMustChange) throw new Error('Please set a new password under My Profile to continue.');
   putSession_(token, u, s.i);          // sliding expiry

@@ -157,7 +157,7 @@ function doGet(e) {
   t.prog = ['TLC','ESC','QVR','QVA'].includes(String(p.prog || '')) ? String(p.prog) : '';
   return t.evaluate()
     .setTitle(portal ? 'Moreh Academy Portal' : 'Moreh Academy')
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1, viewport-fit=cover');
 }
 function include(f) { return HtmlService.createHtmlOutputFromFile(f).getContent(); }
 
@@ -450,7 +450,7 @@ function report(token, type, arg, sy) {
         rows:s.filter(r=>r.ReferredBy===arg).map(r=>[r.FullName,r.GradeLevel+(r.Section?' \u2013 '+r.Section:''),r.Department,r.EnrollStatus==='Enrolled'?r.CreatedAt.slice(0,10):'']) }] })
     };
     if (!Object.prototype.hasOwnProperty.call(R, type)) throw new Error('Unknown report.');
-    const out = R[type](); out.asof = 'School Year ' + SYX + '  \u2022  ' + asof; out.sy = SYX; return ok(out);
+    const out = R[type](); out.asof = 'School Year ' + SYX + '  \u2022  ' + asof; out.sy = SYX; rpLog_(_u, type, 'Preview', SYX, 'Success', rpDetail_(arg)); return ok(out);
   } catch(e) { return fail(e); }
 }
 

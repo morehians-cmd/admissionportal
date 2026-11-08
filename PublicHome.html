@@ -93,6 +93,22 @@ html[data-theme=dark] .b2,html[data-theme=dark] .mb,html[data-theme=dark] .skip{
 html[data-theme=dark] .nl,html[data-theme=dark] .nl a{color:#c5d0ee}html[data-theme=dark] .nl{background:#0a1030}html[data-theme=dark] .nl a.on{color:#8fb0ff}
 html[data-theme=dark] .qo{background:#0a1030;border-color:#2a3558}html[data-theme=dark] .qo:hover,html[data-theme=dark] .qo.on{border-color:#6f93ff}html[data-theme=dark] .qo.on{background:#16204f}
 html[data-theme=dark] .qe{color:#ff9fb0}
+html{-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation}
+.w{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+@media(max-width:900px){
+ .nl{max-height:calc(100dvh - 70px);overflow:auto}
+ .nl a{min-height:44px;display:flex;align-items:center}
+}
+@media(max-width:600px){
+ .cta .btn{flex:1 1 100%}
+ h1{font-size:clamp(34px,10vw,48px)}
+ .hc{padding:24px}
+ .tl{grid-auto-columns:minmax(78vw,1fr);scroll-snap-type:x mandatory}
+ .tl .cd{scroll-snap-align:start}
+ .gal figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
+}
 </style></head><body>
 <a class="skip" href="#top">Skip to main content</a>
 <header><div class="w nv"><a class="br" href="#top"><img class="lg" src="https://i.imgur.com/roCMSYf.jpeg" alt=""><span>Moreh Academy<small>School of Righteousness &amp; Excellence</small></span></a>
