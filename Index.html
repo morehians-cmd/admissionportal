@@ -1422,6 +1422,70 @@ body .wnav .btn{flex:1 1 40%;justify-content:center}
 @media(prefers-reduced-motion:reduce){
  .shero.dh *,.dash.hm *{scroll-behavior:auto!important;transition:none!important}
 }
+
+/* Responsive polish: admission search, student dashboard and profile forms */
+.tabs{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;padding:2px 2px 10px}
+.tabs .tab{flex:0 0 auto;white-space:nowrap;min-height:42px}
+.sb{display:flex;gap:10px;align-items:center;min-width:0}
+.sb input{flex:1 1 260px;min-width:0}
+.sb .btn,.sbar .btn,.wnav .btn{min-height:42px}
+.tw{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+#hits .at{min-width:760px}
+#hits .at th:first-child,#hits .at td:first-child{width:42px}
+#hits .at td{white-space:nowrap}
+#hits .at td:nth-child(2){white-space:normal;min-width:220px}
+#hits .at .stsel{max-width:160px}
+.pill{min-height:38px;white-space:nowrap}
+.wsteps .wst{min-width:0;min-height:70px}
+.wpane .card{min-width:0}
+.wpane .g>*{min-width:0}
+.wpane input,.wpane select,.wpane textarea{max-width:100%}
+.dash.hm .dmain{min-width:0}
+.dash.hm .dside>.card{min-width:0}
+.shero.dh .shc{min-width:0}
+.shero.dh .shh>span:last-child{min-width:0;overflow-wrap:anywhere}
+.shero.dh .shs{line-height:1.45}
+@media(max-width:900px){
+ .dash.hm .row2{grid-template-columns:minmax(0,1fr)}
+ .dash.hm .row2>.card{min-width:0}
+ .dash.hm .dside{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .dash.hm .dside>.card{margin:0}
+}
+@media(max-width:700px){
+ main{padding:16px 14px 40px}
+ .tabs{margin-right:-2px}
+ .sb{align-items:stretch;flex-wrap:wrap}
+ .sb input{flex:1 1 100%;width:100%}
+ .sb .btn{flex:1 1 100%;justify-content:center}
+ .dash.hm{display:flex;flex-direction:column;gap:16px}
+ .dash.hm .dmain{display:grid;gap:16px;width:100%}
+ .dash.hm .dside{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;width:100%}
+ .dash.hm .dside>.card{margin:0}
+ .shero.dh .sht{align-items:stretch}
+ .shero.dh .sht>div:first-child{width:100%}
+ .shero.dh .dhr{width:100%}
+ .helpbar{align-items:flex-start;flex-direction:column;gap:12px}
+ .helpbar .btn{width:100%;justify-content:center}
+ .wnav{position:sticky;bottom:0;background:var(--cream);padding:12px 0 calc(12px + env(safe-area-inset-bottom));z-index:5}
+ .wnav>span{min-width:0}
+ .wnav .btn{padding:10px 12px}
+}
+@media(max-width:420px){
+ .shero.dh .shk{grid-template-columns:minmax(0,1fr)}
+ .shero.dh .shc{display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:10px;align-items:center}
+ .shero.dh .shh{grid-row:1 / span 2}
+ .shero.dh .shv{margin:0;font-size:22px}
+ .shero.dh .shs{grid-column:2}
+ .wsteps{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .wst{padding:10px}
+ .wst:last-child{grid-column:1 / -1}
+ .wnav{gap:6px;font-size:12px}
+ .wnav .btn{font-size:12px;padding:9px 10px}
+}
+@media(prefers-reduced-motion:reduce){
+ .tabs,.tw{scroll-behavior:auto}
+ .shero.dh .shc{transition:none}
+}
 </style>
 </head>
 <body>
