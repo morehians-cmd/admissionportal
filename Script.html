@@ -1085,7 +1085,7 @@ I.bldg=ic('M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01');
 const CHEV=ic('M6 9l6 6 6-6');
 function menuFor(){
  const F=FULL();
- if(OFC())return[['fl',S.user.Clearance+' Desk',I.flag],['ev','Campus Bulletin',I.cal],['me','My Profile',I.me]];
+ if(OFC())return[['fl',S.user.Clearance+' Desk',I.flag],['ev','Campus Bulletin',I.cal],['me','Account',I.me]];
  const guides=[['about','About Moreh Academy',I.bldg],['cluster','Senior High Cluster Guide',I.sch],['handbook','Student Handbook',I.book],['facilities','Facilities & Campus Tour',I.bldg]];
  if(A())return[
   ['home','Dashboard',I.home],
@@ -1094,13 +1094,13 @@ function menuFor(){
   {g:'Institutional & Academic Guides',i:I.book,items:guides},
   {g:'Campus Info & Support',i:I.help,items:[['ev','Campus Bulletin',I.cal],...(F?[['gd','Enrollment Guide',I.rep]]:[]),['faq','Help Center & FAQs',I.help],['pp','Data Privacy Policy',I.rep]]},
   ...(F?[{g:'System Settings',i:I.cal,items:[['um','User Management',I.users],['set','Enrollment Settings',I.cal],['ia','ID Artwork',I.rep]]}]:[]),
-  ['me','My Profile',I.me]];
+  ['me','Account',I.me]];
  return[
   ['home','Home',I.home],
   {g:'Enrollment & Account',i:I.adm,items:[['sp','Student Profile',I.adm],['rq','School Requirements',I.rep],['sch','Scholarships',I.sch],['tf','Schedule of Fees',I.tf]]},
   {g:'About & Academic Pathways',i:I.book,items:guides},
   {g:'Support & Policies',i:I.help,items:[['ev','Campus Bulletin',I.cal],['faq','Help Center & FAQs',I.help],['pp','Data Privacy Policy',I.rep]]},
-  ['me','My Profile',I.me]];
+  ['me','Account',I.me]];
 }
  
 /* ===== Guide / help content pages (editable by the main administrator) ===== */
