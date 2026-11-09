@@ -24,6 +24,7 @@ function saveBlock(token, key, html) {
     if (!BLOCKS.includes(key)) throw new Error('Unknown block.');
     const h = cleanPolicy_(html), b = blockRow_(key);
     put_(b.sh, b.row || (b.sh.getLastRow() + 1), 1, [[key, h]]);
+    if (key === 'guide') galBust_();               // the public homepage shows the enrollment guide
     audit_(ou, 'content.save', key, '');
     return ok(h, 'Saved');
   } catch (e) { return fail(e); } finally { try { lock.releaseLock(); } catch (_) {} }

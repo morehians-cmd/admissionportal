@@ -26,7 +26,10 @@ function galRead_(page) {
   if (b.row) { try { L = JSON.parse(String(b.sh.getRange(b.row, 2).getValue() || '[]')); } catch (_) { L = []; } }
   return { b:b, list:(Array.isArray(L) ? L : []).filter(x => x && typeof x.id === 'string' && x.id).map(x => ({ id:x.id, cap:galCap_(x.cap) })) };
 }
-function galWrite_(page, b, list) { put_(b.sh, b.row || (b.sh.getLastRow() + 1), 1, [[galKey_(page), JSON.stringify(list)]]); }
+function galWrite_(page, b, list) {
+  put_(b.sh, b.row || (b.sh.getLastRow() + 1), 1, [[galKey_(page), JSON.stringify(list)]]);
+  if (page === PUB_GALLERY_PAGE) galBust_();   // the public homepage shows this page's photos
+}
 
 /** Any signed-in user. Returns [{id, cap}] (no image data). */
 function getGallery(token, page) {
