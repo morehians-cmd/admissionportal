@@ -1486,6 +1486,23 @@ body .wnav .btn{flex:1 1 40%;justify-content:center}
  .tabs,.tw{scroll-behavior:auto}
  .shero.dh .shc{transition:none}
 }
+
+/* Accessibility and touch-target refinements */
+#menu,.av,.shbtn,.qa,.tab,.pill,.wst,.wnav .btn{touch-action:manipulation}
+#menu:focus-visible,.av:focus-visible,.nav:focus-visible,.ngh:focus-visible,
+.qa:focus-visible,.tab:focus-visible,.pill:focus-visible,.wst:focus-visible,
+.shbtn:focus-visible,.wnav .btn:focus-visible{
+ outline:3px solid #f59e0b;outline-offset:2px
+}
+.shero.dh .shc[data-act]:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+#nav .nav,#nav .ngh{min-height:42px}
+@media(max-width:700px){
+ #menu,.av{min-width:44px;min-height:44px}
+ input,select,textarea{font-size:16px}
+ .pill{padding:9px 14px}
+ .tab{padding:10px 14px}
+ .wst{min-height:68px}
+}
 </style>
 </head>
 <body>
