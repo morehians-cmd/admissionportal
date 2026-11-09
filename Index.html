@@ -77,7 +77,7 @@ table{border-collapse:collapse;width:100%}th{text-align:left;font-size:12px;colo
 html{max-width:100%;overflow-x:hidden}body{max-width:100%}@media(max-width:600px){.g,.name4{grid-template-columns:1fr!important}.card{padding:18px}.sb input{min-width:0}.act .btn{flex:1 1 auto}table{font-size:13px}.top{flex-wrap:wrap}.top h1{font-size:22px}.dd{right:0}}
 
 .ssub{background:var(--soft);color:var(--navy);font-weight:700;padding:9px 18px}
-.wsteps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:6px 0 20px}.wst{border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;background:#fff}.wst small{display:block;color:var(--mut);font-weight:700;font-size:10px;letter-spacing:.06em}.wst b{display:block;font-size:13px;color:var(--navy);line-height:1.3}.wst.on{border-color:var(--blue);background:var(--soft)}.wpane{display:none}.wpane.on{display:block}.wnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-weight:600}@media(max-width:700px){.wsteps{grid-template-columns:1fr 1fr}}
+.wpane{display:none}.wpane.on{display:block}.wnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-weight:600}
 :root{--navy:#12204a;--blue:#2563eb;--soft:#eaf1ff;--cream:#f2f5fb;--line:#e6ebf3;--txt:#1a2442;--mut:#6b7691;--sh:0 1px 3px #1018281a,0 8px 24px #1018280d}
 body{background:var(--cream)}
 aside{width:252px;background:linear-gradient(180deg,#0f1e46,#09132e);border-right:0;overflow-y:auto}
@@ -150,7 +150,7 @@ main{max-width:1480px;padding:22px 26px 56px}
 @media(max-width:1200px){.dash{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:1000px){.row2{grid-template-columns:1fr}}
 @media(max-width:600px){main{padding:16px 14px 50px}.hello{padding:20px;flex-wrap:wrap}.hello h2{font-size:26px}.hlogo{display:none}.hd2{text-align:left}.hd2 span{justify-content:flex-start}.kpis{grid-template-columns:1fr 1fr!important}.uchip{display:none}.qas{grid-template-columns:repeat(2,1fr)}.donut{margin:0 auto}}
-.wst{border:0;box-shadow:var(--sh);transition:transform .15s}.wst:hover{transform:translateY(-1px)}.wst.on{background:var(--blue)}.wst.on small{color:#cfe0ff}.wst.on b{color:#fff}
+
 .wpane .card h3{padding-bottom:12px;border-bottom:1px solid var(--line)}
 .rad{display:flex;gap:10px;flex-wrap:wrap}.rad label{display:flex!important;align-items:center;gap:8px;margin:0!important;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:14px!important;font-weight:500!important;color:var(--txt)!important;cursor:pointer}.rad label:has(input:checked){border-color:var(--blue);background:var(--soft)}.rad input{width:18px!important;height:18px!important;margin:0;padding:0;accent-color:var(--blue)}
 .g .f.wide{grid-column:1/-1}.hint{display:block;margin-top:6px;font-size:12px;color:#b86e00}
@@ -507,7 +507,7 @@ aside{position:fixed;left:0;top:0;bottom:0;height:100vh;width:var(--sbw);backgro
 .nmh{padding:10px 18px}.nmh h3{font-size:16px}
 .nmb{padding:14px 18px 20px}
 #nm .g{grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:16px 18px}
-#nm .wsteps{gap:8px}#nm .wst{padding:9px 11px}#nm .wst b{font-size:12px}
+
 @media(max-width:600px){#nm.mod{padding:0}#nm>div{max-height:100vh;border-radius:0}}
 /* Enrollment Guide editor */
 .sbar{position:static;padding:0 0 12px;margin-bottom:4px}
@@ -754,9 +754,6 @@ main{max-width:1520px}
 .eye{border-radius:8px}
 
 /* ---------- 9. Wizard steps & tabs ---------- */
-.wst{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:none;transition:border-color .15s,box-shadow .15s,transform .12s}
-.wst:hover{border-color:#93b4f5;box-shadow:var(--sh);transform:translateY(-1px)}
-.wst.on{background:linear-gradient(135deg,#2563eb,#1d4ed8);border-color:#1d4ed8;box-shadow:0 8px 20px #2563eb44}
 .wnav{border-top:1px solid var(--line)}
 .tabs{background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px}
 .tab{border-radius:9px;color:var(--mut);transition:background .12s,color .12s}
@@ -832,20 +829,18 @@ aside :focus-visible{outline:3px solid #fff;outline-offset:-3px}
 }
 </style>
 <style id="home-ui">
-/* ===== Public homepage (replaces <style id="landing-ui">). Everything is scoped to #login and every class starts with hp-,
-   so nothing here can touch the signed-in app. Light and night mode both work. ===== */
+/* Sign-in page only. Every rule is scoped to #login. */
 #login{
- --hp-navy:#102A56;--hp-blue:#155EEF;--hp-accent:#155EEF;--hp-sky:#38BDF8;--hp-soft:#EAF2FF;
+ --hp-navy:#102A56;--hp-blue:#155EEF;--hp-accent:#155EEF;--hp-sky:#38BDF8;
  --hp-bg:#F5F8FC;--hp-surface:#fff;--hp-ink:#172B4D;--hp-mut:#66758B;--hp-line:#E5EAF2;--hp-bdr:#D5DEEB;--hp-ib:#cbd5e1;
- --hp-hdr:rgba(255,255,255,.94);--hp-hero:linear-gradient(180deg,#fff,#F5F8FC);--hp-glass:#ffffffdf;--hp-glassb:#fff;
+ --hp-hdr:rgba(255,255,255,.94);--hp-hero:linear-gradient(180deg,#fff,#F5F8FC);
  --hp-grad:linear-gradient(120deg,#155EEF 0%,#287CEB 55%,#38BDF8 100%);
- --hp-sh:0 12px 35px rgba(16,42,86,.10);
  --hp-disp:'Plus Jakarta Sans',Inter,system-ui,Arial,sans-serif;
  display:block;grid-template-columns:none;min-height:100vh;background:var(--hp-bg);color:var(--hp-ink);font:15px/1.6 Inter,system-ui,Arial,sans-serif}
 html[data-theme=dark] #login{
- --hp-navy:#e9edff;--hp-accent:#7da0ff;--hp-soft:rgba(111,147,255,.16);--hp-bg:#070b1f;--hp-surface:#10173a;--hp-ink:#e9edff;--hp-mut:#9aa8d0;
+ --hp-navy:#e9edff;--hp-accent:#7da0ff;--hp-bg:#070b1f;--hp-surface:#10173a;--hp-ink:#e9edff;--hp-mut:#9aa8d0;
  --hp-line:rgba(150,170,255,.18);--hp-bdr:rgba(150,170,255,.3);--hp-ib:rgba(150,170,255,.3);--hp-hdr:rgba(10,16,48,.92);
- --hp-hero:linear-gradient(180deg,#0b1033,#070b1f);--hp-glass:rgba(22,31,70,.82);--hp-glassb:rgba(150,170,255,.2);--hp-sh:0 12px 36px rgba(0,0,0,.4)}
+ --hp-hero:linear-gradient(180deg,#0b1033,#070b1f)}
 #login *,#login *:before,#login *:after{box-sizing:border-box}
 #login a{color:inherit;text-decoration:none}
 #login h1,#login h2,#login h3,#login h4,#login p{margin:0}
@@ -860,135 +855,23 @@ html[data-theme=dark] #login{
 #login .hp-logo{width:43px;height:43px;border-radius:50%;object-fit:cover;background:#fff;flex:none;box-shadow:0 7px 18px #155eef38}
 #login .hp-brand strong{display:block;letter-spacing:.13em;font:800 13px var(--hp-disp);color:var(--hp-navy)}
 #login .hp-brand small{display:block;color:var(--hp-mut);font-size:10px;letter-spacing:.2em;text-transform:uppercase}
-#login .hp-links{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:600;color:var(--hp-mut)}
-#login .hp-links a{cursor:pointer;transition:color .2s}
-#login .hp-links a:hover{color:var(--hp-accent)}
 #login .hp-actions{display:flex;gap:10px;align-items:center}
 #login .hp-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:11px 19px;font:700 12px Inter,system-ui,sans-serif;letter-spacing:.02em;border:1px solid transparent;transition:transform .2s,box-shadow .2s}
 #login .hp-btn:hover{transform:translateY(-2px)}
 #login .hp-gold{background:var(--hp-grad);color:#fff;box-shadow:0 9px 20px #155eef30}
 #login .hp-line{border-color:var(--hp-bdr);color:var(--hp-navy);background:var(--hp-surface)}
-#login .hp-white{background:#fff;color:#155EEF}
-#login .hp-menu{display:none;background:var(--hp-surface);border:1px solid var(--hp-line);color:var(--hp-navy);border-radius:10px;padding:8px 11px}
 
-/* hero */
+/* background */
 #login .hp-hero{position:relative;overflow:hidden;background:var(--hp-hero);min-height:620px}
 #login .hp-hero:before{content:"";position:absolute;width:520px;height:520px;border:1px solid #155eef1c;border-radius:50%;right:-110px;top:40px;box-shadow:0 0 0 45px #38bdf80a,0 0 0 95px #155eef08}
 #login .hp-hero:after{content:"";position:absolute;width:340px;height:340px;border:1px solid #155eef24;border-radius:50%;right:0;top:130px}
-#login .hp-hero-in{max-width:1220px;margin:auto;padding:94px 26px 88px;display:grid;grid-template-columns:1.12fr .88fr;gap:55px;align-items:center;position:relative;z-index:1}
 #login .hp-eyebrow{display:flex;align-items:center;gap:12px;color:var(--hp-accent);font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
 #login .hp-eyebrow:before{content:"";width:34px;height:1px;background:var(--hp-sky)}
-#login .hp-h1{font:800 clamp(44px,6vw,72px)/1.05 var(--hp-disp);letter-spacing:-.05em;margin:24px 0;color:var(--hp-navy)}
-#login .hp-h1 em{font-style:normal;color:var(--hp-accent)}
-#login .hp-copy{max-width:570px;color:var(--hp-mut);font-size:16px;line-height:1.85}
-#login .hp-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-top:31px}
-#login .hp-note{margin-top:32px;color:var(--hp-mut);font-size:11px;letter-spacing:.08em}
-#login .hp-vis{min-height:420px;position:relative;display:grid;place-items:center}
-#login .hp-orbit{position:absolute;width:360px;height:360px;border:1px solid #155eef38;border-radius:50%;transform:rotate(-23deg);box-shadow:0 0 60px #155eef12,inset 0 0 50px #38bdf80d}
-#login .hp-orbit:before,#login .hp-orbit:after{content:"";position:absolute;border:1px solid #155eef20;border-radius:50%;inset:26px}
-#login .hp-orbit:after{inset:58px}
-#login .hp-core{width:min(350px,90%);aspect-ratio:4/5;background:var(--hp-glass);border:1px solid var(--hp-glassb);border-radius:20px;backdrop-filter:blur(14px);box-shadow:0 22px 55px #102a5630;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;position:relative;z-index:2}
-#login .hp-sym{width:112px;height:112px;border-radius:28px;background:linear-gradient(145deg,#38BDF8,#155EEF 75%);color:#fff;display:grid;place-items:center;font:800 56px var(--hp-disp);transform:rotate(45deg);margin-bottom:38px;box-shadow:0 20px 50px #155eef35}
-#login .hp-sym span{transform:rotate(-45deg)}
-#login .hp-mini{font-size:10px;letter-spacing:.24em;color:var(--hp-accent);text-transform:uppercase}
-#login .hp-core h2{font:800 34px var(--hp-disp);margin:9px 0 8px;color:var(--hp-navy)}
-#login .hp-core p{font-size:12px;color:var(--hp-mut);max-width:220px}
-#login .hp-tag{position:absolute;z-index:3;background:var(--hp-surface);color:var(--hp-ink);padding:12px 16px;border-radius:14px;border:1px solid var(--hp-line);box-shadow:0 12px 35px #102a561a;font-size:11px;font-weight:800}
-#login .hp-tag span{display:block;font-weight:500;color:var(--hp-mut);font-size:10px}
-#login .hp-tag1{top:55px;right:0}#login .hp-tag2{bottom:48px;left:0}
 
-/* stats */
-#login .hp-stats{max-width:1050px;margin:-35px auto 0;position:relative;z-index:4;padding:0 24px}
-#login .hp-stats-in{background:var(--hp-surface);border:1px solid var(--hp-line);border-radius:20px;box-shadow:0 12px 35px #102a561a;display:grid;grid-template-columns:repeat(3,1fr);padding:22px 10px}
-#login .hp-stat{text-align:center;border-right:1px solid var(--hp-line)}
-#login .hp-stat:last-child{border:0}
-#login .hp-stat strong{font:800 30px var(--hp-disp);color:var(--hp-accent);display:block}
-#login .hp-stat span{font-size:10px;color:var(--hp-mut);letter-spacing:.14em;text-transform:uppercase}
-
-/* sections */
-#login .hp-sec{max-width:1220px;margin:auto;padding:100px 26px}
-#login .hp-head{max-width:700px;margin-bottom:42px}
-#login .hp-kick{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--hp-accent);font-weight:800}
-#login .hp-title{font:800 clamp(30px,4vw,46px)/1.12 var(--hp-disp);letter-spacing:-.04em;margin:12px 0 15px;color:var(--hp-navy)}
-#login .hp-intro{color:var(--hp-mut);max-width:620px;font-size:14px}
-#login .hp-about{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
-#login .hp-art{min-height:420px;border-radius:20px;background:linear-gradient(145deg,#102A56,#155EEF 72%,#287CEB);position:relative;overflow:hidden;display:grid;place-items:center;box-shadow:0 22px 55px #102a5630}
-#login .hp-art:before{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff55;border-radius:50%;box-shadow:0 0 0 40px #ffffff0a,0 0 0 80px #ffffff08}
-#login .hp-emb{position:relative;z-index:1;text-align:center;color:#fff}
-#login .hp-emb b{display:block;font:800 76px var(--hp-disp)}
-#login .hp-emb span{font-size:10px;letter-spacing:.24em}
-#login .hp-vals{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:28px}
-#login .hp-val{padding:17px;border:1px solid var(--hp-line);border-radius:16px;background:var(--hp-surface);box-shadow:0 5px 18px #102a5608}
-#login .hp-val b{font:800 20px var(--hp-disp);color:var(--hp-accent);display:block}
-#login .hp-val span{font-size:11px;color:var(--hp-mut)}
-#login .hp-tl{font-size:11px;font-weight:800;color:var(--hp-accent);letter-spacing:.06em;cursor:pointer;background:none;border:0;padding:0}
-#login .hp-tl:hover{text-decoration:underline}
-#login .hp-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-#login .hp-card{padding:27px;border-radius:17px;background:var(--hp-surface);border:1px solid var(--hp-line);box-shadow:0 8px 25px #102a560a}
-#login .hp-ico{width:46px;height:46px;border-radius:13px;background:var(--hp-soft);color:var(--hp-accent);display:grid;place-items:center;font-size:21px;margin-bottom:20px}
-#login .hp-card h3{font:700 22px var(--hp-disp);margin:0 0 10px;color:var(--hp-navy)}
-#login .hp-card p{font-size:12px;color:var(--hp-mut);min-height:60px}
-
-/* scholarships */
-#login .hp-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-#login .hp-sch{background:var(--hp-surface);border-radius:17px;padding:23px;border:1px solid var(--hp-line);box-shadow:0 8px 25px #102a5608;display:flex;flex-direction:column}
-#login .hp-code{font-size:10px;letter-spacing:.18em;color:var(--hp-accent);font-weight:900;text-transform:uppercase}
-#login .hp-sch h3{font:700 23px var(--hp-disp);margin:9px 0;color:var(--hp-navy)}
-#login .hp-sch p{font-size:11px;color:var(--hp-mut);margin-bottom:16px}
-#login .hp-sch .hp-tl{margin-top:auto;text-align:left}
-#login .hp-notice{margin-top:20px;font-size:11px;color:var(--hp-mut);background:var(--hp-soft);border:1px solid var(--hp-line);padding:13px 16px;border-radius:12px}
-
-/* campus */
-#login .hp-campus{background:linear-gradient(120deg,#102A56,#155EEF 70%,#287CEB);color:#fff}
-#login .hp-campus .hp-title{color:#fff}
-#login .hp-campus .hp-intro{color:#DCE9FF}
-#login .hp-campus .hp-kick{color:#bfe3ff}
-#login .hp-cgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
-#login .hp-tile{border-radius:20px;min-height:230px;position:relative;overflow:hidden;padding:25px;display:flex;align-items:flex-end;background:linear-gradient(145deg,#287CEB,#102A56)}
-#login .hp-tile-lg{min-height:390px;background:radial-gradient(circle at 70% 20%,#38BDF866,transparent 28%),linear-gradient(145deg,#287CEB,#102A56)}
-#login .hp-tile:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,13,24,.82),transparent 75%)}
-#login .hp-tile>div{position:relative;z-index:1}
-#login .hp-tile h3{font:700 26px var(--hp-disp);color:#fff}
-#login .hp-tile p{font-size:11px;color:#dce9ff;margin:4px 0 0}
-#login .hp-stack{display:grid;gap:16px}
-
-/* enrollment steps */
-#login .hp-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;counter-reset:hpstep}
-#login .hp-step{background:var(--hp-surface);border:1px solid var(--hp-line);border-radius:16px;padding:23px;counter-increment:hpstep;box-shadow:0 8px 25px #102a5608}
-#login .hp-step:before{content:"0" counter(hpstep);display:block;font:800 28px var(--hp-disp);color:var(--hp-accent);margin-bottom:20px}
-#login .hp-step h3{font:700 21px var(--hp-disp);margin:0 0 8px;color:var(--hp-navy)}
-#login .hp-step p{font-size:11px;color:var(--hp-mut)}
-
-/* portal band */
-#login .hp-band{background:linear-gradient(120deg,#102A56,#155EEF 70%,#287CEB);color:#fff;padding:70px 26px}
-#login .hp-band-in{max-width:1120px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:35px}
-#login .hp-band .hp-eyebrow{color:#DCE9FF}
-#login .hp-band .hp-eyebrow:before{background:#38BDF8}
-#login .hp-band h2{font:800 clamp(30px,4vw,44px)/1.1 var(--hp-disp);letter-spacing:-.04em;margin:8px 0;color:#fff}
-#login .hp-band p{font-size:13px;color:#DCE9FF;max-width:560px}
-#login .hp-band .hp-sm{font-size:11px;margin-top:12px}
-#login .hp-band .hp-sm a{text-decoration:underline;cursor:pointer}
-
-/* footer */
-#login .hp-ft{background:#0B1730;color:#d4dbe4;padding:55px 26px 25px}
-#login .hp-ft-in{max-width:1220px;margin:auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:35px}
-#login .hp-ft h4{color:#38BDF8;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 6px}
-#login .hp-ft p,#login .hp-ft a{font-size:11px;color:#aab5c3}
-#login .hp-ft a{display:block;margin:8px 0;cursor:pointer}
-#login .hp-ft a:hover{color:#fff}
-#login .hp-ft .hp-brand{min-width:0}
-#login .hp-ft .hp-brand strong{color:#fff}
-#login .hp-ft .hp-brand small{color:#aab5c3}
-#login .hp-ft .hp-brand a{display:flex;margin:0}
-#login .hp-copyr{max-width:1220px;margin:35px auto 0;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:10px;color:#8290a1}
-
-/* sign-in / register modal (real form: keeps #u #p #go #regbox and every data-act the portal script uses) */
-#login .hp-modal{position:fixed;inset:0;background:rgba(4,10,18,.72);backdrop-filter:blur(8px);z-index:50;display:none;place-items:center;padding:20px}
-#login .hp-modal.hp-open{display:grid}
+/* sign-in / register panel */
 #login .hp-panel{width:min(430px,100%);max-height:calc(100vh - 40px);overflow:auto;background:var(--hp-surface);color:var(--hp-ink);border-radius:20px;padding:30px;box-shadow:0 22px 55px #102a5630;position:relative}
 #login .hp-panel h2{font:800 30px var(--hp-disp);letter-spacing:-.03em;margin:4px 0 5px;color:var(--hp-navy)}
 #login .hp-sub{font-size:13px;color:var(--hp-mut);margin:0 0 18px}
-#login .hp-x{position:absolute;right:16px;top:14px;border:0;background:var(--hp-bg);color:var(--hp-ink);border-radius:50%;width:32px;height:32px;font-size:20px;line-height:1}
 #login .hp-field{margin:12px 0}
 #login .hp-lb{display:block;font-size:10px;font-weight:800;letter-spacing:.08em;margin-bottom:6px;color:var(--hp-mut);text-transform:uppercase}
 #login .hp-field input{width:100%;height:46px;padding:0 14px;border:1px solid var(--hp-ib);border-radius:12px;background:var(--hp-surface);color:var(--hp-ink);font:inherit;font-size:14px;outline:0}
@@ -1001,42 +884,14 @@ html[data-theme=dark] #login{
 #login .hp-warn{font-size:10px;font-weight:800;letter-spacing:.06em;color:#b3261e;margin:12px 0 0;text-transform:uppercase}
 html[data-theme=dark] #login .hp-warn{color:#ff9fb0}
 
-/* scroll-in reveal (one gentle motion, skipped when the visitor prefers reduced motion) */
-#login .hp-rv{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
-#login .hp-rv.hp-on{opacity:1;transform:none}
-
-@media(max-width:900px){
- #login .hp-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--hp-surface);padding:18px 26px 24px;flex-direction:column;align-items:flex-start;border-top:1px solid var(--hp-line);box-shadow:0 18px 30px #102a5614}
- #login .hp-links.hp-show{display:flex}
- #login .hp-menu{display:block}
- #login .hp-begin{display:none}
- #login .hp-hero-in{grid-template-columns:1fr;padding-top:70px}
- #login .hp-vis{min-height:350px}#login .hp-orbit{width:310px;height:310px}
- #login .hp-about{grid-template-columns:1fr}#login .hp-art{min-height:320px}
- #login .hp-grid4,#login .hp-steps{grid-template-columns:repeat(2,1fr)}
- #login .hp-ft-in{grid-template-columns:1fr 1fr}
-}
 @media(max-width:600px){
  #login .hp-nav{padding:12px 18px}
  #login .hp-brand{min-width:0}#login .hp-brand strong{font-size:11px}#login .hp-brand small{font-size:8px}
  #login .hp-hero{min-height:auto}
- #login .hp-hero-in{padding:65px 21px 70px;gap:20px}
- #login .hp-vis{min-height:320px}#login .hp-core{width:260px}#login .hp-orbit{width:280px;height:280px}
- #login .hp-tag1{right:-2px;top:20px}#login .hp-tag2{left:-2px;bottom:20px}
- #login .hp-stats{margin-top:-18px;padding:0 14px}#login .hp-stats-in{padding:15px 3px}
- #login .hp-stat strong{font-size:22px}#login .hp-stat span{font-size:8px}
- #login .hp-sec{padding:72px 20px}
- #login .hp-grid3{grid-template-columns:1fr}
- #login .hp-grid4{gap:10px}#login .hp-sch{padding:17px}#login .hp-sch h3{font-size:19px}
- #login .hp-cgrid{grid-template-columns:1fr}#login .hp-tile-lg{min-height:280px}
- #login .hp-stack{grid-template-columns:1fr 1fr}#login .hp-tile{min-height:180px;padding:16px}#login .hp-tile h3{font-size:20px}
- #login .hp-step{padding:17px}
- #login .hp-band-in{display:block}#login .hp-band .hp-btn{margin-top:15px}
- #login .hp-ft-in{gap:22px}
  #login .hp-panel{padding:24px 20px}
 }
 @media(max-width:520px){#login .theme-switch{display:none}}
-@media(prefers-reduced-motion:reduce){#login *,#login *:before,#login *:after{transition-duration:.01ms!important;animation-duration:.01ms!important}#login .hp-rv{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#login *,#login *:before,#login *:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style>
 <style id="day-night">
 /* ---------- the switch (same look as Index2) ---------- */
@@ -1048,7 +903,7 @@ html[data-theme=dark] .theme-switch{background:#161f46;color:#8f9bc6}
 html[data-theme=dark] .theme-switch .knob{transform:translateX(30px);background:linear-gradient(135deg,#8b7bff,#4f6bff);box-shadow:0 4px 14px #6e6eff99}
 html[data-theme=dark] .theme-switch .i-sun{color:#8f9bc6}
 html[data-theme=dark] .theme-switch .i-moon{color:#fff}
-.theme-switch.floating{position:absolute;top:16px;right:22px;z-index:6}
+
 @media(max-width:767px){.top .theme-switch{display:none}}   /* phones: the switch lives in My Profile menu instead (see part 3) */
 
 /* ---------- Enrollment Health card (works in both themes) ---------- */
@@ -1422,7 +1277,6 @@ function reqsFor(r){const lv=reqLevel(r.GradeLevel),ru=S.cfg.reqRules[lv];if(!ru
 const abbr=c=>Object.keys(S.clusters).find(k=>S.clusters[k]===c);
 
 const enter=r=>{Object.assign(S,r.data);try{sessionStorage.setItem('mrh_t',S.token)}catch(e){}$('login').classList.add('hidden');$('app').classList.remove('hidden');boot()};
-$('go').onclick=()=>call('login',[$('u').value,$('p').value],r=>{if(r.data&&r.data.otp)return otpModal(r.data);enter(r)});
 $('p').onkeydown=e=>{if(e.key==='Enter')$('go').click()};
 function setAv(){const u=S.user,a=$('av');a.style.backgroundImage=u.Photo?`url(${u.Photo})`:'';a.textContent=u.Photo?'':(u.FullName||u.Username)[0].toUpperCase()}
 function boot(){try{boot0()}catch(e){$('app').classList.remove('hidden');toast('Signed in, but the page failed to load: '+e.message,false);console.error(e)}}
@@ -1490,8 +1344,8 @@ const act={out:()=>{clearInterval(CD);if($('idm'))$('idm').remove();try{google.s
  pedit:()=>{S.pe=true;profile()},
  psave:()=>{const p={email:$('em').value,newPassword:$('npw').value,photo:S.newPhoto};call('saveMyProfile',[T(),p],r=>{S.user=r.data;S.pe=false;S.newPhoto=null;setAv();profile();toast(r.message)})}};
 document.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(a)act[a.dataset.act](a.dataset.v)});
-function paint(){S.cur==='stu'||!A()?stuProfile(true):adm()}
-function collect(t){document.querySelectorAll('#view [data-k]').forEach(i=>{if(i.type==='radio'){if(i.checked)t.rec[i.dataset.k]=i.value;return}t.rec[i.dataset.k]=i.type==='checkbox'?(i.checked?'Yes':''):(i.type==='text'&&!/(Email|Facebook)$/.test(i.dataset.k)?i.value.toUpperCase():i.value)})}
+
+
 document.addEventListener('input',e=>{if(e.target.dataset.num){e.target.value=e.target.value.replace(/\D/g,'')}});
 document.addEventListener('change',e=>{const k=e.target.dataset.k,t=S.t;if(!k||!t)return;collect(t);const r=t.rec;
  if(k==='GradeLevel'){r.Department=deptOf(r.GradeLevel);r.Section='';if(r.Department!=='Senior High School')r.Cluster=''}
@@ -1836,7 +1690,7 @@ function wCheck(t){const r=t.rec,bad=x=>{toast(x,false);return false},ph=/^\d{11
  if(t.step===2&&r.Mobile&&!ph.test(r.Mobile))return bad('Contact number must be 11 digits.');
  if(t.step===3){for(const k of['FatherMobile','MotherMobile','EmMobile','GuardMobile'].concat(r.LivingWith==='Relatives / Legal Guardian'?['RelMobile']:[]))if(r[k]&&!ph.test(r[k]))return bad('Contact numbers must be exactly 11 digits.');for(const k of['FatherEmail','MotherEmail'])if(r[k]&&!em.test(r[k]))return bad('Enter a valid parent email address.')}
  return true}
-function wGo(n){const t=S.t;collect(t);if(t.edit&&n>t.step&&!wCheck(t))return;t.step=Math.max(1,Math.min(5,n));paint();window.scrollTo(0,0)}
+
 
 function adm(){head('Admission','Search, register and update enrollees');S.cur=S.cur||'search';
  const tabs=`<div class="tabs"><button class="tab ${S.cur==='search'?'on':''}" data-act="tab" data-v="search">${I.search} Search</button>${S.tabs.map(t=>`<button class="tab ${S.cur===t.key?'on':''}" data-act="tab" data-v="${t.key}">${esc(t.rec.FullName||'New enrollee')}<i data-act="close" data-v="${t.key}">${I.x}</i></button>`).join('')}</div>`;
@@ -1860,8 +1714,7 @@ function recHero(t){const r=t.rec,p=String(r.FullName||'').split(','),nm=r.FullN
  ini=((r.FullName?(p[0]||'').trim()[0]:(r.Surname||nm)[0])||'N')+(r.FullName?((p[1]||'').trim()[0]||''):(r.FirstName||'')[0]||''),gs=((r.GradeLevel||'')+' '+(r.Section||'')).trim();
  return `<div class="shero rcd"><div class="rcdi"><div class="avb">${esc(ini.toUpperCase())}</div><div><h2>${esc(nm)}</h2><div class="shch" style="margin-top:8px"><span class="shchip ${r.StudentID?'':'sh-unsaved'}">${r.StudentID?'ID '+esc(r.StudentID):'Not yet saved'}</span><span class="shchip ${(!r.EnrollStatus||r.EnrollStatus==='Not Enrolled')?'sh-pending':''}">${esc(r.EnrollStatus||'Not Enrolled')}${r.EnrollStatus==='Temporary'&&r.TempUntil?' until '+esc(fmtS(r.TempUntil)):''}</span>${(r.HoldOffices||[]).length?'<span class="shchip" style="background:#d97706;border-color:#d97706">Hold: '+esc(r.HoldOffices.join(', '))+'</span>':''}${gs?`<span class="shchip">${esc(tc(gs))}</span>`:''}${r.LRN?`<span class="shchip">LRN ${esc(r.LRN)}</span>`:''}</div></div></div></div>`}
 
-function stuProfile(keep){head('Student Profile','Review and update your information');S.cur='stu';
- if(keep===true)return $('view').innerHTML=formHTML(S.st);call('getStudent',[T()],r=>{S.st={rec:r.data,edit:false};$('view').innerHTML=formHTML(S.st)})}
+
 function stuReq(){head('School Requirements','Requirements for your grade level');call('getStudent',[T()],r=>{const s=r.data,R=reqsFor(s);
  if(!R.level)return $('view').innerHTML='<div class="card">Choose your <b>Grade Level</b> in <b>Student Profile</b> to see the requirements for your level.</div>';
  const hint=S.cfg.reqHints[R.level]||{},docs=S.fields.filter(f=>f[0]==='req'&&R.show.includes(f[1])),notes=S.cfg.reqNotes.filter(n=>n.lv.includes(R.level)&&(!n.g||n.g.includes(s.GradeLevel)));
@@ -2371,7 +2224,7 @@ function feeRender(){const F=S.fees,tiers=[...new Set(F.rows.map(x=>x.Tier))];S.
 
 const FULL=()=>A()&&['Full','Manager'].includes(S.user.Clearance),SYS=()=>A()&&S.user.Clearance==='Full',ROLEN=c=>c==='Full'?'Administrator':c==='Manager'?'System Manager':c;;
 let IDLE=null,WARN=null,CD=null;
-function idleReset(){if(!S.token||$('idm'))return;clearTimeout(IDLE);clearTimeout(WARN);WARN=setTimeout(idleWarn,240000);IDLE=setTimeout(()=>act.out(),300000)}
+
 ['click','keydown','mousemove','touchstart','scroll'].forEach(e=>document.addEventListener(e,idleReset,{passive:true}));
 function idleWarn(){if(!S.token)return;const m=document.createElement('div');m.className='mod';m.id='idm';m.innerHTML='<div style="max-width:420px;padding:28px;text-align:center"><h3 style="color:var(--navy)">Are you still there?</h3><p style="color:var(--mut)">For your security you will be signed out in <b id="idc">60</b> seconds.</p><button class="btn" data-act="stay">Stay signed in</button></div>';document.body.appendChild(m);let n=60;clearInterval(CD);CD=setInterval(()=>{n--;if($('idc'))$('idc').textContent=n;if(n<=0)clearInterval(CD)},1000)}
 function settingsPage(){head('Enrollment Settings','Control the school year and who may register');call('getSettings',[T()],r=>{const d=r.data;$('view').innerHTML=`<div class="card"><h3>School year</h3><p>Active school year: <b>${esc(d.sy)}</b> &nbsp; <span class="chip ${d.mail?'ok':'warn'}">Automatic e-mails: ${d.mail?'ON':'OFF (reset and staff codes still work)'}</span></p><button class="btn" data-act="nextsy">Start enrollment for next school year</button></div>
@@ -2380,7 +2233,7 @@ try{google.script.run.withSuccessHandler(r=>{if(r&&r.success&&r.data)S.privHtml=
 function otpModal(d){const old=$('om');if(old)old.remove();S.otpc=d.challenge;const m=document.createElement('div');m.className='mod';m.id='om';
  m.innerHTML=`<div style="max-width:420px"><div class="bd"><h3 style="color:var(--navy);margin-bottom:6px">Verify it's you</h3><p style="color:var(--mut);margin:0 0 14px">We sent a 6-digit code to <b>${esc(d.hint)}</b>. It expires in 10 minutes.</p><div class="f"><label>6-digit code</label><input id="otc" type="text" maxlength="6" inputmode="numeric" autocomplete="one-time-code" data-num="1" style="text-transform:none;letter-spacing:6px;font-size:20px" onkeydown="if(event.key==='Enter')act.otpgo()"></div></div><div class="ft"><button class="btn alt" data-act="otpx">Cancel</button><button class="btn" data-act="otpgo">Verify &amp; sign in</button></div></div>`;
  document.body.appendChild(m);$('otc').focus()}
-act.otpgo=()=>call('verifyOtp',[S.otpc,$('otc').value],r=>{$('om').remove();enter(r)});
+
 act.otpx=()=>{const m=$('om');if(m)m.remove()};
 /* ===== Fix bundle: Enrollment Form PDF button ===== */
 act.eformpdf=()=>{const r=S.t.rec;savePdf(enrollFormHTML(r,A()?(r.Photo||''):S.user.Photo),fileName(r,'Enrollment-Form'))};
@@ -2492,14 +2345,7 @@ function draftBanner(t){if(!t||!t.draftAt)return '';
  return '<div class="scn" style="margin-bottom:16px">'+SICO.info+'<div><b>Unsaved draft restored</b> from '+esc(new Date(t.draftAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))+'. Review it and click <b>Save</b> to keep it. <a href="javascript:void(0)" data-act="draftx" style="color:var(--blue);font-weight:600">Discard draft</a></div></div>'}
 act.draftx=()=>{if(!confirm('Discard the restored draft and reload your saved profile?'))return;draftClear();S.st=null;stuProfile()};
 
-/** REPLACES stuProfile */
-function stuProfile(keep){head('Student Profile','Review and update your information');S.cur='stu';
- const show=()=>{$('view').innerHTML=draftBanner(S.st)+formHTML(S.st)};
- if(keep===true)return show();
- call('getStudent',[T()],r=>{S.st={rec:r.data,edit:false,base:Object.assign({},r.data)};
-  const d=draftLoad();
-  if(d){const okk=new Set(draftKeys(r.data));Object.keys(d.f).forEach(k=>{if(okk.has(k))S.st.rec[k]=d.f[k]});S.st.edit=true;S.st.draftAt=d.at}
-  show()})}
+
 
 /** Sign-out: idle timeout keeps the draft; a manual sign-out clears it (shared computers). */
 const _out=act.out;
@@ -3902,7 +3748,7 @@ body:not(.stu) .uchip small{color:#b9c6e6}
 body:not(.stu) #gs{background-color:#fff!important;border-radius:999px!important;box-shadow:0 2px 8px #0003}
 body:not(.stu) .rbd{background:#ffffff1f;color:#fff}
 body:not(.stu) .rbd.warn{background:#fbbf24;color:#3a2a00}
-.sbw{display:none!important}
+
 .tdate{display:none;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:999px;padding:8px 14px;font:600 13px Inter,sans-serif;white-space:nowrap}
 .tdate svg{width:16px;height:16px;color:var(--blue)}
 @media(min-width:1100px){.tdate{display:inline-flex}}
@@ -4749,15 +4595,6 @@ homeStudent = function () {
     bnEvents();
   });
 };
-
-/* ===== Day/night theme + Enrollment Health integration ===== */
-/* ---- theme engine fallback (only used if PART 1 was not pasted) ---- */
-if(!window.MRH_THEME){(function(){var KEY='mrh_theme',root=document.documentElement,mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
- var saved=function(){try{var v=localStorage.getItem(KEY);return v==='dark'||v==='light'?v:null}catch(e){return null}},cur=function(){return root.getAttribute('data-theme')==='dark'?'dark':'light'};
- var apply=function(t){root.setAttribute('data-theme',t);document.querySelectorAll('.theme-switch').forEach(function(b){var d=t==='dark';b.setAttribute('aria-pressed',d);b.setAttribute('aria-label',d?'Switch to day mode':'Switch to night mode');b.title=b.getAttribute('aria-label')})};
- window.MRH_THEME={get:cur,set:function(t,p){t=t==='dark'?'dark':'light';apply(t);if(p!==false){try{localStorage.setItem(KEY,t)}catch(e){}}},toggle:function(){this.set(cur()==='dark'?'light':'dark')},sync:function(){apply(cur())}};
- apply(saved()||(mq&&mq.matches?'dark':'light'));
- if(mq&&mq.addEventListener)mq.addEventListener('change',function(e){if(!saved())apply(e.matches?'dark':'light')})})()}
 
 /* ---- switch buttons ---- */
 const THSW='<svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><span class="knob"></span>';
@@ -6101,7 +5938,7 @@ function profileHTML(t){const r=t.rec,st=r.EnrollStatus||'Not Enrolled',cl=pfCla
  +secs.map(k=>pfSec(k,r)).join('')}
 
 /** REPLACES stuProfile: read-only profile by default, the form only while editing. */
-stuProfile=function(keep){head('Student Profile','Your information');S.cur='stu';
+function stuProfile(keep){head('Student Profile','Your information');S.cur='stu';
  const show=()=>{if(S.st.edit){$('view').innerHTML=draftBanner(S.st)+formHTML(S.st)}
   else{S.t=S.st;$('view').innerHTML=profileHTML(S.st);window.scrollTo(0,0)}};
  if(keep===true)return show();

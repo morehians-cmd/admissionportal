@@ -117,13 +117,7 @@ function speedTest3() {
   Logger.log('Rebuild (cache miss): ' + miss + ' ms\nCache hit: ' + hit + ' ms\nFind one learner (cache + 1 row): ' + one + ' ms');
 }
 
-/** True if another row already uses this LRN. Reads ONE column. exceptRow = sheet row of the record being saved (0 for a new record). */
-function lrnTaken_(sh, lrn, exceptRow) {
-  const n = sh.getLastRow() - 1; if (n < 1) return false;
-  const v = sh.getRange(2, COLS.indexOf('LRN') + 1, n, 1).getValues();
-  for (let i = 0; i < n; i++) if (String(v[i][0]) === lrn && i + 2 !== exceptRow) return true;
-  return false;
-}
+
 
 function saveTimeTest() {
   ownerOnly_();
