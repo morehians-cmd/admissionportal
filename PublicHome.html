@@ -52,7 +52,11 @@ section{padding:92px 0}.sh{max-width:680px;margin-bottom:36px}.sh h2{font-size:c
 .cl{background:#ffffff14;border:1px solid #ffffff30;border-radius:16px;padding:22px}.cl h3{display:flex;align-items:center;gap:10px}.cl h3:before{content:'';width:10px;height:10px;border-radius:3px;background:var(--orange)}
 .cl p{color:#DCE9FF;font-size:14px;margin:6px 0 14px}.ch{display:flex;flex-wrap:wrap;gap:8px}.ch i{font-style:normal;background:#ffffff24;border-radius:999px;padding:3px 12px;font-size:13px}
 .note{margin-top:18px;font-size:13px;color:#DCE9FF}
-
+.qz{max-width:720px}.bar{height:8px;border-radius:8px;background:var(--line);margin-bottom:10px;overflow:hidden}.bar u{display:block;height:100%;background:var(--g);transition:width .3s}.qc{font-size:13px;color:var(--mut);margin-bottom:12px;font-weight:600}
+.qo{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:var(--bg);border:2px solid transparent;border-radius:12px;padding:12px 16px;margin:10px 0;min-height:48px;color:var(--ink)}.qo:hover{border-color:var(--blue)}
+.qo i{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid #b8c4d8}.qo.on{border-color:var(--blue);background:var(--soft)}.qo.on i{border-color:var(--blue);background:radial-gradient(var(--blue) 45%,transparent 50%)}
+.qn{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.qe{color:#b3261e;font-size:13px;min-height:20px;margin-top:6px}
+.res{background:var(--g);color:#fff;border-radius:16px;padding:24px}.res h3{color:#fff;font-size:26px}.res p{margin:8px 0 16px;color:#fff;max-width:none}
 .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gal figure{margin:0;border-radius:16px;overflow:hidden;aspect-ratio:4/3;position:relative;background:linear-gradient(145deg,#287CEB,#102A56)}
 .gal.n1{grid-template-columns:1fr;max-width:760px}.gal.n2{grid-template-columns:1fr 1fr}
 .gal.n4{grid-template-columns:repeat(4,1fr)}.gal.n4 figure:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
@@ -87,7 +91,8 @@ html[data-theme=dark] .hero{background:linear-gradient(180deg,#0b1033,#070b1f)}
 html[data-theme=dark] .si,html[data-theme=dark] .cd,html[data-theme=dark] .alt{background:#10173a}html[data-theme=dark] .alt{background:#0b1033}
 html[data-theme=dark] .b2,html[data-theme=dark] .mb,html[data-theme=dark] .skip{background:#161f4a;color:#e9edff;border-color:#2f3d70}
 html[data-theme=dark] .nl,html[data-theme=dark] .nl a{color:#c5d0ee}html[data-theme=dark] .nl{background:#0a1030}html[data-theme=dark] .nl a.on{color:#8fb0ff}
-
+html[data-theme=dark] .qo{background:#0a1030;border-color:#2a3558}html[data-theme=dark] .qo:hover,html[data-theme=dark] .qo.on{border-color:#6f93ff}html[data-theme=dark] .qo.on{background:#16204f}
+html[data-theme=dark] .qe{color:#ff9fb0}
 html{-webkit-text-size-adjust:100%}
 body{-webkit-tap-highlight-color:transparent}
 a,button{touch-action:manipulation}
@@ -99,11 +104,12 @@ a,button{touch-action:manipulation}
 @media(max-width:600px){
  .cta .btn{flex:1 1 100%}
  h1{font-size:clamp(34px,10vw,48px)}
-
+ .hc{padding:24px}
  .tl{grid-auto-columns:minmax(78vw,1fr);scroll-snap-type:x mandatory}
  .tl .cd{scroll-snap-align:start}
  .gal figure:first-child{grid-column:span 2;grid-row:auto;aspect-ratio:4/3}
 }
+
 </style></head><body>
 <a class="skip" href="#top">Skip to main content</a>
 <header><div class="w nv"><a class="br" href="#top"><img class="lg" src="https://i.imgur.com/roCMSYf.jpeg" alt=""><span>Moreh Academy<small>School of Righteousness &amp; Excellence</small></span></a>
@@ -182,7 +188,7 @@ function setHero(src,cap){const h=$('hv');if(!h||!src)return;const im=new Image(
 if(STOCK_HERO)setHero(STOCK_HERO,'');
 
 /* campus gallery: layout follows the number of photos that actually load; failed photos are removed, never left as a skeleton */
-let gOk=0,gLeft=0;
+const FT=[];let gOk=0,gLeft=0;
 function galLayout(){const g=$('gl');const n=g.querySelectorAll('figure').length;g.className='gal n'+Math.min(Math.max(n,1),5)}
 function galDone(){if(--gLeft>0)return;const g=$('gl');if(!g.querySelector('figure')){g.className='gal n1';g.innerHTML='<figure class="soon">Campus photos are coming soon.</figure>'}else galLayout()}
 function galPhoto(f,src,cap){const im=new Image();im.onload=()=>{f.innerHTML=`<button class="pic" aria-label="View larger: ${esc(cap||'campus photo')}"><img alt="${esc(cap||'Moreh Academy campus')}" src="${src}"></button>${cap?`<figcaption>${esc(cap)}</figcaption>`:''}`;f.querySelector('button').onclick=e=>openLb(src,e.currentTarget);gOk++;if(gOk===1&&!$('hv').querySelector('.ph'))setHero(src,'');galDone()};im.onerror=()=>{f.remove();galDone()};im.src=src}
