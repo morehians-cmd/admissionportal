@@ -645,50 +645,7 @@ aside :focus-visible{outline:3px solid #fff;outline-offset:-3px}
 </style>
 <!-- ============================================================
   MOREH ACADEMY PORTAL - MODERN UI THEME (CSS only)
-  INSTALL: paste this whole <style> block in Index.html, in <head>, AFTER the last existing </style> and before <style id="admission-redesign-responsive">
-/* Admission portal redesign: responsive dashboard and banner refinements */
-.shero.dh{background:linear-gradient(118deg,#071b4b 0%,#123d91 52%,#155eef 100%);border:1px solid #ffffff24;box-shadow:0 12px 32px #102a5630}
-.shero.dh:before{background:radial-gradient(ellipse at 92% 8%,#ffffff20 0,transparent 38%),linear-gradient(120deg,transparent 48%,#ffffff0b 48%,#ffffff0b 49%,transparent 49%)}
-.shero.dh .sht{align-items:center;min-height:88px}
-.shero.dh .sht>div:first-child{min-width:0;flex:1}
-.shero.dh .sht h2{font-size:clamp(22px,2.2vw,30px);letter-spacing:-.025em}
-.shero.dh .sht p{line-height:1.55}
-.shero.dh .dhr{flex:none;padding:8px 10px 8px 16px;border:1px solid #ffffff2b;border-radius:14px;background:#ffffff12}
-.shero.dh .hlogo{border:2px solid #ffffff80;box-shadow:0 4px 14px #06183d55}
-.shero.dh .shk{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.shero.dh .shc{min-width:0;box-shadow:0 4px 14px #06183d18}
-.shero.dh .shv{font-size:clamp(23px,2.1vw,32px);overflow-wrap:anywhere}
-.dash.hm{grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:20px}
-.dash.hm .dmain,.dash.hm .dside{min-width:0}
-@media(max-width:1200px){
- .dash.hm{grid-template-columns:minmax(0,1fr)}
- .dash.hm .dside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
- .dash.hm .dside>.card{margin:0}
-}
-@media(max-width:760px){
- .shero.dh{padding:20px 16px 18px;border-radius:16px}
- .shero.dh .sht{gap:14px;margin-bottom:18px}
- .shero.dh .dhr{width:100%;justify-content:space-between}
- .shero.dh .dhd{text-align:left}
- .shero.dh .dhd span{justify-content:flex-start}
- .shero.dh .shk{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .shero.dh .shc{padding:13px}
- .shero.dh .shh{font-size:13px;gap:8px}
- .shero.dh .shh .ki{width:32px;height:32px}
- .dash.hm .dside{grid-template-columns:minmax(0,1fr)}
-}
-@media(max-width:420px){
- .shero.dh .shk{grid-template-columns:minmax(0,1fr)}
- .shero.dh .shc{display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:10px;align-items:center}
- .shero.dh .shh{grid-row:1 / span 2}
- .shero.dh .shv{margin:0;font-size:22px}
- .shero.dh .shs{grid-column:2}
-}
-@media(prefers-reduced-motion:reduce){
- .shero.dh *,.dash.hm *{scroll-behavior:auto!important;transition:none!important}
-}
-</style>
-</head>.
+  INSTALL: paste this whole <style> block in Index.html, in <head>, AFTER the last existing </style> and before </head>.
   It only restyles. No JS, no DOM ids, no data-act / data-k hooks, no backend call is touched.
   Everything is inside @media screen, so printed forms, slips, ID cards and reports are unchanged.
 ============================================================ -->
@@ -1422,6 +1379,48 @@ body .wnav{flex-wrap:wrap}
 body .wnav .btn{flex:1 1 40%;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){body .mod>div{animation:none!important}}
+</style>
+/* Admission portal redesign: responsive dashboard and banner refinements */
+.shero.dh{background:linear-gradient(118deg,#071b4b 0%,#123d91 52%,#155eef 100%);border:1px solid #ffffff24;box-shadow:0 12px 32px #102a5630}
+.shero.dh:before{background:radial-gradient(ellipse at 92% 8%,#ffffff20 0,transparent 38%),linear-gradient(120deg,transparent 48%,#ffffff0b 48%,#ffffff0b 49%,transparent 49%)}
+.shero.dh .sht{align-items:center;min-height:88px}
+.shero.dh .sht>div:first-child{min-width:0;flex:1}
+.shero.dh .sht h2{font-size:clamp(22px,2.2vw,30px);letter-spacing:-.025em}
+.shero.dh .sht p{line-height:1.55}
+.shero.dh .dhr{flex:none;padding:8px 10px 8px 16px;border:1px solid #ffffff2b;border-radius:14px;background:#ffffff12}
+.shero.dh .hlogo{border:2px solid #ffffff80;box-shadow:0 4px 14px #06183d55}
+.shero.dh .shk{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.shero.dh .shc{min-width:0;box-shadow:0 4px 14px #06183d18}
+.shero.dh .shv{font-size:clamp(23px,2.1vw,32px);overflow-wrap:anywhere}
+.dash.hm{grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:20px}
+.dash.hm .dmain,.dash.hm .dside{min-width:0}
+@media(max-width:1200px){
+ .dash.hm{grid-template-columns:minmax(0,1fr)}
+ .dash.hm .dside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .dash.hm .dside>.card{margin:0}
+}
+@media(max-width:760px){
+ .shero.dh{padding:20px 16px 18px;border-radius:16px}
+ .shero.dh .sht{gap:14px;margin-bottom:18px}
+ .shero.dh .dhr{width:100%;justify-content:space-between}
+ .shero.dh .dhd{text-align:left}
+ .shero.dh .dhd span{justify-content:flex-start}
+ .shero.dh .shk{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .shero.dh .shc{padding:13px}
+ .shero.dh .shh{font-size:13px;gap:8px}
+ .shero.dh .shh .ki{width:32px;height:32px}
+ .dash.hm .dside{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:420px){
+ .shero.dh .shk{grid-template-columns:minmax(0,1fr)}
+ .shero.dh .shc{display:grid;grid-template-columns:38px minmax(0,1fr);column-gap:10px;align-items:center}
+ .shero.dh .shh{grid-row:1 / span 2}
+ .shero.dh .shv{margin:0;font-size:22px}
+ .shero.dh .shs{grid-column:2}
+}
+@media(prefers-reduced-motion:reduce){
+ .shero.dh *,.dash.hm *{scroll-behavior:auto!important;transition:none!important}
+}
 </style>
 </head>
 <body>
