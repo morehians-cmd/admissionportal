@@ -30,6 +30,11 @@
 :root{--navy:#0b2a5b;--blue:#2f5fd0;--soft:#e9effc;--cream:#f8f9fa;--line:#e3e7ee;--txt:#1b2a4a;--mut:#6b7794}
 *{box-sizing:border-box}body{margin:0;font:15px/1.5 Inter,system-ui,Arial,sans-serif;background:var(--cream);color:var(--txt)}
 .hidden{display:none!important}h1,h2,h3{margin:0}svg{flex:none}
+#login{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.hero{background:linear-gradient(160deg,var(--navy),#1a4bb0);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:48px;text-align:center}
+.hero img{width:150px;height:150px;border-radius:50%;background:#fff;object-fit:cover;margin-bottom:24px;box-shadow:0 8px 30px #0005}
+.lf{display:flex;flex-direction:column;justify-content:center;max-width:380px;margin:auto;padding:32px;width:100%}
+.lf input{width:100%;height:48px;margin:6px 0 16px;padding:0 14px;border:1px solid #d5dae3;border-radius:12px;font:inherit}
 #app{display:flex;min-height:100vh}
 aside{width:272px;background:#fff;border-right:1px solid var(--line);padding:24px 18px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh;flex:none;z-index:20}
 .brand{display:flex;gap:12px;align-items:center;padding:0 8px 22px}.brand img{width:48px;height:48px;border-radius:50%;object-fit:cover}.brand b{display:block;color:var(--navy);font-size:16px}.brand small{color:var(--mut)}
@@ -42,10 +47,10 @@ main{flex:1;min-width:0;padding:36px 44px 64px;max-width:1280px}
 #menu{display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:10px;width:42px;height:42px;font-size:20px}
 .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 2px 8px #0b2a5b0d;margin-bottom:24px}
 .card h3{font-size:17px;color:var(--navy);margin-bottom:20px}
-
-
-
-
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:28px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px}.stat small{color:var(--mut);display:block}.stat b{font-size:32px;color:var(--navy)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}.cards .card{margin:0}
+.pie{width:120px;height:120px;border-radius:50%;flex:none}.pb{display:flex;gap:20px;align-items:center;font-size:13.5px;line-height:1.9}
 .sec{font-size:12px;letter-spacing:.08em;color:var(--mut);font-weight:700;margin:6px 0 12px}
 .g{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px 24px}
 .f label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin-bottom:7px}
@@ -61,9 +66,9 @@ main{flex:1;min-width:0;padding:36px 44px 64px;max-width:1280px}
 .tab i{display:inline-flex;border-radius:50%;padding:2px}.tab i:hover{background:var(--soft)}
 .sb{display:flex;gap:12px;flex-wrap:wrap}.sb input{flex:1;min-width:220px;height:48px;padding:0 16px;border:1px solid #d5dae3;border-radius:999px;font:inherit}
 table{border-collapse:collapse;width:100%}th{text-align:left;font-size:12px;color:var(--mut);padding:10px 12px}td{padding:14px 12px;border-top:1px solid var(--line)}tbody tr:hover{background:#fcfaf2}.tw{overflow-x:auto}
-.chip{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:600;background:var(--soft);color:var(--navy)}.chip.ok{background:#dcf5e6;color:#17613a}.chip.no{background:#fde4e1;color:#b3261e}.chip.warn{background:#fff1cc;color:#8a5a00}.name4{grid-column:1/-1;display:grid;grid-template-columns:2fr 2fr 1.5fr 1fr;gap:16px}@media(max-width:700px){.name4{grid-template-columns:1fr 1fr}}.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font:600 13px Inter,sans-serif;cursor:pointer}.pill.on{background:var(--navy);color:#fff}.mod{position:fixed;inset:0;background:#0008;z-index:90;display:flex;align-items:center;justify-content:center;padding:16px}.mod>div{background:#fff;border-radius:18px;max-width:780px;width:100%;max-height:90vh;display:flex;flex-direction:column}.mod .bd{overflow:auto;padding:22px 26px;font-size:14px}.mod .ft{padding:16px 26px;border-top:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}.pv h3{margin:0 0 4px;color:var(--navy)}.pv h4{margin:16px 0 4px;color:var(--navy)}.pv ul,.pv ol{margin:4px 0;padding-left:20px}.dd{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #0002;min-width:180px;z-index:30}.dd button{display:block;width:100%;text-align:left;padding:11px 16px;border:0;background:none;font:inherit;cursor:pointer}.dd button:hover{background:var(--soft)}
-
-
+.chip{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:600;background:var(--soft);color:var(--navy)}.chip.ok{background:#dcf5e6;color:#17613a}.chip.no{background:#fde4e1;color:#b3261e}.chip.warn{background:#fff1cc;color:#8a5a00}.pie{-webkit-mask:radial-gradient(circle,transparent 36%,#000 37%);mask:radial-gradient(circle,transparent 36%,#000 37%)}.name4{grid-column:1/-1;display:grid;grid-template-columns:2fr 2fr 1.5fr 1fr;gap:16px}@media(max-width:700px){.name4{grid-template-columns:1fr 1fr}}.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font:600 13px Inter,sans-serif;cursor:pointer}.pill.on{background:var(--navy);color:#fff}.mod{position:fixed;inset:0;background:#0008;z-index:90;display:flex;align-items:center;justify-content:center;padding:16px}.mod>div{background:#fff;border-radius:18px;max-width:780px;width:100%;max-height:90vh;display:flex;flex-direction:column}.mod .bd{overflow:auto;padding:22px 26px;font-size:14px}.mod .ft{padding:16px 26px;border-top:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}.pv h3{margin:0 0 4px;color:var(--navy)}.pv h4{margin:16px 0 4px;color:var(--navy)}.pv ul,.pv ol{margin:4px 0;padding-left:20px}.stat.g1{background:#e8f6ee;border-color:#bfe3cd}.stat.g2{background:#fff3e0;border-color:#f3d6a6}.stat.g3{background:#e8f0ff;border-color:#c2d4f8}.dd{position:absolute;right:0;top:54px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #0002;min-width:180px;z-index:30}.dd button{display:block;width:100%;text-align:left;padding:11px 16px;border:0;background:none;font:inherit;cursor:pointer}.dd button:hover{background:var(--soft)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:24px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;text-align:left;cursor:pointer;font:600 16px Inter,sans-serif;color:var(--navy);display:flex;gap:14px;align-items:center}.tile:hover{border-color:var(--blue);box-shadow:0 6px 18px #2f5fd01f}
 .photo{width:150px;height:150px;border-radius:50%;background:var(--soft) center/cover;margin-bottom:14px}
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);padding:14px 24px;border-radius:14px;color:#fff;z-index:99;box-shadow:0 8px 24px #0004}
 #load{position:fixed;inset:0;background:#faf6eacc;display:flex;align-items:center;justify-content:center;z-index:98}#load i{width:46px;height:46px;border:5px solid #cfd8ea;border-top-color:var(--navy);border-radius:50%;animation:s 1s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
@@ -71,12 +76,12 @@ table{border-collapse:collapse;width:100%}th{text-align:left;font-size:12px;colo
 #pa{display:none}.sl,.sl *{-webkit-print-color-adjust:exact;print-color-adjust:exact}.sl{font:11px Arial,sans-serif;color:#000}.sl .hd{background:#0b2a5b;color:#fff;display:flex;align-items:center;gap:12px;padding:8px 14px}.sl .hd img{width:54px;height:54px;border-radius:50%;background:#fff}.sl .h1{font-size:22px;font-weight:800}.sl .h2{font-size:14px;color:#b4c6e7;font-weight:700}
 .sl table{width:100%;border-collapse:collapse;margin-top:8px}.sl td,.sl th{border:1px solid #333;padding:4px 7px;font-size:11px;text-align:left}.sl th{background:#0b2a5b;color:#fff}.sl td.k{background:#eef2fb;font-weight:700;width:38%}.sl .two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.sl .ln{border-top:1px solid #000;margin-top:34px;padding-top:3px;text-align:center;font-weight:700}.sl .rm{border-top:1px solid #000;margin-top:24px;padding-top:6px;font-size:9.5px;line-height:1.6}.sl ul{margin:6px 0;padding-left:16px;line-height:1.5}.sl .card{border:0;box-shadow:none;padding:0}
 @media print{body.pr>*:not(#pa){display:none!important}body.pr #pa{display:block;padding:10mm}@page{size:A4;margin:0}}
-@media(max-width:900px){aside{position:fixed;left:0;transform:translateX(-100%);transition:.2s}aside.open{transform:none;box-shadow:0 0 40px #0006}#menu{display:block}main{padding:20px 18px 60px}.top h1{font-size:24px}}
-.g .f,.name4 .f{display:flex;flex-direction:column;justify-content:flex-end}.f textarea{width:100%;min-height:90px;padding:12px 14px;border:1px solid #d5dae3;border-radius:12px;font:inherit;resize:vertical}.eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;background:none;cursor:pointer;color:var(--mut);display:flex;padding:6px}.eye:hover{color:var(--navy)}
-.dash{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;align-items:start}.dside .card{margin-bottom:24px}@media(max-width:1200px){.dash{grid-template-columns:1fr}}.sticky{position:sticky;top:0;z-index:6;background:var(--cream);padding:8px 0 14px}
-html{max-width:100%;overflow-x:hidden}body{max-width:100%}@media(max-width:600px){.g,.name4{grid-template-columns:1fr!important}.card{padding:18px}.sb input{min-width:0}.act .btn{flex:1 1 auto}table{font-size:13px}.top{flex-wrap:wrap}.top h1{font-size:22px}.dd{right:0}}
-
-.ssub{background:var(--soft);color:var(--navy);font-weight:700;padding:9px 18px}
+@media(max-width:900px){#login{grid-template-columns:1fr}.hero{display:none}aside{position:fixed;left:0;transform:translateX(-100%);transition:.2s}aside.open{transform:none;box-shadow:0 0 40px #0006}#menu{display:block}main{padding:20px 18px 60px}.top h1{font-size:24px}}
+.g .f,.name4 .f{display:flex;flex-direction:column;justify-content:flex-end}.f textarea{width:100%;min-height:90px;padding:12px 14px;border:1px solid #d5dae3;border-radius:12px;font:inherit;resize:vertical}.eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;background:none;cursor:pointer;color:var(--mut);display:flex;padding:6px}.eye:hover{color:var(--navy)}.ev{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}.evd{min-width:74px;text-align:center;background:var(--soft);border-radius:14px;padding:10px;color:var(--navy)}.evd b{font-size:28px;display:block;line-height:1.1}
+.dash{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:24px;align-items:start}.dside .card{margin-bottom:24px}@media(max-width:1200px){.dash{grid-template-columns:1fr}}.sticky{position:sticky;top:0;z-index:6;background:var(--cream);padding:8px 0 14px}.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:6px}.plans .card{margin:0}.plans table td{padding:8px 4px}.plans td:last-child{text-align:right;font-variant-numeric:tabular-nums}.plans tr.t td{font-weight:700;border-top:2px solid var(--navy)}.promo{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:18px}.promo div{background:#fff3e0;border:1px solid #f3d6a6;border-radius:14px;padding:12px 16px;font-size:13.5px}.promo b{display:block;color:#8a5a00}
+.mlogo{display:none;width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 18px;box-shadow:0 4px 14px #0003}html{max-width:100%;overflow-x:hidden}body{max-width:100%}.cards{grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr))}@media(max-width:900px){.mlogo{display:block}}@media(max-width:600px){.g,.name4,.promo,.plans,.tiles,.stats{grid-template-columns:1fr!important}.card{padding:18px}.sb input{min-width:0}.act .btn{flex:1 1 auto}table{font-size:13px}.top{flex-wrap:wrap}.top h1{font-size:22px}.dd{right:0}}
+.sbanner{background:linear-gradient(135deg,#0b2a5b,#1a4bb0);border-radius:22px;padding:30px;color:#fff;text-align:center}.sbanner h2{margin:0;font:900 40px/1.1 Inter,sans-serif;letter-spacing:.5px}.sbanner h2 span{color:#ffc928}.sc4{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-top:24px}.scard{background:#fff;border-radius:22px;overflow:hidden;cursor:pointer;color:var(--navy);box-shadow:0 8px 22px #0004;transition:transform .15s}.scard:hover{transform:translateY(-4px)}.scard .ph{height:250px;background:#eaf0fb center/cover;display:flex;align-items:center;justify-content:center;color:#9bb0d6}.scard .ph svg{width:70px;height:70px}.scard .lb{padding:14px;font:900 40px/1 Inter,sans-serif}.scard .lb.y{background:linear-gradient(#ffd83a,#f5a800)}.scard .lb.w{background:linear-gradient(#fff,#d9dee8)}
+.stbl{display:grid;grid-template-columns:230px 1fr;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff;margin-bottom:16px}.sth{background:linear-gradient(135deg,#ffd83a,#f5a800);color:var(--navy);font-weight:800;padding:18px;font-size:16px;display:flex;align-items:center}.stb{padding:4px 0}.sti{padding:11px 18px 11px 38px;border-bottom:1px solid var(--line);position:relative;line-height:1.6}.sti:before{content:'';position:absolute;left:18px;top:19px;width:9px;height:9px;border-radius:2px;background:#f5a800}.sti:last-child{border-bottom:0}.ssub{background:var(--soft);color:var(--navy);font-weight:700;padding:9px 18px}@media(max-width:700px){.stbl{grid-template-columns:1fr}.sbanner h2{font-size:28px}}
 .wsteps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:6px 0 20px}.wst{border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;background:#fff}.wst small{display:block;color:var(--mut);font-weight:700;font-size:10px;letter-spacing:.06em}.wst b{display:block;font-size:13px;color:var(--navy);line-height:1.3}.wst.on{border-color:var(--blue);background:var(--soft)}.wpane{display:none}.wpane.on{display:block}.wnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:8px;padding-top:16px;border-top:1px solid var(--line);color:var(--mut);font-weight:600}@media(max-width:700px){.wsteps{grid-template-columns:1fr 1fr}}
 :root{--navy:#12204a;--blue:#2563eb;--soft:#eaf1ff;--cream:#f2f5fb;--line:#e6ebf3;--txt:#1a2442;--mut:#6b7691;--sh:0 1px 3px #1018281a,0 8px 24px #1018280d}
 body{background:var(--cream)}
@@ -99,7 +104,7 @@ main{max-width:1480px;padding:22px 26px 56px}
 .btn.red{background:#fff;color:#c0392b;border:1px solid #f1c9c4}
 .btn.red:hover{background:#fdecea}
 .f input,.f select{border-radius:10px;height:44px}
-
+.stat,.tile{border:0;box-shadow:var(--sh)}
 .dash{grid-template-columns:minmax(0,1fr) 340px}
 .hello{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:nowrap;background:linear-gradient(120deg,#e4ecfc,#f4f8ff 60%,#e1eafb);border-radius:18px;padding:26px 30px;margin-bottom:20px}
 .hello small{display:block;font-size:16px;font-weight:600;color:var(--navy)}
@@ -662,6 +667,21 @@ h1,h2,h3,h4{letter-spacing:-.01em}
 a{color:var(--blue)}
 ::selection{background:#2563eb33}
 ::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;border:2px solid transparent;background-clip:content-box}::-webkit-scrollbar-thumb:hover{background:#94a3b8;background-clip:content-box;border:2px solid transparent}
+
+/* ---------- 2. Sign-in page ---------- */
+#login{background:#fff}
+.hero{background:radial-gradient(900px 500px at 15% 10%,#2b4fa8aa,transparent 60%),radial-gradient(700px 500px at 90% 95%,#1e3a8a99,transparent 60%),linear-gradient(160deg,#0b1730,#12275a 60%,#1a3a86)}
+.hero img{border:4px solid #ffffff33;box-shadow:0 18px 50px #0007}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.02em}
+.lf{max-width:400px}
+.lf h1{font-weight:800;letter-spacing:-.02em}
+.lf input{height:48px;border:1px solid #cbd5e1;border-radius:12px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.lf input:hover{border-color:#94a3b8}
+.lf input:focus{outline:0;border-color:var(--blue);box-shadow:var(--ring)}
+.lf .sec{margin:0 0 2px;color:var(--mut)}
+.lf .btn{width:100%;height:48px;font-size:15px}
+.lf a{text-decoration:none}.lf a:hover{text-decoration:underline}
+#regbox{margin-top:18px;padding:18px;background:#f8fafc;border:1px solid var(--line);border-radius:var(--r)}
 
 /* ---------- 3. Sidebar ---------- */
 aside{background:linear-gradient(180deg,#0e1d3b 0%,#0a1428 100%)!important;box-shadow:1px 0 0 #ffffff0d}
@@ -2277,11 +2297,7 @@ I.users=ic('M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0
 act.umtoggle=v=>{const q=String(v).split('|'),u=q[0],on=q[1]==='1';if(confirm((on?'Activate':'Deactivate')+' the account '+u+'?'+(on?'':' They will no longer be able to sign in until you activate it again.')))call('setStaffActive',[T(),u,on],r=>{toast(r.message||(on?'Account activated.':'Account deactivated.'));usersPage()})};
 function usersPage(){head('User Management','Create and manage staff accounts. Encoders have admin privileges.');call('listUsers',[T()],r=>{
  $('view').innerHTML=`<div class="card"><h3>Add staff user</h3><div class="g"><div class="f"><label>Full name</label><input id="uF"></div><div class="f"><label>Username (min. 4 characters)</label><input id="uU" autocomplete="off"></div><div class="f"><label>Email (required for sign-in codes)</label><input id="uE" type="email"></div><div class="f"><label>Department</label><input id="uD" maxlength="60" autocomplete="off"></div><div class="f"><label>Account type</label><select id="uT"><option>Encoder</option><option value="Manager">System Manager</option><option>Guidance</option><option>Accounting</option></select></div><div class="f"><label>Temporary password (blank = auto-generate)</label><input id="uP" type="password" autocomplete="new-password"></div></div><small style="color:var(--mut)">Teachers and Head Teachers are created under Academics &rarr; Staff accounts.</small><div class="act" style="position:static"><button class="btn" data-act="umcreate">Create account</button></div></div>
- <div class="card"><h3>Staff accounts</h3><div class="tw"><table><thead><tr><th>Name</th><th>Username</th><th>Role</th><th>Department</th><th>Email</th><th>Status</th><th></th></tr></thead><tbody>${r.data.map(u=>{
-  // listUsers() returns Disabled (boolean), not Active
-  const off=u.Disabled===true||u.Disabled==='1',f=u.Clearance==='Full';
-  const role=u.Clearance==='Manager'?'System Manager':f?'Administrator':u.Clearance==='HeadTeacher'?'Head Teacher':u.Clearance==='Teacher'?'Teacher':['Guidance','Accounting','Academic'].includes(u.Clearance)?u.Clearance+' Office':'Encoder';
-  return `<tr${off?' style="opacity:.7"':''}><td><b>${esc(tc(u.FullName))}</b></td><td>${esc(u.Username)}</td><td><span class="chip ${f?'':'warn'}">${role}</span></td><td>${esc(u.Department)}</td><td>${esc(u.Email)}</td><td><span class="chip ${off?'no':'ok'}">${off?'Deactivated':'Active'}</span></td><td style="white-space:nowrap">${f?'':`<button class="btn alt" data-act="umtoggle" data-v="${esc(u.Username)}|${off?1:0}">${off?'Activate':'Deactivate'}</button> <button class="btn alt" data-act="umreset" data-v="${esc(u.Username)}">Reset password</button> <button class="btn red" data-act="umdel" data-v="${esc(u.Username)}">Remove</button>`}</td></tr>`}).join('')}</tbody></table></div></div>`})}
+ <div class="card"><h3>Staff accounts</h3><div class="tw"><table><thead><tr><th>Name</th><th>Username</th><th>Role</th><th>Department</th><th>Email</th><th>Status</th><th></th></tr></thead><tbody>${r.data.map(u=>{const off=u.Active==='0'||u.Active===false,f=u.Clearance==='Full';return `<tr${off?' style="opacity:.7"':''}><td><b>${esc(tc(u.FullName))}</b></td><td>${esc(u.Username)}</td><td><span class="chip ${f?'':'warn'}">${u.Clearance==='Manager'?'System Manager':f?'Administrator':u.Clearance==='HeadTeacher'?'Head Teacher':u.Clearance==='Teacher'?'Teacher':['Guidance','Accounting','Academic'].includes(u.Clearance)?u.Clearance+' Office':'Encoder'}</span></td><td>${esc(u.Department)}</td><td>${esc(u.Email)}</td><td><span class="chip ${off?'no':'ok'}">${off?'Deactivated':'Active'}</span></td><td style="white-space:nowrap">${f?'':`<button class="btn alt" data-act="umtoggle" data-v="${esc(u.Username)}|${off?1:0}">${off?'Activate':'Deactivate'}</button> <button class="btn alt" data-act="umreset" data-v="${esc(u.Username)}">Reset password</button> <button class="btn red" data-act="umdel" data-v="${esc(u.Username)}">Remove</button>`}</td></tr>`}).join('')}</tbody></table></div></div>`})}
 act.umteach = u => {
   const r = prompt('Convert ' + u + ' to:\n1 = Teacher\n2 = Head Teacher');
   if (r === null) return;
@@ -3821,7 +3837,10 @@ const polCard = () => `<div class="card"><h3>Transfer Out &amp; Cancellation Pol
 body.stu{--sb:#1a62f0;--sbd:#154fc4;--sbh:#ffffff2e}
 body.stu aside{background:#1a62f0}
 body.stu .brand img{border:3px solid #fff}
-
+.stprem{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;border:0;background:#ffa31a;color:#12204a;padding:16px 2px;cursor:pointer;font:800 9.5px Inter,sans-serif;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.stprem:hover{background:#ffb13d}
+.stpi{width:40px;height:40px;border-radius:50%;background:#12204a;color:#ffc928;display:flex;align-items:center;justify-content:center}
+.stpi svg{width:20px;height:20px}
 @media(min-width:1024px){
  body.stu{--sbw:96px;background:#1a62f0}
  body.stu #menu{display:none}
@@ -3834,6 +3853,60 @@ body.stu .brand img{border:3px solid #fff}
  body.stu .me{padding:0;border-top:0}
  body.stu main{margin:14px 14px 14px calc(var(--sbw) + 4px);min-height:calc(100vh - 28px);border-radius:26px;background:#f1f5ff;padding:20px 26px 28px}
 }
+/* --- cover --- */
+.sv-cv{position:relative;min-height:230px;border-radius:20px;overflow:hidden;color:#fff;padding:24px 28px;background:linear-gradient(115deg,#1a62f0,#4d8dff 55%,#22b8ff)}
+.sv-cv:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(115deg,#ffffff12 0 2px,transparent 2px 10px)}
+.sv-cv:after{content:'';position:absolute;right:-50px;top:-50px;width:320px;height:320px;border-radius:50%;background:var(--lg) center/cover;opacity:.14}
+.sv-cv>*{position:relative;z-index:1}
+.sv-cv small{display:block;font-size:15px;font-weight:600;opacity:.95}
+.sv-cv h2{font:800 28px/1.15 Inter,sans-serif;margin:2px 0 6px}
+.sv-cv p{margin:0;max-width:420px;opacity:.95}
+.sv-bar{position:absolute!important;right:18px;bottom:14px;max-width:calc(100% - 340px);display:flex;gap:8px 18px;flex-wrap:wrap;align-items:center;background:#ffffffeb;color:var(--navy);border-radius:14px;padding:9px 16px;font:600 13px Inter,sans-serif;box-shadow:0 6px 18px #0b2a5b26}
+.sv-bar span{display:inline-flex;gap:6px;align-items:center}
+.sv-bar svg{width:16px;height:16px;color:var(--blue)}
+.sv-so{gap:8px!important}
+.sv-so a{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.sv-so a:hover{background:var(--soft)}
+/* --- layout --- */
+.sv{display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;margin-top:-96px;position:relative;z-index:2;align-items:start}
+.sv-l{position:sticky;top:var(--tbh)}
+.sv-r{padding-top:112px;min-width:0;display:grid;gap:20px}
+.sv-r .card,.sv-r .scn{margin:0}
+.sv-pc{display:flow-root;position:relative;z-index:2;background:#fff;border-radius:22px;padding:0 18px 20px;text-align:center;box-shadow:var(--sh)}
+.sv-av{position:relative;width:120px;height:120px;margin:-60px auto 6px}
+.sv-ph{position:absolute;left:8px;top:8px;width:104px;height:104px;border-radius:50%;background:#dbe7ff center/cover no-repeat;display:flex;align-items:center;justify-content:center;font:800 30px Inter,sans-serif;color:var(--navy)}
+.sv-av>i{position:absolute;right:8px;bottom:12px;width:18px;height:18px;border-radius:50%;background:var(--dc);border:3px solid #fff}
+.sv-pc h2{font:800 20px/1.2 Inter,sans-serif;color:var(--navy);margin:0 0 4px}
+.sv-pc p{margin:0;color:var(--mut);font-size:13px;line-height:1.5}
+.sv-st{display:grid;grid-template-columns:1fr 1px 1fr;gap:6px;align-items:center;margin:16px 0}
+.sv-st i{height:34px;background:var(--line)}
+.sv-st b{display:block;font:800 22px Inter,sans-serif;color:var(--navy)}.sv-st small{color:var(--mut);font-size:12px}
+.sv-bt{display:flex;gap:10px}
+.sv-bt .btn{flex:1;justify-content:center;border-radius:999px;padding:11px 8px}
+.sv-jc{background:#b9d3ff;border-radius:0 0 22px 22px;margin-top:-26px;padding:42px 14px 14px;position:relative;z-index:1}
+.sv-jc h4{margin:0 0 10px;text-align:center;color:#fff;font:800 16px Inter,sans-serif;text-shadow:0 1px 2px #0b2a5b55}
+.sv-job{display:flex;gap:12px;align-items:center;background:#fff;border-radius:14px;padding:10px 12px}
+.sv-job img{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+.sv-job b{display:block;color:var(--navy);font-size:14px}.sv-job small{color:var(--mut);font-size:12px}
+.sv-job svg{margin-left:auto;color:#f5b301;fill:#f5b301;width:20px;height:20px}
+/* --- right column --- */
+.sv-r1{display:grid;grid-template-columns:minmax(230px,.8fr) minmax(0,1.2fr);gap:20px;align-items:stretch}
+.sv-or{position:relative;overflow:hidden;background:#ffa31a;color:#12204a;border-radius:20px;padding:22px;min-height:250px}
+.sv-or h3{display:flex;gap:10px;align-items:center;margin:0 0 14px;font-size:16px;color:#12204a}
+.sv-or h3 span{width:32px;height:32px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;color:#1a62f0}
+.sv-or h3 svg{width:18px;height:18px}
+.sv-or p{margin:0 0 12px;font-size:13.5px;line-height:1.55;max-width:230px}
+.sv-or p b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.sv-or>svg{position:absolute;right:-18px;bottom:-18px;width:120px;height:120px;color:#fff;opacity:.55}
+.sv-k{display:flex;flex-direction:column;gap:6px;align-items:flex-start;text-align:left;border:0;background:#f5f8ff;border-radius:14px;padding:14px 16px;font:inherit;color:inherit}
+button.sv-k{cursor:pointer}button.sv-k:hover{background:var(--soft)}
+.sv-k b{color:var(--navy);font-size:14px}.sv-k small{color:var(--mut);font-size:12.5px}
+.sv-sr{display:flex;gap:2px}
+.sv-s{fill:#d5dcec}.sv-s.on{fill:#f5b301}
+.sv-kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px}
+@media(min-width:1001px){.sv-cv{padding-left:350px}}{.sv-bar{position:static!important;max-width:none;margin-top:16px}.sv-cv{min-height:0}}
+@media(max-width:1000px){.sv{grid-template-columns:1fr;margin-top:-40px}.sv-l{position:static}.sv-r{padding-top:0}}
+@media(max-width:700px){.sv-r1{grid-template-columns:1fr}.sv-cv h2{font-size:22px}}
 `;document.head.appendChild(s)})();
 
 /* students: blue theme class, no collapsed rail, amber Scholarships block */
@@ -4378,6 +4451,24 @@ recHero=function(t){const r=t.rec,p=String(r.FullName||'').split(','),nm=r.FullN
 
 (function(){const s=document.createElement('style');s.textContent=`
 @media screen{
+/* ---------- Student Home ---------- */
+.shh2{padding:22px 24px}
+.hs{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(260px,340px);gap:24px;align-items:center}
+.ring{--p:0;position:relative;width:116px;height:116px;border-radius:50%;background:conic-gradient(var(--blue) calc(var(--p)*1%),#d6e2fb 0);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring:before{content:'';position:absolute;inset:11px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+.ring b,.ring small{position:relative}
+.ring b{font:800 26px/1 Inter,sans-serif;color:var(--navy)}.ring small{color:var(--mut);font-size:11.5px;margin-top:2px}
+.hsg{display:block;font:600 14px Inter,sans-serif;color:var(--mut)}
+.hsm h2{font:800 26px/1.2 Inter,sans-serif;color:var(--navy);margin:2px 0 6px}
+.hsm p{margin:0 0 14px;color:var(--mut)}
+.hsl{display:grid;gap:8px}
+.hsi{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--heroline);border-radius:12px;padding:9px 12px}
+.hsi i{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;color:#fff}
+.hsi.ok i{background:#16a34a;border-color:#16a34a}.hsi i svg{width:12px;height:12px}
+.hsi b{display:block;font-size:13px;color:var(--navy)}.hsi small{display:block;color:var(--mut);font-size:12px;line-height:1.3}
+.hsk{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+@media(max-width:1100px){.hs{grid-template-columns:auto minmax(0,1fr)}.hsl{grid-column:1/-1;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+@media(max-width:600px){.hs{grid-template-columns:1fr;justify-items:start}.hsm h2{font-size:22px}}
 /* ---------- Reports ---------- */
 .rsrch{margin:0 0 14px}
 .rsrch input{width:100%;height:46px;padding:0 16px 0 44px;border:1px solid #cbd5e1;border-radius:12px;font:inherit;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3'/%3E%3C/svg%3E") no-repeat 14px center/18px}
@@ -6226,4 +6317,208 @@ act.pvcopy=v=>{const done=()=>toast('Copied');(navigator.clipboard&&navigator.cl
 /* clicking Edit on this view should start at Step 1 */
 const _editPv=act.edit;
 act.edit=()=>{S.t.step=1;_editPv()};
+
+/* ===== Schedule of Fees: student view v2 =====
+   Answer-first plan cards, payment timeline, category banner, promo countdown, PDF, sticky mobile bar.
+   Students only. Admins keep the existing fee view. Nothing is calculated: every amount is read from the Fees sheet. */
+(function () {
+  const s = document.createElement('style');
+  s.textContent = `
+@media screen{
+.fs-cat{margin:0 0 16px}
+.fs-cat .btn{margin-top:10px}
+.fs-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:14px;margin:0 0 6px}
+.fs-p{--c:#2563eb;position:relative;display:flex;flex-direction:column;gap:4px;text-align:left;font:inherit;color:var(--txt);cursor:pointer;
+ background:#fff;border:2px solid var(--line);border-top:5px solid var(--c);border-radius:16px;padding:16px 16px 14px;box-shadow:var(--sh);transition:transform .12s,box-shadow .15s,border-color .15s}
+.fs-p:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.fs-p.on{border-color:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 18%,transparent),var(--sh2)}
+.fs-pn{display:flex;align-items:center;gap:8px;font:700 14px Inter,sans-serif;color:var(--navy)}
+.fs-d{width:10px;height:10px;border-radius:3px;background:var(--c);flex:none}
+.fs-p small{color:var(--mut);font-size:12px;font-weight:600;margin-top:6px}
+.fs-pa{font:800 28px/1.1 Inter,sans-serif;color:var(--navy);letter-spacing:-.02em}
+.fs-th{color:#334155;font-size:13.5px;font-weight:600}
+.fs-tt{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px;color:var(--mut);display:flex;justify-content:space-between;gap:8px}
+.fs-tt b{color:var(--navy)}
+.fs-bg{display:flex;gap:6px;flex-wrap:wrap;min-height:22px;margin-top:6px}
+.fs-sel{position:absolute;top:10px;right:12px;font:700 11px Inter,sans-serif;color:var(--c)}
+.fs-ac{display:flex;gap:8px;flex-wrap:wrap}
+.fs-tl{list-style:none;margin:0;padding:0}
+.fs-tl li{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 0}
+.fs-tl li:before{content:'';position:absolute;left:14px;top:0;bottom:0;width:2px;background:var(--line)}
+.fs-tl li:first-child:before{top:50%}.fs-tl li:last-child:before{bottom:50%}
+.fs-tl li:only-child:before{display:none}
+.fs-dot{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;background:#e2e8f0;color:#475569;display:flex;align-items:center;justify-content:center;font:700 12px Inter,sans-serif}
+.fs-tl li b{display:block;color:var(--navy);font-size:15px}
+.fs-tl li small{display:block;color:var(--mut);font-size:12.5px}
+.fs-am{text-align:right;font:800 17px Inter,sans-serif;color:var(--navy);font-variant-numeric:tabular-nums}
+.fs-am em{display:block;font:700 11px Inter,sans-serif;font-style:normal;color:var(--blue);margin-top:2px}
+.fs-tl li.nx .fs-dot{background:var(--blue);color:#fff;box-shadow:0 0 0 4px #2563eb2b}
+.fs-tl li.nx{background:linear-gradient(90deg,#eaf1ff,transparent);border-radius:12px;margin:0 -10px;padding:12px 10px}
+.fs-tl li.pa{opacity:.55}
+.fs-tot{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:14px 16px;border-radius:12px;background:#eaf1ff;font-weight:700;color:var(--navy)}
+.fs-tot b{font-size:19px}
+.fs-bar{display:none}
+@media(max-width:767px){
+ .fs-plans{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:4px 2px 10px;margin:0 -2px;scrollbar-width:none}
+ .fs-plans::-webkit-scrollbar{display:none}
+ .fs-p{flex:0 0 80%;scroll-snap-align:start}
+ .fs-bar{display:flex;position:sticky;bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:30;justify-content:space-between;align-items:center;gap:10px;
+  background:#0f1f3d;color:#fff;border-radius:14px;padding:10px 12px 10px 16px;box-shadow:0 10px 30px #0f172a55;margin-top:16px}
+ .fs-bar small{display:block;color:#bfdbfe;font-size:12px}.fs-bar b{font-size:15px}
+ .fs-bar .btn{padding:8px 14px;font-size:13px}
+ .fs-ac{width:100%}.fs-ac .btn{flex:1 1 auto;justify-content:center}
+}
+html[data-theme=dark] .fs-p{background:#10173a;border-color:var(--line)}
+html[data-theme=dark] .fs-p.on{border-color:var(--c)}
+html[data-theme=dark] .fs-th{color:#cdd6f6}
+html[data-theme=dark] .fs-tot{background:#161f4a}
+html[data-theme=dark] .fs-tl li.nx{background:linear-gradient(90deg,#16204f,transparent)}
+html[data-theme=dark] .fs-dot{background:rgba(150,170,255,.18);color:#c5d0ee}
+}`;
+  document.head.appendChild(s);
+})();
+
+/* ---------- helpers ---------- */
+const FS_M = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+/** "Aug. 15" -> a Date in the active school year (Jun to Dec = first year, Jan to May = second year). null if not a date. */
+function feeDue(txt) {
+  const m = String(txt || '').trim().match(/^([A-Za-z]{3})[A-Za-z]*\.?\s*(\d{1,2})$/); if (!m) return null;
+  const mo = FS_M[m[1].toLowerCase()]; if (mo == null) return null;
+  const y = parseInt(String(S.cfg.sy).slice(0, 4), 10);
+  return new Date(mo >= 5 ? y : y + 1, mo, +m[2]);
+}
+const feeFmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+/** One summary object per plan, built only from the sheet rows. */
+function feePlans(rows, names) {
+  return names.map(p => {
+    const its = rows.filter(x => x.Plan === p), tot = its.find(isT), pay = its.filter(x => !isT(x)), full = p === 'Full Payment',
+      total = tot ? tot.Amount : pay.reduce((a, x) => a + x.Amount, 0), rest = full ? [] : pay.slice(1);
+    return { p: p, pay: pay, full: full, total: total, upon: full ? total : (pay[0] ? pay[0].Amount : total), rest: rest,
+      then: full || !rest.length ? 'One payment' : rest.every(x => x.Amount === rest[0].Amount) ? 'Then ' + rest.length + ' \u00d7 ' + pm(rest[0].Amount) : 'Then ' + rest.length + ' payments (amounts vary)' };
+  });
+}
+/** Display rows for one plan: title, due date (if the label holds one) and the sheet amount. */
+function feeItems(pl) {
+  return pl.pay.map((x, i) => {
+    const mt = x.Item.match(/^(.*?)\s*\(([^)]*)\)\s*$/), raw = mt ? mt[1].trim() : x.Item, txt = mt ? mt[2].trim() : '', d = pl.full ? null : feeDue(txt),
+      enr = /^upon\s+enrollment/i.test(raw);
+    return { title: enr ? 'Pay at enrollment' : raw, date: d, sub: d ? feeFmt(d) : (txt || (enr ? 'When you enroll' : '')), amt: x.Amount };
+  });
+}
+
+/** The learner's scholarship text, taken from the "Grant" rows of the Fee Notes sheet. */
+function feeCat(F) {
+  const c = S.fcat; if (!['TLC', 'TLC-OVAP', 'ESC', 'PUB-QVR', 'QVA PASSER'].includes(c)) return null;
+  const g = F.notes.filter(n => n.Type.toLowerCase() === 'grant'), pick = re => g.find(x => re.test(x.Title));
+  const n = c === 'TLC' ? pick(/TLC/i) : c === 'ESC' ? pick(S.fdept === 'Senior High School' ? /senior/i : /junior/i) : c === 'TLC-OVAP' ? null : pick(/voucher/i);
+  return { c: c, d: n ? n.Details : '' };
+}
+
+/* ---------- load: also remember category, department and the record (for the PDF) ---------- */
+tuitionPage = function () {
+  S.fplan = ''; S.fsel = '';
+  head('Schedule of Fees', 'School Year ' + S.cfg.sy.replace('-', '\u2013'));
+  call('getFees', [T()], r => {
+    S.fees = r.data; if (A()) return feeRender();
+    call('getStudent', [T()], q => { const s = q.data; S.frec = s; S.fg = s.GradeLevel || ''; S.fcat = s.Category || ''; S.fdept = s.Department || ''; feeRender(); });
+  });
+};
+
+/* ---------- the student view ---------- */
+function feeStu() {
+  const F = S.fees, tiers = [...new Set(F.rows.map(x => x.Tier))];
+  if (!tiers.length) return $('view').innerHTML = '<div class="card">The fee schedule has not been filled in yet.</div>';
+  const t = tierFor(S.fg, tiers);
+  if (!t) return $('view').innerHTML = `<div class="card">${S.fg ? 'No fee schedule has been set for your level yet. Please contact the Admissions Office.' : 'Choose your <b>Grade Level</b> in <b>Student Profile</b> to see the tuition fees for your level.'}</div>`;
+  const rows = F.rows.filter(x => x.Tier === t),
+    names = [...new Set(rows.map(x => x.Plan))].sort((a, b) => { const i = PLAN_ORDER.indexOf(a), j = PLAN_ORDER.indexOf(b); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); }),
+    P = feePlans(rows, names);
+  if (!P.length) return $('view').innerHTML = '<div class="card">No payment plans are listed for your level yet. Please contact the Admissions Office.</div>';
+  S.fpn = names;
+  const sel = P.find(x => x.p === S.fsel) || P[0]; S.fsel = sel.p; S.fmodel = { tier: t, P: P, sel: sel };
+
+  /* badges */
+  const tots = P.map(x => x.total), ups = P.map(x => x.upon), mnT = Math.min(...tots), mxT = Math.max(...tots), mnU = Math.min(...ups), mxU = Math.max(...ups);
+  const bad = x => (P.length > 1 && mxT !== mnT && x.total === mnT ? '<span class="rb g">Lowest total</span>' : '') + (P.length > 1 && mxU !== mnU && x.upon === mnU ? '<span class="rb y">Smallest first payment</span>' : '');
+
+  /* 1. plan cards */
+  const cards = P.map((x, i) => { const m = pmeta(x.p), on = x.p === sel.p;
+    return `<button type="button" class="fs-p${on ? ' on' : ''}" style="--c:${m.c}" data-act="fsp" data-v="${i}" aria-pressed="${on}">${on ? '<span class="fs-sel">Selected</span>' : ''}
+     <span class="fs-pn"><i class="fs-d"></i>${esc(x.p)}</span><small>Pay at enrollment</small><span class="fs-pa">${pm(x.upon)}</span><span class="fs-th">${esc(x.then)}</span>
+     <span class="fs-tt"><span>Total for the year</span><b>${pm(x.total)}</b></span><span class="fs-bg">${bad(x)}</span></button>`; }).join('');
+
+  /* 3. timeline (or a simple breakdown for full payment) */
+  const items = feeItems(sel), td0 = new Date(); td0.setHours(0, 0, 0, 0);
+  const ni = items.findIndex(x => x.date && x.date >= td0), past = items.some(x => x.date && x.date < td0), m = pmeta(sel.p);
+  const body = sel.full
+    ? items.map(x => `<div class="fpr"><i style="background:${m.c}"></i><span>${esc(x.title)}</span><b>${pm(x.amt)}</b></div>`).join('') + '<p class="dxn" style="margin:10px 0 0">Paid once, when you enroll.</p>'
+    : `<ol class="fs-tl">${items.map((x, i) => `<li class="${i === ni ? 'nx' : x.date && x.date < td0 ? 'pa' : ''}"><span class="fs-dot">${i + 1}</span><div><b>${esc(x.title)}</b><small>${esc(x.sub)}</small></div><div class="fs-am">${pm(x.amt)}${i === ni ? '<em>Next due</em>' : ''}</div></li>`).join('')}</ol>`
+      + (past ? '<p class="dxn" style="margin:8px 0 0">Dates that have passed are shown lighter. Ask the Cashier how they apply to you.</p>' : '');
+  const timeline = `<div class="card" id="fs-tlc"><div class="ch"><div><h3>${esc(sel.p)} schedule</h3><span style="color:var(--mut);font-size:13px">${esc(t)} \u00b7 School Year ${esc(String(S.cfg.sy).replace('-', '\u2013'))}</span></div><div class="fs-ac"><button class="btn alt" data-act="fspdf">Download PDF</button><button class="btn alt" data-act="fcash">Ask about fees</button></div></div>${body}<div class="fs-tot"><span>Total for the year</span><b>${pm(sel.total)}</b></div></div>`;
+
+  /* 4. category banner */
+  const ct = feeCat(F), cat = ct ? `<div class="scn fs-cat">${SICO.info}<div><b>Your category: ${esc(ct.c)}.</b> ${ct.d ? esc(ct.d) + '. ' : ''}The plans below show the regular rates for your grade level. Your scholarship is applied by the School Cashier.<br><button class="btn alt" data-act="fsch" data-v="${esc(FS_PROG[ct.c] || '')}">View ${esc(FS_PROG[ct.c] || '')} scholarship benefits</button></div></div>` : '';
+
+  /* promos with a countdown, soonest first */
+  const lines = x => x.split('|').map(y => y.trim()).filter(Boolean),
+    promos = F.notes.filter(n => n.Type.toLowerCase() === 'promo').sort((a, b) => (a.Until || '9999').localeCompare(b.Until || '9999'));
+  const cd = u => { if (!u) return ''; const n = evIn(u); return `<span class="evw ${n <= 7 ? 'hot' : ''}">${n === 0 ? 'Last day' : 'Ends ' + esc(fmtS(u)) + (n <= 30 ? ' \u00b7 ' + n + ' day' + (n === 1 ? '' : 's') + ' left' : '')}</span>`; };
+  const promoCard = promos.length ? `<div class="card"><div class="ch"><h3>Promos &amp; Discounts</h3></div>${promos.map(p => `<div class="fpm"><div class="fpmt"><span class="ao c3">${SICO.gift}</span><b>${esc(p.Title)}</b>${cd(p.Until)}</div>${lines(p.Details).map(x => `<div class="sci"><i>${SICO.chk}</i><div>${esc(x)}</div></div>`).join('')}</div>`).join('')}</div>` : '';
+  const grants = F.notes.filter(n => n.Type.toLowerCase() === 'grant');
+  const grantCard = grants.length ? `<details class="card scs cpd"><summary class="sch"><span class="ao c2">${SICO.gift}</span><h3>All scholarship programs</h3><span class="cpch">${CPCH}</span></summary><div class="scb">${grants.map(g => `<div class="fgr"><b>${esc(g.Title)}</b><span>${esc(g.Details)}</span></div>`).join('')}</div></details>` : '';
+
+  $('view').innerHTML = `<div class="shero nk"><div class="sht"><div><h2>Your Tuition Fees</h2><p>Pick a payment plan to see when each payment is due. Every plan covers the same school year.</p><div class="shch"><span class="shchip">Your grade level: ${esc(S.fg)}</span><span class="shchip">${esc(t)}</span></div></div></div></div>
+  ${cat}
+  <div class="ch" style="margin:0 0 10px"><h3 style="margin:0">Choose a payment plan</h3></div>
+  <div class="fs-plans" id="fs-plans" role="group" aria-label="Payment plans">${cards}</div>
+  <div class="scn" style="margin:10px 0 18px">${SICO.info}<div>These amounts are for reference only. Final fee assessment is handled by the School Cashier.</div></div>
+  <div class="dash"><div class="dmain">${timeline}</div><div class="dside">${promoCard}${grantCard}${helpbar()}</div></div>
+  <div class="fs-bar"><div><small>${esc(sel.p)}</small><b>Pay at enrollment ${pm(sel.upon)}</b></div><button class="btn alt" data-act="fsjump">Change plan</button></div>`;
+}
+
+/* students get the new view; admins keep the existing one */
+const _feeAdm = feeRender;
+feeRender = function () { return A() ? _feeAdm() : feeStu(); };
+
+act.fsp = i => { const n = (S.fpn || [])[+i]; if (n) { S.fsel = n; feeRender(); } };
+act.fsjump = () => { const e = $('fs-plans'); if (e) e.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+act.fcash = () => { act.cfopen(); const t = $('cft'); if (t) t.value = 'Payments and fees'; const x = $('cfx'); if (x) x.focus(); };
+
+/* ---------- "My payment schedule" PDF (one page: selected plan + all plans side by side) ---------- */
+function feePdfHTML(m) {
+  const r = S.frec || {}, sel = m.sel, items = feeItems(sel),
+    td = 'padding:7px 10px;border-bottom:1px solid #dbe3f0;font-size:10.5pt', th = 'padding:7px 10px;background:#12204a;color:#fff;text-align:left;font-size:10pt',
+    ct = feeCat(S.fees);
+  return `<div style="width:210mm;box-sizing:border-box;padding:14mm;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#14213d">
+  <div style="display:flex;align-items:center;gap:12px;border-bottom:3px solid #12204a;padding-bottom:10px;margin-bottom:14px"><img src="${LOGO}" alt="" style="width:54px;height:54px;border-radius:50%"><div><div style="font:800 20pt Arial">MOREH ACADEMY</div><div style="color:#475569;font-size:11pt">My Payment Schedule \u00b7 School Year ${esc(String(S.cfg.sy).replace('-', '\u2013'))}</div></div></div>
+  <table style="width:100%;font-size:10.5pt;margin-bottom:14px"><tr><td><b>Learner:</b> ${esc(tc(r.FullName || ''))}</td><td><b>Enrollment ID:</b> ${esc(r.StudentID || '')}</td></tr><tr><td><b>Grade level:</b> ${esc(r.GradeLevel || '')}</td><td><b>Fee level:</b> ${esc(m.tier)}</td></tr>${ct ? `<tr><td colspan="2"><b>Category:</b> ${esc(ct.c)}${ct.d ? ' \u2013 ' + esc(ct.d) : ''}</td></tr>` : ''}</table>
+  <div style="font:700 12pt Arial;margin:0 0 6px">${esc(sel.p)}</div>
+  <table style="width:100%;border-collapse:collapse"><tr><th style="${th}">Payment</th><th style="${th}">Due</th><th style="${th};text-align:right">Amount</th></tr>
+  ${items.map(x => `<tr><td style="${td}">${esc(x.title)}</td><td style="${td}">${esc(x.sub)}</td><td style="${td};text-align:right">${pm(x.amt)}</td></tr>`).join('')}
+  <tr><td style="${td};font-weight:700;background:#eaf1ff" colspan="2">Total for the year</td><td style="${td};text-align:right;font-weight:700;background:#eaf1ff">${pm(sel.total)}</td></tr></table>
+  <div style="font:700 12pt Arial;margin:18px 0 6px">All payment plans for ${esc(m.tier)}</div>
+  <table style="width:100%;border-collapse:collapse"><tr><th style="${th}">Plan</th><th style="${th};text-align:right">Pay at enrollment</th><th style="${th}">Remaining</th><th style="${th};text-align:right">Total</th></tr>
+  ${m.P.map(x => `<tr><td style="${td}">${esc(x.p)}</td><td style="${td};text-align:right">${pm(x.upon)}</td><td style="${td}">${esc(x.then)}</td><td style="${td};text-align:right">${pm(x.total)}</td></tr>`).join('')}</table>
+  <p style="margin:16px 0 0;font-size:9pt;color:#475569;line-height:1.5">For reference only. Final fee assessment, discounts and scholarship adjustments are handled by the School Cashier. Printed ${esc(feeFmt(new Date()))}.</p></div>`;
+}
+act.fspdf = () => { const m = S.fmodel; if (!m) return; savePdf(feePdfHTML(m), fileName(S.frec || {}, 'Payment-Schedule')); };
+
+/* ===== Fees banner -> the learner's own scholarship page ===== */
+/* Category on the learner record -> program key used by the Scholarships page */
+const FS_PROG = { 'TLC': 'TLC', 'TLC-OVAP': 'TLC', 'ESC': 'ESC', 'PUB-QVR': 'QVR', 'QVA PASSER': 'QVA' };
+
+/** Remembers the program, then opens the Scholarships page. */
+act.fsch = k => {
+  if (!SCHK.includes(k)) return nav('sch');     // unknown category: fall back to the list
+  S.schGo = k;
+  nav('sch');
+};
+
+/** When the Scholarships page finishes loading, jump straight into the remembered program (once). */
+const _schRenderGo = schRender;
+schRender = function () {
+  if (S.schGo) { S.sk = S.schGo; S.schGo = ''; S.schEdit = null; }
+  _schRenderGo();
+};
 </script></body></html>
