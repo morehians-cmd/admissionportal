@@ -35,12 +35,8 @@ function reportsHome(token, sy) {
   try {
     const u = who_(token, 'admin');
     if (u.Clearance === 'Encoder') throw new Error('Encoders do not have access to reports.');
-    const stu = rows_('S'), S0 = reportSY_(sy), all = rowsForSY_(S0, stu), n = f => all.filter(f).length, m = {};
-    m[activeSY_()] = 1; m[S0] = 1;
-    stu.forEach(s => { if (RP_SY_RE.test(s.SchoolYear)) m[s.SchoolYear] = 1; });
-    const hs = histSh_();
-    if (hs.getLastRow() > 1) hs.getRange(2, 2, hs.getLastRow() - 1, 1).getValues().forEach(r => { if (RP_SY_RE.test(String(r[0]))) m[String(r[0])] = 1; });
-    return ok({ sy:S0, active:activeSY_(), years:Object.keys(m).sort().reverse(),
+    const stu = rows_('S'), S0 = reportSY_(sy), all = rowsForSY_(S0, stu), n = f => all.filter(f).length;
+    return ok({ sy:S0, active:activeSY_(), years:Object.keys(rpYears_(stu, [activeSY_(), S0])).sort().reverse(),
       kpis:{ total:all.length, enrolled:n(r => r.EnrollStatus === 'Enrolled'), pending:n(r => r.EnrollStatus === 'Not Enrolled'), temp:n(r => r.EnrollStatus === 'Temporary'),
         transferred:n(r => r.EnrollStatus === 'Transferred Out'), cancelled:n(r => r.EnrollStatus === 'Cancelled') } });
   } catch (e) { return fail(e); }
@@ -108,8 +104,7 @@ const stu = rows_('S');
     const missing = Object.keys(miss).map(k => [k, anReqLabel_(k), miss[k]]).sort((a, b) => b[2] - a[2]);
 
     const yrs = rpYears_(stu, [activeSY_(), A.sy]); yrs[A.sy] = 1;
-    stu.forEach(s => { if (RP_SY_RE.test(s.SchoolYear)) yrs[s.SchoolYear] = 1; });
-    const hs = histSh_(); if (hs.getLastRow() > 1) hs.getRange(2, 2, hs.getLastRow() - 1, 1).getValues().forEach(r => { if (RP_SY_RE.test(String(r[0]))) yrs[String(r[0])] = 1; });
+
     const yoy = Object.keys(yrs).sort().slice(-5).map(y => { const x = anPop_(y, A.lvl, stu);
       return { sy: y, total: x.length, enrolled: x.filter(r => r.EnrollStatus === 'Enrolled').length }; });
 

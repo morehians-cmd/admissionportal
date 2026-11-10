@@ -33,7 +33,7 @@ const POLICY_TAGS = ['h3','h4','p','ul','ol','li','b','i','u','br','strong','em'
 /** PUBLIC step 1. Validates, then e-mails a 6-digit code. Creates NOTHING yet. Same response whether or not the learner already exists. */
 function registerAccount(f) {
   try {
-    const SY = activeSY_(), up = v => String(v || '').trim().toUpperCase();
+    const up = v => String(v || '').trim().toUpperCase();
     const em0 = String(f.email || '').trim(), em = em0.toLowerCase(), pw = String(f.password || ''), lrn = String(f.lrn || '').trim(), bd = String(f.birthdate || '').trim();
     const sn = up(f.surname), fn = up(f.firstName);
     if (!enrollOpen_() && !allowed_().includes(em)) throw new Error('Enrollment is currently closed. Please contact the Admissions Office.');

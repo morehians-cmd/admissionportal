@@ -62,10 +62,9 @@ function doBackup_() {
   DriveApp.getFileById(ss.getId()).makeCopy('Backup ' + Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd HHmm') + ' - ' + ss.getName(), folder);
   const cutoff = Date.now() - BACKUP_KEEP_DAYS * 864e5, it = folder.getFiles();
   while (it.hasNext()) { const f = it.next(); if (f.getName().indexOf('Backup ') === 0 && f.getDateCreated().getTime() < cutoff) f.setTrashed(true); }
-  const pr = PropertiesService.getScriptProperties(), today = 'pm_' + Utilities.formatDate(new Date(), tz, 'yyyyMMdd');
+  const pr = PropertiesService.getScriptProperties(), dayS = Utilities.formatDate(new Date(), tz, 'yyyyMMdd');
   pr.setProperty('LAST_BACKUP', String(Date.now()));
-  const dayS = Utilities.formatDate(new Date(), tz, 'yyyyMMdd');
-  pr.getKeys().forEach(k => { const m = k.match(/^pm_(?:[a-z]+_)?(\d{8})$/); if (m && m[1] !== dayS) pr.deleteProperty(k); });   // tidy old mail counters 
+  pr.getKeys().forEach(k => { const m = k.match(/^pm_(?:[a-z]+_)?(\d{8})$/); if (m && m[1] !== dayS) pr.deleteProperty(k); });   // tidy old mail counters
 }
 
 /** Off-sheet copy of yesterday's sensitive actions, e-mailed to the owner (cannot be edited in the spreadsheet). */

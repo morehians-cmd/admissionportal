@@ -306,7 +306,7 @@ function report(token, type, arg, sy) {
       const tips = labels.map(l=>tip(r=>r.GradeLevel===l)); tips.push(tip(r=>labels.includes(r.GradeLevel)));
       rows.push(['TOTAL',0,0,0].map((v,i)=>i?rows.reduce((a,r)=>a+r[i],0):v));
       return { title:title, cols:['LEVEL','OLD','NEW','TOTAL'], rows:rows, tips:tips }; };
-    const ori = ['Male-Masculine','Male-Feminine','Female-Feminine','Female-Masculine'].map(l=>[l,n(s,r=>r.SexualOrient+'-'+r.GenderOrient===l)]);
+    
     const PERSONAL_DEFAULT = ['LRN','Classification','Category','GradeLevel','Section','Birthdate','Age','SexualOrient','Religion','Mobile','FatherName','FatherOccupation','FatherEducation','FatherMobile','FatherReligion','MotherName','MotherOccupation','MotherEducation','MotherMobile','MotherReligion','EmName','EmRelation','EmMobile'];
     // ---------- shared helpers for the visual reports ----------
     const GC = ['#db2777','#16a34a','#2563eb','#7c3aed','#d97706'], SXC = { Male:'#2563eb', Female:'#db2777' };
@@ -314,8 +314,8 @@ function report(token, type, arg, sy) {
     const pct = (a,b) => b ? (Math.round(a/b*1000)/10).toFixed(1)+'%' : '0.0%';
     const secLab = x => x || 'UNASSIGNED';
     const catOf = r => (r.Classification==='New' && r.ReqTransferee && r.ReqTransferee!=='None') ? 'Transferee' : (r.Classification||'');
-    const rel_ = (r,p) => r[p+'Religion']==='Others, specify' ? (r[p+'ReligionOther']||'') : (r[p+'Religion']||'');
-    const dob_ = b => { try { return /^\d{4}-\d{2}-\d{2}$/.test(b||'') ? Utilities.formatDate(new Date(b+'T00:00:00'), Session.getScriptTimeZone(), 'MMM dd, yyyy') : ''; } catch(e) { return b||''; } };
+    
+    
     const byName = (a,b) => String(a.FullName).localeCompare(String(b.FullName));
     // arg = { grade, section }  (section '*' = every section of the grade, '(none)' or '' = unassigned)
     const pick = a => { a = a||{}; const g = String(a.grade||''); if (!GRADES.includes(g)) throw new Error('Select a grade level.');
@@ -568,32 +568,34 @@ function evRows_() {
 }
 function getNotifications(token) {
   try {
-    { const _a = who_(token); if (ACAD_ROLES.indexOf(_a.Clearance) >= 0) return ok({ count:0, items:[] }); }
-    const u = who_(token), pr = PropertiesService.getScriptProperties(), tz = Session.getScriptTimeZone(),
-  prev = u.Role === 'admin' ? (pr.getProperty('pl_'+u.Username)||'') : Utilities.formatDate(new Date(Date.now()-7*864e5), tz, 'yyyy-MM-dd HH:mm:ss');
-    const today = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd'), wk = Utilities.formatDate(new Date(Date.now()+6*86400000), tz, 'yyyy-MM-dd');
-   const evs = evRows_(), items = [], all = u.Role==='admin' ? studentsLite_() : []
-   if (u.Role==='admin' && ACAD_ROLES.indexOf(u.Clearance) < 0) {
-   const nw = prev ? all.filter(s=>s.CreatedAt>prev).length : 0;
-      if (nw) items.push({ title:nw+' new registration'+(nw>1?'s':''), text:'Since you last signed in.', go:'newreg' });
-      const nc = all.filter(inSY_).filter(s=>s.EnrollStatus!=='Cancelled'&&s.EnrollStatus!=='Transferred Out'&&s.ReqConsent!=='Original').length;
-      if (nc && u.Clearance!=='Encoder') items.push({ title:nc+' learner'+(nc>1?'s':'')+' without Parental Consent', text:'Parental Consent & Data Privacy Undertaking Form not yet submitted.', go:'noconsent' });
-      const we = evs.filter(e=>e.Category!=='Announcement'&&e.EventDate>=today&&e.EventDate<=wk);
-      if (we.length) items.push({ title:we.length+' event'+(we.length>1?'s':'')+' this week', text:we.map(e=>e.Title).join(', '), go:'ev' });
+    const u = who_(token);
+    if (ACAD_ROLES.indexOf(u.Clearance) >= 0) return ok({ count:0, items:[] });
+    const pr = PropertiesService.getScriptProperties(), tz = Session.getScriptTimeZone(),
+      prev = u.Role === 'admin' ? (pr.getProperty('pl_' + u.Username) || '') : Utilities.formatDate(new Date(Date.now() - 7 * 864e5), tz, 'yyyy-MM-dd HH:mm:ss');
+    const today = Utilities.formatDate(new Date(), tz, 'yyyy-MM-dd'), wk = Utilities.formatDate(new Date(Date.now() + 6 * 86400000), tz, 'yyyy-MM-dd');
+    const evs = evRows_(), items = [];
+    if (u.Role === 'admin') {
+      const all = studentsLite_(), nw = prev ? all.filter(s => s.CreatedAt > prev).length : 0;
+      if (nw) items.push({ title: nw + ' new registration' + (nw > 1 ? 's' : ''), text: 'Since you last signed in.', go: 'newreg' });
+      const nc = all.filter(inSY_).filter(s => s.EnrollStatus !== 'Cancelled' && s.EnrollStatus !== 'Transferred Out' && s.ReqConsent !== 'Original').length;
+      if (nc && u.Clearance !== 'Encoder') items.push({ title: nc + ' learner' + (nc > 1 ? 's' : '') + ' without Parental Consent', text: 'Parental Consent & Data Privacy Undertaking Form not yet submitted.', go: 'noconsent' });
+      const we = evs.filter(e => e.Category !== 'Announcement' && e.EventDate >= today && e.EventDate <= wk);
+      if (we.length) items.push({ title: we.length + ' event' + (we.length > 1 ? 's' : '') + ' this week', text: we.map(e => e.Title).join(', '), go: 'ev' });
     } else {
       const sx = findRow_('S', 'StudentID', u.StudentID), s = sx && sx.o;
       if (s) {
-        const sc = s.StatusChangedAt || ''; if (sc && sc>prev) items.push({ title:'Enrollment status update', text:'Your enrollment status is now: '+(s.EnrollStatus||'Not Enrolled')+'.', go:'home' });
-        if (s.Classification==='New' && CERT_CATS.includes(s.Category) && !(s.CertNo||s.VoucherCertNo||s.EscCertNo)) items.push({ title:'Certificate Number not yet submitted', text:'Required for transfer students. You may submit it later; your enrollment can still proceed.', go:'sp' });
-        if (s.ReqConsent!=='Original') items.push({ title:'Parental Consent form not yet submitted', text:'Print it from your dashboard and submit it with your hardcopy requirements.', go:'home' });
-        const miss = reqsFor_(s).req.filter(k => k!=='ReqConsent' && (!s[k]||s[k]==='None')).map(k => (FIELDS.find(f=>f[1]===k)||[0,0,k])[2]);
-        if (miss.length) items.push({ title:miss.length+' requirement'+(miss.length>1?'s':'')+' still missing', text:miss.join(', '), go:'rq' });
+        const sc = s.StatusChangedAt || '';
+        if (sc && sc > prev) items.push({ title: 'Enrollment status update', text: 'Your enrollment status is now: ' + (s.EnrollStatus || 'Not Enrolled') + '.', go: 'home' });
+        if (s.Classification === 'New' && CERT_CATS.includes(s.Category) && !(s.CertNo || s.VoucherCertNo || s.EscCertNo)) items.push({ title: 'Certificate Number not yet submitted', text: 'Required for transfer students. You may submit it later; your enrollment can still proceed.', go: 'sp' });
+        if (s.ReqConsent !== 'Original') items.push({ title: 'Parental Consent form not yet submitted', text: 'Print it from your dashboard and submit it with your hardcopy requirements.', go: 'home' });
+        const miss = reqsFor_(s).req.filter(k => k !== 'ReqConsent' && (!s[k] || s[k] === 'None')).map(k => (FIELDS.find(f => f[1] === k) || [0, 0, k])[2]);
+        if (miss.length) items.push({ title: miss.length + ' requirement' + (miss.length > 1 ? 's' : '') + ' still missing', text: miss.join(', '), go: 'rq' });
       }
-      const ne = prev ? evs.filter(e=>e.EventDate>=today&&e.UpdatedAt>prev) : [];
-      if (ne.length) items.push({ title:ne.length+' new bulletin post'+(ne.length>1?'s':''), text:ne.map(e=>e.Title).join(', '), go:'ev' });
+      const ne = prev ? evs.filter(e => e.EventDate >= today && e.UpdatedAt > prev) : [];
+      if (ne.length) items.push({ title: ne.length + ' new bulletin post' + (ne.length > 1 ? 's' : ''), text: ne.map(e => e.Title).join(', '), go: 'ev' });
     }
-    return ok({ count:items.length, items:items });
-  } catch(e) { return fail(e); }
+    return ok({ count: items.length, items: items });
+  } catch (e) { return fail(e); }
 }
 /* ---------- School year, enrollment switch, policy ---------- */
 const SCHOOL_ID = '488011';
