@@ -107,6 +107,22 @@ function getPublicFacilityPhoto(id) {
     return ok(uri);
   } catch (e) { return fail(e); }
 }
+/** PUBLIC. Serves only the one approved photo assigned to a public subsection page. */
+function getPublicPagePhoto(page) {
+  try {
+    page = String(page || '');
+    const allowed = ["about-values","about-history","about-leadership","admissions-enrollment","admissions-requirements","admissions-scholarships","admissions-faq","academics-kindergarten","academics-elementary","academics-junior-high","academics-senior-high","academics-college","campus-organizations","campus-events","campus-sports","campus-clubs","campus-facilities","forms-tlc-application","forms-consent","news-announcements","news-latest","news-events","news-enrollment","news-achievements"];
+    if (!allowed.includes(page)) throw new Error('Unknown public page.');
+    const item = galRead_(page).list[0];
+    if (!item) return ok({ photo:'' });
+    const cache = CacheService.getScriptCache(), key = 'pubpagephoto_' + page + '_' + item.id, hit = cache.get(key);
+    if (hit) return ok({ photo:hit });
+    const uri = photo_(item.id);
+    if (uri && uri.length < 95000) { try { cache.put(key, uri, 21600); } catch (_) {} }
+    return ok({ photo:uri || '' });
+  } catch (e) { return fail(e); }
+}
+
 /** PUBLIC. Serves only a current School Leadership photo, never private contact details. */
 function getPublicLeaderPhoto(id) {
   try {
