@@ -157,6 +157,7 @@ function doGet(e) {
   const publicPages = ['about','admissions','academics','campus-life','resources','news','contact'];
   const isPublicPage = publicPages.indexOf(page) >= 0;
   const t = HtmlService.createTemplateFromFile(portal ? 'Index' : (isPublicPage ? 'PublicPage' : 'PublicHome'));
+  t.appUrl = ScriptApp.getService().getUrl();
   t.reg = portal && String(p.reg || '') === '1';
   t.prog = ['TLC','ESC','QVR','QVA'].includes(String(p.prog || '')) ? String(p.prog) : '';
   t.page = isPublicPage ? page : 'home';
