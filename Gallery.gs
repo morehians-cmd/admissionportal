@@ -13,7 +13,7 @@
    - getGalleryPhoto only serves ids that are on that page's list, so it cannot be used to read other Drive files.
 *****************************************************************************/
 
-const GAL_PAGES = ['facilities', 'cluster', 'handbook', 'history'];     // add 'about' or 'handbook' here later to enable galleries on those pages
+const GAL_PAGES = ['facilities', 'cluster', 'handbook', 'history', 'about-values', 'about-history', 'about-leadership', 'admissions-enrollment', 'admissions-requirements', 'admissions-scholarships', 'admissions-faq', 'academics-kindergarten', 'academics-elementary', 'academics-junior-high', 'academics-senior-high', 'academics-college', 'campus-organizations', 'campus-events', 'campus-sports', 'campus-clubs', 'campus-facilities', 'forms-tlc-application', 'forms-consent', 'news-announcements', 'news-latest', 'news-events', 'news-enrollment', 'news-achievements'];     // add 'about' or 'handbook' here later to enable galleries on those pages
 const GAL_MAX = 12;                              // photos per page
 const GAL_MAX_B64 = 2200000;                     // ~1.6 MB of image data after base64
 
@@ -48,7 +48,8 @@ function addGalleryPhoto(token, page, dataUrl, caption) {
   try {
     lock.waitLock(20000);
     const ou = owner_(token), g = galRead_(page);
-    if (g.list.length >= GAL_MAX) throw new Error('This page already has ' + GAL_MAX + ' photos. Remove one first.');
+    const pageMax = ["about-values","about-history","about-leadership","admissions-enrollment","admissions-requirements","admissions-scholarships","admissions-faq","academics-kindergarten","academics-elementary","academics-junior-high","academics-senior-high","academics-college","campus-organizations","campus-events","campus-sports","campus-clubs","campus-facilities","forms-tlc-application","forms-consent","news-announcements","news-latest","news-events","news-enrollment","news-achievements"].includes(page) ? 1 : GAL_MAX;
+    if (g.list.length >= pageMax) throw new Error('This page already has its photo limit. Replace or remove the current photo first.');
     const parts = String(dataUrl || '').split(',');
     if (parts.length < 2 || !/^data:image\/jpeg;base64$/i.test(parts[0])) throw new Error('Photo must be a JPEG image.');
     if (parts[1].length > GAL_MAX_B64) throw new Error('Photo is too large (limit about 1.5 MB).');
