@@ -18,9 +18,9 @@ footer{background:#06265b;color:#dce8fa;padding:28px 0}.foot{display:grid;grid-t
 </style></head>
 <body>
 <div class="mast"><div class="wrap mastin"><div class="logos">
-<a class="brand" href="https://www.facebook.com/ilovemoreh" target="_blank" rel="noopener"><img id="logoAcademy" alt="Moreh Academy logo"><span>Moreh Academy</span></a><i class="sep"></i>
-<a class="brand" href="https://www.facebook.com/MorehGlobal2019" target="_blank" rel="noopener"><img id="logoMGIC" alt="Moreh Global Innovative College logo"><span>Moreh Global<br>Innovative College</span></a><i class="sep"></i>
-<a class="brand" href="https://www.facebook.com/morehcollege" target="_blank" rel="noopener"><img id="logoCollege" alt="Moreh College logo"><span>Moreh College</span></a></div>
+<a class="brand" href="https://www.facebook.com/ilovemoreh" target="_blank" rel="noopener"><img id="logoAcademy" src="https://drive.google.com/thumbnail?id=1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF&sz=w160" alt="Moreh Academy logo" loading="eager" decoding="async"><span>Moreh Academy</span></a><i class="sep"></i>
+<a class="brand" href="https://www.facebook.com/MorehGlobal2019" target="_blank" rel="noopener"><img id="logoMGIC" src="https://drive.google.com/thumbnail?id=1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq&sz=w160" alt="Moreh Global Innovative College logo" loading="eager" decoding="async"><span>Moreh Global<br>Innovative College</span></a><i class="sep"></i>
+<a class="brand" href="https://www.facebook.com/morehcollege" target="_blank" rel="noopener"><img id="logoCollege" src="https://drive.google.com/thumbnail?id=1WD0A18SLhBaDl9lGi6HOMQOLXggRq3hK&sz=w160" alt="Moreh College logo" loading="eager" decoding="async"><span>Moreh College</span></a></div>
 <div class="slogan">Learn · Grow · Excel</div><div class="social"><a href="https://www.facebook.com/ilovemoreh" aria-label="Facebook">f</a><a href="https://www.youtube.com/@ilovemoreh" aria-label="YouTube">▶</a><a href="mailto:morehians@gmail.com" aria-label="Email">✉</a></div></div></div>
 <nav><div class="wrap navin">
 <a target="_top" href="<?= appUrl ?>?">Home</a><a class="<?= page==='about'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=about">About Us</a><a class="<?= page==='admissions'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=admissions">Admissions</a><a class="<?= page==='academics'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=academics">Academics</a><a class="<?= page==='campus-life'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=campus-life">Campus Life</a><a class="<?= page==='resources'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=resources">Downloadable Forms</a><a class="<?= page==='news'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=news">News &amp; Updates</a><a class="<?= page==='contact'?'active':'' ?>" target="_top" href="<?= appUrl ?>?page=contact">Contact Information</a><a class="login" target="_top" href="<?= appUrl ?>?page=portal">Portal Login</a>
@@ -108,7 +108,7 @@ function loadEvents(){google.script.run.withSuccessHandler(r=>{if(!r||!r.success
  if(ev)ev.innerHTML=a.length?a.map(e=>'<div class="notice"><b>'+safeText(e.t)+'</b><p>'+safeText(e.d)+(e.tm?' · '+safeText(e.tm):'')+(e.v?' · '+safeText(e.v):'')+'</p>'+(e.x?'<p>'+safeText(e.x)+'</p>':'')+'</div>').join(''):'<p>There are no upcoming events to display at this time.</p>';
  if(an)an.innerHTML=n.length?n.map(e=>'<div class="notice"><b>'+safeText(e.t)+'</b><p>'+safeText(e.d)+(e.x?'<br>'+safeText(e.x):'')+'</p></div>').join(''):'<p>There are no current announcements to display.</p>';
  }).getPublicContent();}
-google.script.run.withSuccessHandler(r=>{if(!r||!r.success||!r.data)return;[['logoAcademy',r.data.academy],['logoMGIC',r.data.mgic],['logoCollege',r.data.college]].forEach(x=>{const el=document.getElementById(x[0]);if(el&&x[1])el.src=x[1];});}).getPublicHeaderLogos();
+// Header logos load directly from their public Drive thumbnails.
 showPage(DEFAULTS[PAGE]||'<p>Content will be published here.</p>');
 if(PAGE==='about'){loadAbout();loadHistoryGallery();}if(PAGE==='campus-life')loadFacilities();if(PAGE==='news')loadEvents();
 loadBlock();
