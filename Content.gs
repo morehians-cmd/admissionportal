@@ -1,6 +1,6 @@
 /** Editable text blocks that students see (stored in the Content sheet; same allow-list sanitizer as the privacy policy).
  *  'guide' = dashboard enrollment guide. The others are the Institutional & Academic Guides / Help pages. */
-const BLOCKS = ['guide','about','cluster','handbook','facilities','faq','pubhome','pubabout','pubadmissions','pubacademics','pubcampus','pubforms','pubnews','pubcontact'];
+const BLOCKS = ['guide','about','cluster','handbook','facilities','faq','pubhome','pubabout','pubadmissions','pubacademics','pubcampus','pubforms','pubnews','pubcontact','history'];
 
 function blockRow_(key) {
   const sh = contentSh_(), n = sh.getLastRow(), keys = n < 1 ? [] : sh.getRange(1, 1, n, 1).getValues().flat().map(String), i = keys.indexOf(key);
