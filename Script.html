@@ -1118,7 +1118,7 @@ function contentPage(id){
 }
 function cpRender(){const c=S.cp,m=CPG[c.id],html=cleanHtml(c.html||cpDefault(c.id)),t=(v,l)=>`<button class="btn alt" onmousedown="event.preventDefault()" data-act="pfmt" data-v="${v}">${l}</button>`;
  if(c.edit){$('view').innerHTML=`<div class="sbar"><button class="btn" data-act="cpsave">Save</button><button class="btn alt" data-act="cpcancel">Cancel</button>${t('bold','Bold')}${t('insertUnorderedList','Bullets')}${t('h4','Heading')}</div><div class="card pv pve pvs" id="cpbody" contenteditable="true">${html}</div>`;$('cpbody').focus();return}
- const hasG=GAL_PAGES.includes(c.id);
+ const hasG=GAL_PAGES.includes(galPage(c.id));
  $('view').innerHTML=`<div class="shero nk"><div class="sht"><div><h2>${esc(m[0])}</h2><p>${esc(m[1])}</p></div>${FULL()?`<button class="shbtn" data-act="cpedit">${I.rep} Edit page</button>`:''}</div></div><div class="card pv pvs">${html}</div>${hasG?'<div id="gal"></div>':''}`;
  if(hasG){if(c.gal){galDraw();galFill()}else galFetch()}}
 act.cpedit=()=>{S.cp.edit=true;cpRender()};
@@ -1127,25 +1127,35 @@ act.cpsave=()=>call('saveBlock',[T(),S.cp.id,$('cpbody').innerHTML],r=>{S.cp.htm
 
 /* ===== Photo gallery (Facilities & Campus Tour, Senior High Cluster Guide) ===== */
 const PAGE_PHOTO_PAGES=["about-values","about-history","about-leadership","admissions-enrollment","admissions-requirements","admissions-scholarships","admissions-faq","academics-kindergarten","academics-elementary","academics-junior-high","academics-senior-high","academics-college","campus-organizations","campus-events","campus-sports","campus-clubs","campus-facilities","forms-tlc-application","forms-consent","news-announcements","news-latest","news-events","news-enrollment","news-achievements"];const GAL_SINGLE_PAGES=PAGE_PHOTO_PAGES;const GAL_PAGES=['facilities','cluster','history',...PAGE_PHOTO_PAGES];
+const CP_GALLERY_PAGE={
+ pub_about_values:'about-values',pub_about_history:'about-history',pub_about_leadership:'about-leadership',
+ pub_adm_enrollment:'admissions-enrollment',pub_adm_requirements:'admissions-requirements',pub_adm_scholarships:'admissions-scholarships',pub_adm_faq:'admissions-faq',
+ pub_acad_kindergarten:'academics-kindergarten',pub_acad_elementary:'academics-elementary',pub_acad_junior_high:'academics-junior-high',pub_acad_senior_high:'academics-senior-high',pub_acad_college:'academics-college',
+ pub_campus_organizations:'campus-organizations',pub_campus_events:'campus-events',pub_campus_sports:'campus-sports',pub_campus_clubs:'campus-clubs',pub_campus_facilities:'campus-facilities',
+ pub_forms_tlc:'forms-tlc-application',pub_forms_consent:'forms-consent',
+ pub_news_announcements:'news-announcements',pub_news_latest:'news-latest',pub_news_events:'news-events',pub_news_enrollment:'news-enrollment',pub_news_achievements:'news-achievements'
+};
+const galPage=id=>CP_GALLERY_PAGE[id]||id;
+const galSingle=id=>GAL_SINGLE_PAGES.includes(galPage(id));
 S.gp={};S.gpx={};   // gp = photo cache (id -> data URI), gpx = ids already requested
 const galImg=p=>S.gp[p.id]?`<img src="${S.gp[p.id]}" alt="${esc(p.cap)}" data-act="galview" data-v="${esc(p.id)}">`:'<i class="galsk"></i>';
 function galFetch(){const c=S.cp;
  google.script.run.withSuccessHandler(r=>{if(S.cp!==c)return;if(!r||!r.success)return toast((r&&r.error)||'Could not load photos.',false);c.gal=r.data;galDraw();galFill()})
-  .withFailureHandler(e=>toast(e.message,false)).getGallery(S.token,c.id)}
+  .withFailureHandler(e=>toast(e.message,false)).getGallery(S.token,galPage(c.id))}
 /** Loads the photos one at a time so the page stays responsive. A failed photo is skipped, not retried in a loop. */
 function galFill(){const c=S.cp;if(!c||!c.gal)return;const p=c.gal.find(x=>!S.gp[x.id]&&!S.gpx[x.id]);if(!p)return;S.gpx[p.id]=1;
  const done=r=>{if(r&&r.success&&r.data)S.gp[p.id]=r.data;if(S.cp===c){const slot=document.querySelector('.galp[data-gid="'+p.id+'"]');if(slot)slot.innerHTML=galImg(p);galFill()}};
- google.script.run.withSuccessHandler(done).withFailureHandler(()=>done(null)).getGalleryPhoto(S.token,c.id,p.id)}
+ google.script.run.withSuccessHandler(done).withFailureHandler(()=>done(null)).getGalleryPhoto(S.token,galPage(c.id),p.id)}
 function galDraw(){const el=$('gal'),c=S.cp;if(!el||!c||!c.gal)return;const F=FULL();
- el.innerHTML=`<div class="card"><div class="ch"><h3>${GAL_SINGLE_PAGES.includes(c.id)?'Page Photo':'Photo Gallery'}</h3>${F?`<span><input type="file" id="galf" class="hidden" accept="image/png,image/jpeg,image/webp"><button class="btn" data-act="galadd">${GAL_SINGLE_PAGES.includes(c.id)?(c.gal.length?'Replace photo':'Replace stock photo'):'+ Add photo'}</button></span>`:''}</div>`
-  +(c.gal.length?`<div class="galg">${c.gal.map(p=>`<figure class="galc"><div class="galp" data-gid="${esc(p.id)}">${galImg(p)}</div><figcaption>${esc(p.cap||'')}</figcaption>${F?`<div class="galx">${GAL_SINGLE_PAGES.includes(c.id)?'':`<button class="btn alt" data-act="galcap" data-v="${esc(p.id)}">Caption</button>`}<button class="btn red" data-act="galdel" data-v="${esc(p.id)}">${GAL_SINGLE_PAGES.includes(c.id)?'Restore stock photo':'Remove'}</button></div>`:''}</figure>`).join('')}</div>`:'<div class="aemp">No photos yet.'+(F?' Click "Add photo" to upload the first one.':'')+'</div>')+'</div>'}
+ el.innerHTML=`<div class="card"><div class="ch"><h3>${galSingle(c.id)?'Page Photo':'Photo Gallery'}</h3>${F?`<span><input type="file" id="galf" class="hidden" accept="image/png,image/jpeg,image/webp"><button class="btn" data-act="galadd">${galSingle(c.id)?(c.gal.length?'Replace photo':'Replace stock photo'):'+ Add photo'}</button></span>`:''}</div>`
+  +(c.gal.length?`<div class="galg">${c.gal.map(p=>`<figure class="galc"><div class="galp" data-gid="${esc(p.id)}">${galImg(p)}</div><figcaption>${esc(p.cap||'')}</figcaption>${F?`<div class="galx">${galSingle(c.id)?'':`<button class="btn alt" data-act="galcap" data-v="${esc(p.id)}">Caption</button>`}<button class="btn red" data-act="galdel" data-v="${esc(p.id)}">${galSingle(c.id)?'Restore stock photo':'Remove'}</button></div>`:''}</figure>`).join('')}</div>`:'<div class="aemp">No photos yet.'+(F?' Click "Add photo" to upload the first one.':'')+'</div>')+'</div>'}
 act.galadd=()=>{const f=$('galf');if(f)f.click()};
 act.galview=id=>{const src=S.gp[id];if(!src)return;const m=document.createElement('div');m.className='mod';m.style.cursor='zoom-out';m.onclick=()=>m.remove();
  const im=document.createElement('img');im.src=src;im.style.cssText='max-width:96vw;max-height:92vh;border-radius:12px;background:#fff';m.appendChild(im);document.body.appendChild(m)};
 act.galcap=id=>{const c=S.cp,p=c.gal.find(x=>x.id===id);if(!p)return;const v=prompt('Caption for this photo (optional, max 120 characters):',p.cap||'');if(v===null)return;
- call('setGalleryCaption',[T(),c.id,id,v],r=>{c.gal=r.data;toast(r.message);galDraw()})};
+ call('setGalleryCaption',[T(),galPage(c.id),id,v],r=>{c.gal=r.data;toast(r.message);galDraw()})};
 act.galdel=id=>{if(!confirm('Remove this photo from the page? It is moved to the Drive trash.'))return;const c=S.cp;
- call('removeGalleryPhoto',[T(),c.id,id],r=>{c.gal=r.data;delete S.gp[id];toast(r.message);galDraw()})};
+ call('removeGalleryPhoto',[T(),galPage(c.id),id],r=>{c.gal=r.data;delete S.gp[id];toast(r.message);galDraw()})};
 /** Resize to max 1000 px and re-encode as JPEG (about 100-200 KB) in the browser before upload. */
 document.addEventListener('change',e=>{if(e.target.id!=='galf')return;const f=e.target.files[0];e.target.value='';if(!f)return;
  const c=S.cp,im=new Image();
@@ -1155,7 +1165,7 @@ document.addEventListener('change',e=>{if(e.target.id!=='galf')return;const f=e.
   const url=cv.toDataURL('image/jpeg',.8);
   if(url.length>2100000)return toast('Photo is still too large after resizing. Try a smaller image.',false);
   const cap=prompt('Caption for this photo (optional, max 120 characters):','');if(cap===null)return;
-  const upload=()=>call('addGalleryPhoto',[T(),c.id,url,cap],r=>{c.gal=r.data.list;S.gp[r.data.id]=url;toast(r.message);if(S.cp===c)galDraw()});if(GAL_SINGLE_PAGES.includes(c.id)&&c.gal.length){if(!confirm('Replace the current page photo?'))return;const old=c.gal[0].id;call('removeGalleryPhoto',[T(),c.id,old],()=>{delete S.gp[old];c.gal=[];upload()})}else upload()};
+  const upload=()=>call('addGalleryPhoto',[T(),galPage(c.id),url,cap],r=>{c.gal=r.data.list;S.gp[r.data.id]=url;toast(r.message);if(S.cp===c)galDraw()});if(galSingle(c.id)&&c.gal.length){if(!confirm('Replace the current page photo?'))return;const old=c.gal[0].id;call('removeGalleryPhoto',[T(),c.id,old],()=>{delete S.gp[old];c.gal=[];upload()})}else upload()};
  im.src=URL.createObjectURL(f)});
 
 /* ===== Scoop-style sidebar: replaces navBtn, renderNav and act.ngtoggle ===== */
