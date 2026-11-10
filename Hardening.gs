@@ -25,7 +25,7 @@
 
 const NAME_RE = /^[A-Z\u00C0-\u00DD][A-Z\u00C0-\u00DD .'\-]{0,59}$/;     // used after upper-casing
 const IDLOCK  = ['LRN','Surname','FirstName','MiddleName','Suffix','Birthdate','SchoolYear','GradeLevel','Cluster'];
-const POLICY_TAGS = ['h3','h4','p','ul','ol','li','b','i','u','br','strong','em','div','span'];
+const POLICY_TAGS = ['h1','h2','h3','h4','p','ul','ol','li','b','i','u','br','strong','em','div','span','details','summary','section','article','figure','figcaption','blockquote','a'];
 
 
 /* ========================= 1. VERIFIED REGISTRATION ========================= */
