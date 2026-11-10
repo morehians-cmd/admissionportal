@@ -4171,15 +4171,37 @@ homeAdmin = function () {
     const style = document.createElement('style');
     style.id = 'ma-admin-masthead-style';
     style.textContent = `
-      .ma-masthead{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;gap:18px;padding:10px 22px;margin:0 0 16px;background:linear-gradient(105deg,#fff 0%,#f7faff 54%,#eaf1ff 100%);border:1px solid #dce6f7;border-radius:14px;box-shadow:var(--sh);min-height:104px;box-sizing:border-box;overflow:hidden}
+      .ma-masthead{display:grid;grid-template-columns:1fr 1.15fr 1fr minmax(190px,1.35fr);align-items:center;gap:14px;padding:10px 16px;margin:0 0 16px;background:linear-gradient(105deg,#fff 0%,#f7faff 54%,#eaf1ff 100%);border:1px solid #dce6f7;border-radius:14px;box-shadow:var(--sh);min-height:112px;box-sizing:border-box;overflow:hidden}
       .ma-institution{display:flex;align-items:center;justify-content:center;gap:12px;min-width:0}
-      .ma-institution img{display:block;width:100%;height:74px;max-width:180px;object-fit:contain;flex:0 1 auto}
-      .ma-institution.center img{max-width:220px;height:82px}
+      .ma-institution img{display:block;width:100%;height:72px;max-width:170px;object-fit:contain;flex:0 1 auto}
+      .ma-institution.center img{max-width:205px;height:80px}
       .ma-institution.left{justify-content:flex-start}
       .ma-institution.right{justify-content:flex-end}
-      .ma-institution.center{border-left:1px solid #c8d5eb;border-right:1px solid #c8d5eb;padding:0 18px}
-      .ma-institution-label{display:none}
-      @media(max-width:700px){.ma-masthead{grid-template-columns:1fr 1fr;gap:8px;padding:9px 12px;min-height:0}.ma-institution img{height:52px;max-width:140px}.ma-institution.center{grid-column:1/-1;grid-row:1;border:0;border-bottom:1px solid #dce6f7;padding:0 0 8px}.ma-institution.left{grid-column:1;grid-row:2;justify-content:center}.ma-institution.right{grid-column:2;grid-row:2;justify-content:center}}
+      .ma-institution.center{border-left:1px solid #c8d5eb;border-right:1px solid #c8d5eb;padding:0 14px}
+      .ma-campus-thumb{height:88px;width:100%;border-radius:10px;object-fit:cover;object-position:center 48%;border:1px solid #d5e1f3;display:block}
+      .ma-welcome{position:relative;isolation:isolate;overflow:hidden;min-height:190px;border-radius:16px;margin:0 0 18px;padding:28px 30px;display:flex;align-items:center;color:#fff;background:#102d68;box-shadow:var(--sh);box-sizing:border-box}
+      .ma-welcome:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png") center 47%/cover no-repeat;transform:scale(1.01)}
+      .ma-welcome:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(7,25,62,.88),rgba(10,43,103,.66) 52%,rgba(10,43,103,.12))}
+      .ma-welcome h2{font:800 clamp(22px,2.2vw,30px) Inter,sans-serif;color:#fff;margin:0 0 8px}
+      .ma-welcome p{max-width:650px;margin:0;color:#e8efff;font-size:14px;line-height:1.6}
+      .ma-welcome .ma-welcome-tag{display:inline-flex;margin-bottom:9px;padding:5px 10px;border-radius:99px;background:#ffffff20;border:1px solid #ffffff55;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+      .ma-admin-kpis{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;margin:0 0 18px}
+      .ma-admin-kpis .gkr{display:contents}
+      .ma-admin-kpis .gk{min-width:0}
+      .ma-campus-card{overflow:hidden;padding:0!important}
+      .ma-campus-card img{display:block;width:100%;height:154px;object-fit:cover;object-position:center 48%}
+      .ma-campus-card .ma-campus-caption{padding:12px 14px}
+      .ma-campus-card .ma-campus-caption b{display:block;color:var(--navy);font-size:14px}
+      .ma-campus-card .ma-campus-caption span{display:block;color:var(--mut);font-size:12px;margin-top:3px}
+      .dash.hm{grid-template-columns:minmax(0,1fr) 330px;gap:20px}
+      .dash.hm .dmain{gap:18px}
+      .dash.hm .dside{display:grid;align-content:start;gap:16px;min-width:0}
+      .dash.hm .dside>*{min-width:0}
+      .dash.hm .qar{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+      .dash.hm .qb{min-width:0;justify-content:flex-start}
+      @media(max-width:1400px){.ma-admin-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+      @media(max-width:1050px){.dash.hm{grid-template-columns:minmax(0,1fr)}.dash.hm .dside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ma-admin-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+      @media(max-width:700px){.ma-masthead{grid-template-columns:1fr 1fr;gap:8px;padding:9px 12px;min-height:0}.ma-institution img{height:48px;max-width:130px}.ma-institution.center{grid-column:1/-1;grid-row:1;border:0;border-bottom:1px solid #dce6f7;padding:0 0 8px}.ma-institution.left{grid-column:1;grid-row:2;justify-content:center}.ma-institution.right{grid-column:2;grid-row:2;justify-content:center}.ma-masthead .ma-campus-thumb{grid-column:1/-1;height:105px}.ma-welcome{min-height:170px;padding:22px 18px}.ma-admin-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.dash.hm .dside{grid-template-columns:1fr}}
     `;
     document.head.appendChild(style);
   }
@@ -4202,8 +4224,9 @@ homeAdmin = function () {
     ].map(gkCard).join('');
 
     const maLogoBase = 'https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/';
-    const maAdminMasthead = `<div class="ma-masthead" role="banner" aria-label="Moreh educational institutions"><div class="ma-institution left"><img src="${maLogoBase}mgic-logo.png" alt="Moreh Global Innovative College"></div><div class="ma-institution center"><img src="${maLogoBase}moreh-academy-logo.png" alt="Moreh Academy"></div><div class="ma-institution right"><img src="${maLogoBase}moreh-college-logo.png" alt="Moreh College"></div></div>`;
-    const hello = `<div style="margin:0 0 14px"><h2 style="font:800 22px Inter,sans-serif;color:var(--navy)">Welcome, ${esc(tc(S.user.FullName || 'Administrator'))} &#128075;</h2><p style="margin:2px 0 0;color:var(--mut)">Welcome to the Moreh Academy Administration Portal. Here&rsquo;s what&rsquo;s happening with admissions today.</p></div>`;
+    const maCampus = maLogoBase + 'Moreh%20College%20Under%20Blue%20Skies%20(2).png';
+    const maAdminMasthead = `<div class="ma-masthead" role="banner" aria-label="Moreh educational institutions"><div class="ma-institution left"><img src="${maLogoBase}mgic-logo.png" alt="Moreh Global Innovative College"></div><div class="ma-institution center"><img src="${maLogoBase}moreh-academy-logo.png" alt="Moreh Academy"></div><div class="ma-institution right"><img src="${maLogoBase}moreh-college-logo.png" alt="Moreh College"></div><img class="ma-campus-thumb" src="${maCampus}" alt="Moreh College campus under blue skies"></div>`;
+    const hello = `<section class="ma-welcome" aria-label="Administrator welcome"><div><span class="ma-welcome-tag">Moreh Academy · Administration Portal</span><h2>Welcome, ${esc(tc(S.user.FullName || 'Administrator'))} &#128075;</h2><p>Here&rsquo;s your admissions overview for today. Monitor enrollment, review applications that need attention, and access the tools you use most.</p></div></section>`;
 
     const pipe = [['Not Enrolled', st.pending, '#f59e0b'], ['Enrolled', st.enrolled, '#16a34a'], ['Temporary', st.temp || 0, '#8b5cf6'], ['Transferred / Cancelled', oth, '#dc2626']]
       .map(x => `<div class="pl"><span class="pn">${x[0]}</span><b>${nfmt(x[1])}</b><em>${pc(x[1])}</em><div class="ptr"><i style="width:${tot ? x[1] / tot * 100 : 0}%;background:${x[2]}"></i></div></div>`).join('');
@@ -4218,14 +4241,14 @@ homeAdmin = function () {
     const qb = (cl, ic, l, a, v) => `<button class="qb" data-act="${a}"${v ? ` data-v="${v}"` : ''}><span class="ao ${cl}">${ic}</span>${l}</button>`;
     const quick = `<div class="qar" role="group" aria-label="Quick actions">${qb('c1', I.adm, 'Register Student', 'quick')}${qb('c2', I.search, 'Find Learner', 'nav', 'adm')}${FULL() ? qb('c4', I.rep, 'Reports', 'nav', 'rep') : qb('c4', I.cal, 'Campus Bulletin', 'nav', 'ev')}${qb('c3', I.rep, 'Export Today (CSV)', 'exptoday')}${qb('c5', I.sch, 'Scholarships', 'nav', 'sch')}${qb('c1', I.tf, 'Schedule of Fees', 'nav', 'tf')}</div>`;
 
-    $('view').innerHTML = maAdminMasthead + hello + quick + `<div class="dash hm"><div class="dmain">
+    $('view').innerHTML = maAdminMasthead + hello + `<div class="ma-admin-kpis"><div class="gkr sd">${kp}</div></div><div class="dash hm"><div class="dmain">
      <div class="row2"><div class="card"><div class="ch"><h3>Enrolled by Level</h3></div><div class="dn"><div class="donut"><div class="pie2" style="background:conic-gradient(${seg})"></div><div class="dctr"><span class="dci">${I.sch}</span><b>${nfmt(lt)}</b><small>Enrolled</small></div></div><div class="dlg">${lv.map((x, i) => `<div><i style="background:${DC[i % 5]}"></i><span>${esc(x[0])}</span><b>${lt ? Math.round(x[1] / lt * 100) : 0}%</b><em>${x[1]}</em></div>`).join('')}</div></div></div>
      ${FULL() ? `<div id="dxsch">${dxSkel('Applicants by Scholarship')}</div>` : `<div class="card"><div class="ch"><h3>Enrollment Pipeline</h3></div>${pipe}</div>`}</div>
      ${FULL() ? `<div id="gkdemo">${dxSkel('Sex and Schools')}</div>` : ''}
      <div class="card"><div class="ch"><h3>Enrolled Learners by Grade &amp; Cluster</h3></div><div class="gcl">${gct}</div></div>
      <div id="dxrec">${dxSkel('Recent Registrations')}</div>
      <div id="dxatt">${dxSkel('Needs Attention')}</div></div>
-    <div class="dside"><div class="gkr sd">${kp}</div>${evSide()}${actCard()}</div></div>`;
+    <div class="dside"><div class="card ma-campus-card"><img src="${maCampus}" alt="Moreh College campus"><div class="ma-campus-caption"><b>Our Campus</b><span>Moreh Academy · Learning, growth and excellence</span></div></div>${evSide()}<div class="card"><div class="ch"><h3>Quick Actions</h3></div>${quick}</div>${actCard()}</div></div>`;
     renderAct(); homeEvents();
 
     /* extra panels load on their own so the main numbers appear first */
