@@ -254,8 +254,8 @@ function getPublicAboutPhoto() {
 function getPublicHeaderLogos() {
   try {
     return ok({
-      academy: publicLogo_('1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq'),
-      mgic: publicLogo_('1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF'),
+      academy: publicLogo_('1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF'),
+      mgic: publicLogo_('1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq'),
       college: publicLogo_('1WD0A18SLhBaDl9lGi6HOMQOLXggRq3hK')
     });
   } catch (e) { return fail(e); }
