@@ -187,9 +187,9 @@ function photo_(id) {
 function getPublicHeaderLogos() {
   try {
     return ok({
-      academy: photo_('1T0MMETnUD_qk5XK_eo67j9YUSmMrKn45'),
-      mgic: photo_('1NoHJzL-5_Kf-kEmrUCFf5wKum46nO9VB'),
-      college: photo_('1iZWkURBwmrgEFNRcgF_YihewEM9Raqlc')
+      academy: photo_('1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq'),
+      mgic: photo_('1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF'),
+      college: photo_('1WD0A18SLhBaDl9lGi6HOMQOLXggRq3hK')
     });
   } catch (e) { return fail(e); }
 }
