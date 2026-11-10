@@ -94,7 +94,11 @@ function loadFacilities(){const mount=document.getElementById('facilityGalleryMo
  el.innerHTML=items.map(p=>'<figure><div id="facility-'+safeText(p.id)+'" style="height:210px;background:#edf4ff"></div><figcaption>'+safeText(p.cap||'')+'</figcaption></figure>').join('');
  items.forEach(p=>google.script.run.withSuccessHandler(x=>{const slot=document.getElementById('facility-'+p.id);if(slot&&x&&x.success&&x.data)slot.innerHTML='<img src="'+x.data+'" alt="'+safeText(p.cap||'Moreh Academy facility')+'">';}).getPublicFacilityPhoto(p.id));
  }).getPublicFacilities();}
-function loadEvents(){google.script.run.withSuccessHandler(r=>{if(!r||!r.success||!r.data)return;const el=document.getElementById('publicEvents');if(el){const a=r.data.events||[];el.innerHTML=a.length?'<ul>'+a.map(e=>'<li><b>'+safeText(e.t)+'</b> — '+safeText(e.d)+(e.v?' · '+safeText(e.v):'')+'</li>').join('')+'</ul>':'<p>There are no upcoming events to display at this time.</p>';}}).getPublicContent();}
+function loadEvents(){google.script.run.withSuccessHandler(r=>{if(!r||!r.success||!r.data)return;
+ const a=r.data.events||[],n=r.data.announcements||[],ev=document.getElementById('publicEvents'),an=document.getElementById('publicAnnouncements');
+ if(ev)ev.innerHTML=a.length?a.map(e=>'<div class="notice"><b>'+safeText(e.t)+'</b><p>'+safeText(e.d)+(e.tm?' · '+safeText(e.tm):'')+(e.v?' · '+safeText(e.v):'')+'</p>'+(e.x?'<p>'+safeText(e.x)+'</p>':'')+'</div>').join(''):'<p>There are no upcoming events to display at this time.</p>';
+ if(an)an.innerHTML=n.length?n.map(e=>'<div class="notice"><b>'+safeText(e.t)+'</b><p>'+safeText(e.d)+(e.x?'<br>'+safeText(e.x):'')+'</p></div>').join(''):'<p>There are no current announcements to display.</p>';
+ }).getPublicContent();}
 google.script.run.withSuccessHandler(r=>{if(!r||!r.success||!r.data)return;[['logoAcademy',r.data.academy],['logoMGIC',r.data.mgic],['logoCollege',r.data.college]].forEach(x=>{const el=document.getElementById(x[0]);if(el&&x[1])el.src=x[1];});}).getPublicHeaderLogos();
 showPage(DEFAULTS[PAGE]||'<p>Content will be published here.</p>');
 if(PAGE==='about')loadAbout();if(PAGE==='campus-life')loadFacilities();if(PAGE==='news')loadEvents();
