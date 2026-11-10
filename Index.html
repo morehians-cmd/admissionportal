@@ -1380,6 +1380,7 @@ body .wnav .btn{flex:1 1 40%;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){body .mod>div{animation:none!important}}
 </style>
+
 </head>
 <body>
 <div id="login">
@@ -1442,7 +1443,7 @@ function reqsFor(r){const lv=reqLevel(r.GradeLevel),ru=S.cfg.reqRules[lv];if(!ru
 const abbr=c=>Object.keys(S.clusters).find(k=>S.clusters[k]===c);
 
 const enter=r=>{Object.assign(S,r.data);try{sessionStorage.setItem('mrh_t',S.token)}catch(e){}$('login').classList.add('hidden');$('app').classList.remove('hidden');boot()};
-
+$('go').onclick=()=>call('login',[$('u').value,$('p').value],r=>{if(r.data&&r.data.otp)return otpModal(r.data);enter(r)});
 $('p').onkeydown=e=>{if(e.key==='Enter')$('go').click()};
 function setAv(){const u=S.user,a=$('av');a.style.backgroundImage=u.Photo?`url(${u.Photo})`:'';a.textContent=u.Photo?'':(u.FullName||u.Username)[0].toUpperCase()}
 function boot(){try{boot0()}catch(e){$('app').classList.remove('hidden');toast('Signed in, but the page failed to load: '+e.message,false);console.error(e)}}
@@ -1461,7 +1462,7 @@ const act={out:()=>{clearInterval(CD);if($('idm'))$('idm').remove();try{google.s
  evdel:id=>{if(confirm('Delete this event?'))call('deleteEvent',[T(),id],r=>{toast(r.message);eventsPage()})},menu:()=>$('side').classList.toggle('open'),nav:v=>nav(v),
  rp:t=>selRep(t),rgo:()=>{const a={grade:$('rfg').value,section:$('rfs').value};S.rf={grade:a.grade,section:a.section};if(S.rt==='personal'){a.fields=[...document.querySelectorAll('.pfx:checked')].map(x=>x.value);if(!a.fields.length)return toast('Tick at least one data field.',false);S.pf=a.fields}runRep(S.rt,a)},pfall:()=>pfSet(()=>true),pfnone:()=>pfSet(()=>false),pfdef:()=>pfSet(x=>PDEF.includes(x.value)),pfstep:v=>{const xs=[...document.querySelectorAll('.pfx')].filter(x=>x.dataset.st===v),all=xs.every(x=>x.checked);xs.forEach(x=>x.checked=!all)},rlvl:v=>{S.rlv=v;selRep('scholar')},mlist:v=>{const q=v.split('|');call('report',[T(),'advisory',{grade:q[0],section:q[1]||'(none)',ml:1}],r=>printReport(r.data,'advisory'))},refv:n=>runRep('refd',n),refp:n=>call('report',[T(),'refd',n],r=>printRef(n,r.data.blocks[0].rows)),prref:()=>printRef(S.refName,S.rep.blocks[0].rows),
  prrep:()=>printReport(S.rep,S.rtype),slip:()=>printSlip(S.t.rec,!A()),eform:()=>printEnrollForm(S.t.rec),cform:()=>cancelModal(S.t.rec),ccl:()=>$('cm').remove(),
- cprint:()=>{const o=cxOpts();$('cm').remove();printCancel(S.cr,o)},cpdf:()=>{const o=cxOpts(),r=S.cr;$('cm').remove();savePdf(cancelHTML(r,o),fileName(r,'Cancellation'))},
+ cprint:()=>{const o=cxOpts();$('cm').remove();printCancel(S.cr,o)},cpdf:()=>{const o=cxOpts(),r=S.cr;$('cm').remove();savePdf(cancelHTML(r,o),fileName(r,'Cancellation'))},slippdf:()=>{const r=S.t.rec;savePdf(confirmHTML(r),fileName(r))},
  stay:()=>{clearInterval(CD);if($('idm'))$('idm').remove();idleReset()},
  nextsy:()=>{if(confirm('Start enrollment for the next school year? New Enrollment IDs will use the new starting year.'))call('startNextSY',[T()],r=>{toast(r.message);settingsPage()})},
  savest:()=>call('saveSettings',[T(),{open:$('eo').checked,allowed:$('eal').value}],r=>toast(r.message)),
@@ -1510,9 +1511,26 @@ const act={out:()=>{clearInterval(CD);if($('idm'))$('idm').remove();try{google.s
  pedit:()=>{S.pe=true;profile()},
  psave:()=>{const p={email:$('em').value,newPassword:$('npw').value,photo:S.newPhoto};call('saveMyProfile',[T(),p],r=>{S.user=r.data;S.pe=false;S.newPhoto=null;setAv();profile();toast(r.message)})}};
 document.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(a)act[a.dataset.act](a.dataset.v)});
+function paint(){S.cur==='stu'||!A()?stuProfile(true):adm()}
+function collect(t){document.querySelectorAll('#view [data-k]').forEach(i=>{if(i.type==='radio'){if(i.checked)t.rec[i.dataset.k]=i.value;return}t.rec[i.dataset.k]=i.type==='checkbox'?(i.checked?'Yes':''):(i.type==='text'&&!/(Email|Facebook)$/.test(i.dataset.k)?i.value.toUpperCase():i.value)})}
+document.addEventListener('input',e=>{if(e.target.dataset.num){e.target.value=e.target.value.replace(/\D/g,'')}});
+document.addEventListener('change',e=>{const k=e.target.dataset.k,t=S.t;if(!k||!t)return;collect(t);const r=t.rec;
+ if(k==='GradeLevel'){r.Department=deptOf(r.GradeLevel);r.Section='';if(r.Department!=='Senior High School')r.Cluster=''}
+ if(k==='Cluster')r.Section='';
+ if(k==='EnrollStatus'&&cxOn(r)&&!r.CancelDate)r.CancelDate=today();
+ if(['GradeLevel','Cluster','Classification','PrevGrade','Category','Religion','FatherReligion','MotherReligion','EmSameAddr','Birthdate','LivingWith','RelSameAddr','RelGender','RelBirthdate','EnrollStatus','CancelReason'].includes(k))paint()});
+document.addEventListener('change',e=>{const s=e.target.dataset.src,t=S.t;if(!s||!t)return;collect(t);const r=t.rec;
+ ['EmName','EmRelation','EmMobile','EmAddress','EmSameAddr'].forEach(x=>r[x]='');
+ if(!e.target.checked){r.EmSource='';return paint()}
+ r.EmSource=s;
+ if(s==='Father'||s==='Mother'){const live=r.LivingWith==='Both Father and Mother'||r.LivingWith===s+' only';r.EmName=r[s+'Name']||'';r.EmRelation=s.toUpperCase();r.EmMobile=r[s+'Mobile']||'';if(live){r.EmSameAddr='Yes';r.EmAddress=addrOf(r)}}
+ else{r.EmName=r.RelName||'';r.EmRelation=r.RelRelation||'';r.EmMobile=r.RelMobile||'';r.EmSameAddr=r.RelSameAddr||'';r.EmAddress=r.RelSameAddr==='Yes'?addrOf(r):(r.RelAddress||'')}
+ paint()});
+document.addEventListener('change',e=>{if(e.target.id==='pf'){const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),s=Math.min(1,400/Math.max(im.width,im.height));c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.newPhoto=c.toDataURL('image/jpeg',.85);$('ph').style.backgroundImage=`url(${S.newPhoto})`};im.src=URL.createObjectURL(f)}});
 
 const greet=()=>{const h=new Date().getHours();return h<12?'Good morning':h<18?'Good afternoon':'Good evening'},nfmt=n=>Number(n||0).toLocaleString('en-US'),DC=['#2f9e6f','#e0489d','#3b82f6','#2b2f3a','#f5b73b'];
 const kpi=(cls,icon,label,val,sub,sm)=>`<div class="kpi"><div class="ki ${cls}">${icon}</div><div><small>${label}</small><b${sm?' class="sm"':''}>${val}</b><span>${sub||''}</span></div></div>`;
+const hello=(name,line)=>`<div class="hello"><div><small>${greet()},</small><h2>${esc(name)} &#128075;</h2><p>${line}</p></div><div class="hr"><div class="hd2"><small>Today</small><span>${I.cal} ${new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</span></div><div class="hlogo"><img src="${LOGO}" alt=""><i></i></div></div></div>`;
 const qa=(cls,icon,label,a,v)=>`<button class="qa ${cls}" data-act="${a}"${v?` data-v="${v}"`:''}>${icon}<span>${label}</span></button>`;
 const helpbar=()=>A()?`<div class="helpbar"><div><b>System or Database Help?</b><small>IT Helpdesk &amp; System Support &middot; Mon&ndash;Fri 8:00 AM &ndash; 5:00 PM</small></div><a class="btn" href="mailto:morehians@gmail.com">Contact IT Support</a></div>`:`<div class="helpbar"><div><b>Need help?</b><small>Admissions Office &middot; Mon&ndash;Fri 8:00 AM &ndash; 5:00 PM, Sat 8:00 AM &ndash; 3:00 PM &middot; 0961 876 6886</small></div><a class="btn" href="mailto:morehians@gmail.com">Contact Admissions</a></div>`;
 function renderAct(){const el=$('ract');if(!el)return;if(!S.notifs){el.innerHTML='<div class="aemp">Loading&hellip;</div>';return}
@@ -1625,7 +1643,7 @@ function formHTML(t){S.t=t;t.step=t.step||1;const id=t.rec.StudentID,canc=t.rec.
  const nav=`<div class="wnav"><span>${t.step>1?'<button class="btn alt" data-act="wnav" data-v="-1">&larr; Previous</button>':''}</span><span>Step ${t.step} of 5</span><span>${t.step<5?'<button class="btn" data-act="wnav" data-v="1">Next step &rarr;</button>':(t.edit?'<button class="btn" data-act="save">Save</button>':'')}</span></div>`;
  return recHero(t)+bar+stepBar+body+nav}
  const GUIDE0='<ol><li>Complete your Student Profile (personal, family and emergency contact).</li><li>Print the <b>PARENTAL CONSENT &amp; DATA PRIVACY UNDERTAKING FORM</b>. This must be filled out by your Parent or Legal Guardian only.</li><li>Submit your requirements personally to the admissions office.</li><li>Check this dashboard for your requirement and enrollment status.</li></ol>';
-
+function loadGuide(){google.script.run.withSuccessHandler(r=>{const el=$('guidebox');if(el&&r&&r.success&&r.data)el.innerHTML=cleanHtml(r.data)}).withFailureHandler(()=>{}).getBlock(S.token,'guide')}
 function guidePage(){head('Enrollment Guide','Edit the guide students see on their dashboard');call('getBlock',[T(),'guide'],r=>{S.guideHtml=r.data||'';guideRender()})}
 function guideRender(){const t=(v,l)=>`<button class="btn alt" onmousedown="event.preventDefault()" data-act="pfmt" data-v="${v}">${l}</button>`;
  $('view').innerHTML=`<div class="sbar"><button class="btn" data-act="guidesave">Save guide</button><button class="btn alt" data-act="guidereset">Restore default text</button>${t('bold','Bold')}${t('insertOrderedList','Numbered list')}${t('insertUnorderedList','Bullets')}<span class="pvtip">Students see this on their Home page. Click inside the box to edit.</span></div><div class="card pv pve pvs" id="gbody" contenteditable="true">${cleanHtml(S.guideHtml||GUIDE0)}</div>`}
@@ -1839,7 +1857,7 @@ function wCheck(t){const r=t.rec,bad=x=>{toast(x,false);return false},ph=/^\d{11
  if(t.step===2&&r.Mobile&&!ph.test(r.Mobile))return bad('Contact number must be 11 digits.');
  if(t.step===3){for(const k of['FatherMobile','MotherMobile','EmMobile','GuardMobile'].concat(r.LivingWith==='Relatives / Legal Guardian'?['RelMobile']:[]))if(r[k]&&!ph.test(r[k]))return bad('Contact numbers must be exactly 11 digits.');for(const k of['FatherEmail','MotherEmail'])if(r[k]&&!em.test(r[k]))return bad('Enter a valid parent email address.')}
  return true}
-
+function wGo(n){const t=S.t;collect(t);if(t.edit&&n>t.step&&!wCheck(t))return;t.step=Math.max(1,Math.min(5,n));paint();window.scrollTo(0,0)}
 
 function adm(){head('Admission','Search, register and update enrollees');S.cur=S.cur||'search';
  const tabs=`<div class="tabs"><button class="tab ${S.cur==='search'?'on':''}" data-act="tab" data-v="search">${I.search} Search</button>${S.tabs.map(t=>`<button class="tab ${S.cur===t.key?'on':''}" data-act="tab" data-v="${t.key}">${esc(t.rec.FullName||'New enrollee')}<i data-act="close" data-v="${t.key}">${I.x}</i></button>`).join('')}</div>`;
@@ -1852,10 +1870,13 @@ function adm(){head('Admission','Search, register and update enrollees');S.cur=S
  else $('view').innerHTML=tabs+formHTML(cur)}
 function admStats(){const put=d=>[['ks0',d.stats.total],['ks1',d.stats.enrolled],['ks2',d.stats.pending],['ks3',d.stats.today]].forEach(x=>{const el=$(x[0]);if(el)el.textContent=nfmt(x[1])});
  if(S.dsh)put(S.dsh);google.script.run.withSuccessHandler(r=>{if(r&&r.success){S.dsh=r.data;put(r.data)}}).dashboard(S.token)}
-
-
+const updSel=()=>{const e=$('selc');if(e)e.textContent=document.querySelectorAll('.sel:checked').length};
+document.addEventListener('change',e=>{if(e.target.classList&&(e.target.classList.contains('sel')||e.target.dataset.act==='selall'))updSel()});
 act.selall=()=>{const c=document.querySelector('[data-act=selall]').checked;document.querySelectorAll('.sel').forEach(x=>x.checked=c);updSel()};
-
+act.search=()=>call('searchStudents',[T(),$('q').value,S.flt||'All'],r=>{const L=r.data;$('admn').textContent=L.length+(L.length===1?' learner':' learners');
+ $('bulk').innerHTML=`<div class="bkb"><span>Selected: <b id="selc">0</b></span><button class="btn alt" data-act="bulk" data-v="Enrolled">Mark Enrolled</button><button class="btn alt" data-act="bulk" data-v="Not Enrolled">Mark Not Enrolled</button><button class="btn alt" data-act="bulk" data-v="Transferred Out">Mark Transferred Out</button></div>`;
+ $('hits').innerHTML=L.length?`<table class="at"><thead><tr><th><input type="checkbox" data-act="selall"></th><th>Learner</th><th>LRN</th><th>Grade &amp; Section</th><th>Enrollment</th><th></th></tr></thead><tbody>${L.map(s=>{const st=s.EnrollStatus||'Not Enrolled',o=st==='Cancelled'?['Cancelled']:['Not Enrolled','Enrolled','Transferred Out'],p=String(s.FullName||'').split(','),ini=((p[0]||'?').trim()[0]||'?')+(((p[1]||'').trim()[0])||'');
+  return `<tr><td><input type="checkbox" class="sel" value="${esc(s.StudentID)}"></td><td><div class="lrn"><span class="av2">${esc(ini)}</span><div><b>${esc(tc(s.FullName))}</b><small>${esc(s.StudentID)}${s.SchoolYear?' \u00b7 SY '+esc(s.SchoolYear):''}</small></div></div></td><td>${esc(s.LRN)}</td><td>${esc(tc(s.GradeLevel))} ${esc(tc(s.Section))}</td><td><select class="stsel ${stc(st)}" data-act="rowst" data-id="${esc(s.StudentID)}" ${st==='Cancelled'?'disabled':''}>${o.map(x=>`<option ${x===st?'selected':''}>${x}</option>`).join('')}</select></td><td><button class="btn alt" data-act="open" data-v="${esc(s.StudentID)}">Open</button></td></tr>`}).join('')}</tbody></table>`:'<div class="aemp">No matching learners.</div>'});
 function recHero(t){const r=t.rec,p=String(r.FullName||'').split(','),nm=r.FullName?tc(r.FullName):(r.Surname||r.FirstName?tc([r.Surname,r.FirstName].filter(Boolean).join(', ')):'New enrollee'),
  ini=((r.FullName?(p[0]||'').trim()[0]:(r.Surname||nm)[0])||'N')+(r.FullName?((p[1]||'').trim()[0]||''):(r.FirstName||'')[0]||''),gs=((r.GradeLevel||'')+' '+(r.Section||'')).trim();
  return `<div class="shero rcd"><div class="rcdi"><div class="avb">${esc(ini.toUpperCase())}</div><div><h2>${esc(nm)}</h2><div class="shch" style="margin-top:8px"><span class="shchip ${r.StudentID?'':'sh-unsaved'}">${r.StudentID?'ID '+esc(r.StudentID):'Not yet saved'}</span><span class="shchip ${(!r.EnrollStatus||r.EnrollStatus==='Not Enrolled')?'sh-pending':''}">${esc(r.EnrollStatus||'Not Enrolled')}${r.EnrollStatus==='Temporary'&&r.TempUntil?' until '+esc(fmtS(r.TempUntil)):''}</span>${(r.HoldOffices||[]).length?'<span class="shchip" style="background:#d97706;border-color:#d97706">Hold: '+esc(r.HoldOffices.join(', '))+'</span>':''}${gs?`<span class="shchip">${esc(tc(gs))}</span>`:''}${r.LRN?`<span class="shchip">LRN ${esc(r.LRN)}</span>`:''}</div></div></div></div>`}
@@ -1875,7 +1896,8 @@ const addrOf=r=>[r.AddressLine1,r.AddressLine2,r.Barangay,r.City].filter(Boolean
 let LOGO='https:\x2f\x2fi.imgur.com/roCMSYf.jpeg',today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const fmtD=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}):'';
 const hd=t=>`<div class="hd"><img src="${LOGO}"><div><div class="h1">MOREH ACADEMY</div><div class="h2">${esc(t)}</div></div></div>`;
-
+const kv=(rows,r)=>rows.map(x=>`<tr><td class="k">${x[0]}</td><td>${esc(x[2]!=null?x[2]:r[x[1]])}</td></tr>`).join('');
+function persist(){const wasNew=!S.t.rec.StudentID,ph=S.t.rec.Photo,rec=Object.assign({},S.t.rec);delete rec.Photo;call('saveStudent',[T(),rec],r=>{r.data.Photo=ph;if(S.t.key)S.t.key=r.data.StudentID;S.t.rec=r.data;S.t.edit=false;if(!A()){S.t.base=Object.assign({},r.data);S.t.draftAt=null;draftClear()}if(!A()){S.t.base=Object.assign({},r.data);S.t.draftAt=null;draftClear()}if(S.cur!=='stu')S.cur=S.t.key;const miss=certRequired(r.data)&&!r.data.CertNo;toast(miss?r.message+'. Reminder: the Certificate Number is still blank. You may submit it later.':r.message,miss?'warn':true);paint();if(wasNew&&A()&&confirm('Create a portal account for this student now?'))act.acct()})}
 const fmtS=d=>d?new Date(d+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}):'';
 function slipData(r){
  const reqs=S.fields.filter(f=>f[0]==='req'&&reqsFor(r).show.includes(f[1])).slice(0,9)
@@ -2078,6 +2100,26 @@ async function savePdf(html,name,pg){pg=pg||[210,297];$('load').classList.remove
   const pdf=new window.jspdf.jsPDF({unit:'mm',format:pg,orientation:'portrait'});pdf.addImage(cv.toDataURL('image/jpeg',.95),'JPEG',0,0,pg[0],pg[0]*cv.height/cv.width);pdf.save(name+'.pdf');toast('Downloaded '+name+'.pdf')}
  catch(e){toast('PDF download failed: '+e.message,false)}finally{if(box)box.remove();$('load').classList.add('hidden')}}
 const CIC={pin:'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',mail:'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6',tel:'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z',fb:'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'};
+const cic=d=>`<span class="ci"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg></span>`;
+function letterhead(){if(S.cfg.letterhead)return `<img class="lh" src="${esc(S.cfg.letterhead)}" alt="">`;
+ return `<img class="wm" src="${LOGO}" alt=""><svg class="lh" viewBox="0 0 210 296" preserveAspectRatio="none"><rect x="0" y="0" width="210" height="7.5" fill="#1228a6"/><path d="M0,257 C50,254 105,273 150,281 C185,287 203,277 210,262 L210,270 C203,284 185,292 150,288 C105,283 50,264 0,265 Z" fill="#ffa616"/><path d="M0,265 C50,262 105,281 150,288 C185,293 203,284 210,270 L210,296 L0,296 Z" fill="#1228a6"/></svg>
+ <img class="lg" src="${LOGO}" alt=""><div class="bn"><b>MOREH</b><span>ACADEMY</span></div><div class="bs">SCHOOL OF <i>RIGHTEOUSNESS &amp; EXCELLENCE</i></div>
+ <div class="ct"><div>${cic(CIC.pin)}<span>Ricahuerta St. corner A. Bonifacio Avenue,<br>Upper Bicutan, Taguig City 1633 Philippines</span></div><div>${cic(CIC.mail)}<span>morehacademy2002@yahoo.com.ph<br>morehadmissionoffice@gmail.com</span></div><div>${cic(CIC.tel)}<span>8.839.01.35 | 8.838.90.77</span></div><div>${cic(CIC.fb)}<span>Moreh Academy Taguig</span></div></div><div class="hr0"></div>`}
+function printConfirm(r){printHTML(confirmHTML(r),true,fileName(r))}
+function confirmHTML(r){const C=S.cfg,sch=schOf(r);
+ const cat=(r.Category||'')+(certNeeded(r)&&r.CertNo?' (Cert. No. '+r.CertNo+')':'');
+ const L=[['Learner\u2019s Name',r.FullName,'Enrollment ID',r.StudentID],['Grade Level',r.GradeLevel,'Learner Reference Number',r.LRN],['Grade Section',r.Section,'Birth Date',fmtD(r.Birthdate)],['Cluster',abbr(r.Cluster)||'','Age',r.Birthdate?ageOf(r.Birthdate):''],['Category',cat,'Sex & Gender',[r.SexualOrient,r.GenderOrient].filter(Boolean).join(' / ')],['Classification',r.Classification,'Religion',r.Religion==='Others, specify'?r.ReligionOther:r.Religion],['Address',addrOf(r),'Contact Number',r.Mobile]];
+ const prof=L.map((x,i)=>`<div class="rw${i===0?' f1':''}${i===L.length-1?' last':''}"><span>${esc(x[0])}</span><b${x[0]==='Address'?' class="sm"':''}>${esc(x[1])}</b><span>${esc(x[2])}</span><b>${esc(x[3])}</b></div>`).join('');
+ const Q=S.fields.filter(f=>f[0]==='req'&&f[3]!=='date'&&(f[1]!=='ReqRemarks'||(r.ReqRemarks&&r.ReqRemarks!=='None'))).map(f=>[f[2],r[f[1]]||'None']),N=Math.max(Q.length,sch.length,7);
+ let rq='',sc='';for(let i=0;i<N;i++){const lc=(i===0?' f1':'')+(i===N-1?' last':'');rq+=`<div class="rw2${lc}"><span>${Q[i]?esc(Q[i][0]):''}</span><b>${Q[i]?esc(Q[i][1]):''}</b></div>`;sc+=`<div class="rw2 sc${lc}"><b>${i===0?esc(r.Category||''):''}</b><span class="v" style="font-weight:500">${esc(sch[i]||'')}</span></div>`}
+ return `<div class="cs">${letterhead()}<div class="cb"><div class="ttl">ENROLLMENT CONFIRMATION SLIP</div>
+ <h4>LEARNER PROFILE</h4>${prof}
+ <div class="two"><div><h4>REQUIREMENTS</h4>${rq}</div><div><h4>SCHOLARSHIP</h4>${sc}</div></div>
+ <h4 style="margin-top:2.5mm">IMPORTANT REMINDERS &amp; GUIDELINES</h4><div class="rem"><b>Validation:</b> This slip serves as temporary proof of enrollment until the official Student ID badge is issued or validated by the Registrar\u2019s Office.<br><b>Class Attendance:</b> Students must present this slip to subject instructors during the first week of classes.<br><b>Enrollment Cancellation / Withdrawal:</b> A processing fee of \u20b1${Number(C.fee).toLocaleString('en-US',{minimumFractionDigits:2})} applies to all enrollment cancellations or withdrawals requested on or before June 30. For withdrawals made after June 30, fees will be recalculated by the Principal\u2019s Office and Accounting Office based on class days elapsed and applied incentives or discounts.</div>
+ <p class="cert">This is to certify that the student mentioned above has successfully completed the admission process for Moreh Academy for the School Year <u>${esc(r.SchoolYear)}</u>. After a thorough review of the submitted credentials and entrance evaluation, the applicant is hereby cleared for enrollment.</p>
+ <h4 style="margin-top:2.5mm">VERIFICATION &amp; APPROVALS</h4><div class="hd3"><span>Verified By</span><span>Approved By</span></div>
+ <div class="sg"><div><div class="l"><div class="ln0"></div>Admissions Officer</div><div class="d"><div class="ln0"></div>Date</div></div><div><div class="l"><div class="ln0"></div>Admissions Head</div><div class="d"><div class="ln0"></div>Date</div></div></div>
+ </div></div>`}
 const fileName=(r,suf)=>String(r.FullName||'Learner').replace(/[^A-Za-z0-9\u00c0-\u024f ()-]/g,'').replace(/\s+/g,' ').trim()+'-'+String(r.StudentID||'').trim()+(suf?'-'+suf:'');
 function loadJs(u){return new Promise((ok,no)=>{const e=document.createElement('script');e.src=u;e.onload=ok;e.onerror=()=>no(new Error('Could not load the PDF library. Check your internet connection.'));document.head.appendChild(e)})}
 const CF=['Tuition Fees','Miscellaneous Fees','School Uniform','P.E. Shirt','School ID','Processing Fee','Others'],fm=n=>Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -2256,7 +2298,7 @@ I.users=ic('M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0
 act.umtoggle=v=>{const q=String(v).split('|'),u=q[0],on=q[1]==='1';if(confirm((on?'Activate':'Deactivate')+' the account '+u+'?'+(on?'':' They will no longer be able to sign in until you activate it again.')))call('setStaffActive',[T(),u,on],r=>{toast(r.message||(on?'Account activated.':'Account deactivated.'));usersPage()})};
 function usersPage(){head('User Management','Create and manage staff accounts. Encoders have admin privileges.');call('listUsers',[T()],r=>{
  $('view').innerHTML=`<div class="card"><h3>Add staff user</h3><div class="g"><div class="f"><label>Full name</label><input id="uF"></div><div class="f"><label>Username (min. 4 characters)</label><input id="uU" autocomplete="off"></div><div class="f"><label>Email (required for sign-in codes)</label><input id="uE" type="email"></div><div class="f"><label>Department</label><input id="uD" maxlength="60" autocomplete="off"></div><div class="f"><label>Account type</label><select id="uT"><option>Encoder</option><option value="Manager">System Manager</option><option>Guidance</option><option>Accounting</option></select></div><div class="f"><label>Temporary password (blank = auto-generate)</label><input id="uP" type="password" autocomplete="new-password"></div></div><small style="color:var(--mut)">Teachers and Head Teachers are created under Academics &rarr; Staff accounts.</small><div class="act" style="position:static"><button class="btn" data-act="umcreate">Create account</button></div></div>
- <div class="card"><h3>Staff accounts</h3><div class="tw"><table><thead><tr><th>Name</th><th>Username</th><th>Role</th><th>Department</th><th>Email</th><th>Status</th><th></th></tr></thead><tbody>${r.data.map(u=>{const off=!!u.Disabled,f=u.Clearance==='Full';return `<tr${off?' style="opacity:.7"':''}><td><b>${esc(tc(u.FullName))}</b></td><td>${esc(u.Username)}</td><td><span class="chip ${f?'':'warn'}">${u.Clearance==='Manager'?'System Manager':f?'Administrator':u.Clearance==='HeadTeacher'?'Head Teacher':u.Clearance==='Teacher'?'Teacher':['Guidance','Accounting','Academic'].includes(u.Clearance)?u.Clearance+' Office':'Encoder'}</span></td><td>${esc(u.Department)}</td><td>${esc(u.Email)}</td><td><span class="chip ${off?'no':'ok'}">${off?'Deactivated':'Active'}</span></td><td style="white-space:nowrap">${f?'':`<button class="btn alt" data-act="umtoggle" data-v="${esc(u.Username)}|${off?1:0}">${off?'Activate':'Deactivate'}</button> <button class="btn alt" data-act="umreset" data-v="${esc(u.Username)}">Reset password</button> <button class="btn red" data-act="umdel" data-v="${esc(u.Username)}">Remove</button>`}</td></tr>`}).join('')}</tbody></table></div></div>`})}
+ <div class="card"><h3>Staff accounts</h3><div class="tw"><table><thead><tr><th>Name</th><th>Username</th><th>Role</th><th>Department</th><th>Email</th><th>Status</th><th></th></tr></thead><tbody>${r.data.map(u=>{const off=u.Active==='0'||u.Active===false,f=u.Clearance==='Full';return `<tr${off?' style="opacity:.7"':''}><td><b>${esc(tc(u.FullName))}</b></td><td>${esc(u.Username)}</td><td><span class="chip ${f?'':'warn'}">${u.Clearance==='Manager'?'System Manager':f?'Administrator':u.Clearance==='HeadTeacher'?'Head Teacher':u.Clearance==='Teacher'?'Teacher':['Guidance','Accounting','Academic'].includes(u.Clearance)?u.Clearance+' Office':'Encoder'}</span></td><td>${esc(u.Department)}</td><td>${esc(u.Email)}</td><td><span class="chip ${off?'no':'ok'}">${off?'Deactivated':'Active'}</span></td><td style="white-space:nowrap">${f?'':`<button class="btn alt" data-act="umtoggle" data-v="${esc(u.Username)}|${off?1:0}">${off?'Activate':'Deactivate'}</button> <button class="btn alt" data-act="umreset" data-v="${esc(u.Username)}">Reset password</button> <button class="btn red" data-act="umdel" data-v="${esc(u.Username)}">Remove</button>`}</td></tr>`}).join('')}</tbody></table></div></div>`})}
 act.umteach = u => {
   const r = prompt('Convert ' + u + ' to:\n1 = Teacher\n2 = Head Teacher');
   if (r === null) return;
@@ -2346,7 +2388,8 @@ function feeRender(){const F=S.fees,tiers=[...new Set(F.rows.map(x=>x.Tier))];S.
 
 const FULL=()=>A()&&['Full','Manager'].includes(S.user.Clearance),SYS=()=>A()&&S.user.Clearance==='Full',ROLEN=c=>c==='Full'?'Administrator':c==='Manager'?'System Manager':c;;
 let IDLE=null,WARN=null,CD=null;
-
+function idleReset(){if(!S.token||$('idm'))return;clearTimeout(IDLE);clearTimeout(WARN);WARN=setTimeout(idleWarn,240000);IDLE=setTimeout(()=>act.out(),300000)}
+['click','keydown','mousemove','touchstart','scroll'].forEach(e=>document.addEventListener(e,idleReset,{passive:true}));
 function idleWarn(){if(!S.token)return;const m=document.createElement('div');m.className='mod';m.id='idm';m.innerHTML='<div style="max-width:420px;padding:28px;text-align:center"><h3 style="color:var(--navy)">Are you still there?</h3><p style="color:var(--mut)">For your security you will be signed out in <b id="idc">60</b> seconds.</p><button class="btn" data-act="stay">Stay signed in</button></div>';document.body.appendChild(m);let n=60;clearInterval(CD);CD=setInterval(()=>{n--;if($('idc'))$('idc').textContent=n;if(n<=0)clearInterval(CD)},1000)}
 function settingsPage(){head('Enrollment Settings','Control the school year and who may register');call('getSettings',[T()],r=>{const d=r.data;$('view').innerHTML=`<div class="card"><h3>School year</h3><p>Active school year: <b>${esc(d.sy)}</b> &nbsp; <span class="chip ${d.mail?'ok':'warn'}">Automatic e-mails: ${d.mail?'ON':'OFF (reset and staff codes still work)'}</span></p><button class="btn" data-act="nextsy">Start enrollment for next school year</button></div>
  <div class="card"><h3>Online registration</h3><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" id="eo" ${d.open?'checked':''}> Enrollment is open (anyone can create an account)</label><div class="f" style="margin-top:14px"><label>When closed, only these emails may create an account (one per line)</label><textarea id="eal">${esc(d.allowed)}</textarea></div><p><button class="btn" data-act="savest">Save settings</button></p></div><div class="card"><h3>Re-enrollment of returning learners</h3><p style="color:var(--mut)">Carries Enrolled learners from earlier school years into the active year on the same record, and keeps their old year in the learner&rsquo;s history. Re-enroll learners who must repeat a grade first (open the record &gt; Re-enroll, retain grade).</p><div class="g"><div class="f"><label>Grade level</label><select id="rg"><option value="*">All grades</option>${S.grades.map(g=>`<option>${g}</option>`).join('')}</select></div></div><div class="act" style="position:static"><button class="btn alt" data-act="reenp">Preview</button><button class="btn" data-act="reenall">Re-enroll all eligible (promote one grade)</button></div><div id="reenout"></div></div>`})}
@@ -2354,7 +2397,7 @@ try{google.script.run.withSuccessHandler(r=>{if(r&&r.success&&r.data)S.privHtml=
 function otpModal(d){const old=$('om');if(old)old.remove();S.otpc=d.challenge;const m=document.createElement('div');m.className='mod';m.id='om';
  m.innerHTML=`<div style="max-width:420px"><div class="bd"><h3 style="color:var(--navy);margin-bottom:6px">Verify it's you</h3><p style="color:var(--mut);margin:0 0 14px">We sent a 6-digit code to <b>${esc(d.hint)}</b>. It expires in 10 minutes.</p><div class="f"><label>6-digit code</label><input id="otc" type="text" maxlength="6" inputmode="numeric" autocomplete="one-time-code" data-num="1" style="text-transform:none;letter-spacing:6px;font-size:20px" onkeydown="if(event.key==='Enter')act.otpgo()"></div></div><div class="ft"><button class="btn alt" data-act="otpx">Cancel</button><button class="btn" data-act="otpgo">Verify &amp; sign in</button></div></div>`;
  document.body.appendChild(m);$('otc').focus()}
-
+act.otpgo=()=>call('verifyOtp',[S.otpc,$('otc').value],r=>{$('om').remove();enter(r)});
 act.otpx=()=>{const m=$('om');if(m)m.remove()};
 /* ===== Fix bundle: Enrollment Form PDF button ===== */
 act.eformpdf=()=>{const r=S.t.rec;savePdf(enrollFormHTML(r,A()?(r.Photo||''):S.user.Photo),fileName(r,'Enrollment-Form'))};
@@ -2466,9 +2509,20 @@ function draftBanner(t){if(!t||!t.draftAt)return '';
  return '<div class="scn" style="margin-bottom:16px">'+SICO.info+'<div><b>Unsaved draft restored</b> from '+esc(new Date(t.draftAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))+'. Review it and click <b>Save</b> to keep it. <a href="javascript:void(0)" data-act="draftx" style="color:var(--blue);font-weight:600">Discard draft</a></div></div>'}
 act.draftx=()=>{if(!confirm('Discard the restored draft and reload your saved profile?'))return;draftClear();S.st=null;stuProfile()};
 
+/** REPLACES stuProfile */
+function stuProfile(keep){head('Student Profile','Review and update your information');S.cur='stu';
+ const show=()=>{$('view').innerHTML=draftBanner(S.st)+formHTML(S.st)};
+ if(keep===true)return show();
+ call('getStudent',[T()],r=>{S.st={rec:r.data,edit:false,base:Object.assign({},r.data)};
+  const d=draftLoad();
+  if(d){const okk=new Set(draftKeys(r.data));Object.keys(d.f).forEach(k=>{if(okk.has(k))S.st.rec[k]=d.f[k]});S.st.edit=true;S.st.draftAt=d.at}
+  show()})}
 
 /** Sign-out: idle timeout keeps the draft; a manual sign-out clears it (shared computers). */
 const _out=act.out;
+act.out=()=>{if(S.idleOut)draftSave();
+ else if(S.user&&!A()&&S.token){if(draftExists()&&!confirm('You have an unsaved draft. If you sign out now it will be discarded. Sign out anyway?'))return;draftClear()}
+ S.idleOut=false;_out()};
 
 /** REPLACES idleReset: staff 5 min, students 15 min. */
 function idleReset(){if(!S.token||$('idm'))return;clearTimeout(IDLE);clearTimeout(WARN);
@@ -2526,6 +2580,12 @@ function wGo(n){const t=S.t;collect(t);if(t.edit&&n>t.step&&!wCheck(t))return;t.
 
 act.new=()=>{if(S.nm)return;S.nm={key:'new'+Date.now(),rec:{EnrollStatus:'Not Enrolled',SchoolYear:S.cfg.sy},edit:true,step:1};S.t=S.nm;renderNM()};
 act.nmclose=()=>{if(confirm('Close this form? Anything you have entered and not saved will be lost.'))closeNM()};
+
+function persistNM(){const t=S.nm,rec=Object.assign({},t.rec);delete rec.Photo;
+ call('saveStudent',[T(),rec],r=>{const d=r.data,miss=certRequired(d)&&!d.CertNo;
+  closeNM();S.tabs.push({key:d.StudentID,rec:d,edit:false});S.cur=d.StudentID;adm();
+  toast(miss?r.message+'. Reminder: the Certificate Number is still blank. You may submit it later.':r.message,miss?'warn':true);
+  if(A()&&confirm('Create a portal account for this student now?'))act.acct()})}
 
 act.save=()=>{collect(S.t);(S.nm&&S.t===S.nm)?persistNM():persist()};
 
@@ -5586,7 +5646,7 @@ act.umcreate=()=>{const em=$('uE').value;call('createStaff',[T(),{fullName:$('uF
  dlgCred('Account created','Write this down now. It is not shown again.'+(em?'\nThe login details were also emailed.':''),[['Username',r.data.username],['Temporary password',r.data.password]])})};
 act.umreset=u=>dc('Reset the password of '+u+'? A new temporary password will be generated.',{title:'Reset password',ok:'Reset password'},()=>call('resetStaffPassword',[T(),u],r=>dlgCred('Password reset','Write this down now. It is not shown again.',[['Username',r.data.username],['Temporary password',r.data.password]])));
 act.umdel=u=>dc('Remove the account '+u+'? They will no longer be able to sign in.',{title:'Remove account',ok:'Remove',danger:1},()=>call('removeStaff',[T(),u],r=>{toast(r.message);usersPage()}));
-
+act.umtoggle=v=>{const q=String(v).split('|'),u=q[0],on=q[1]==='1';
  dc((on?'Activate':'Deactivate')+' the account '+u+'?'+(on?'':' They will no longer be able to sign in until you activate it again.'),{title:on?'Activate account':'Deactivate account',ok:on?'Activate':'Deactivate',type:on?'info':'warn'},
   ()=>call('setStaffActive',[T(),u,on],r=>{toast(r.message||(on?'Account activated.':'Account deactivated.'));usersPage()}))};
 act.acstaffnew=()=>{const g=i=>$(i).value;call('createAcademicStaff',[T(),{fullName:g('acsn'),username:g('acsu'),email:g('acse'),role:g('acsr'),scope:g('acss')}],r=>{
