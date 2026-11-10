@@ -4165,6 +4165,23 @@ dxDraw = function (X, H) {
 
 /* ---------- the admin Home page (REPLACES homeAdmin) ---------- */
 homeAdmin = function () {
+  /* Ensure the institutional masthead styles are loaded in the live dashboard.
+     The earlier CSS was embedded in a print-only template, so it never styled this page. */
+  if (!document.getElementById('ma-admin-masthead-style')) {
+    const style = document.createElement('style');
+    style.id = 'ma-admin-masthead-style';
+    style.textContent = `
+      .ma-masthead{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 18px;margin:0 0 16px;background:linear-gradient(105deg,#fff 0%,#f5f8ff 58%,#eaf1ff 100%);border:1px solid #dce6f7;border-radius:14px;box-shadow:var(--sh);min-height:72px;box-sizing:border-box}
+      .ma-brandmark{display:flex;align-items:center;gap:12px;min-width:0}
+      .ma-brandmark img{display:block;width:48px!important;height:48px!important;max-width:48px!important;max-height:48px!important;min-width:48px;min-height:48px;object-fit:contain;border-radius:50%;background:#fff;flex:0 0 48px}
+      .ma-brandmark b{display:block;color:var(--navy);font:800 15px Montserrat,Inter,sans-serif;letter-spacing:.035em}
+      .ma-brandmark small{display:block;color:var(--mut);font-size:11.5px;margin-top:2px}
+      .ma-institutions{display:flex;align-items:center;gap:14px;color:#244477;font-size:10px;font-weight:800;letter-spacing:.055em;text-align:center}
+      .ma-institutions i{height:28px;border-left:1px solid #c8d5eb}
+      @media(max-width:700px){.ma-masthead{align-items:flex-start;flex-direction:column;padding:11px 13px}.ma-institutions{gap:9px;font-size:9px;flex-wrap:wrap}.ma-brandmark img{width:42px!important;height:42px!important;max-width:42px!important;max-height:42px!important;min-width:42px;min-height:42px;flex-basis:42px}}
+    `;
+    document.head.appendChild(style);
+  }
   head('Dashboard', 'Enrollment overview for School Year ' + S.cfg.sy.replace('-', '\u2013'));
   call('dashboard', [T()], r => {
     const d = r.data, st = d.stats, tot = st.total || 0, sh = n => tot ? Math.round(n / tot * 100) : 0,
