@@ -2130,6 +2130,23 @@ function printCancel(r,o){printHTML(cancelHTML(r,o),true,fileName(r,'Cancellatio
 const CX_CSS=`<style>
 .ef .cxl{font-size:9.5pt;line-height:4.3mm;color:#1f3159}
 .ef .att{margin:0;font-size:9.4pt;line-height:4.65mm;color:#1f3159;text-align:left}
+
+/* Admin dashboard foundation refinement */
+.ma-masthead{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 20px;margin:0 0 18px;background:linear-gradient(105deg,#fff 0%,#f5f8ff 58%,#eaf1ff 100%);border:1px solid #dce6f7;border-radius:16px;box-shadow:var(--sh)}
+.ma-brandmark{display:flex;align-items:center;gap:12px;min-width:0}
+.ma-brandmark img{width:48px;height:48px;object-fit:contain;border-radius:50%;background:#fff}
+.ma-brandmark b{display:block;color:var(--navy);font:800 15px Montserrat,Inter,sans-serif;letter-spacing:.035em}
+.ma-brandmark small{display:block;color:var(--mut);font-size:11.5px;margin-top:2px}
+.ma-institutions{display:flex;align-items:center;gap:14px;color:#244477;font-size:10px;font-weight:800;letter-spacing:.055em;text-align:center}
+.ma-institutions i{height:28px;border-left:1px solid #c8d5eb}
+.ma-attention{border:1px solid #f3dfbd;background:linear-gradient(110deg,#fffaf1,#fff 65%)}
+.ma-attention .ch{margin-bottom:12px}
+.ma-attention .ch h3{display:flex;align-items:center;gap:8px}
+.ma-attention-row{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:12px;background:#fff3df}
+.ma-attention-count{display:flex;align-items:center;justify-content:center;min-width:48px;height:44px;padding:0 10px;border-radius:12px;background:#ffdfad;color:#8a4b08;font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.ma-attention-row b{display:block;color:var(--navy);font-size:13.5px}
+.ma-attention-row small{display:block;color:var(--mut);font-size:12px;margin-top:2px}
+@media(max-width:700px){.ma-masthead{align-items:flex-start;flex-direction:column;padding:12px 14px}.ma-institutions{gap:9px;font-size:9px;flex-wrap:wrap}.ma-brandmark img{width:42px;height:42px}}
 </style>`;
 function cancelHTML(r,o){const C=S.cfg;o=o||{date:r.CancelDate||today(),reason:cxReason(r),fees:[['Processing Fee',Number(C.fee)]]};
  const sum=a=>a.reduce((s,x)=>s+x[1],0),nz=a=>a.filter(x=>x[1]>0),rf=o.refunds||[],totS=sum(o.fees),totR=sum(rf);
