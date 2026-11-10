@@ -4171,14 +4171,15 @@ homeAdmin = function () {
     const style = document.createElement('style');
     style.id = 'ma-admin-masthead-style';
     style.textContent = `
-      .ma-masthead{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 18px;margin:0 0 16px;background:linear-gradient(105deg,#fff 0%,#f5f8ff 58%,#eaf1ff 100%);border:1px solid #dce6f7;border-radius:14px;box-shadow:var(--sh);min-height:72px;box-sizing:border-box}
-      .ma-brandmark{display:flex;align-items:center;gap:12px;min-width:0}
-      .ma-brandmark img{display:block;width:48px!important;height:48px!important;max-width:48px!important;max-height:48px!important;min-width:48px;min-height:48px;object-fit:contain;border-radius:50%;background:#fff;flex:0 0 48px}
-      .ma-brandmark b{display:block;color:var(--navy);font:800 15px Montserrat,Inter,sans-serif;letter-spacing:.035em}
-      .ma-brandmark small{display:block;color:var(--mut);font-size:11.5px;margin-top:2px}
-      .ma-institutions{display:flex;align-items:center;gap:14px;color:#244477;font-size:10px;font-weight:800;letter-spacing:.055em;text-align:center}
-      .ma-institutions i{height:28px;border-left:1px solid #c8d5eb}
-      @media(max-width:700px){.ma-masthead{align-items:flex-start;flex-direction:column;padding:11px 13px}.ma-institutions{gap:9px;font-size:9px;flex-wrap:wrap}.ma-brandmark img{width:42px!important;height:42px!important;max-width:42px!important;max-height:42px!important;min-width:42px;min-height:42px;flex-basis:42px}}
+      .ma-masthead{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;gap:18px;padding:10px 22px;margin:0 0 16px;background:linear-gradient(105deg,#fff 0%,#f7faff 54%,#eaf1ff 100%);border:1px solid #dce6f7;border-radius:14px;box-shadow:var(--sh);min-height:104px;box-sizing:border-box;overflow:hidden}
+      .ma-institution{display:flex;align-items:center;justify-content:center;gap:12px;min-width:0}
+      .ma-institution img{display:block;width:100%;height:74px;max-width:180px;object-fit:contain;flex:0 1 auto}
+      .ma-institution.center img{max-width:220px;height:82px}
+      .ma-institution.left{justify-content:flex-start}
+      .ma-institution.right{justify-content:flex-end}
+      .ma-institution.center{border-left:1px solid #c8d5eb;border-right:1px solid #c8d5eb;padding:0 18px}
+      .ma-institution-label{display:none}
+      @media(max-width:700px){.ma-masthead{grid-template-columns:1fr 1fr;gap:8px;padding:9px 12px;min-height:0}.ma-institution img{height:52px;max-width:140px}.ma-institution.center{grid-column:1/-1;grid-row:1;border:0;border-bottom:1px solid #dce6f7;padding:0 0 8px}.ma-institution.left{grid-column:1;grid-row:2;justify-content:center}.ma-institution.right{grid-column:2;grid-row:2;justify-content:center}}
     `;
     document.head.appendChild(style);
   }
@@ -4200,7 +4201,8 @@ homeAdmin = function () {
       { cl: 'k7', l: 'Cancelled', ic: I.x, v: st.cancelled == null ? '\u2013' : nfmt(st.cancelled), d: pc(st.cancelled || 0) + ' of applicants', a: 'Cancelled', bar: sh(st.cancelled || 0) }
     ].map(gkCard).join('');
 
-    const maAdminMasthead = `<div class="ma-masthead"><div class="ma-brandmark"><img src="${LOGO}" alt="Moreh Academy"><div><b>MOREH ACADEMY</b><small>School of Righteousness and Excellence</small></div></div><div class="ma-institutions"><span>MOREH GLOBAL INNOVATIVE COLLEGE</span><i></i><span>MOREH COLLEGE</span></div></div>`;
+    const maLogoBase = 'https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/';
+    const maAdminMasthead = `<div class="ma-masthead" role="banner" aria-label="Moreh educational institutions"><div class="ma-institution left"><img src="${maLogoBase}mgic-logo.png" alt="Moreh Global Innovative College"></div><div class="ma-institution center"><img src="${maLogoBase}moreh-academy-logo.png" alt="Moreh Academy"></div><div class="ma-institution right"><img src="${maLogoBase}moreh-college-logo.png" alt="Moreh College"></div></div>`;
     const hello = `<div style="margin:0 0 14px"><h2 style="font:800 22px Inter,sans-serif;color:var(--navy)">Welcome, ${esc(tc(S.user.FullName || 'Administrator'))} &#128075;</h2><p style="margin:2px 0 0;color:var(--mut)">Welcome to the Moreh Academy Administration Portal. Here&rsquo;s what&rsquo;s happening with admissions today.</p></div>`;
 
     const pipe = [['Not Enrolled', st.pending, '#f59e0b'], ['Enrolled', st.enrolled, '#16a34a'], ['Temporary', st.temp || 0, '#8b5cf6'], ['Transferred / Cancelled', oth, '#dc2626']]
