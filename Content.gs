@@ -1,6 +1,6 @@
 /** Editable text blocks that students see (stored in the Content sheet; same allow-list sanitizer as the privacy policy).
  *  'guide' = dashboard enrollment guide. The others are the Institutional & Academic Guides / Help pages. */
-const BLOCKS = ['guide','about','cluster','handbook','facilities','faq','pubhome','pubabout','pubadmissions','pubacademics','pubcampus','pubforms','pubnews','pubcontact','history'];
+const BLOCKS = ['guide','about','cluster','handbook','facilities','faq','pubhome','pubabout','pubadmissions','pubacademics','pubcampus','pubforms','pubnews','pubcontact','history','pub_about_values','pub_about_history','pub_about_leadership','pub_adm_enrollment','pub_adm_requirements','pub_adm_scholarships','pub_adm_faq','pub_acad_kindergarten','pub_acad_elementary','pub_acad_junior_high','pub_acad_senior_high','pub_acad_college','pub_campus_organizations','pub_campus_events','pub_campus_sports','pub_campus_clubs','pub_campus_facilities','pub_forms_tlc','pub_forms_consent','pub_news_announcements','pub_news_latest','pub_news_events','pub_news_enrollment','pub_news_achievements'];
 
 function blockRow_(key) {
   const sh = contentSh_(), n = sh.getLastRow(), keys = n < 1 ? [] : sh.getRange(1, 1, n, 1).getValues().flat().map(String), i = keys.indexOf(key);
