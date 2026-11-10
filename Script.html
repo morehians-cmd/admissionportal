@@ -1085,22 +1085,92 @@ I.bldg=ic('M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01');
 const CHEV=ic('M6 9l6 6 6-6');
 function menuFor(){
  const F=FULL();
- if(OFC())return[['fl',S.user.Clearance+' Desk',I.flag],['ev','Campus Bulletin',I.cal],['me','My Profile',I.me]];
- const guides=[['about','About Moreh Academy',I.bldg],['pubhome','Public Homepage',I.home],['pubabout','Public About Us',I.bldg],['pubadmissions','Public Admissions',I.adm],['pubacademics','Public Academics',I.sch],['pubcampus','Public Campus Life',I.bldg],['pubforms','Public Downloadable Forms',I.rep],['pubnews','Public News & Updates',I.cal],['pubcontact','Public Contact Information',I.help],['history','Public History Photo Highlights',I.bldg],['cluster','Senior High Cluster Guide',I.sch],['handbook','Student Handbook',I.book],['facilities','Facilities & Campus Tour',I.bldg],['pub_about_values','Vision, Mission & Core Values',I.bldg],['pub_about_history','History',I.bldg],['pub_about_leadership','School Leadership',I.bldg],['pub_adm_enrollment','Enrollment Procedure',I.adm],['pub_adm_requirements','Admission Requirements',I.adm],['pub_adm_scholarships','Scholarships',I.adm],['pub_adm_faq','Frequently Asked Questions',I.adm],['pub_acad_kindergarten','Kindergarten',I.sch],['pub_acad_elementary','Elementary',I.sch],['pub_acad_junior_high','Junior High School',I.sch],['pub_acad_senior_high','Senior High School',I.sch],['pub_acad_college','College Program',I.sch],['pub_campus_organizations','Student Organizations',I.help],['pub_campus_events','School Activities & Events',I.help],['pub_campus_sports','Sports & Athletics',I.help],['pub_campus_clubs','Clubs & Societies',I.help],['pub_campus_facilities','Campus Facilities & Tour',I.help],['pub_forms_tlc','TLC Student Application Form',I.help],['pub_forms_consent','Consent Form',I.help],['pub_news_announcements','School Announcements',I.cal],['pub_news_latest','Latest News',I.cal],['pub_news_events','Upcoming Events',I.cal],['pub_news_enrollment','Enrollment Announcements',I.cal],['pub_news_achievements','School Achievements',I.cal]];
+ if(OFC())return[
+  ['fl',S.user.Clearance+' Desk',I.flag],
+  {g:'Communication',i:I.cal,items:[['ev','Campus Bulletin',I.cal]]},
+  ['me','My Profile',I.me]
+ ];
  if(A())return[
   ['home','Dashboard',I.home],
-  {g:'Admission Operations',i:I.adm,items:[['adm','Admission',I.adm],['fl','Holds',I.flag],['sch','Scholarships',I.sch],['tf','Schedule of Fees',I.tf]]},
-  ...(F?[{g:'Analytics & Reports',i:I.rep,items:[['rep','Reports',I.rep]]}]:[]),
-  {g:'Institutional & Academic Guides',i:I.book,items:guides},
-  {g:'Campus Info & Support',i:I.help,items:[['ev','Campus Bulletin',I.cal],...(F?[['gd','Enrollment Guide',I.rep]]:[]),['faq','Help Center & FAQs',I.help],['pp','Data Privacy Policy',I.rep]]},
-  ...(F?[{g:'System Settings',i:I.cal,items:[['um','User Management',I.users],['set','Enrollment Settings',I.cal],['ia','ID Artwork',I.rep]]}]:[]),
-  ['me','My Profile',I.me]];
+  {g:'Admissions & Enrollment',i:I.adm,items:[
+   ['adm','Admission Operations',I.adm],
+   ['fl','Holds Management',I.flag],
+   ['sch','Scholarships',I.sch],
+   ['tf','Schedule of Fees',I.tf]
+  ]},
+  ...(F?[{g:'Analytics & Reports',i:I.rep,items:[['rep','Analytics & Reports',I.rep]]}]:[]),
+  {g:'Website · Homepage & About',i:I.bldg,items:[
+   ['pubhome','Public Homepage',I.home],
+   ['pubabout','About Us Overview',I.bldg],
+   ['pub_about_values','Vision, Mission & Core Values',I.bldg],
+   ['pub_about_history','History',I.bldg],
+   ['pub_about_leadership','School Leadership',I.bldg],
+   ['history','History Photo Highlights',I.bldg]
+  ]},
+  {g:'Website · Admissions',i:I.adm,items:[
+   ['pubadmissions','Admissions Overview',I.adm],
+   ['pub_adm_enrollment','Enrollment Procedure',I.adm],
+   ['pub_adm_requirements','Admission Requirements',I.adm],
+   ['pub_adm_scholarships','Scholarships',I.sch],
+   ['pub_adm_faq','Frequently Asked Questions',I.help]
+  ]},
+  {g:'Website · Academics',i:I.sch,items:[
+   ['pubacademics','Academics Overview',I.sch],
+   ['pub_acad_kindergarten','Kindergarten',I.sch],
+   ['pub_acad_elementary','Elementary',I.sch],
+   ['pub_acad_junior_high','Junior High School',I.sch],
+   ['pub_acad_senior_high','Senior High School',I.sch],
+   ['pub_acad_college','College Program',I.sch],
+   ['cluster','Senior High Cluster Guide',I.sch]
+  ]},
+  {g:'Website · Campus Life',i:I.bldg,items:[
+   ['pubcampus','Campus Life Overview',I.bldg],
+   ['pub_campus_organizations','Student Organizations',I.help],
+   ['pub_campus_events','School Activities & Events',I.cal],
+   ['pub_campus_sports','Sports & Athletics',I.help],
+   ['pub_campus_clubs','Clubs & Societies',I.help],
+   ['pub_campus_facilities','Campus Facilities & Tour',I.bldg],
+   ['facilities','Facilities & Campus Tour Gallery',I.bldg]
+  ]},
+  {g:'Website · Forms & News',i:I.rep,items:[
+   ['pubforms','Downloadable Forms Overview',I.rep],
+   ['pub_forms_tlc','TLC Student Application Form',I.rep],
+   ['pub_forms_consent','Consent Form',I.rep],
+   ['pubnews','News & Updates Overview',I.cal],
+   ['pub_news_announcements','School Announcements',I.cal],
+   ['pub_news_latest','Latest News',I.cal],
+   ['pub_news_events','Upcoming Events',I.cal],
+   ['pub_news_enrollment','Enrollment Announcements',I.cal],
+   ['pub_news_achievements','School Achievements',I.cal]
+  ]},
+  {g:'Website · Contact Information',i:I.help,items:[
+   ['pubcontact','Contact Information',I.help]
+  ]},
+  {g:'Institutional Resources',i:I.book,items:[
+   ['about','Institutional Profile',I.bldg],
+   ['handbook','Student Handbook',I.book],
+   ...(F?[['gd','Enrollment Guide',I.rep]]:[])
+  ]},
+  {g:'Communication & Support',i:I.help,items:[
+   ['ev','Campus Bulletin',I.cal],
+   ['faq','Help Center & FAQs',I.help],
+   ['pp','Data Privacy Policy',I.rep]
+  ]},
+  ...(F?[{g:'System Administration',i:I.cal,items:[
+   ['um','User Management',I.users],
+   ['set','Enrollment Settings',I.cal],
+   ['ia','ID Artwork',I.rep]
+  ]}]:[]),
+  ['me','My Profile',I.me]
+ ];
+ const guides=[['about','About Moreh Academy',I.bldg],['pubhome','Public Homepage',I.home],['pubabout','Public About Us',I.bldg],['pubadmissions','Public Admissions',I.adm],['pubacademics','Public Academics',I.sch],['pubcampus','Public Campus Life',I.bldg],['pubforms','Public Downloadable Forms',I.rep],['pubnews','Public News & Updates',I.cal],['pubcontact','Public Contact Information',I.help],['cluster','Senior High Cluster Guide',I.sch],['handbook','Student Handbook',I.book],['facilities','Facilities & Campus Tour',I.bldg]];
  return[
   ['home','Home',I.home],
   {g:'Enrollment & Account',i:I.adm,items:[['sp','Student Profile',I.adm],['rq','School Requirements',I.rep],['sch','Scholarships',I.sch],['tf','Schedule of Fees',I.tf]]},
   {g:'About & Academic Pathways',i:I.book,items:guides},
   {g:'Support & Policies',i:I.help,items:[['ev','Campus Bulletin',I.cal],['faq','Help Center & FAQs',I.help],['pp','Data Privacy Policy',I.rep]]},
-  ['me','My Profile',I.me]];
+  ['me','My Profile',I.me]
+ ];
 }
  
 /* ===== Guide / help content pages (editable by the main administrator) ===== */
