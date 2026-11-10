@@ -215,9 +215,37 @@ function publicLogo_(id) {
   }
 }
 
+/** Cached image delivery that preserves the Drive file's actual MIME type. */
+function publicPhoto_(id) {
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'public-photo-v1-' + id;
+    var meta = cache.get(key + '-meta');
+    var encoded = '', mime = '';
+    if (meta) {
+      var parts = meta.split('|'), count = Number(parts[0]);
+      mime = parts[1] || 'image/jpeg';
+      for (var i = 0; i < count; i++) {
+        var chunk = cache.get(key + '-' + i);
+        if (chunk === null) { encoded = ''; break; }
+        encoded += chunk;
+      }
+    }
+    if (!encoded) {
+      var blob = DriveApp.getFileById(id).getBlob();
+      mime = blob.getContentType() || 'image/jpeg';
+      encoded = Utilities.base64Encode(blob.getBytes());
+      var size = 80000, total = Math.ceil(encoded.length / size);
+      for (var n = 0; n < total; n++) cache.put(key + '-' + n, encoded.slice(n * size, (n + 1) * size), 21600);
+      cache.put(key + '-meta', total + '|' + mime, 21600);
+    }
+    return 'data:' + mime + ';base64,' + encoded;
+  } catch (e) { return photo_(id); }
+}
+
 /** PUBLIC. Returns the approved About Us photo as a cached image data URI. */
 function getPublicAboutPhoto() {
-  try { return ok({ photo: publicLogo_('19OD320sqeKyWHhaeA_5mwVxxRKO5HKHy') }); }
+  try { return ok({ photo: publicPhoto_('19OD320sqeKyWHhaeA_5mwVxxRKO5HKHy') }); }
   catch (e) { return fail(e); }
 }
 
