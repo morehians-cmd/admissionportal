@@ -183,6 +183,17 @@ function photo_(id) {
   try { if (!id) return ''; const b = DriveApp.getFileById(id).getBlob(); return 'data:'+b.getContentType()+';base64,'+Utilities.base64Encode(b.getBytes()); } catch(e) { return ''; }
 }
 
+/** PUBLIC. Returns only the three approved transparent header logos as original PNG data URIs. */
+function getPublicHeaderLogos() {
+  try {
+    return ok({
+      academy: photo_('1T0MMETnUD_qk5XK_eo67j9YUSmMrKn45'),
+      mgic: photo_('1NoHJzL-5_Kf-kEmrUCFf5wKum46nO9VB'),
+      college: photo_('1iZWkURBwmrgEFNRcgF_YihewEM9Raqlc')
+    });
+  } catch (e) { return fail(e); }
+}
+
 
 function searchStudents(token, q, status, limit, grade, sy) {
   try {
