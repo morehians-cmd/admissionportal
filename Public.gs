@@ -113,3 +113,21 @@ function getPublicLeaderPhoto(id) {
     return ok(uri);
   } catch (e) { return fail(e); }
 }
+
+
+/** PUBLIC. Approved historical photo highlights for the About Us page. */
+function getPublicHistoryGallery() {
+  try { return ok({ items:galRead_('history').list }); }
+  catch (e) { return fail(e); }
+}
+function getPublicHistoryPhoto(id) {
+  try {
+    id = String(id || '');
+    if (!galRead_('history').list.some(x => x.id === id)) throw new Error('Photo not found.');
+    const cache = CacheService.getScriptCache(), key = 'pubhistory_' + id, hit = cache.get(key);
+    if (hit) return ok(hit);
+    const uri = photo_(id);
+    if (uri && uri.length < 95000) { try { cache.put(key, uri, 21600); } catch (_) {} }
+    return ok(uri);
+  } catch (e) { return fail(e); }
+}
