@@ -54,7 +54,7 @@ function getPublicAbout() {
     const cache = CacheService.getScriptCache(), hit = cache.get('puba_v1');
     if (hit) return JSON.parse(hit);
     const a = aboutRead_();
-    const out = ok({ vision: a.vision, mission: a.mission, values: a.values, timeline: a.timeline });
+    const out = ok({ vision: a.vision, mission: a.mission, values: a.values, timeline: a.timeline, leaders: a.leaders.map(l => ({ name:l.name, title:l.title, photo:l.photo })) });
     try { cache.put('puba_v1', JSON.stringify(out), 600); } catch (_) {}
     return out;
   } catch (e) { return fail(e); }
@@ -72,5 +72,38 @@ function getPublicBlock(key) {
     const b = blockRow_(key);
     const html = b.row ? cleanPolicy_(String(b.sh.getRange(b.row, 2).getValue() || '')) : '';
     return ok({ html: html });
+  } catch (e) { return fail(e); }
+}
+
+
+/** PUBLIC. Read only the approved facilities gallery and its captions. */
+function getPublicFacilities() {
+  try {
+    const list = galRead_('facilities').list.map(p => ({ id:p.id, cap:p.cap }));
+    return ok({ items:list });
+  } catch (e) { return fail(e); }
+}
+/** PUBLIC. Serves only an image already listed in the Facilities & Campus Tour gallery. */
+function getPublicFacilityPhoto(id) {
+  try {
+    id = String(id || '');
+    if (!galRead_('facilities').list.some(x => x.id === id)) throw new Error('Photo not found.');
+    const cache = CacheService.getScriptCache(), key = 'pubfacility_' + id, hit = cache.get(key);
+    if (hit) return ok(hit);
+    const uri = photo_(id);
+    if (uri && uri.length < 95000) { try { cache.put(key, uri, 21600); } catch (_) {} }
+    return ok(uri);
+  } catch (e) { return fail(e); }
+}
+/** PUBLIC. Serves only a current School Leadership photo, never private contact details. */
+function getPublicLeaderPhoto(id) {
+  try {
+    id = String(id || '');
+    if (!aboutRead_().leaders.some(x => x.photo === id)) throw new Error('Photo not found.');
+    const cache = CacheService.getScriptCache(), key = 'publeader_' + id, hit = cache.get(key);
+    if (hit) return ok(hit);
+    const uri = photo_(id);
+    if (uri && uri.length < 95000) { try { cache.put(key, uri, 21600); } catch (_) {} }
+    return ok(uri);
   } catch (e) { return fail(e); }
 }
