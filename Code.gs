@@ -215,6 +215,12 @@ function publicLogo_(id) {
   }
 }
 
+/** PUBLIC. Returns the approved About Us photo as a cached image data URI. */
+function getPublicAboutPhoto() {
+  try { return ok({ photo: publicLogo_('19OD320sqeKyWHhaeA_5mwVxxRKO5HKHy') }); }
+  catch (e) { return fail(e); }
+}
+
 /** PUBLIC. Returns only the three approved transparent header PNGs. */
 function getPublicHeaderLogos() {
   try {
