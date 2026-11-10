@@ -204,7 +204,7 @@ if(STOCK_HERO)setHero(STOCK_HERO,'');
 const FT=[];let gOk=0,gLeft=0;
 function galLayout(){const g=$('gl');const n=g.querySelectorAll('figure').length;g.className='gal n'+Math.min(Math.max(n,1),5)}
 function galDone(){if(--gLeft>0)return;const g=$('gl');if(!g.querySelector('figure')){g.className='gal n1';g.innerHTML='<figure class="soon">Campus photos are coming soon.</figure>'}else galLayout()}
-function galPhoto(f,src,cap){const im=new Image();im.onload=()=>{f.innerHTML=`<button class="pic" aria-label="View larger: ${esc(cap||'campus photo')}"><img alt="${esc(cap||'Moreh Academy campus')}" src="${src}"></button>${cap?`<figcaption>${esc(cap)}</figcaption>`:''}`;f.querySelector('button').onclick=e=>openLb(src,e.currentTarget);gOk++;if(gOk===1&&!$('hv').querySelector('.ph'))setHero(src,'');galDone()};im.onerror=()=>{f.remove();galDone()};im.src=src}
+function galPhoto(f,src,cap){const im=new Image();im.onload=()=>{f.innerHTML=`<button class="pic" aria-label="View larger: ${esc(cap||'campus photo')}"><img alt="${esc(cap||'Moreh Academy campus')}" src="${src}"></button>${cap?`<figcaption>${esc(cap)}</figcaption>`:''}`;f.querySelector('button').onclick=e=>openLb(src,e.currentTarget);gOk++;if(gOk===1&&$('hv')&&!$('hv').querySelector('.ph'))setHero(src,'');galDone()};im.onerror=()=>{f.remove();galDone()};im.src=src}
 function buildGallery(g){const gl=$('gl');
  const list=g.length?g.slice(0,5).map(p=>({id:p.id,cap:String(p.cap||'').replace(/^[^:|]{2,30}[:|]\s*/,'')})):STOCK_CAMPUS.slice(0,5).map(u=>({url:u,cap:''}));
  if(!list.length){gl.className='gal n1';gl.innerHTML='<figure class="soon">Campus photos are coming soon.</figure>';return}
