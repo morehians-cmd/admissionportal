@@ -76,7 +76,13 @@ function getPublicBlock(key) {
     key = String(key || '');
     if (!PUBLIC_BLOCK_KEYS.includes(key)) throw new Error('Unknown public page.');
     const b = blockRow_(key);
-    const html = b.row ? cleanPolicy_(String(b.sh.getRange(b.row, 2).getValue() || '')) : '';
+    const saved = b.row ? String(b.sh.getRange(b.row, 2).getValue() || '') : '';
+    let html = saved ? cleanPolicy_(saved) : '';
+    // Admin's initial editor placeholders contain headings and generic "to be added" text.
+    // Do not let those placeholders replace the complete public-page template.
+    const hasRealContent = /<(p|li|details|summary|blockquote)\b/i.test(html) &&
+      !/Content to be added by the Administrator/i.test(html);
+    if (!hasRealContent) html = '';
     return ok({ html: html });
   } catch (e) { return fail(e); }
 }
