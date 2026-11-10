@@ -28,15 +28,15 @@ footer{background:#06265b;color:#dce8fa;padding:28px 0 18px}.foot{display:grid;g
 <form class="search" onsubmit="event.preventDefault();const q=this.q.value.trim();if(q)location.href='?page=resources&q='+encodeURIComponent(q)"><input name="q" placeholder="Search Moreh Academy..." aria-label="Search Moreh Academy"><button aria-label="Search">⌕</button></form>
 </div></div>
 <nav><div class="wrap navin">
-<a href="?" class="<?= page==='home'?'active':'' ?>">Home</a>
-<a href="?page=about" class="<?= page==='about'?'active':'' ?>">About Us</a>
-<a href="?page=admissions" class="<?= page==='admissions'?'active':'' ?>">Admissions</a>
-<a href="?page=academics" class="<?= page==='academics'?'active':'' ?>">Academics</a>
-<a href="?page=campus-life" class="<?= page==='campus-life'?'active':'' ?>">Campus Life</a>
-<a href="?page=resources" class="<?= page==='resources'?'active':'' ?>">Resources</a>
-<a href="?page=news" class="<?= page==='news'?'active':'' ?>">News &amp; Updates</a>
-<a href="?page=contact" class="<?= page==='contact'?'active':'' ?>">Contact Us</a>
-<a class="login" href="?page=portal">Portal Login</a>
+<a target="_top" href="?" class="<?= page==='home'?'active':'' ?>">Home</a>
+<a target="_top" href="?page=about" class="<?= page==='about'?'active':'' ?>">About Us</a>
+<a target="_top" href="?page=admissions" class="<?= page==='admissions'?'active':'' ?>">Admissions</a>
+<a target="_top" href="?page=academics" class="<?= page==='academics'?'active':'' ?>">Academics</a>
+<a target="_top" href="?page=campus-life" class="<?= page==='campus-life'?'active':'' ?>">Campus Life</a>
+<a target="_top" href="?page=resources" class="<?= page==='resources'?'active':'' ?>">Resources</a>
+<a target="_top" href="?page=news" class="<?= page==='news'?'active':'' ?>">News &amp; Updates</a>
+<a target="_top" href="?page=contact" class="<?= page==='contact'?'active':'' ?>">Contact Us</a>
+<a class="login" target="_top" href="?page=portal">Portal Login</a>
 </div></nav>
 <div class="hero"><div class="wrap"><div class="eyebrow">MOREH ACADEMY · TAGUIG CITY</div><h1><?!= pageTitle ?></h1><p>School of Righteousness and Excellence</p></div></div>
 <main class="wrap">
@@ -47,7 +47,7 @@ footer{background:#06265b;color:#dce8fa;padding:28px 0 18px}.foot{display:grid;g
 <? } else if (page === 'admissions') { ?>
 <div class="eyebrow">Start your journey</div><h1 class="heading">Admissions</h1><p class="intro">Explore the admission and enrollment process for Moreh Academy Basic Education, Kindergarten to Grade 12.</p>
 <div class="cards"><article class="card"><span class="pill">Step 1</span><h2>Create an account</h2><p>Open the admission portal and register the applicant's details.</p></article><article class="card"><span class="pill">Step 2</span><h2>Complete the student profile</h2><p>Provide the required learner, parent or guardian, and contact information.</p></article><article class="card"><span class="pill">Step 3</span><h2>Prepare documents</h2><p>Review the requirements shown in the portal and prepare the original documents for submission.</p></article><article class="card"><span class="pill">Scholarships</span><h2>Financial assistance</h2><p>Available pathways include TLC, ESC, and Senior High School voucher programs. Eligibility and benefits depend on program rules.</p></article><article class="card"><span class="pill">Assistance</span><h2>Admissions Office</h2><p>Visit the Admissions Office at Learning Center 3, Reyes St. corner Makintar St., Central Bicutan, Taguig City.</p></article></div>
-<div class="callout"><h2>Ready to apply?</h2><p>Begin your application through the official Moreh Academy portal.</p><a class="btn" href="?page=portal&reg=1">Begin Application</a></div>
+<div class="callout"><h2>Ready to apply?</h2><p>Begin your application through the official Moreh Academy portal.</p><a class="btn" target="_top" href="?page=portal&reg=1">Begin Application</a></div>
 <? } else if (page === 'academics') { ?>
 <div class="eyebrow">Basic Education · Kindergarten to Grade 12</div><h1 class="heading">Academics</h1><p class="intro">A continuous learning journey that builds strong foundations, academic confidence and preparation for future pathways.</p>
 <div class="cards"><article class="card"><span class="pill">Early years</span><h2>Kindergarten</h2><p>Developing early language, numeracy, social and readiness skills through guided learning.</p></article><article class="card"><span class="pill">Elementary</span><h2>Grades 1–6</h2><p>Building essential knowledge, learning habits, character and foundational competencies.</p></article><article class="card"><span class="pill">Junior High</span><h2>Grades 7–10</h2><p>Strengthening core academic skills and helping learners discover their interests and strengths.</p></article><article class="card"><span class="pill">Senior High</span><h2>Grades 11–12</h2><p>Preparing learners for higher education, employment and entrepreneurship through specialized learning pathways.</p></article><article class="card"><span class="pill">SHS pathways</span><h2>Tracks and Strands</h2><p>Arts, Social Sciences and Humanities; Business and Entrepreneurship; STEM; ICT; and Hospitality and Tourism.</p></article></div>
@@ -57,7 +57,7 @@ footer{background:#06265b;color:#dce8fa;padding:28px 0 18px}.foot{display:grid;g
 <div class="callout"><h2>Visit Moreh Academy</h2><p>Find the Admissions Office and plan your visit.</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Moreh+Academy+Learning+Center+3+Reyes+St+Central+Bicutan+Taguig">Get Directions</a></div>
 <? } else if (page === 'resources') { ?>
 <div class="eyebrow">Helpful information</div><h1 class="heading">Resources</h1><p class="intro">For enrollment-specific forms, requirements and student records, please sign in to the official portal or contact the appropriate school office.</p>
-<div class="cards"><article class="card"><span class="pill">Applicants</span><h2>Admission Requirements</h2><p>View the applicant-specific checklist and submission status inside the admission portal.</p><a class="btn" href="?page=portal">Open Portal</a></article><article class="card"><span class="pill">Students and parents</span><h2>Student Information</h2><p>Sign in to access available student and enrollment information.</p><a class="btn" href="?page=portal">Portal Login</a></article><article class="card"><span class="pill">Assistance</span><h2>Request Help</h2><p>Contact the Registrar or Admissions Office for guidance on school documents and forms.</p><a class="btn" href="?page=contact">Contact Us</a></article></div>
+<div class="cards"><article class="card"><span class="pill">Applicants</span><h2>Admission Requirements</h2><p>View the applicant-specific checklist and submission status inside the admission portal.</p><a class="btn" target="_top" href="?page=portal">Open Portal</a></article><article class="card"><span class="pill">Students and parents</span><h2>Student Information</h2><p>Sign in to access available student and enrollment information.</p><a class="btn" target="_top" href="?page=portal">Portal Login</a></article><article class="card"><span class="pill">Assistance</span><h2>Request Help</h2><p>Contact the Registrar or Admissions Office for guidance on school documents and forms.</p><a class="btn" target="_top" href="?page=contact">Contact Us</a></article></div>
 <? } else if (page === 'news') { ?>
 <div class="eyebrow">Stay informed</div><h1 class="heading">News &amp; Updates</h1><p class="intro">Official announcements and school updates from Moreh Academy.</p><div id="updates" class="cards"><article class="card"><h2>Loading updates…</h2><p>Please wait while the latest school announcements are retrieved.</p></article></div>
 <? } else if (page === 'contact') { ?>
