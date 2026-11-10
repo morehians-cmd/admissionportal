@@ -161,7 +161,7 @@ function doGet(e) {
   t.reg = portal && String(p.reg || '') === '1';
   t.prog = ['TLC','ESC','QVR','QVA'].includes(String(p.prog || '')) ? String(p.prog) : '';
   t.page = isPublicPage ? page : 'home';
-  const pageTitles = {about:'About Moreh Academy',admissions:'Admissions',academics:'Academics', 'campus-life':'Campus Life',resources:'Resources',news:'News & Updates',contact:'Contact Us'};
+  const pageTitles = {about:'About Moreh Academy',admissions:'Admissions',academics:'Academics', 'campus-life':'Campus Life',resources:'Downloadable Forms',news:'News & Updates',contact:'Contact Information'};
   t.pageTitle = pageTitles[page] || 'Moreh Academy';
   return t.evaluate()
     .setTitle(portal ? 'Moreh Academy Portal' : (isPublicPage ? 'Moreh Academy | ' + page.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) : 'Moreh Academy'))
