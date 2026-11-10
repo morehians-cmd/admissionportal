@@ -3444,31 +3444,60 @@ act.dxclose=()=>{const m=$('dxm2');if(m)m.remove()};
 act.dxopen=id=>{act.dxclose();act.flopen(id)};
 
 /* The admin Home page */
-function homeAdmin(){head('Dashboard','Enrollment overview for School Year '+S.cfg.sy.replace('-','\u2013'));
+function homeAdmin(){
+ if(!document.getElementById('ma-admin-reference-style')){
+  const style=document.createElement('style');style.id='ma-admin-reference-style';
+  style.textContent='.ma-admin-page{display:grid;gap:16px;min-width:0;color:#17233c}'+
+   '.ma-admin-brand{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);align-items:center;gap:18px;min-height:112px;padding:12px 18px;border:1px solid #dbe5f4;border-radius:14px;background:#fff;box-shadow:0 3px 14px #102c5c0d;overflow:hidden}'+
+   '.ma-admin-logos{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;gap:12px;min-width:0}.ma-admin-logos img{width:100%;height:76px;object-fit:contain;min-width:0}.ma-admin-logos img+img{border-left:1px solid #d8e1ef;padding-left:12px}'+
+   '.ma-admin-brand-photo{height:92px;width:100%;object-fit:cover;object-position:center 46%;border-radius:10px}'+
+   '.ma-admin-utility{display:flex;justify-content:flex-end;align-items:center;gap:18px;color:#17366d;font-size:13px;padding:0 4px}'+
+   '.ma-admin-hero{position:relative;isolation:isolate;display:flex;align-items:center;min-height:136px;overflow:hidden;border-radius:13px;padding:22px 28px;color:#fff;background:#0c347c}.ma-admin-hero:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png") center 47%/cover no-repeat}.ma-admin-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,28,75,.9),rgba(7,45,112,.66) 58%,rgba(7,45,112,.1))}'+
+   '.ma-admin-hero h2{margin:0 0 5px;color:#fff;font-size:clamp(22px,2vw,30px);font-weight:800}.ma-admin-hero p{margin:0;color:#f0f5ff;font-size:14px}'+
+   '.ma-admin-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.ma-admin-kpi{display:flex;align-items:center;gap:14px;min-width:0;min-height:98px;padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:0 3px 12px #102c5c0b}'+
+   '.ma-admin-kpi .ma-kpi-icon{display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex:none;border-radius:13px;font-size:23px}.ma-admin-kpi small{display:block;color:#40516f;font-size:12.5px;font-weight:600}.ma-admin-kpi strong{display:block;margin:2px 0;color:#142d5c;font-size:27px;line-height:1.1;font-weight:800}.ma-admin-kpi em{display:block;color:#64748b;font-size:11.5px;font-style:normal}'+
+   '.ma-admin-content{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(250px,.82fr);gap:14px;align-items:stretch}.ma-admin-panel{min-width:0;border:1px solid #dce5f3;border-radius:13px;background:#fff;box-shadow:0 3px 12px #102c5c0a;padding:16px}.ma-admin-panelhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 14px}.ma-admin-panelhead h3{margin:0;color:#142d5c;font-size:16px;font-weight:800}.ma-admin-panelhead small{color:#64748b;font-size:11px}'+
+   '.ma-admin-bars{display:flex;align-items:flex-end;gap:10px;height:184px;overflow-x:auto;padding:12px 4px 0}.ma-admin-baritem{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;min-width:42px;height:100%;flex:1}.ma-admin-baritem strong{font-size:11px;color:#243b62}.ma-admin-bar{width:min(34px,75%);min-height:3px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#3986f6,#1453bd)}.ma-admin-baritem span{width:100%;text-align:center;font-size:10px;color:#53647f;white-space:nowrap}'+
+   '.ma-admin-status{display:flex;align-items:center;justify-content:center;gap:18px;min-height:184px}.ma-admin-donut{width:156px;height:156px;flex:none;border-radius:50%;position:relative}.ma-admin-donut:after{content:"";position:absolute;inset:28%;border-radius:50%;background:#fff}.ma-admin-donut-label{position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#142d5c}.ma-admin-donut-label strong{font-size:22px}.ma-admin-donut-label small{font-size:11px;color:#64748b}'+
+   '.ma-admin-legend{display:grid;gap:9px;min-width:0}.ma-admin-legend div{display:grid;grid-template-columns:10px minmax(0,1fr) auto;align-items:center;gap:7px;font-size:11.5px;color:#40516f}.ma-admin-legend i{width:9px;height:9px;border-radius:50%}.ma-admin-legend b{color:#142d5c}'+
+   '.ma-admin-campus{padding:0;overflow:hidden}.ma-admin-campus img{display:block;width:100%;height:184px;object-fit:cover;object-position:center 45%}.ma-admin-campus-caption{padding:12px 14px;background:linear-gradient(135deg,#092d70,#1554b5);color:#fff}.ma-admin-campus-caption b{display:block;font-family:Georgia,serif;font-size:19px;font-style:italic}.ma-admin-campus-caption span{font-size:11px;color:#e7efff}'+
+   '.ma-admin-bottom{display:grid;grid-template-columns:minmax(230px,.9fr) minmax(300px,1.15fr) minmax(240px,.82fr);gap:14px;align-items:start}.ma-admin-bottom .ma-admin-panel{height:100%;box-sizing:border-box}.ma-admin-bottom #dxatt>.card,.ma-admin-bottom #dxrec>.card,.ma-admin-bottom .card{margin:0;box-shadow:none;border:0;padding:0;border-radius:0}.ma-admin-bottom .ch{margin-bottom:10px}.ma-admin-bottom .ch h3{font-size:16px}'+
+   '.ma-admin-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.ma-admin-quick .qb{display:flex;align-items:center;gap:8px;min-width:0;padding:10px;border:1px solid #e0e8f5;border-radius:10px;background:#f7faff;color:#183568;font-size:11.5px;text-align:left}.ma-admin-quick .ao{width:30px;height:30px;flex:none}.ma-admin-quick .qb:hover{background:#edf4ff;border-color:#b8cff5}'+
+   '.ma-admin-page .dxm{padding:8px 0}.ma-admin-page .dxn{font-size:11.5px}.ma-admin-page .dxr{padding:7px 2px}.ma-admin-page .at{font-size:11.5px}.ma-admin-page .at th,.ma-admin-page .at td{padding:7px 5px}'+
+   '@media(max-width:1180px){.ma-admin-content{grid-template-columns:1fr 1fr}.ma-admin-campus{grid-column:1/-1}.ma-admin-campus img{height:145px}.ma-admin-bottom{grid-template-columns:1fr 1fr}.ma-admin-bottom>:last-child{grid-column:1/-1}}'+
+   '@media(max-width:760px){.ma-admin-brand{grid-template-columns:1fr}.ma-admin-brand-photo{height:90px}.ma-admin-logos img{height:55px}.ma-admin-utility{justify-content:space-between}.ma-admin-kpis{grid-template-columns:1fr 1fr;gap:9px}.ma-admin-kpi{padding:11px;gap:9px;min-height:82px}.ma-admin-kpi .ma-kpi-icon{width:38px;height:38px;font-size:18px}.ma-admin-kpi strong{font-size:21px}.ma-admin-content,.ma-admin-bottom{grid-template-columns:1fr}.ma-admin-campus{grid-column:auto}.ma-admin-bottom>:last-child{grid-column:auto}.ma-admin-status{gap:12px}.ma-admin-donut{width:130px;height:130px}}';
+  document.head.appendChild(style);
+ }
+ head('Dashboard','Enrollment overview for School Year '+S.cfg.sy.replace('-','\u2013'));
  call('dashboard',[T()],r=>{
-  const d=r.data,st=d.stats,tot=st.total||0,pc=n=>(tot?Math.round(n/tot*1000)/10:0)+'%',oth=Math.max(0,tot-st.enrolled-st.pending-(st.temp||0));
-  const lv=d.cards.map(c=>[c.title,c.rows.reduce((a,x)=>a+x[1],0)]),lt=lv.reduce((a,x)=>a+x[1],0);let acc=0;
-  const seg=lt?lv.map((x,i)=>{const s0=acc;acc+=x[1]/lt*100;return `${DC[i%5]} ${s0}% ${acc}%`}).join(','):'#e6ebf3 0% 100%';
-  const cards=dcard('c1',I.adm,'Total Applicants',nfmt(tot),'All records','#2563eb','dflt','All')+dcard('c2',I.home,'Enrolled',nfmt(st.enrolled),pc(st.enrolled)+' of applicants','#16a34a','dflt','Enrolled')+dcard('c3',I.rep,'Not Yet Enrolled',nfmt(st.pending),pc(st.pending)+' of applicants','#d98200','dflt','Not Enrolled')+dcard('c4',I.cal,'New Today',nfmt(st.today),'Registered today','#7c3aed');
-  const box=(l,n,c,v)=>`<button class="dxb" data-act="dflt" data-v="${v}"><i style="background:${c}"></i><span>${l}</span><b>${n==null?'\u2013':nfmt(n)}</b></button>`;
-  const strip=`<div class="dxst">${box('Temporary',st.temp||0,'#8b5cf6','Temporary')}${box('Transferred Out',st.transferred,'#dc2626','Transferred Out')}${box('Cancelled',st.cancelled,'#64748b','Cancelled')}</div>`;
-  let hero=dhero(tc(S.user.FullName||'Administrator'),'Here&rsquo;s what&rsquo;s happening with admissions today. Click a card to open that list.',cards);
-  hero=hero.slice(0,-6)+strip+'</div>';   /* dhero ends with the banner's closing div: put the strip inside it */
-  const pipe=[['Not Enrolled',st.pending,'#f59e0b'],['Enrolled',st.enrolled,'#16a34a'],['Temporary',st.temp||0,'#8b5cf6'],['Transferred / Cancelled',oth,'#dc2626']].map(x=>`<div class="pl"><span class="pn">${x[0]}</span><b>${nfmt(x[1])}</b><em>${pc(x[1])}</em><div class="ptr"><i style="width:${tot?x[1]/tot*100:0}%;background:${x[2]}"></i></div></div>`).join('');
-  const gct=d.cards.map(c=>{const t=c.rows.reduce((a,x)=>a+x[1],0),mx=Math.max(1,...c.rows.map(x=>x[1]));
-   return `<div class="gct"><h4>${esc(c.title)}<span>${t}</span></h4><table><tbody>${c.rows.map(x=>`<tr style="background:linear-gradient(90deg,#dbe7fd ${x[1]/mx*100}%,transparent ${x[1]/mx*100}%)"><td>${esc(x[0])}</td><td>${x[1]}</td></tr>`).join('')}</tbody></table></div>`}).join('');
-  $('view').innerHTML=hero+`<div class="dash hm"><div class="dmain">
-   <div class="row2"><div class="card"><div class="ch"><h3>Enrolled by Level</h3></div><div class="dn"><div class="donut"><div class="pie2" style="background:conic-gradient(${seg})"></div><div class="dctr"><b>${nfmt(lt)}</b><small>Enrolled</small></div></div><div class="dlg">${lv.map((x,i)=>`<div><i style="background:${DC[i%5]}"></i><span>${esc(x[0])}</span><b>${lt?Math.round(x[1]/lt*100):0}%</b><em>${x[1]}</em></div>`).join('')}</div></div></div>
-   ${FULL()?`<div id="dxsch">${dxSkel('Applicants by Scholarship')}</div>`:`<div class="card"><div class="ch"><h3>Enrollment Pipeline</h3></div>${pipe}</div>`}</div>
-   <div class="card"><div class="ch"><h3>Enrolled Learners by Grade &amp; Cluster</h3></div><div class="gcl">${gct}</div></div>
-   <div id="dxrec">${dxSkel('Recent Registrations')}</div>${helpbar()}</div>
-  <div class="dside"><div class="card"><div class="ch"><h3>Quick Actions</h3></div><div class="qas">${qa('c1',I.adm,'Register Student','quick')}${qa('c2',I.search,'Find Learner','nav','adm')}${FULL()?qa('c4',I.rep,'Reports','nav','rep'):qa('c4',I.cal,'Campus Bulletin','nav','ev')}${qa('c3',I.rep,'Export Today (CSV)','exptoday')}${qa('c5',I.sch,'Scholarships','nav','sch')}${qa('c1',I.tf,'Schedule of Fees','nav','tf')}</div></div>
-   <div id="dxatt">${dxSkel('Needs Attention')}</div>${evSide()}${actCard()}</div></div>`;
-  renderAct();homeEvents();
-  /* extra panels load on their own, so the main numbers appear first */
+  const d=r.data,st=d.stats,tot=st.total||0;
+  const campus='https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png';
+  const base='https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/';
+  const statusItems=[{label:'Enrolled',value:st.enrolled||0,color:'#2475e8'},{label:'Not Yet Enrolled',value:st.pending||0,color:'#ff9b3d'},{label:'Temporary',value:st.temp||0,color:'#16a085'},{label:'Transferred Out',value:st.transferred||0,color:'#9aa9bd'},{label:'Cancelled',value:st.cancelled||0,color:'#64748b'}];
+  const statusTotal=statusItems.reduce((a,x)=>a+x.value,0);let angle=0;
+  const donut=statusTotal?statusItems.map(x=>{const from=angle;angle+=x.value/statusTotal*360;return x.color+' '+from+'deg '+angle+'deg'}).join(','):'#e8eef7 0deg 360deg';
+  const kpi=(label,value,sub,icon,bg,color,filter)=>'<div class="ma-admin-kpi" '+(filter?'data-act="dflt" data-v="'+filter+'" style="cursor:pointer"':'')+'><span class="ma-kpi-icon" style="background:'+bg+';color:'+color+'">'+icon+'</span><div><small>'+label+'</small><strong>'+nfmt(value||0)+'</strong><em>'+sub+'</em></div></div>';
+  const grades=d.cards.flatMap(g=>g.rows.map(x=>({label:x[0],value:x[1]})));
+  const maxGrade=Math.max(1,...grades.map(x=>x.value));
+  const bars=grades.map((x,i)=>'<div class="ma-admin-baritem" title="'+esc(x.label)+': '+x.value+'"><strong>'+x.value+'</strong><div class="ma-admin-bar" style="height:'+Math.max(2,x.value/maxGrade*125)+'px;background:'+(i%2?'linear-gradient(180deg,#ffad62,#f1872d)':'linear-gradient(180deg,#4b91f5,#1453bd)')+'"></div><span>'+esc(x.label.replace('Grade ','G'))+'</span></div>').join('');
+  const legend=statusItems.map(x=>'<div><i style="background:'+x.color+'"></i><span>'+x.label+'</span><b>'+x.value+'</b></div>').join('');
+  const qb=(cl,ic,label,act,val)=>'<button class="qb" data-act="'+act+'"'+(val?' data-v="'+val+'"':'')+'><span class="ao '+cl+'">'+ic+'</span>'+label+'</button>';
+  const quick='<div class="ma-admin-quick">'+qb('c1',I.adm,'Register Student','quick')+qb('c2',I.search,'Find Learner','nav','adm')+(FULL()?qb('c4',I.rep,'View Reports','nav','rep'):qb('c4',I.cal,'Campus Bulletin','nav','ev'))+qb('c3',I.rep,'Export Today','exptoday')+qb('c5',I.sch,'Scholarships','nav','sch')+qb('c1',I.tf,'Schedule of Fees','nav','tf')+'</div>';
+  const brand='<div class="ma-admin-brand"><div class="ma-admin-logos"><img src="'+base+'mgic-logo.png" alt="Moreh Global Innovative College"><img src="'+base+'moreh-academy-logo.png" alt="Moreh Academy"><img src="'+base+'moreh-college-logo.png" alt="Moreh College"></div><img class="ma-admin-brand-photo" src="'+campus+'" alt="Moreh College campus"></div>';
+  const utility='<div class="ma-admin-utility"><span>'+I.cal+' '+new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})+'</span><span><b>'+esc(tc(S.user.FullName||'Administrator'))+'</b> · Administrator</span></div>';
+  const hero='<section class="ma-admin-hero"><div><h2>'+greet()+', '+esc(tc(S.user.FullName||'Administrator'))+' &#128075;</h2><p>Welcome to the Moreh Academy Admission Portal. Together, we build a brighter future.</p></div></section>';
+  $('view').innerHTML='<div class="ma-admin-page">'+brand+utility+hero+
+   '<section class="ma-admin-kpis">'+kpi('Total Applications',tot,'All applicants','♟','#e5efff','#1761d2','All')+kpi('Pending Applications',st.pending,'Awaiting enrollment','◷','#fff0df','#e98224','Not Enrolled')+kpi('Enrolled Students',st.enrolled,'Successfully enrolled','✓','#e0f7ef','#11966c','Enrolled')+kpi('New Today',st.today,'Registered today','▣','#eee9ff','#6941c6','')+'</section>'+
+   '<section class="ma-admin-content"><div class="ma-admin-panel"><div class="ma-admin-panelhead"><h3>▥ Enrollment by Grade Level</h3><small>Active school year</small></div><div class="ma-admin-bars">'+bars+'</div></div>'+
+   '<div class="ma-admin-panel"><div class="ma-admin-panelhead"><h3>◔ Application Status</h3><small>'+nfmt(statusTotal)+' records</small></div><div class="ma-admin-status"><div class="ma-admin-donut" style="background:conic-gradient('+donut+')"><div class="ma-admin-donut-label"><strong>'+nfmt(statusTotal)+'</strong><small>Total</small></div></div><div class="ma-admin-legend">'+legend+'</div></div></div>'+
+   '<div class="ma-admin-panel ma-admin-campus"><img src="'+campus+'" alt="Moreh Academy campus"><div class="ma-admin-campus-caption"><b>Moreh Academy</b><span>A Community of Excellence</span></div></div></section>'+
+   '<section class="ma-admin-bottom"><div class="ma-admin-panel"><div id="dxatt">'+dxSkel('Needs Attention')+'</div></div><div class="ma-admin-panel"><div id="dxrec">'+dxSkel('Recent Registrations')+'</div></div><div class="ma-admin-panel"><div class="ma-admin-panelhead"><h3>⚡ Quick Actions</h3></div>'+quick+'</div></section></div>';
+  renderAct();
   let X=null,H=null,pend=2;const fin=()=>{if(--pend)return;dxDraw(X,H)};
   google.script.run.withSuccessHandler(q=>{if(q&&q.success)X=q.data;fin()}).withFailureHandler(()=>fin()).dashboardExtra(S.token);
-  google.script.run.withSuccessHandler(q=>{if(q&&q.success)H=q.data;fin()}).withFailureHandler(()=>fin()).holdsOverview(S.token)})}
+  google.script.run.withSuccessHandler(q=>{if(q&&q.success)H=q.data;fin()}).withFailureHandler(()=>fin()).holdsOverview(S.token);
+ });
+}
 
 /* Route the admin Home to the new page; students (and everyone else) keep the original home() */
 const _homeDx=home;
