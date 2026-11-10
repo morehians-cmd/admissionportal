@@ -1661,7 +1661,14 @@ document.addEventListener('change',e=>{if(e.target.id==='pf'){const f=e.target.f
 
 const greet=()=>{const h=new Date().getHours();return h<12?'Good morning':h<18?'Good afternoon':'Good evening'},nfmt=n=>Number(n||0).toLocaleString('en-US'),DC=['#2f9e6f','#e0489d','#3b82f6','#2b2f3a','#f5b73b'];
 const kpi=(cls,icon,label,val,sub,sm)=>`<div class="kpi"><div class="ki ${cls}">${icon}</div><div><small>${label}</small><b${sm?' class="sm"':''}>${val}</b><span>${sub||''}</span></div></div>`;
-const hello=(name,line)=>`<div class="hello"><div><small>${greet()},</small><h2>${esc(name)} &#128075;</h2><p>${line}</p></div><div class="hr"><div class="hd2"><small>Today</small><span>${I.cal} ${new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</span></div><div class="inst-logos" aria-label="Moreh Academy institutions"><img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/admission-portal-redesign/assets/mgic-logo.png" alt="Moreh Global Institute of Colleges logo"><img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/admission-portal-redesign/assets/moreh-academy-logo.png" alt="Moreh Academy logo"><img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/admission-portal-redesign/assets/moreh-college-logo.png" alt="Moreh College logo"></div></div></div>`;
+const INST_LOGOS =
+  '<div class="inst-logos" aria-label="Moreh Academy institutions">' +
+  '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/admission-portal-redesign/assets/mgic-logo.png" alt="Moreh Global Institute of Colleges logo">' +
+  '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/admission-portal-redesign/assets/moreh-academy-logo.png" alt="Moreh Academy logo">' +
+  '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/admission-portal-redesign/assets/moreh-college-logo.png" alt="Moreh College logo">' +
+  '</div>';
+
+const hello=(name,line)=>`<div class="hello"><div><small>${greet()},</small><h2>${esc(name)} &#128075;</h2><p>${line}</p></div><div class="hr"><div class="hd2"><small>Today</small><span>${I.cal} ${new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</span></div>${INST_LOGOS}</div></div>`;
 const qa=(cls,icon,label,a,v)=>`<button class="qa ${cls}" data-act="${a}"${v?` data-v="${v}"`:''}>${icon}<span>${label}</span></button>`;
 const helpbar=()=>A()?`<div class="helpbar"><div><b>System or Database Help?</b><small>IT Helpdesk &amp; System Support &middot; Mon&ndash;Fri 8:00 AM &ndash; 5:00 PM</small></div><a class="btn" href="mailto:morehians@gmail.com">Contact IT Support</a></div>`:`<div class="helpbar"><div><b>Need help?</b><small>Admissions Office &middot; Mon&ndash;Fri 8:00 AM &ndash; 5:00 PM, Sat 8:00 AM &ndash; 3:00 PM &middot; 0961 876 6886</small></div><a class="btn" href="mailto:morehians@gmail.com">Contact Admissions</a></div>`;
 function renderAct(){const el=$('ract');if(!el)return;if(!S.notifs){el.innerHTML='<div class="aemp">Loading&hellip;</div>';return}
