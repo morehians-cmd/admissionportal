@@ -62,3 +62,15 @@ function getPublicAbout() {
 
 /** PUBLIC. URL of the public homepage (used by the sign-in page's "Back to homepage" link). */
 function getHomeUrl() { return ScriptApp.getService().getUrl(); }
+
+/** PUBLIC. Returns only approved, sanitized public-page HTML blocks. */
+const PUBLIC_BLOCK_KEYS = ['pubhome','pubabout','pubadmissions','pubacademics','pubcampus','pubforms','pubnews','pubcontact'];
+function getPublicBlock(key) {
+  try {
+    key = String(key || '');
+    if (!PUBLIC_BLOCK_KEYS.includes(key)) throw new Error('Unknown public page.');
+    const b = blockRow_(key);
+    const html = b.row ? cleanPolicy_(String(b.sh.getRange(b.row, 2).getValue() || '')) : '';
+    return ok({ html: html });
+  } catch (e) { return fail(e); }
+}
