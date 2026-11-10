@@ -13,7 +13,7 @@
    - getGalleryPhoto only serves ids that are on that page's list, so it cannot be used to read other Drive files.
 *****************************************************************************/
 
-const GAL_PAGES = ['facilities', 'cluster', 'handbook'];     // add 'about' or 'handbook' here later to enable galleries on those pages
+const GAL_PAGES = ['facilities', 'cluster', 'handbook', 'history'];     // add 'about' or 'handbook' here later to enable galleries on those pages
 const GAL_MAX = 12;                              // photos per page
 const GAL_MAX_B64 = 2200000;                     // ~1.6 MB of image data after base64
 
