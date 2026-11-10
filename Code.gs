@@ -183,13 +183,45 @@ function photo_(id) {
   try { if (!id) return ''; const b = DriveApp.getFileById(id).getBlob(); return 'data:'+b.getContentType()+';base64,'+Utilities.base64Encode(b.getBytes()); } catch(e) { return ''; }
 }
 
-/** PUBLIC. Returns only the three approved transparent header logos as original PNG data URIs. */
+/** Cached delivery for the three public header PNGs. Cache chunks stay below Apps Script's per-value limit. */
+function publicLogo_(id) {
+  try {
+    var cache = CacheService.getScriptCache();
+    var key = 'public-logo-v1-' + id;
+    var meta = cache.get(key + '-meta');
+    var encoded = '';
+    if (meta) {
+      var count = Number(meta);
+      for (var i = 0; i < count; i++) {
+        var part = cache.get(key + '-' + i);
+        if (part === null) { encoded = ''; break; }
+        encoded += part;
+      }
+    }
+    if (!encoded) {
+      var blob = DriveApp.getFileById(id).getBlob();
+      encoded = Utilities.base64Encode(blob.getBytes());
+      var chunkSize = 80000;
+      var chunks = Math.ceil(encoded.length / chunkSize);
+      for (var n = 0; n < chunks; n++) {
+        cache.put(key + '-' + n, encoded.slice(n * chunkSize, (n + 1) * chunkSize), 21600);
+      }
+      cache.put(key + '-meta', String(chunks), 21600);
+      return 'data:' + (blob.getContentType() || 'image/png') + ';base64,' + encoded;
+    }
+    return 'data:image/png;base64,' + encoded;
+  } catch (e) {
+    return photo_(id);
+  }
+}
+
+/** PUBLIC. Returns only the three approved transparent header PNGs. */
 function getPublicHeaderLogos() {
   try {
     return ok({
-      academy: photo_('1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq'),
-      mgic: photo_('1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF'),
-      college: photo_('1WD0A18SLhBaDl9lGi6HOMQOLXggRq3hK')
+      academy: publicLogo_('1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq'),
+      mgic: publicLogo_('1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF'),
+      college: publicLogo_('1WD0A18SLhBaDl9lGi6HOMQOLXggRq3hK')
     });
   } catch (e) { return fail(e); }
 }
