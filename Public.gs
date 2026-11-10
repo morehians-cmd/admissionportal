@@ -21,15 +21,21 @@ function getPublicContent() {
     const gb = blockRow_('guide');
     const guide = gb.row ? cleanPolicy_(String(gb.sh.getRange(gb.row, 2).getValue() || '')) : '';
 
-    const events = evRows_()
+    const posts = evRows_();
+    const announcements = posts
+      .filter(e => e.Category === 'Announcement' && e.EventDate >= today)
+      .sort((a, b) => b.EventDate.localeCompare(a.EventDate))
+      .slice(0, 5)
+      .map(e => ({ t:e.Title, d:e.EventDate, v:e.Venue, x:e.Details, category:e.Category }));
+    const events = posts
       .filter(e => e.Category !== 'Announcement' && e.EventDate >= today)
       .sort((a, b) => (a.EventDate + a.EventTime).localeCompare(b.EventDate + b.EventTime))
       .slice(0, PUB_EVENTS_MAX)
-      .map(e => ({ t: e.Title, d: e.EventDate, v: e.Venue }));
+      .map(e => ({ t:e.Title, d:e.EventDate, tm:e.EventTime, v:e.Venue, x:e.Details, category:e.Category }));
 
     const gallery = galRead_(PUB_GALLERY_PAGE).list.slice(0, PUB_GALLERY_MAX).map(p => ({ id: p.id, cap: p.cap }));
 
-    const out = ok({ sy: activeSY_(), portal: ScriptApp.getService().getUrl() + '?page=portal', guide: guide, events: events, gallery: gallery });
+    const out = ok({ sy: activeSY_(), portal: ScriptApp.getService().getUrl() + '?page=portal', guide: guide, announcements:announcements, events:events, gallery:gallery });
     try { cache.put(ck, JSON.stringify(out), 300); } catch (_) {}
     return out;
   } catch (e) { return fail(e); }
