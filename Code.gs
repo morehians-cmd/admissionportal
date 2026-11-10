@@ -154,14 +154,14 @@ function doGet(e) {
   const p = (e && e.parameter) || {};
   const page = String(p.page || '');
   const portal = page === 'portal';
-  const publicPages = ['about','admissions','academics','campus-life','resources','news','contact'];
+  const publicPages = ["about","admissions","academics","campus-life","resources","news","contact","about-values","about-history","about-leadership","admissions-enrollment","admissions-requirements","admissions-scholarships","admissions-faq","academics-kindergarten","academics-elementary","academics-junior-high","academics-senior-high","academics-college","campus-organizations","campus-events","campus-sports","campus-clubs","campus-facilities","forms-tlc-application","forms-consent","news-announcements","news-latest","news-events","news-enrollment","news-achievements"];
   const isPublicPage = publicPages.indexOf(page) >= 0;
   const t = HtmlService.createTemplateFromFile(portal ? 'Index' : (isPublicPage ? 'PublicPage' : 'PublicHome'));
   t.appUrl = ScriptApp.getService().getUrl();
   t.reg = portal && String(p.reg || '') === '1';
   t.prog = ['TLC','ESC','QVR','QVA'].includes(String(p.prog || '')) ? String(p.prog) : '';
   t.page = isPublicPage ? page : 'home';
-  const pageTitles = {about:'About Moreh Academy',admissions:'Admissions',academics:'Academics', 'campus-life':'Campus Life',resources:'Downloadable Forms',news:'News & Updates',contact:'Contact Information'};
+  const pageTitles = {"about":"About Moreh Academy","admissions":"Admissions","academics":"Academic Programs","campus-life":"Campus Life","resources":"Downloadable Forms","news":"News & Updates","contact":"Contact Information","about-values":"Vision, Mission & Core Values","about-history":"History","about-leadership":"School Leadership","admissions-enrollment":"Enrollment Procedure","admissions-requirements":"Admission Requirements","admissions-scholarships":"Scholarships","admissions-faq":"Frequently Asked Questions","academics-kindergarten":"Kindergarten","academics-elementary":"Elementary","academics-junior-high":"Junior High School","academics-senior-high":"Senior High School","academics-college":"College Program","campus-organizations":"Student Organizations","campus-events":"School Activities & Events","campus-sports":"Sports & Athletics","campus-clubs":"Clubs & Societies","campus-facilities":"Campus Facilities & Tour","forms-tlc-application":"TLC Student Application Form","forms-consent":"Consent Form","news-announcements":"School Announcements","news-latest":"Latest News","news-events":"Upcoming Events","news-enrollment":"Enrollment Announcements","news-achievements":"School Achievements"};
   t.pageTitle = pageTitles[page] || 'Moreh Academy';
   return t.evaluate()
     .setTitle(portal ? 'Moreh Academy Portal' : (isPublicPage ? 'Moreh Academy | ' + page.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) : 'Moreh Academy'))
