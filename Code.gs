@@ -151,12 +151,17 @@ const fail = e => ({ success:false, error:e.message });
 const deptOf_ = g => { const i = GRADES.indexOf(g); return i<0?'':i<3?'Preschool':i<9?'Elementary':i<13?'Junior High School':'Senior High School'; };
 
 function doGet(e) {
-  const p = (e && e.parameter) || {}, portal = String(p.page || '') === 'portal';
-  const t = HtmlService.createTemplateFromFile(portal ? 'Index' : 'PublicHome');
-  t.reg = portal && String(p.reg || '') === '1';     // ?page=portal&reg=1 opens the Create an Account form
+  const p = (e && e.parameter) || {};
+  const page = String(p.page || '');
+  const portal = page === 'portal';
+  const publicPages = ['about','admissions','academics','campus-life','resources','news','contact'];
+  const isPublicPage = publicPages.indexOf(page) >= 0;
+  const t = HtmlService.createTemplateFromFile(portal ? 'Index' : (isPublicPage ? 'PublicPage' : 'PublicHome'));
+  t.reg = portal && String(p.reg || '') === '1';
   t.prog = ['TLC','ESC','QVR','QVA'].includes(String(p.prog || '')) ? String(p.prog) : '';
+  t.page = isPublicPage ? page : 'home';
   return t.evaluate()
-    .setTitle(portal ? 'Moreh Academy Portal' : 'Moreh Academy')
+    .setTitle(portal ? 'Moreh Academy Portal' : (isPublicPage ? 'Moreh Academy | ' + page.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()) : 'Moreh Academy'))
     .addMetaTag('viewport', 'width=device-width, initial-scale=1, viewport-fit=cover');
 }
 function include(f) { return HtmlService.createHtmlOutputFromFile(f).getContent(); }
