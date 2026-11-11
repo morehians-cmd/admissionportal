@@ -362,7 +362,7 @@ function dashboard(token) {
     const today = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
     const byG = a => a.map(g=>[g, s.filter(r=>r.GradeLevel===g).length]);
     const byC = g => Object.keys(CL).map(c=>[c, s.filter(r=>r.GradeLevel===g && r.Cluster===CL[c]).length]);
-    return ok({ stats:{ total:all.length, enrolled:s.length, pending:all.filter(r=>r.EnrollStatus==='Not Enrolled').length, today:all.filter(r=>r.CreatedAt.startsWith(today)).length,temp:all.filter(r=>r.EnrollStatus==='Temporary').length,
+    return ok({ stats:{ total:all.length, enrolled:s.length, pending:all.filter(r=>r.EnrollStatus==='Not Enrolled').length, approved:all.filter(r=>r.EnrollStatus==='Approved').length, today:all.filter(r=>r.CreatedAt.startsWith(today)).length,temp:all.filter(r=>r.EnrollStatus==='Temporary').length,
 transferred:all.filter(r=>r.EnrollStatus==='Transferred Out').length,cancelled:all.filter(r=>r.EnrollStatus==='Cancelled').length },
       cards:[{title:'Preschool',rows:byG(GRADES.slice(0,3))},{title:'Elementary',rows:byG(GRADES.slice(3,9))},{title:'Junior High School',rows:byG(GRADES.slice(9,13))},{title:'Senior High \u2013 Grade 11',rows:byC('Grade 11')},{title:'Senior High \u2013 Grade 12',rows:byC('Grade 12')}] });
   } catch(e) { return fail(e); }
