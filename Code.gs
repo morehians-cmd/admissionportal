@@ -601,6 +601,7 @@ function saveEvent(token, e) {
       Details:String(e.Details||'').trim().slice(0,1000), Category:(EVCATS.includes(e.Category)?e.Category:'Other'), UpdatedAt:Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd HH:mm:ss'), UpdatedBy:u.Username };
     const ids = sh.getLastRow()<2 ? [] : sh.getRange(2,1,sh.getLastRow()-1,1).getValues().flat().map(String), i = ids.indexOf(rec.EventID);
     put_(sh, i<0?sh.getLastRow()+1:i+2, 1, [EVCOLS.map(c=>rec[c])]);
+    audit_(u, i<0?'event.create':'event.update', rec.EventID, rec.Title);
     return ok(rec, 'Event saved');
   } catch(err) { return fail(err); } finally { try { lock.releaseLock(); } catch(_) {} }
 }
