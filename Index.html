@@ -6610,4 +6610,148 @@ schRender = function () {
   if (S.schGo) { S.sk = S.schGo; S.schGo = ''; S.schEdit = null; }
   _schRenderGo();
 };
+
+
+/* ---------- Moreh Academy administrator dashboard: approved mockup layout ---------- */
+homeAdmin = function () {
+  if (!document.getElementById('ma-admin-v2-style')) {
+    const style = document.createElement('style');
+    style.id = 'ma-admin-v2-style';
+    style.textContent =
+      '.ma-admin-v2{display:grid;gap:16px;min-width:0;color:#17233c}' +
+      '.ma-v2-brand{display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,34%);align-items:center;gap:18px;padding:10px 18px;min-height:100px;border:1px solid #dce6f7;border-radius:14px;background:#fff;box-shadow:var(--sh);overflow:hidden}' +
+      '.ma-v2-logos{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:12px;min-width:0}' +
+      '.ma-v2-logos img{width:100%;height:68px;object-fit:contain;min-width:0}' +
+      '.ma-v2-logos img+img{border-left:1px solid #d8e1ef;padding-left:12px}' +
+      '.ma-v2-campus-thumb{width:100%;height:82px;object-fit:cover;object-position:center 46%;border-radius:10px}' +
+      '.ma-v2-utility{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#17366d;font-size:13px;padding:0 4px}' +
+      '.ma-v2-hero{position:relative;isolation:isolate;display:flex;align-items:center;min-height:164px;overflow:hidden;border-radius:14px;padding:24px 28px;color:#fff;background:#0c347c;box-shadow:var(--sh)}' +
+      '.ma-v2-hero:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png") center 47%/cover no-repeat}' +
+      '.ma-v2-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,28,75,.9),rgba(7,45,112,.62) 58%,rgba(7,45,112,.08))}' +
+      '.ma-v2-hero h2{margin:0 0 7px;color:#fff;font-size:clamp(23px,2.2vw,31px);font-weight:800}' +
+      '.ma-v2-hero p{margin:0;color:#f0f5ff;font-size:14px;max-width:650px}' +
+      '.ma-v2-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}' +
+      '.ma-v2-analytics{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(240px,.95fr);gap:14px;align-items:stretch}' +
+      '.ma-v2-panel{min-width:0;border:1px solid #dce5f3;border-radius:13px;background:#fff;box-shadow:0 3px 12px #102c5c0a;padding:15px;overflow:hidden}' +
+      '.ma-v2-panelhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 12px}' +
+      '.ma-v2-panelhead h3{margin:0;color:#142d5c;font-size:16px;font-weight:800}' +
+      '.ma-v2-panelhead small{color:#64748b;font-size:11px}' +
+      '.ma-v2-bars{display:flex;align-items:flex-end;gap:9px;height:178px;overflow-x:auto;padding:10px 4px 0;border-bottom:1px solid #dce5f3}' +
+      '.ma-v2-baritem{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;min-width:38px;height:100%;flex:1}' +
+      '.ma-v2-baritem strong{font-size:11px;color:#243b62}' +
+      '.ma-v2-bar{width:min(30px,75%);min-height:3px;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#3986f6,#1453bd)}' +
+      '.ma-v2-baritem span{width:100%;text-align:center;font-size:10px;color:#53647f;white-space:nowrap}' +
+      '.ma-v2-status{display:flex;align-items:center;justify-content:center;gap:14px;min-height:178px}' +
+      '.ma-v2-donut{width:142px;height:142px;flex:none;border-radius:50%;position:relative}' +
+      '.ma-v2-donut:after{content:"";position:absolute;inset:28%;border-radius:50%;background:#fff}' +
+      '.ma-v2-donut-label{position:absolute;z-index:1;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#142d5c}' +
+      '.ma-v2-donut-label strong{font-size:22px}.ma-v2-donut-label small{font-size:11px;color:#64748b}' +
+      '.ma-v2-legend{display:grid;gap:8px;min-width:0}' +
+      '.ma-v2-legend div{display:grid;grid-template-columns:9px minmax(0,1fr) auto;align-items:center;gap:6px;font-size:11px;color:#40516f}' +
+      '.ma-v2-legend i{width:9px;height:9px;border-radius:50%}.ma-v2-legend b{color:#142d5c}' +
+      '.ma-v2-campus{padding:0;overflow:hidden}.ma-v2-campus img{display:block;width:100%;height:178px;object-fit:cover;object-position:center 45%}' +
+      '.ma-v2-campus-caption{padding:11px 13px;background:linear-gradient(135deg,#092d70,#1554b5);color:#fff}' +
+      '.ma-v2-campus-caption b{display:block;font-size:16px}.ma-v2-campus-caption span{font-size:11px;color:#e7efff}' +
+      '.ma-v2-bottom{display:grid;grid-template-columns:minmax(230px,.95fr) minmax(280px,1.1fr) minmax(220px,.9fr);gap:14px;align-items:stretch}' +
+      '.ma-v2-bottom>.ma-v2-panel{height:100%;box-sizing:border-box}' +
+      '.ma-v2-bottom #dxatt>.card,.ma-v2-bottom #ract{margin:0}' +
+      '.ma-v2-bottom #dxatt>.card{padding:0;border:0;box-shadow:none}' +
+      '.ma-v2-bottom .ch{margin-bottom:9px}.ma-v2-bottom .ch h3{font-size:15px}' +
+      '.ma-v2-quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}' +
+      '.ma-v2-quick button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:88px;padding:10px 6px;border:1px solid #dce7f7;border-radius:10px;background:#f4f8ff;color:#183568;font-size:11px;font-weight:700;text-align:center;cursor:pointer}' +
+      '.ma-v2-quick button:hover{background:#eaf2ff;border-color:#b8cff5}.ma-v2-quick .ao{width:28px;height:28px}' +
+      '.ma-v2-bottom .alist{display:grid;gap:6px}.ma-v2-bottom .ai{padding:7px 2px;border-bottom:1px solid #edf1f7}' +
+      '@media(max-width:1180px){.ma-v2-analytics{grid-template-columns:1fr 1fr}.ma-v2-campus{grid-column:1/-1}.ma-v2-campus img{height:145px}.ma-v2-bottom{grid-template-columns:1fr 1fr}.ma-v2-bottom>:last-child{grid-column:1/-1}}' +
+      '@media(max-width:760px){.ma-v2-brand{grid-template-columns:1fr}.ma-v2-logos img{height:54px}.ma-v2-campus-thumb{height:90px}.ma-v2-utility{flex-wrap:wrap}.ma-v2-hero{min-height:145px;padding:20px}.ma-v2-kpis{grid-template-columns:1fr 1fr;gap:9px}.ma-v2-analytics,.ma-v2-bottom{grid-template-columns:1fr}.ma-v2-campus{grid-column:auto}.ma-v2-bottom>:last-child{grid-column:auto}.ma-v2-status{gap:10px}.ma-v2-donut{width:125px;height:125px}}';
+    document.head.appendChild(style);
+  }
+
+  head('Dashboard', 'Enrollment overview for School Year ' + S.cfg.sy.replace('-', '\\u2013'));
+  call('dashboard', [T()], r => {
+    const d = r.data, st = d.stats, total = st.total || 0;
+    const campus = 'https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png';
+    const base = 'https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/';
+    const pc = n => (total ? Math.round((n || 0) / total * 1000) / 10 : 0) + '%';
+    const cards = [
+      {cl:'k1',l:'Total Applications',ic:I.users,v:nfmt(total),d:'All applicants',a:'All'},
+      {cl:'k2',l:'Pending Applications',ic:I.rep,v:nfmt(st.pending),d:pc(st.pending)+' of applicants',a:'Not Enrolled'},
+      {cl:'k3',l:'Enrolled Students',ic:I.home,v:nfmt(st.enrolled),d:pc(st.enrolled)+' of applicants',a:'Enrolled'},
+      {cl:'k4',l:'New Today',ic:I.adm,v:nfmt(st.today),d:'Registered today'}
+    ].map(gkCard).join('');
+
+    const gradeRows = d.cards.flatMap(c => c.rows.map(x => ({label:x[0],value:x[1]})));
+    const maxGrade = Math.max(1, ...gradeRows.map(x => x.value));
+    const bars = gradeRows.map((x,i) =>
+      '<div class="ma-v2-baritem" title="'+esc(x.label)+': '+x.value+'"><strong>'+nfmt(x.value)+'</strong>' +
+      '<div class="ma-v2-bar" style="height:'+Math.max(3,x.value/maxGrade*116)+'px;background:'+(i%2?'linear-gradient(180deg,#ffad62,#f1872d)':'linear-gradient(180deg,#4b91f5,#1453bd)')+'"></div>' +
+      '<span>'+esc(x.label.replace('Grade ','Gr '))+'</span></div>'
+    ).join('');
+
+    const statusItems = [
+      {label:'Enrolled',value:st.enrolled||0,color:'#2475e8'},
+      {label:'Pending',value:st.pending||0,color:'#f59e0b'},
+      {label:'Temporary',value:st.temp||0,color:'#16a085'},
+      {label:'Transferred Out',value:st.transferred||0,color:'#94a3b8'},
+      {label:'Cancelled',value:st.cancelled||0,color:'#64748b'}
+    ];
+    const statusTotal = statusItems.reduce((a,x)=>a+x.value,0);
+    let angle = 0;
+    const donut = statusTotal ? statusItems.map(x => {
+      const from = angle; angle += x.value/statusTotal*360;
+      return x.color+' '+from+'deg '+angle+'deg';
+    }).join(',') : '#e8eef7 0deg 360deg';
+    const legend = statusItems.map(x =>
+      '<div><i style="background:'+x.color+'"></i><span>'+x.label+'</span><b>'+nfmt(x.value)+'</b></div>'
+    ).join('');
+
+    const quickBtn = (cl,ic,label,action,value) =>
+      '<button type="button" data-act="'+action+'"'+(value?' data-v="'+value+'"':'')+'><span class="ao '+cl+'">'+ic+'</span><span>'+label+'</span></button>';
+    const quick = '<div class="ma-v2-quick">' +
+      quickBtn('c1',I.adm,'Register Student','quick') +
+      quickBtn('c2',I.search,'Find Learner','nav','adm') +
+      (FULL() ? quickBtn('c4',I.rep,'View Reports','nav','rep') : quickBtn('c4',I.cal,'Campus Bulletin','nav','ev')) +
+      '</div>';
+
+    const brand =
+      '<div class="ma-v2-brand"><div class="ma-v2-logos">' +
+      '<img src="'+base+'mgic-logo.png" alt="Moreh Global Innovative College">' +
+      '<img src="'+base+'moreh-academy-logo.png" alt="Moreh Academy">' +
+      '<img src="'+base+'moreh-college-logo.png" alt="Moreh College">' +
+      '</div><img class="ma-v2-campus-thumb" src="'+campus+'" alt="Moreh College campus"></div>';
+    const utility =
+      '<div class="ma-v2-utility"><span>'+I.cal+' '+new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})+'</span>' +
+      '<span><b>'+esc(tc(S.user.FullName||'Administrator'))+'</b> · Administrator</span></div>';
+    const hero =
+      '<section class="ma-v2-hero"><div><h2>Welcome to Moreh Academy</h2>' +
+      '<p>Excellence. Character. Service. · Here is your admissions overview for today.</p></div></section>';
+
+    $('view').innerHTML =
+      '<div class="ma-admin-v2">'+brand+utility+hero+
+      '<section class="ma-v2-kpis">'+cards+'</section>'+
+      '<section class="ma-v2-analytics">'+
+        '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Enrollment by Grade Level</h3><small>Active school year</small></div><div class="ma-v2-bars">'+bars+'</div></div>'+
+        '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Application Status</h3><small>'+nfmt(statusTotal)+' records</small></div>'+
+          '<div class="ma-v2-status"><div class="ma-v2-donut" style="background:conic-gradient('+donut+')"><div class="ma-v2-donut-label"><strong>'+nfmt(statusTotal)+'</strong><small>Records</small></div></div><div class="ma-v2-legend">'+legend+'</div></div></div>'+
+        '<div class="ma-v2-panel ma-v2-campus"><img src="'+campus+'" alt="Moreh Academy campus"><div class="ma-v2-campus-caption"><b>Moreh Academy</b><span>A Community of Excellence</span></div></div>'+
+      '</section>'+
+      '<section class="ma-v2-bottom">'+
+        '<div class="ma-v2-panel"><div id="dxatt">'+dxSkel('Needs Attention')+'</div></div>'+
+        '<div class="ma-v2-panel">'+actCard()+'</div>'+
+        '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Quick Actions</h3></div>'+quick+'</div>'+
+      '</section></div>';
+
+    renderAct();
+    let X = null, H = null, pending = 2;
+    const finish = () => {
+      if (--pending) return;
+      dxDraw(X,H);
+    };
+    google.script.run.withSuccessHandler(q => { if(q&&q.success) X=q.data; finish(); })
+      .withFailureHandler(() => finish()).dashboardExtra(S.token);
+    google.script.run.withSuccessHandler(q => { if(q&&q.success) H=q.data; finish(); })
+      .withFailureHandler(() => finish()).holdsOverview(S.token);
+  });
+};
+/* ---------- end approved administrator dashboard ---------- */
+
 </script></body></html>
