@@ -1,0 +1,32 @@
+name: JavaScript Syntax Guard
+
+on:
+  push:
+    branches:
+      - feature/public-homepage-redesign
+  pull_request:
+    branches:
+      - main
+      - feature/public-homepage-redesign
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: syntax-guard-\${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  syntax:
+    name: Check Apps Script and browser JavaScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Parse all Apps Script server files and browser scripts
+        run: node .github/scripts/syntax-check.mjs
