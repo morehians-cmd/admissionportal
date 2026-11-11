@@ -207,7 +207,7 @@ function deleteEvent(token, id) {
     lock.waitLock(20000);
     const ou = owner_(token), sh = evSh_(), ids = sh.getLastRow() < 2 ? [] : sh.getRange(2, 1, sh.getLastRow() - 1, 1).getValues().flat().map(String), i = ids.indexOf(String(id));
     if (i < 0) throw new Error('Event not found.');
-    sh.deleteRow(i + 2); audit_(ou, 'event.delete', String(id), ''); return ok(null, 'Event deleted');
+    sh.deleteRow(i + 2); audit_(ou, 'event.delete', String(id), ''); invalidatePublicContentCache_(); return ok(null, 'Event deleted');
   } catch (e) { return fail(e); } finally { try { lock.releaseLock(); } catch (_) {} }
 }
 
