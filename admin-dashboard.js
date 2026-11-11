@@ -168,3 +168,73 @@
     call('dashboard',[T()],renderDashboard);
   };
 })();
+
+/* ---------- Homepage hero editor, integrated into Website Management ---------- */
+(function () {
+  const baseWebsiteManagementPage = window.websiteManagementPage;
+  function heroField(id,label,value,wide) {
+    return '<label class="ma-hero-field'+(wide?' wide':'')+'"><span>'+label+'</span><input id="'+id+'" type="text" value="'+escLocal(value)+'" maxlength="1000"></label>';
+  }
+  function websiteHeroEditor() {
+    if (typeof SYS !== 'function' || !SYS()) return toast('Website Management is restricted to the main administrator.','warn');
+    head('Homepage Hero & Images','Edit the public homepage welcome banner, call-to-action links and three carousel images.');
+    google.script.run.withSuccessHandler(res => {
+      if (!res || !res.success) return toast((res && res.error) || 'Could not load homepage settings.',false);
+      const h=res.data||{};
+      $('view').innerHTML=
+        '<div class="ma-hero-editor">'+
+          '<div class="ma-web-warning"><b>Publishing notice</b><p>Saving updates the public homepage immediately. Use Google Drive thumbnail links for images. The public homepage will keep its approved layout and styling.</p></div>'+
+          '<div class="sbar"><button class="btn" data-act="webherosave">Save &amp; Publish</button><button class="btn alt" data-act="webherocancel">Back to Website Management</button></div>'+
+          '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Welcome Banner</h3><small>Text and calls to action</small></div><div class="ma-hero-fields">'+
+            heroField('maHeroHeadline','Main headline',h.headline,true)+
+            heroField('maHeroSubheadline','Tagline',h.subheadline,true)+
+            heroField('maHeroDescription','Description',h.description,true)+
+            heroField('maHeroPrimaryText','Primary button label',h.primaryText)+
+            heroField('maHeroPrimaryUrl','Primary button link',h.primaryUrl)+
+            heroField('maHeroSecondaryText','Secondary button label',h.secondaryText)+
+            heroField('maHeroSecondaryUrl','Secondary button link',h.secondaryUrl)+
+          '</div></section>'+
+          '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Carousel Images</h3><small>Three slides · Google Drive hosted images</small></div><div class="ma-hero-fields">'+
+            heroField('maHeroImage1','Slide 1 image URL',h.images&&h.images[0],true)+
+            heroField('maHeroImage2','Slide 2 image URL',h.images&&h.images[1],true)+
+            heroField('maHeroImage3','Slide 3 image URL',h.images&&h.images[2],true)+
+          '</div><p class="ma-web-note">Paste a Google Drive thumbnail URL in this format: https://drive.google.com/thumbnail?id=FILE_ID&amp;sz=w2000. Make sure the image is accessible to viewers of the public website.</p></section>'+
+        '</div>';
+    }).withFailureHandler(e=>toast(e.message||'Could not load homepage settings.',false)).getHomepageHero();
+  }
+  act.webhero = websiteHeroEditor;
+  act.webherocancel = () => websiteManagementPage();
+  act.webherosave = () => {
+    if (typeof SYS !== 'function' || !SYS()) return toast('Not allowed.','warn');
+    const value=id=>{const el=$(id);return el?el.value.trim():'';};
+    const settings={
+      headline:value('maHeroHeadline'),
+      subheadline:value('maHeroSubheadline'),
+      description:value('maHeroDescription'),
+      primaryText:value('maHeroPrimaryText'),
+      primaryUrl:value('maHeroPrimaryUrl'),
+      secondaryText:value('maHeroSecondaryText'),
+      secondaryUrl:value('maHeroSecondaryUrl'),
+      images:[value('maHeroImage1'),value('maHeroImage2'),value('maHeroImage3')]
+    };
+    google.script.run.withSuccessHandler(res=>{
+      if(!res||!res.success)return toast((res&&res.error)||'Homepage settings were not saved.',false);
+      toast(res.message||'Homepage hero settings saved.');
+      websiteManagementPage();
+    }).withFailureHandler(e=>toast(e.message||'Could not save homepage settings.',false)).saveHomepageHero(S.token,settings);
+  };
+  if (typeof baseWebsiteManagementPage === 'function') {
+    window.websiteManagementPage = function () {
+      baseWebsiteManagementPage();
+      const root=document.querySelector('.ma-web-page');
+      if (!root || root.querySelector('[data-act="webhero"]')) return;
+      const section=document.createElement('section');
+      section.className='ma-v2-panel';
+      section.innerHTML='<div class="ma-v2-panelhead"><h3>Homepage Hero &amp; Images</h3><small>Editable welcome banner</small></div><p>Edit the homepage headline, tagline, buttons and carousel images without changing the page layout or navigation.</p><button type="button" class="btn" data-act="webhero">Edit Hero &amp; Images</button>';
+      const first=root.querySelector('section');
+      if(first) first.insertAdjacentElement('afterend',section); else root.appendChild(section);
+      const note=root.querySelector('.ma-web-note');
+      if(note) note.textContent='The homepage hero and carousel images are now editable here. Institutional logos, navigation, section layout and footer remain controlled by the approved homepage template.';
+    };
+  }
+})();
