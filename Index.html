@@ -6699,10 +6699,11 @@ const WEB_BLOCKS=[
 function websiteManagementPage(){
   if(!SYS()){toast('Website Management is restricted to the main administrator.','warn');return nav('home');}
   head('Website Management','Manage approved public-facing content and media.');
-  const blocks=WEB_BLOCKS.map(x=>'<button class="ma-web-block" data-act="webedit" data-v="'+x[1]+'"><b>'+esc(x[0])+'</b><small>'+esc(x[2])+'</small><span>Edit content →</span></button>').join('');
+  const blockButton=x=>'<button class="ma-web-block" data-act="webedit" data-v="'+x[1]+'"><b>'+esc(x[0])+'</b><small>'+esc(x[2])+'</small><span>Edit content →</span></button>';
+  const homeBlock=blockButton(WEB_BLOCKS[0]),blocks=WEB_BLOCKS.slice(1).map(blockButton).join('');
   $('view').innerHTML='<div class="ma-web-page"><div class="ma-web-warning"><b>Publishing notice</b><p>Saving a content block updates the content used by the public website. The current system does not provide a separate draft or publish stage. Review changes carefully before saving.</p></div>'+
-    '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Homepage Content</h3><small>Editable content block</small></div>'+blocks.slice(0,blocks.indexOf('</button>')+9)+'</section>'+
-    '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Page Content</h3><small>Public page sections</small></div><div class="ma-web-grid">'+blocks.slice(blocks.indexOf('</button>')+9)+'</div></section>'+
+    '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Homepage Content</h3><small>Editable content block</small></div>'+homeBlock+'</section>'+
+    '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Page Content</h3><small>Public page sections</small></div><div class="ma-web-grid">'+blocks+'</div></section>'+
     '<section class="ma-web-grid">'+
     '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Media Library</h3></div><p>Open the existing campus and Senior High gallery collections to manage their photos and captions.</p><button class="btn alt" data-act="webmedia">Open Gallery Collections</button></div>'+
     '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Announcements &amp; Events</h3></div><p>Manage public announcements and school events using the existing Campus Bulletin.</p><button class="btn alt" data-act="webevents">Manage Announcements &amp; Events</button></div>'+
