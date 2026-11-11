@@ -1581,7 +1581,7 @@ function renderAct(){const el=$('ract');if(!el)return;if(!S.notifs){el.innerHTML
  const L=S.notifs.items||[],M={newreg:[I.adm,'c1'],noconsent:[I.rep,'c3'],ev:[I.cal,'c4'],rq:[I.rep,'c3'],home:[I.home,'c2']};
  el.innerHTML=L.length?L.map(x=>{const m=M[x.go]||[I.rep,'c2'];return `<button class="ai" data-act="ngo" data-v="${esc(x.go)}"><span class="ao ${m[1]}">${m[0]}</span><span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span></button>`}).join(''):'<div class="aemp">You&rsquo;re all caught up.</div>'}
 const actCard=()=>`<div class="card"><div class="ch"><h3>Recent Activity</h3><a href="javascript:void(0)" data-act="bell">View All</a></div><div id="ract" class="alist"></div></div>`;
-const activityCard=()=>`<div class="card"><div class="ch"><h3>Recent Activity</h3><small>Latest audited actions</small></div><div id="auditlist" class="alist"><div class="aemp">Loading activity&hellip;</div></div></div>`;
+const activityCard=()=>`<div class="card"><div class="ch"><h3>Recent Activity</h3><a href="javascript:void(0)" data-act="auditall">View All</a></div><div id="auditlist" class="alist"><div class="aemp">Loading activity&hellip;</div></div></div>`;
 const dhero=(name,line,cards)=>`<div class="shero dh"><div class="sht"><div><h2>${greet()}, ${esc(name)} &#128075;</h2><p>${line}</p></div><div class="dhr"><div class="dhd"><small>Today</small><span>${I.cal} ${new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</span></div><div class="hlogo"><img src="${LOGO}" alt=""><i></i></div></div></div><div class="shk">${cards}</div></div>`;
 const dcard=(cls,icon,label,val,sub,col,a,v,sm)=>`<div class="shc ${a?'':'nc'}"${a?` data-act="${a}" data-v="${v}"`:''}><div class="shh"><span class="ki ${cls}">${icon}</span><span>${label}</span></div><div class="shv${sm?' sm':''}">${val}</div><div class="shs" style="color:${col||'var(--mut)'}">${sub||''}</div></div>`;
 const evSide=()=>`<div class="card"><div class="ch"><h3>Latest Posts</h3><a href="javascript:void(0)" data-act="nav" data-v="ev">View All</a></div><div id="hev"><div class="aemp">Loading&hellip;</div></div></div>`;
@@ -6796,6 +6796,17 @@ function dashCalDraw(){
 act.dashcalprev=()=>{const d=S.dashCalMonth||new Date();S.dashCalMonth=new Date(d.getFullYear(),d.getMonth()-1,1);dashCalDraw()};
 act.dashcalnext=()=>{const d=S.dashCalMonth||new Date();S.dashCalMonth=new Date(d.getFullYear(),d.getMonth()+1,1);dashCalDraw()};
 act.dashcalday=k=>{S.dashCalSelected=k;dashCalDraw()};
+act.auditall=()=>{
+  if(!FULL())return toast('Not allowed.','warn');
+  google.script.run.withSuccessHandler(r=>{
+    if(!r||!r.success)return toast((r&&r.error)||'Could not load audit activity.',false);
+    const L=(r.data&&r.data.items)||[],m=document.createElement('div');m.className='mod';m.id='auditmodal';
+    m.innerHTML='<div style="width:min(760px,94vw);max-height:82vh;overflow:auto;padding:22px;background:#fff;border-radius:14px"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px"><h3 style="margin:0;color:#17366d">Recent Audit Activity</h3><button class="btn alt" data-act="audclose">Close</button></div>'+
+      (L.length?L.map(x=>'<div class="ma-v2-activity"><span class="ma-v2-activity-dot"></span><div><b>'+esc(String(x.action||'System activity').replace(/[._]/g,' '))+'</b><small>'+esc(x.actor||'System')+(x.role?' · '+esc(x.role):'')+'</small></div><time>'+esc([x.date,x.time].filter(Boolean).join(' · '))+'</time></div>').join(''):'<div class="aemp">No recent activity.</div>')+'</div>';
+    document.body.appendChild(m);
+  }).withFailureHandler(e=>toast(e.message||'Could not load audit activity.',false)).getRecentActivity(S.token,30);
+};
+act.audclose=()=>{const m=$('auditmodal');if(m)m.remove()};
 
 /* ---------- Moreh Academy administrator dashboard: approved mockup layout ---------- */
 homeAdmin = function () {
