@@ -6789,8 +6789,8 @@ function dashCalDraw(){
   if(up){
     const chosen=(byDate[S.dashCalSelected]||[]);
     const upcoming=events.filter(e=>evIn(e.EventDate)>=0).sort((a,b)=>(a.EventDate||'').localeCompare(b.EventDate||'')).slice(0,5);
-    const list=chosen.length?chosen:upcoming;
-    up.innerHTML=(chosen.length?'<div class="ma-v2-event-caption">Selected date · '+esc(S.dashCalSelected)+'</div>':'<div class="ma-v2-event-caption">Upcoming events</div>')+(list.length?list.map(e=>'<div class="ma-v2-event"><b>'+esc(e.Title||'Untitled event')+'</b><small>'+esc(e.EventDate||'')+(e.EventTime?' · '+esc(e.EventTime):'')+'</small>'+(e.Venue?'<small>'+esc(e.Venue)+'</small>':'')+(e.Category?'<small>'+esc(e.Category)+'</small>':'')+(e.Details?'<small>'+esc(e.Details)+'</small>':'')+'</div>').join(''):'<div class="aemp">'+(chosen.length?'No events for this date.':'No upcoming events.')+'</div>');
+    const renderEvents=list=>list.length?list.map(e=>'<div class="ma-v2-event"><b>'+esc(e.Title||'Untitled event')+'</b><small>'+esc(e.EventDate||'')+(e.EventTime?' · '+esc(e.EventTime):'')+'</small>'+(e.Venue?'<small>'+esc(e.Venue)+'</small>':'')+(e.Category?'<small>'+esc(e.Category)+'</small>':'')+(e.Details?'<small>'+esc(e.Details)+'</small>':'')+'</div>').join(''):'<div class="aemp">No events to display.</div>';
+    up.innerHTML='<div class="ma-v2-event-caption">Selected date · '+esc(S.dashCalSelected)+'</div>'+renderEvents(chosen)+'<div class="ma-v2-event-caption" style="margin-top:14px">Upcoming events</div>'+renderEvents(upcoming);
   }
 }
 act.dashcalprev=()=>{const d=S.dashCalMonth||new Date();S.dashCalMonth=new Date(d.getFullYear(),d.getMonth()-1,1);dashCalDraw()};
