@@ -190,7 +190,7 @@ function publicHeroClean_(input) {
   const clean=(key,max,fallback)=>String(input[key]==null?fallback:input[key]).replace(/[\u0000-\u001f]/g,' ').trim().slice(0,max);
   const url=(key,fallback)=>{
     const s=String(input[key]==null?fallback:input[key]).trim().slice(0,1000);
-    if (/^https:\/\//i.test(s) || /^\?page=[A-Za-z0-9_-]+$/.test(s) || /^\/[A-Za-z0-9/_-]*$/.test(s)) return s;
+    if (/^https:\/\//i.test(s) || /^\?page=[A-Za-z0-9_-]+$/.test(s)) return s;
     throw new Error('Use a secure https link or an internal ?page= link for homepage buttons.');
   };
   const imgs=Array.isArray(input.images)?input.images:[];
