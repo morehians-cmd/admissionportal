@@ -6732,7 +6732,7 @@ homeAdmin = function () {
       '.ma-v2-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,28,75,.9),rgba(7,45,112,.62) 58%,rgba(7,45,112,.08))}' +
       '.ma-v2-masthead{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);gap:16px;align-items:center;padding:12px 16px;border:1px solid #dce6f7;border-radius:14px;background:linear-gradient(105deg,#fff,#f4f8ff);box-shadow:var(--sh)}' +
       '.ma-v2-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:12px}.ma-v2-logos img{width:100%;height:70px;object-fit:contain;min-width:0}' +
-      '.ma-v2-campus{width:100%;height:88px;object-fit:cover;object-position:center 46%;border-radius:9px}' +
+      '.ma-v2-campus{width:100%;height:88px;object-fit:cover;object-position:center 46%;border-radius:9px}.ma-v2-motto{text-align:center;margin-top:6px;color:#0f42c0;font-size:11px;font-weight:800;letter-spacing:2px}' +
       '.ma-v2-secondary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:-4px}' +
       '.ma-v2-secondary .gk{min-height:78px;background:#f8fafc;border:1px solid #dce5f3;box-shadow:none;color:#142d5c;padding:12px 16px}' +
       '.ma-v2-secondary .gkt,.ma-v2-secondary .gkv,.ma-v2-secondary .gkd{color:#142d5c}.ma-v2-secondary .gkv{font-size:23px}' +
@@ -6792,7 +6792,7 @@ homeAdmin = function () {
       {cl:'k1',l:'Total Applications',ic:I.users,v:nfmt(total),d:'All active-year records',a:'All'},
       {cl:'k2',l:'Enrolled Students',ic:I.home,v:nfmt(st.enrolled),d:pc(st.enrolled)+' of applicants',a:'Enrolled'},
       {cl:'k3',l:'Not Yet Enrolled',ic:I.rep,v:nfmt(st.pending),d:pc(st.pending)+' of applicants',a:'Not Enrolled'},
-      {cl:'k4',l:'New Applications Today',ic:I.cal,v:nfmt(st.today),d:'Registered today',a:'Today'}
+      {cl:'k4',l:'New Applications Today',ic:I.cal,v:nfmt(st.today),d:'Registered today'}
     ].map(gkCard).join('');
     const secondaryCards = [
       {cl:'',l:'Cancelled',ic:I.rep,v:nfmt(st.cancelled||0),d:'Cancelled applications',a:'Cancelled'},
@@ -6835,15 +6835,17 @@ homeAdmin = function () {
       (SYS() ? quickBtn('c1',I.users,'User Management','nav','um') : '') +
       '</div>';
 
+    const hour = new Date().getHours(), greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening';
+    const adminName = tc(S.user.FullName || 'Administrator');
     const hero =
-      '<section class="ma-v2-hero"><div><h2>Good Morning, Admin!</h2>' +
-      '<p>Welcome to the Moreh Academy Admission Portal. Together, we build a brighter future.</p></div></section>';
+      '<section class="ma-v2-hero"><div><h2>'+greeting+', '+esc(adminName)+'!</h2>' +
+      '<p>Welcome to the Moreh Academy Administration Portal. Here is your current enrollment overview.</p></div></section>';
 
-    const masthead = '<section class="ma-v2-masthead"><div class="ma-v2-logos">' +
+    const masthead = '<section class="ma-v2-masthead"><div><div class="ma-v2-logos">' +
       '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/mgic-logo.png" alt="Moreh Global Innovative College">' +
       '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/moreh-academy-logo.png" alt="Moreh Academy">' +
       '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/moreh-college-logo.png" alt="Moreh College">' +
-      '</div><img class="ma-v2-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png" alt="Moreh Academy campus"></section>';
+      '</div><div class="ma-v2-motto">LEARN · GROW · EXCEL</div></div><img class="ma-v2-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png" alt="Moreh Academy campus"></section>';
     $('view').innerHTML =
       '<div class="ma-admin-v2">'+masthead+hero+
       '<section class="ma-v2-kpis">'+cards+'</section>'+
@@ -6858,11 +6860,11 @@ homeAdmin = function () {
       '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>School Calendar &amp; Upcoming Events</h3></div><div class="ma-v2-events"><div id="ma-dash-calendar"><div class="aemp">Loading calendar&hellip;</div></div><div id="ma-dash-upcoming"><div class="aemp">Loading events&hellip;</div></div></div></section>'+
       '<section class="ma-v2-bottom">'+
         '<div class="ma-v2-panel"><div id="dxatt">'+dxSkel('Needs Attention')+'</div></div>'+
-        '<div class="ma-v2-panel">'+activityCard()+'</div>'+
+        (FULL() ? '<div class="ma-v2-panel">'+activityCard()+'</div>' : '')+
         '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Quick Actions</h3></div>'+quick+'</div>'+
       '</section></div>';
 
-    loadRecentActivity();
+    if(FULL())loadRecentActivity();
     dashCalLoad();
     let X = null, H = null, pending = 2;
     const finish = () => {
