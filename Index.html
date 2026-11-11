@@ -444,6 +444,95 @@ aside{position:fixed;left:0;top:0;bottom:0;height:100vh;width:var(--sbw);backgro
  .ng.fly>.ngh::after{display:none}
  .nav.sub{padding-left:36px}
 }
+
+/* Canonical administrator dashboard layout — kept in the document stylesheet
+   so the masthead and campus image never fall back to their natural dimensions. */
+.ma-redesign-dashboard{display:grid;gap:16px;min-width:0;color:#17233c}
+.ma-redesign-masthead{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 16px;border:1px solid #dce6f7;border-radius:16px;background:linear-gradient(105deg,#fff,#f3f7ff);box-shadow:var(--sh);overflow:hidden}
+.ma-redesign-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:16px;min-width:0}
+.ma-redesign-logos img{display:block!important;width:100%!important;height:76px!important;max-width:100%;object-fit:contain!important;min-width:0}
+.ma-redesign-campus{display:block!important;width:100%!important;height:clamp(118px,15vw,190px)!important;object-fit:cover!important;object-position:center 47%;border-radius:10px}
+.ma-redesign-motto{text-align:center;color:#0f42c0;font-size:11px;font-weight:800;letter-spacing:2px}
+.ma-redesign-welcome{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:132px;padding:24px 28px;border-radius:16px;color:#fff;background:linear-gradient(110deg,#082c70,#1456b4);box-shadow:var(--sh);position:relative;overflow:hidden}
+.ma-redesign-welcome:after{content:"";position:absolute;width:230px;height:230px;border:1px solid #ffffff22;border-radius:50%;right:7%;top:-90px;box-shadow:0 0 0 26px #ffffff09,0 0 0 52px #ffffff06}
+.ma-redesign-welcome>div{position:relative;z-index:1}
+.ma-redesign-welcome span{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#c7dcff}
+.ma-redesign-welcome h2{margin:5px 0;font-size:clamp(22px,2.4vw,30px);line-height:1.15;color:#fff}
+.ma-redesign-welcome p{margin:0;color:#e7efff;font-size:13px}
+.ma-redesign-welcome-mark{font:900 34px/1 Montserrat,Inter,sans-serif;color:#ffffffbd;border:2px solid #ffffff70;border-radius:50%;width:76px;height:76px;display:grid;place-items:center;flex:none}
+.ma-redesign-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ma-redesign-secondary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:-5px}
+.ma-redesign-kpi{display:flex;align-items:center;gap:12px;min-width:0;min-height:90px;padding:14px;border:1px solid #e2e9f4;border-radius:14px;background:#fff;box-shadow:var(--sh)}
+.ma-redesign-kpi[role=button]{cursor:pointer;transition:transform .15s,border-color .15s}
+.ma-redesign-kpi[role=button]:hover{transform:translateY(-2px);border-color:#9bbcf3}
+.ma-redesign-kpi-icon{width:42px;height:42px;display:grid;place-items:center;flex:none;border-radius:13px;background:#e8f0ff;color:#1d5fcb;font-size:21px;font-weight:800}
+.ma-redesign-kpi.green .ma-redesign-kpi-icon{background:#e1f6eb;color:#16834f}
+.ma-redesign-kpi.orange .ma-redesign-kpi-icon{background:#fff0df;color:#c97916}
+.ma-redesign-kpi.purple .ma-redesign-kpi-icon{background:#eee9ff;color:#6d45c4}
+.ma-redesign-kpi.grey .ma-redesign-kpi-icon{background:#edf1f6;color:#64748b}
+.ma-redesign-kpi>div{min-width:0}
+.ma-redesign-kpi small{display:block;color:#52627d;font-size:12px;font-weight:700}
+.ma-redesign-kpi strong{display:block;color:#142d5c;font-size:25px;line-height:1.2;font-weight:800}
+.ma-redesign-kpi em{display:block;color:#7b879b;font-size:10.5px;font-style:normal}
+.ma-redesign-analytics{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(230px,.9fr);gap:14px;align-items:stretch}
+.ma-redesign-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch}
+.ma-redesign-bottom{display:grid;grid-template-columns:minmax(280px,1.15fr) minmax(250px,.9fr) minmax(240px,.85fr);gap:14px;align-items:stretch}
+.ma-redesign-panel{min-width:0;padding:16px;border:1px solid #dce5f3;border-radius:14px;background:#fff;box-shadow:var(--sh);overflow:hidden}
+.ma-redesign-panelhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.ma-redesign-panelhead h3{margin:0;color:#142d5c;font-size:15px;font-weight:800}
+.ma-redesign-panelhead small{color:#7b879b;font-size:10px;text-align:right}
+.ma-redesign-bars{display:flex;align-items:flex-end;gap:7px;height:160px;overflow-x:auto;padding:8px 2px 0;border-bottom:1px solid #e5ebf4}
+.ma-redesign-baritem{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;min-width:27px;height:100%;flex:1}
+.ma-redesign-baritem b{font-size:9px;color:#334767}
+.ma-redesign-baritem i{display:block;width:min(23px,78%);min-height:3px;border-radius:5px 5px 0 0}
+.ma-redesign-baritem small{width:100%;overflow:hidden;text-align:center;color:#66758d;font-size:8px;white-space:nowrap}
+.ma-redesign-status{display:flex;align-items:center;justify-content:center;gap:12px;min-height:160px}
+.ma-redesign-donut{position:relative;display:grid;place-items:center;width:128px;height:128px;flex:none;border-radius:50%}
+.ma-redesign-donut:before{content:"";position:absolute;inset:27%;border-radius:50%;background:#fff}
+.ma-redesign-donut>div{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;color:#142d5c}
+.ma-redesign-donut b{font-size:20px}.ma-redesign-donut small{font-size:9px;color:#7b879b}
+.ma-redesign-legend{display:grid;gap:7px;min-width:0}
+.ma-redesign-legend>div{display:grid;grid-template-columns:8px minmax(0,1fr) auto;align-items:center;gap:5px;color:#53627a;font-size:9.5px}
+.ma-redesign-legend i{width:8px;height:8px;border-radius:50%}.ma-redesign-legend b{color:#142d5c}
+.ma-redesign-empty{padding:16px 10px;border:1px dashed #d8e2f0;border-radius:10px;color:#718096;font-size:11px;line-height:1.6;text-align:center;background:#f9fbfe}
+.ma-redesign-course-list{display:grid;gap:8px}.ma-redesign-course-list>div{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #edf1f7;color:#475569;font-size:11px}
+.ma-redesign-course-list b{color:#17366d}
+.ma-redesign-trendbars{display:flex;align-items:flex-end;gap:6px;height:104px;padding:6px 0;border-bottom:1px solid #e5ebf4}
+.ma-redesign-trendbars>div{display:flex;flex:1;min-width:0;height:100%;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+.ma-redesign-trendbars b{font-size:9px;color:#52627d}
+.ma-redesign-trendbars i{display:block;width:70%;max-width:20px;min-height:3px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#4b91f5,#1453bd)}
+.ma-redesign-trendbars small{height:10px;color:#8793a6;font-size:8px}
+.ma-redesign-trendfoot{display:flex;justify-content:space-between;gap:8px;padding-top:8px;color:#718096;font-size:10px}
+.ma-redesign-trendfoot b{color:#17366d}
+.ma-redesign-event{display:grid;grid-template-columns:42px minmax(0,1fr);gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #edf1f7}
+.ma-redesign-event-date{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:42px;border-radius:9px;background:#eaf1ff;color:#1753a8}
+.ma-redesign-event-date b{font-size:17px;line-height:1}.ma-redesign-event-date small{font-size:8px}
+.ma-redesign-event>div:last-child b{display:block;color:#183568;font-size:11px}
+.ma-redesign-event>div:last-child small{display:block;color:#7b879b;font-size:9px;margin-top:3px}
+.ma-redesign-check-counts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:8px}
+.ma-redesign-check-counts span{padding:8px 5px;border-radius:8px;background:#f3f6fb;color:#64748b;text-align:center;font-size:9px}
+.ma-redesign-check-counts b{display:block;color:#17366d;font-size:17px}
+.ma-redesign-check-row{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;padding:8px 2px;border:0;border-bottom:1px solid #edf1f7;background:transparent;text-align:left;cursor:pointer}
+.ma-redesign-check-row>span{min-width:0}.ma-redesign-check-row b{display:block;color:#243b62;font-size:10.5px}
+.ma-redesign-check-row small{display:block;color:#8290a5;font-size:9px}
+.ma-redesign-check-row em{max-width:48%;color:#a15d14;font-size:9px;font-style:normal;text-align:right}
+.ma-redesign-panel-link{display:flex;justify-content:flex-end;margin-top:10px}
+.ma-redesign-panel-link button{border:0;background:none;color:#1554b5;font-size:10px;font-weight:700;cursor:pointer}
+.ma-redesign-activity-row{display:grid;grid-template-columns:8px minmax(0,1fr);gap:8px;padding:8px 0;border-bottom:1px solid #edf1f7;position:relative}
+.ma-redesign-activity-row>span{width:7px;height:7px;margin-top:4px;border-radius:50%;background:#1d66c5}
+.ma-redesign-activity-row b{display:block;color:#243b62;font-size:10.5px;text-transform:capitalize}
+.ma-redesign-activity-row small{display:block;color:#8290a5;font-size:9px}
+.ma-redesign-activity-row time{grid-column:2;color:#9aa5b5;font-size:8.5px}
+.ma-redesign-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ma-redesign-actions button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:76px;padding:9px 6px;border:1px solid #dce7f7;border-radius:10px;background:#f6f9ff;color:#183568;font-size:10px;font-weight:700;text-align:center;cursor:pointer}
+.ma-redesign-actions button:hover{background:#eaf2ff;border-color:#b8cff5}
+.ma-redesign-actions button b{font-size:20px;color:#1d5fcb}
+.ma-redesign-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 4px 0;border-top:1px solid #dce5f3;color:#7b879b;font-size:10px}
+.ma-redesign-footer b{color:#17366d;letter-spacing:1px}
+@media(max-width:1180px){.ma-redesign-analytics{grid-template-columns:1fr 1fr}.ma-redesign-analytics>.ma-redesign-panel:last-child{grid-column:1/-1}.ma-redesign-bottom{grid-template-columns:1fr 1fr}.ma-redesign-bottom>.ma-redesign-panel:last-child{grid-column:1/-1}}
+@media(max-width:760px){.ma-redesign-kpis{grid-template-columns:1fr 1fr}.ma-redesign-analytics,.ma-redesign-two,.ma-redesign-bottom{grid-template-columns:1fr}.ma-redesign-analytics>.ma-redesign-panel:last-child,.ma-redesign-bottom>.ma-redesign-panel:last-child{grid-column:auto}.ma-redesign-logos img{height:55px!important}.ma-redesign-campus{height:115px!important}.ma-redesign-welcome{padding:18px}.ma-redesign-welcome-mark{width:54px;height:54px;font-size:24px}.ma-redesign-status{gap:8px}.ma-redesign-donut{width:112px;height:112px}}
+@media(max-width:480px){.ma-redesign-kpis,.ma-redesign-secondary{grid-template-columns:1fr}.ma-redesign-kpi{min-height:76px}.ma-redesign-logos{gap:7px}.ma-redesign-logos img{height:46px!important}.ma-redesign-panel{padding:13px}.ma-redesign-panelhead h3{font-size:13px}}
+
 </style><style>
 /* UI refinement pass */
 :root{--mut:#475569}
@@ -1470,4 +1559,5 @@ body .wnav .btn{flex:1 1 40%;justify-content:center}
   <img class="ma-portal-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20Panorama.png" alt="Moreh Academy campus">
 </header><div class="top" role="banner"><div class="tl" style="display:flex;gap:14px;align-items:center"><button id="menu" data-act="menu" aria-label="Toggle navigation" aria-controls="side" aria-expanded="true" title="Toggle navigation">&#9776;</button><img class="tlogo" src="https://drive.google.com/thumbnail?id=1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF&sz=w160" alt=""><div><h1 id="title"></h1><p id="sub"></p></div></div><div id="gsw" class="gsw hidden"><input id="gs" type="text" autocomplete="off" placeholder="Search" aria-label="Global search" role="combobox" aria-autocomplete="list" aria-controls="gsr" aria-expanded="false"><div id="gsr" class="gsr hidden" role="listbox"></div></div><div class="tr" style="display:flex;gap:12px;align-items:center;position:relative"><button class="av" id="gsb" data-act="gsopen" aria-label="Search" title="Search" style="background:#fff;color:var(--navy);border:1px solid var(--line)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg></button><span id="rbd" class="rbd hidden"></span><span style="position:relative"><button class="av" style="background:#fff;color:var(--navy);border:1px solid var(--line)" data-act="bell" title="Notifications" aria-label="Notifications">&#128276;</button><span id="nb" class="hidden" style="position:absolute;top:-4px;right:-4px;background:#d93025;color:#fff;border-radius:999px;min-width:20px;height:20px;font:700 11px/20px Inter,sans-serif;text-align:center;padding:0 5px"></span></span><div class="dd hidden" id="np" style="width:340px;right:56px;max-height:70vh;overflow:auto"></div><div class="uchip" data-act="dd"><b id="uname"></b><small id="urole"></small></div><button class="av" id="av" data-act="dd" title="Account" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"></button><div class="dd hidden" id="dd" role="menu"></div></div></div><div id="view" tabindex="-1"></div><footer id="ftr" class="ftr"><div class="fl1"><span>&copy; <span id="fyr"></span> Moreh Academy</span><span>v1.0</span><a href="javascript:void(0)" data-act="nav" data-v="pp">Privacy Policy</a><a href="javascript:void(0)" data-act="nav" data-v="faq">Help Center</a></div><div class="fl1"><span id="fst" class="fst on"><i></i><span>Online</span></span><a href="mailto:morehians@gmail.com">morehians@gmail.com</a><a href="tel:09618766886">0961 876 6886</a></div></footer></main><nav id="bnav" aria-label="Quick navigation"></nav></div>
 <div id="load" class="hidden"><i></i></div><div id="toast" class="hidden" role="status" aria-live="polite"></div>
-<script src="https://cdn.jsdelivr.net/gh/morehians-cmd/admissionportal@ec89b748cb33a7f2c1f46d29eb8b88138f4e7dbe/public-homepage.js"></script></body></html>
+<script src="https://cdn.jsdelivr.net/gh/morehians-cmd/admissionportal@ec89b748cb33a7f2c1f46d29eb8b88138f4e7dbe/public-homepage.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/morehians-cmd/admissionportal@234f1a76ee7f540cf396d3a037dae84ef6dd211e/admin-dashboard.js"></script></body></html>
