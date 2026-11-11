@@ -645,7 +645,38 @@ aside :focus-visible{outline:3px solid #fff;outline-offset:-3px}
 </style>
 <!-- ============================================================
   MOREH ACADEMY PORTAL - MODERN UI THEME (CSS only)
-  INSTALL: paste this whole <style> block in Index.html, in <head>, AFTER the last existing </style> and before </head>.
+  INSTALL: paste this whole <style> block in Index.html, in <head>, AFTER the last existing </style> and before <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style id="ma-portal-master-layout">
+:root{--navy:#062e70;--blue:#0648ad;--orange:#ff941f;--ink:#102b55;--muted:#52647d;--line:#d9e4f3;--pale:#eef4ff}
+body{font-family:'Open Sans',Arial,sans-serif;color:var(--ink);background:#f5f8fd}
+#app{background:#f5f8fd}
+#side{background:linear-gradient(180deg,#062e70 0%,#041f50 100%);border-right:1px solid #d9e4f3}
+#side .brand{padding:18px 16px 16px}
+#side .brand img{width:48px;height:48px;object-fit:contain;background:#fff;border-radius:10px;padding:4px}
+#side .brand b{font-family:Poppins,'Open Sans',sans-serif;color:#fff;font-size:15px;font-weight:700;letter-spacing:0}
+#side .brand small{display:block;color:#d4e2fb;font-size:11px;margin-top:3px}
+#nav .nav,#nav .ngh,#nres .nav{border-radius:9px}
+#nav .nav.on,#nav .ngh.has,#nav .ng.fly>.ngh{background:#0648ad;color:#fff}
+#main{min-width:0;background:#f5f8fd;padding:16px 24px 36px}
+.ma-portal-masthead{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.75fr);gap:20px;align-items:center;min-height:112px;padding:12px 18px;background:linear-gradient(100deg,#fff,#f0f6ff);border:1px solid #dbe6f6;border-radius:13px;box-shadow:0 3px 14px #082f7010}
+.ma-portal-identity{min-width:0}
+.ma-portal-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:12px}
+.ma-portal-logo{display:flex;align-items:center;gap:9px;min-width:0;padding:3px 8px}
+.ma-portal-logo+.ma-portal-logo{border-left:1px solid #8ba5ca}
+.ma-portal-logo img{width:48px;height:50px;flex:0 0 48px;object-fit:contain}
+.ma-portal-logo span{color:#092e70;font-family:Poppins,'Open Sans',sans-serif;font-size:13px;font-weight:600;line-height:1.15}
+.ma-portal-slogan{margin:6px 0 0 8px;color:#062e70;font:italic 700 17px Georgia,serif}
+.ma-portal-campus{display:block;width:100%;height:84px;object-fit:cover;object-position:center 46%;border-radius:9px}
+#main .top{margin:14px 0 18px;padding:10px 14px;background:#fff;border:1px solid #d9e4f3;border-radius:11px;box-shadow:0 3px 12px #082f7008}
+#main .top h1{font-family:Poppins,'Open Sans',sans-serif;color:#062e70;font-size:18px;font-weight:700}
+#main .top p{color:#52647d;font-size:12px}
+#main .av{border-color:#d9e4f3!important;color:#0648ad!important}
+#main .ftr{color:#52647d;border-top:1px solid #d9e4f3;margin-top:22px;padding-top:14px}
+#main .ftr a{color:#0648ad}
+@media(max-width:1050px){#main{padding:14px 16px 32px}.ma-portal-masthead{grid-template-columns:1fr}.ma-portal-campus{height:100px}}
+@media(max-width:640px){#main{padding:10px 10px 88px}.ma-portal-masthead{padding:10px;gap:8px}.ma-portal-logos{gap:4px}.ma-portal-logo{flex-direction:column;text-align:center;gap:4px;padding:3px}.ma-portal-logo+.ma-portal-logo{padding-left:5px}.ma-portal-logo img{width:40px;height:42px;flex-basis:42px}.ma-portal-logo span{font-size:10px}.ma-portal-slogan{font-size:14px;text-align:center;margin-left:0}.ma-portal-campus{height:82px}#main .top{gap:8px;padding:9px}}
+</style></head>.
   It only restyles. No JS, no DOM ids, no data-act / data-k hooks, no backend call is touched.
   Everything is inside @media screen, so printed forms, slips, ID cards and reports are unchanged.
 ============================================================ -->
@@ -1423,7 +1454,17 @@ body .wnav .btn{flex:1 1 40%;justify-content:center}
  </main>
 </div>
 <div id="app" class="hidden"><button class="skip" data-act="skip">Skip to main content</button><aside id="side" role="navigation" aria-label="Main Navigation"><div class="brand"><img src="https://i.imgur.com/roCMSYf.jpeg" alt=""><div><b>Moreh Academy</b><small id="role"></small></div></div><div id="nav"></div><div class="me"><div id="who"></div><button class="nav" data-act="out" style="margin-top:8px"></button></div></aside><div id="sbbd" data-act="menu"></div>
-<main id="main"><div class="top" role="banner"><div class="tl" style="display:flex;gap:14px;align-items:center"><button id="menu" data-act="menu" aria-label="Toggle navigation" aria-controls="side" aria-expanded="true" title="Toggle navigation">&#9776;</button><img class="tlogo" src="https://i.imgur.com/roCMSYf.jpeg" alt=""><div><h1 id="title"></h1><p id="sub"></p></div></div><div id="gsw" class="gsw hidden"><input id="gs" type="text" autocomplete="off" placeholder="Search" aria-label="Global search" role="combobox" aria-autocomplete="list" aria-controls="gsr" aria-expanded="false"><div id="gsr" class="gsr hidden" role="listbox"></div></div><div class="tr" style="display:flex;gap:12px;align-items:center;position:relative"><button class="av" id="gsb" data-act="gsopen" aria-label="Search" title="Search" style="background:#fff;color:var(--navy);border:1px solid var(--line)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg></button><span id="rbd" class="rbd hidden"></span><span style="position:relative"><button class="av" style="background:#fff;color:var(--navy);border:1px solid var(--line)" data-act="bell" title="Notifications" aria-label="Notifications">&#128276;</button><span id="nb" class="hidden" style="position:absolute;top:-4px;right:-4px;background:#d93025;color:#fff;border-radius:999px;min-width:20px;height:20px;font:700 11px/20px Inter,sans-serif;text-align:center;padding:0 5px"></span></span><div class="dd hidden" id="np" style="width:340px;right:56px;max-height:70vh;overflow:auto"></div><div class="uchip" data-act="dd"><b id="uname"></b><small id="urole"></small></div><button class="av" id="av" data-act="dd" title="Account" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"></button><div class="dd hidden" id="dd" role="menu"></div></div></div><div id="view" tabindex="-1"></div><footer id="ftr" class="ftr"><div class="fl1"><span>&copy; <span id="fyr"></span> Moreh Academy</span><span>v1.0</span><a href="javascript:void(0)" data-act="nav" data-v="pp">Data Privacy Policy</a></div><div class="fl1"><span id="fst" class="fst on"><i></i><span>Online</span></span><a href="mailto:morehians@gmail.com">morehians@gmail.com</a><a href="tel:09618766886">0961 876 6886</a></div></footer></main><nav id="bnav" aria-label="Quick navigation"></nav></div>
+<main id="main"><header class="ma-portal-masthead" aria-label="Moreh Academy institutional header">
+  <div class="ma-portal-identity">
+    <div class="ma-portal-logos">
+      <div class="ma-portal-logo"><img src="https://drive.google.com/thumbnail?id=1b8RARy_gzEBsFuHN8qU2zmpdXX7XrYWq&sz=w160" alt="Moreh Global Innovative College"><span>Moreh Global Innovative College</span></div>
+      <div class="ma-portal-logo"><img src="https://drive.google.com/thumbnail?id=1OlkaaLh1ZaXg7sjfLe0ubDgrlNXiPbQF&sz=w160" alt="Moreh Academy"><span>Moreh Academy</span></div>
+      <div class="ma-portal-logo"><img src="https://drive.google.com/thumbnail?id=1WD0A18SLhBaDl9lGi6HOMQOLXggRq3hK&sz=w160" alt="Moreh College"><span>Moreh College</span></div>
+    </div>
+    <div class="ma-portal-slogan">Learn · Grow · Excel</div>
+  </div>
+  <img class="ma-portal-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20Panorama.png" alt="Moreh Academy campus">
+</header><div class="top" role="banner"><div class="tl" style="display:flex;gap:14px;align-items:center"><button id="menu" data-act="menu" aria-label="Toggle navigation" aria-controls="side" aria-expanded="true" title="Toggle navigation">&#9776;</button><img class="tlogo" src="https://i.imgur.com/roCMSYf.jpeg" alt=""><div><h1 id="title"></h1><p id="sub"></p></div></div><div id="gsw" class="gsw hidden"><input id="gs" type="text" autocomplete="off" placeholder="Search" aria-label="Global search" role="combobox" aria-autocomplete="list" aria-controls="gsr" aria-expanded="false"><div id="gsr" class="gsr hidden" role="listbox"></div></div><div class="tr" style="display:flex;gap:12px;align-items:center;position:relative"><button class="av" id="gsb" data-act="gsopen" aria-label="Search" title="Search" style="background:#fff;color:var(--navy);border:1px solid var(--line)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg></button><span id="rbd" class="rbd hidden"></span><span style="position:relative"><button class="av" style="background:#fff;color:var(--navy);border:1px solid var(--line)" data-act="bell" title="Notifications" aria-label="Notifications">&#128276;</button><span id="nb" class="hidden" style="position:absolute;top:-4px;right:-4px;background:#d93025;color:#fff;border-radius:999px;min-width:20px;height:20px;font:700 11px/20px Inter,sans-serif;text-align:center;padding:0 5px"></span></span><div class="dd hidden" id="np" style="width:340px;right:56px;max-height:70vh;overflow:auto"></div><div class="uchip" data-act="dd"><b id="uname"></b><small id="urole"></small></div><button class="av" id="av" data-act="dd" title="Account" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"></button><div class="dd hidden" id="dd" role="menu"></div></div></div><div id="view" tabindex="-1"></div><footer id="ftr" class="ftr"><div class="fl1"><span>&copy; <span id="fyr"></span> Moreh Academy</span><span>v1.0</span><a href="javascript:void(0)" data-act="nav" data-v="pp">Data Privacy Policy</a></div><div class="fl1"><span id="fst" class="fst on"><i></i><span>Online</span></span><a href="mailto:morehians@gmail.com">morehians@gmail.com</a><a href="tel:09618766886">0961 876 6886</a></div></footer></main><nav id="bnav" aria-label="Quick navigation"></nav></div>
 <div id="load" class="hidden"><i></i></div><div id="toast" class="hidden" role="status" aria-live="polite"></div>
 <script>
 const $=id=>document.getElementById(id),S={tabs:[],cur:'search'};
@@ -6668,66 +6709,6 @@ homeAdmin = function () {
     document.head.appendChild(style);
   }
 
-  if (!document.getElementById('ma-v2-shell-style')) {
-    const shellStyle=document.createElement('style'); shellStyle.id='ma-v2-shell-style';
-    shellStyle.textContent=`
-      body.ma-admin-mockup{background:#f3f6fc}
-      body.ma-admin-mockup #main{max-width:none;padding:18px 28px 38px;background:#f3f6fc}
-      body.ma-admin-mockup #side{background:linear-gradient(180deg,#102b62,#081a40);border-right:1px solid #18396f}
-      body.ma-admin-mockup #side .brand{padding:20px 18px 18px}
-      body.ma-admin-mockup #side .brand img{width:48px;height:48px;object-fit:contain;background:#fff;padding:4px}
-      body.ma-admin-mockup #side .brand b{font-size:15px;letter-spacing:.01em;text-transform:none}body.ma-admin-mockup .ma-v2-brand-sub{display:block;color:#b9c6e6;font-size:11px;letter-spacing:.02em;margin-top:2px}
-      body.ma-admin-mockup #nav>.nav,body.ma-admin-mockup #nav .ngh,body.ma-admin-mockup #nres>.nav{margin:2px 10px;width:calc(100% - 20px);border-radius:9px;padding:11px 12px}
-      body.ma-admin-mockup .nav.on,body.ma-admin-mockup .ngh.has,body.ma-admin-mockup .ng.fly>.ngh{background:#245bc4;color:#fff;box-shadow:0 5px 14px #061a4566}
-      body.ma-admin-mockup .nav.sub{margin:0;width:100%;border-radius:0;padding-left:18px}
-      body.ma-admin-mockup .top{background:#fff;border:1px solid #e0e7f2;border-radius:12px;padding:11px 15px;margin:14px 0 18px;box-shadow:0 3px 12px #102c5c0a;align-items:center}
-      body.ma-admin-mockup .top h1{font-size:18px;color:#17366d}
-      body.ma-admin-mockup .top p{font-size:12px;color:#64748b}
-      .ma-v2-masthead{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.8fr);gap:20px;align-items:center;padding:15px 20px;background:#fff;border:1px solid #dce5f3;border-radius:14px;box-shadow:0 3px 14px #102c5c0d;min-height:124px}
-      .ma-v2-masthead-left{min-width:0}.ma-v2-masthead-logos{display:grid;grid-template-columns:1fr 1.15fr 1fr;align-items:center;gap:13px}
-      .ma-v2-masthead-logos img{display:block;width:100%;height:65px;object-fit:contain;min-width:0}
-      .ma-v2-masthead-logos img+img{border-left:1px solid #dce5f3;padding-left:13px}
-      .ma-v2-masthead-motto{margin:8px 0 0;text-align:center;color:#17366d;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
-      .ma-v2-masthead-campus{width:100%;height:94px;object-fit:cover;object-position:center 45%;border-radius:10px}
-      .ma-v2-hero{min-height:150px;padding:25px 30px;border-radius:13px}.ma-v2-hero h2{font-size:clamp(24px,2.2vw,32px)}.ma-v2-hero p{font-size:14px;max-width:620px}
-      .ma-v2-analytics{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(240px,.95fr)}
-      .ma-v2-panel{border:1px solid #dce5f3;border-radius:13px;box-shadow:0 3px 12px #102c5c0a}
-      .ma-v2-kpis .gk{min-height:112px;border:1px solid transparent;border-radius:13px;box-shadow:none;color:#142d5c;padding:16px 17px}
-      .ma-v2-kpis .gk.k1{background:#e5efff;border-color:#c9dcff}
-      .ma-v2-kpis .gk.k2{background:#fff0df;border-color:#ffdbb5}
-      .ma-v2-kpis .gk.k3{background:#e0f6ec;border-color:#bce8d0}
-      .ma-v2-kpis .gk.k4{background:#eee9ff;border-color:#d9ceff}
-      .ma-v2-kpis .gk .gkt,.ma-v2-kpis .gk .gkv,.ma-v2-kpis .gk .gkd{color:#142d5c}
-      .ma-v2-kpis .gk .gkt i{background:#ffffffa8;color:#1d4ed8;border-radius:11px}
-      @media(max-width:1180px){.ma-v2-analytics{grid-template-columns:1fr 1fr}.ma-v2-campus{grid-column:1/-1}.ma-v2-campus img{height:155px}}
-      @media(max-width:760px){.ma-v2-analytics{grid-template-columns:1fr}.ma-v2-campus{grid-column:auto}}
-
-      .ma-v2-bottom>.ma-v2-panel{border:1px solid #dce5f3}
-      body.ma-admin-mockup .ftr{padding:16px 4px 0;color:#64748b}body.ma-admin-mockup .ftr a{color:#2456a8}
-      @media(max-width:900px){body.ma-admin-mockup #main{padding:14px 16px 96px}.ma-v2-masthead{grid-template-columns:1fr;gap:10px}.ma-v2-masthead-campus{height:100px}.ma-v2-masthead-logos img{height:54px}}
-      @media(max-width:760px){.ma-v2-quick{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.ma-v2-masthead{padding:12px}.ma-v2-masthead-logos{gap:7px}.ma-v2-masthead-logos img{height:44px}.ma-v2-masthead-logos img+img{padding-left:7px}.ma-v2-masthead-motto{font-size:10px;letter-spacing:.1em}.ma-v2-hero{padding:20px;min-height:138px}.ma-v2-kpis{grid-template-columns:1fr 1fr}}
-    `; document.head.appendChild(shellStyle);
-  }
-  document.body.classList.add('ma-admin-mockup');
-  const shellBase='https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/';
-  const sideLogo=document.querySelector('#side .brand img'),mobileLogo=document.querySelector('#main .tlogo');
-  if(sideLogo)sideLogo.src=shellBase+'moreh-academy-logo.png';
-  const sideBrandText=document.querySelector('#side .brand>div');
-  if(sideBrandText&&!sideBrandText.querySelector('.ma-v2-brand-sub')){
-    const sub=document.createElement('small');sub.className='ma-v2-brand-sub';sub.textContent='Admission Portal';sideBrandText.appendChild(sub);
-  }
-  if(mobileLogo)mobileLogo.src=shellBase+'moreh-academy-logo.png';
-  const mainTop=document.querySelector('#main .top');
-  if(mainTop&&!document.querySelector('#main .ma-v2-masthead')){
-    const masthead=document.createElement('section');masthead.className='ma-v2-masthead';masthead.setAttribute('aria-label','Moreh Academy institutional masthead');
-    masthead.innerHTML='<div class="ma-v2-masthead-left"><div class="ma-v2-masthead-logos">'+
-      '<img src="'+shellBase+'mgic-logo.png" alt="Moreh Global Innovative College">'+
-      '<img src="'+shellBase+'moreh-academy-logo.png" alt="Moreh Academy">'+
-      '<img src="'+shellBase+'moreh-college-logo.png" alt="Moreh College">'+
-      '</div><div class="ma-v2-masthead-motto">Learn · Grow · Excel</div></div>'+
-      '<img class="ma-v2-masthead-campus" src="'+shellBase+'Moreh%20College%20Under%20Blue%20Skies%20(2).png" alt="Moreh Academy campus">';
-    mainTop.parentNode.insertBefore(masthead,mainTop);
-  }
   head('Dashboard', 'Enrollment overview for School Year ' + S.cfg.sy.replace('-', '\\u2013'));
   call('dashboard', [T()], r => {
     const d = r.data, st = d.stats, total = st.total || 0;
