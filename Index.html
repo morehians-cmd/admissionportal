@@ -1580,7 +1580,7 @@ const helpbar=()=>A()?`<div class="helpbar"><div><b>System or Database Help?</b>
 function renderAct(){const el=$('ract');if(!el)return;if(!S.notifs){el.innerHTML='<div class="aemp">Loading&hellip;</div>';return}
  const L=S.notifs.items||[],M={newreg:[I.adm,'c1'],noconsent:[I.rep,'c3'],ev:[I.cal,'c4'],rq:[I.rep,'c3'],home:[I.home,'c2']};
  el.innerHTML=L.length?L.map(x=>{const m=M[x.go]||[I.rep,'c2'];return `<button class="ai" data-act="ngo" data-v="${esc(x.go)}"><span class="ao ${m[1]}">${m[0]}</span><span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span></button>`}).join(''):'<div class="aemp">You&rsquo;re all caught up.</div>'}
-const actCard=()=>`<div class="card"><div class="ch"><h3>Recent Activity</h3><a href="javascript:void(0)" data-act="bell">View All</a></div><div id="ract" class="alist"></div></div>`;
+const activityCard=()=>`<div class="card"><div class="ch"><h3>Recent Activity</h3><small>Latest audited actions</small></div><div id="ract" class="alist"><div class="aemp">Loading activity&hellip;</div></div></div>`;
 const dhero=(name,line,cards)=>`<div class="shero dh"><div class="sht"><div><h2>${greet()}, ${esc(name)} &#128075;</h2><p>${line}</p></div><div class="dhr"><div class="dhd"><small>Today</small><span>${I.cal} ${new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'})}</span></div><div class="hlogo"><img src="${LOGO}" alt=""><i></i></div></div></div><div class="shk">${cards}</div></div>`;
 const dcard=(cls,icon,label,val,sub,col,a,v,sm)=>`<div class="shc ${a?'':'nc'}"${a?` data-act="${a}" data-v="${v}"`:''}><div class="shh"><span class="ki ${cls}">${icon}</span><span>${label}</span></div><div class="shv${sm?' sm':''}">${val}</div><div class="shs" style="color:${col||'var(--mut)'}">${sub||''}</div></div>`;
 const evSide=()=>`<div class="card"><div class="ch"><h3>Latest Posts</h3><a href="javascript:void(0)" data-act="nav" data-v="ev">View All</a></div><div id="hev"><div class="aemp">Loading&hellip;</div></div></div>`;
@@ -6659,6 +6659,67 @@ schRender = function () {
 };
 
 
+
+/* ---------- Dashboard activity, registration trend, and calendar ---------- */
+function loadRecentActivity(){
+  const el=$('ract'); if(!el)return;
+  el.innerHTML='<div class="aemp">Loading activity&hellip;</div>';
+  google.script.run.withSuccessHandler(r=>{
+    const box=$('ract'); if(!box)return;
+    const L=(r&&r.success&&r.data&&Array.isArray(r.data.items))?r.data.items:[];
+    box.innerHTML=L.length?L.map(x=>{
+      const action=String(x.action||'System activity').replace(/[._]/g,' ');
+      const when=[x.date,x.time].filter(Boolean).join(' · ');
+      return '<div class="ma-v2-activity"><span class="ma-v2-activity-dot"></span><div><b>'+esc(action)+'</b><small>'+esc(x.actor||'System')+(x.role?' · '+esc(x.role):'')+'</small></div><time>'+esc(when)+'</time></div>';
+    }).join(''):'<div class="aemp">No recent system activity.</div>';
+  }).withFailureHandler(()=>{
+    const box=$('ract');if(box)box.innerHTML='<div class="aemp">Activity is temporarily unavailable.</div>';
+  }).getRecentActivity(S.token,10);
+}
+function dashTrendDraw(X){
+  const el=$('dxtrend');if(!el)return;
+  const vals=(X&&Array.isArray(X.spark))?X.spark:[];
+  if(!vals.length){el.innerHTML='<div class="aemp">No registration trend data.</div>';return;}
+  const mx=Math.max(1,...vals);
+  el.innerHTML='<div class="ma-v2-trendbars">'+vals.map((v,i)=>'<div title="Day '+(i+1)+': '+v+' registrations"><b>'+v+'</b><i style="height:'+Math.max(3,v/mx*74)+'px"></i><small>'+(i===0?'14d':i===6?'7d':i===13?'Today':'')+'</small></div>').join('')+'</div><div class="ma-v2-trendfoot"><span>Daily registrations · last 14 days</span><b>'+(X.trend?X.trend.week:0)+' this week</b></div>';
+}
+const _dashDxDraw=dxDraw;
+dxDraw=function(X,H){_dashDxDraw(X,H);dashTrendDraw(X);};
+function dashCalLoad(){
+  const el=$('ma-dash-calendar');if(!el)return;
+  google.script.run.withSuccessHandler(r=>{
+    S.dashEvents=(r&&r.success&&Array.isArray(r.data))?r.data:[];
+    const now=new Date();
+    if(!S.dashCalMonth)S.dashCalMonth=new Date(now.getFullYear(),now.getMonth(),1);
+    if(!S.dashCalSelected)S.dashCalSelected=ymd(now);
+    dashCalDraw();
+  }).withFailureHandler(()=>{
+    const box=$('ma-dash-calendar');if(box)box.innerHTML='<div class="aemp">Calendar is temporarily unavailable.</div>';
+  }).getEvents(S.token);
+}
+function dashCalDraw(){
+  const root=$('ma-dash-calendar'),up=$('ma-dash-upcoming');if(!root)return;
+  const month=S.dashCalMonth||new Date(new Date().getFullYear(),new Date().getMonth(),1);
+  const y=month.getFullYear(),m=month.getMonth(),first=new Date(y,m,1),offset=first.getDay(),days=new Date(y,m+1,0).getDate();
+  const events=S.dashEvents||[],byDate={};
+  events.forEach(e=>{const k=String(e.EventDate||'').slice(0,10);if(k)(byDate[k]||(byDate[k]=[])).push(e);});
+  let cells='';
+  for(let n=0;n<42;n++){
+    const day=n-offset+1,inside=day>0&&day<=days,d=new Date(y,m,day),key=ymd(d),has=!!byDate[key],selected=key===S.dashCalSelected;
+    cells+='<button type="button" class="ma-v2-day'+(inside?'':' out')+(has?' has-event':'')+(selected?' selected':'')+'"'+(inside?' data-act="dashcalday" data-v="'+key+'"':' disabled')+'>'+ (inside?day:'') +(has?'<i></i>':'')+'</button>';
+  }
+  root.innerHTML='<div class="ma-v2-calhead"><button type="button" data-act="dashcalprev" aria-label="Previous month">&#8249;</button><b>'+esc(evMonth(ymd(new Date(y,m,1)).slice(0,7)))+'</b><button type="button" data-act="dashcalnext" aria-label="Next month">&#8250;</button></div><div class="ma-v2-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div><div class="ma-v2-days">'+cells+'</div>';
+  if(up){
+    const chosen=(byDate[S.dashCalSelected]||[]);
+    const upcoming=events.filter(e=>evIn(e.EventDate)>=0).sort((a,b)=>(a.EventDate||'').localeCompare(b.EventDate||'')).slice(0,5);
+    const list=chosen.length?chosen:upcoming;
+    up.innerHTML=(chosen.length?'<div class="ma-v2-event-caption">Selected date · '+esc(S.dashCalSelected)+'</div>':'<div class="ma-v2-event-caption">Upcoming events</div>')+(list.length?list.map(e=>'<div class="ma-v2-event"><b>'+esc(e.Title||'Untitled event')+'</b><small>'+esc(e.EventDate||'')+(e.EventTime?' · '+esc(e.EventTime):'')+'</small>'+(e.Venue?'<small>'+esc(e.Venue)+'</small>':'')+'</div>').join(''):'<div class="aemp">'+(chosen.length?'No events for this date.':'No upcoming events.')+'</div>');
+  }
+}
+act.dashcalprev=()=>{const d=S.dashCalMonth||new Date();S.dashCalMonth=new Date(d.getFullYear(),d.getMonth()-1,1);dashCalDraw()};
+act.dashcalnext=()=>{const d=S.dashCalMonth||new Date();S.dashCalMonth=new Date(d.getFullYear(),d.getMonth()+1,1);dashCalDraw()};
+act.dashcalday=k=>{S.dashCalSelected=k;dashCalDraw()};
+
 /* ---------- Moreh Academy administrator dashboard: approved mockup layout ---------- */
 homeAdmin = function () {
   if (!document.getElementById('ma-admin-v2-style')) {
@@ -6669,6 +6730,20 @@ homeAdmin = function () {
             '.ma-v2-hero{position:relative;isolation:isolate;display:flex;align-items:center;min-height:164px;overflow:hidden;border-radius:14px;padding:24px 28px;color:#fff;background:#0c347c;box-shadow:var(--sh)}' +
       '.ma-v2-hero:before{content:"";position:absolute;inset:0;z-index:-2;background:url("https:' + '/' + '/raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20Panorama.png") center 47%/cover no-repeat}' +
       '.ma-v2-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,28,75,.9),rgba(7,45,112,.62) 58%,rgba(7,45,112,.08))}' +
+      '.ma-v2-masthead{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,34%);gap:16px;align-items:center;padding:12px 16px;border:1px solid #dce6f7;border-radius:14px;background:linear-gradient(105deg,#fff,#f4f8ff);box-shadow:var(--sh)}' +
+      '.ma-v2-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:12px}.ma-v2-logos img{width:100%;height:70px;object-fit:contain;min-width:0}' +
+      '.ma-v2-campus{width:100%;height:88px;object-fit:cover;object-position:center 46%;border-radius:9px}' +
+      '.ma-v2-secondary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:-4px}' +
+      '.ma-v2-secondary .gk{min-height:78px;background:#f8fafc;border:1px solid #dce5f3;box-shadow:none;color:#142d5c;padding:12px 16px}' +
+      '.ma-v2-secondary .gkt,.ma-v2-secondary .gkv,.ma-v2-secondary .gkd{color:#142d5c}.ma-v2-secondary .gkv{font-size:23px}' +
+      '.ma-v2-activity{display:grid;grid-template-columns:9px minmax(0,1fr);gap:9px;position:relative;padding:7px 0;border-bottom:1px solid #edf1f7}' +
+      '.ma-v2-activity-dot{width:8px;height:8px;margin-top:5px;border-radius:50%;background:#1c63c7}.ma-v2-activity b{display:block;color:#183568;font-size:12px;text-transform:capitalize}.ma-v2-activity small{display:block;color:#64748b;font-size:10px}.ma-v2-activity time{grid-column:2;color:#94a3b8;font-size:10px}' +
+      '.ma-v2-trendbars{height:112px;display:grid;grid-template-columns:repeat(14,minmax(0,1fr));align-items:end;gap:5px;padding:8px 0 0;border-bottom:1px solid #e2e8f0}' +
+      '.ma-v2-trendbars>div{height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:3px;min-width:0}.ma-v2-trendbars b{font-size:9px;color:#52627d}.ma-v2-trendbars i{display:block;width:70%;max-width:18px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#4b91f5,#1453bd)}.ma-v2-trendbars small{height:11px;font-size:8px;color:#8290a5}' +
+      '.ma-v2-trendfoot{display:flex;justify-content:space-between;gap:8px;padding-top:8px;color:#64748b;font-size:11px}.ma-v2-trendfoot b{color:#183568}' +
+      '.ma-v2-events{display:grid;grid-template-columns:minmax(260px,.9fr) minmax(260px,1.1fr);gap:16px}.ma-v2-calhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;color:#17366d}.ma-v2-calhead button{width:30px;height:30px;border:1px solid #dce5f3;border-radius:8px;background:#f4f8ff;color:#17366d;font-size:20px;cursor:pointer}' +
+      '.ma-v2-weekdays,.ma-v2-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.ma-v2-weekdays span{text-align:center;color:#718096;font-size:10px;font-weight:700;padding:4px 0}.ma-v2-day{position:relative;min-height:32px;border:1px solid transparent;border-radius:7px;background:#f7f9fd;color:#34445f;font-size:11px;cursor:pointer}.ma-v2-day.out{visibility:hidden}.ma-v2-day.has-event{background:#eaf2ff;border-color:#c9dcff;color:#124a9d;font-weight:800}.ma-v2-day.selected{background:#0f42c0;color:#fff;border-color:#0f42c0}.ma-v2-day i{position:absolute;bottom:3px;left:calc(50% - 2px);width:4px;height:4px;border-radius:50%;background:#f1872d}.ma-v2-day.selected i{background:#fff}' +
+      '.ma-v2-event-caption{margin:2px 0 9px;color:#64748b;font-size:11px;font-weight:700}.ma-v2-event{padding:9px 0;border-bottom:1px solid #edf1f7}.ma-v2-event b{display:block;color:#183568;font-size:12px}.ma-v2-event small{display:block;color:#718096;font-size:10px;margin-top:3px}' +
       '.ma-v2-hero h2{margin:0 0 7px;color:#fff;font-size:clamp(23px,2.2vw,31px);font-weight:800}' +
       '.ma-v2-hero p{margin:0;color:#f0f5ff;font-size:14px;max-width:650px}' +
       '.ma-v2-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}' +
@@ -6705,7 +6780,7 @@ homeAdmin = function () {
       '.ma-v2-quick button:hover{background:#eaf2ff;border-color:#b8cff5}.ma-v2-quick .ao{width:28px;height:28px}' +
       '.ma-v2-bottom .alist{display:grid;gap:6px}.ma-v2-bottom .ai{padding:7px 2px;border-bottom:1px solid #edf1f7}' +
       '@media(max-width:1180px){.ma-v2-bottom{grid-template-columns:1fr 1fr}.ma-v2-bottom>:last-child{grid-column:1/-1}}' +
-      '@media(max-width:760px){.ma-v2-hero{min-height:145px;padding:20px}.ma-v2-kpis{grid-template-columns:1fr 1fr;gap:9px}.ma-v2-analytics,.ma-v2-bottom{grid-template-columns:1fr}.ma-v2-bottom>:last-child{grid-column:auto}.ma-v2-status{gap:10px}.ma-v2-donut{width:125px;height:125px}}';
+      '@media(max-width:760px){.ma-v2-masthead{grid-template-columns:1fr}.ma-v2-logos img{height:52px}.ma-v2-campus{height:110px}.ma-v2-hero{min-height:145px;padding:20px}.ma-v2-kpis{grid-template-columns:1fr 1fr;gap:9px}.ma-v2-secondary{gap:9px}.ma-v2-analytics,.ma-v2-bottom,.ma-v2-events{grid-template-columns:1fr}.ma-v2-bottom>:last-child{grid-column:auto}.ma-v2-status{gap:10px}.ma-v2-donut{width:125px;height:125px}}';
     document.head.appendChild(style);
   }
 
@@ -6714,13 +6789,17 @@ homeAdmin = function () {
     const d = r.data, st = d.stats, total = st.total || 0;
     const pc = n => (total ? Math.round((n || 0) / total * 1000) / 10 : 0) + '%';
     const cards = [
-      {cl:'k1',l:'Total Applications',ic:I.users,v:nfmt(total),d:'All applicants',a:'All'},
-      {cl:'k2',l:'Pending Applications',ic:I.rep,v:nfmt(st.pending),d:pc(st.pending)+' of applicants',a:'Not Enrolled'},
-      {cl:'k3',l:'Approved Applications',ic:I.rep,v:nfmt(st.approved),d:pc(st.approved)+' of applicants',a:'Approved'},
-      {cl:'k4',l:'Enrolled Students',ic:I.home,v:nfmt(st.enrolled),d:pc(st.enrolled)+' of applicants',a:'Enrolled'}
+      {cl:'k1',l:'Total Applications',ic:I.users,v:nfmt(total),d:'All active-year records',a:'All'},
+      {cl:'k2',l:'Enrolled Students',ic:I.home,v:nfmt(st.enrolled),d:pc(st.enrolled)+' of applicants',a:'Enrolled'},
+      {cl:'k3',l:'Not Yet Enrolled',ic:I.rep,v:nfmt(st.pending),d:pc(st.pending)+' of applicants',a:'Not Enrolled'},
+      {cl:'k4',l:'New Applications Today',ic:I.cal,v:nfmt(st.today),d:'Registered today',a:'Today'}
+    ].map(gkCard).join('');
+    const secondaryCards = [
+      {cl:'',l:'Cancelled',ic:I.rep,v:nfmt(st.cancelled||0),d:'Cancelled applications',a:'Cancelled'},
+      {cl:'',l:'Transferred Out',ic:I.users,v:nfmt(st.transferred||0),d:'Transferred records',a:'Transferred Out'}
     ].map(gkCard).join('');
 
-    const gradeRows = d.cards.flatMap(c => c.rows.map(x => ({label:x[0],value:x[1]})));
+    const gradeRows = (d.gradeLevels || d.cards.flatMap(c => c.rows)).map(x => ({label:x[0],value:x[1]}));
     const maxGrade = Math.max(1, ...gradeRows.map(x => x.value));
     const bars = gradeRows.map((x,i) =>
       '<div class="ma-v2-baritem" title="'+esc(x.label)+': '+x.value+'"><strong>'+nfmt(x.value)+'</strong>' +
@@ -6730,7 +6809,6 @@ homeAdmin = function () {
 
     const statusItems = [
       {label:'Enrolled',value:st.enrolled||0,color:'#2475e8'},
-      {label:'Approved',value:st.approved||0,color:'#7c3aed'},
       {label:'Pending',value:st.pending||0,color:'#f59e0b'},
       {label:'Temporary',value:st.temp||0,color:'#16a085'},
       {label:'Transferred Out',value:st.transferred||0,color:'#94a3b8'},
@@ -6750,31 +6828,42 @@ homeAdmin = function () {
       '<button type="button" data-act="'+action+'"'+(value?' data-v="'+value+'"':'')+'><span class="ao '+cl+'">'+ic+'</span><span>'+label+'</span></button>';
     const quick = '<div class="ma-v2-quick">' +
       quickBtn('c1',I.adm,'Add Applicant','quick') +
-      quickBtn('c2',I.rep,'View Reports','nav','rep') +
-      quickBtn('c3',I.users,'Manage Students','nav','adm') +
-      (SYS() ? quickBtn('c4',I.cal,'Settings','nav','set') : quickBtn('c4',I.help,'Help Center','nav','faq')) +
+      quickBtn('c2',I.rep,'View Applications','dflt','All') +
+      quickBtn('c3',I.users,'Manage Students','dflt','Enrolled') +
+      (FULL() ? quickBtn('c4',I.rep,'View Reports','nav','rep') : '') +
+      (SYS() ? quickBtn('c5',I.home,'Manage Website','nav','webm') : '') +
+      (SYS() ? quickBtn('c1',I.users,'User Management','nav','um') : '') +
       '</div>';
 
     const hero =
       '<section class="ma-v2-hero"><div><h2>Good Morning, Admin!</h2>' +
       '<p>Welcome to the Moreh Academy Admission Portal. Together, we build a brighter future.</p></div></section>';
 
+    const masthead = '<section class="ma-v2-masthead"><div class="ma-v2-logos">' +
+      '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/mgic-logo.png" alt="Moreh Global Innovative College">' +
+      '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/moreh-academy-logo.png" alt="Moreh Academy">' +
+      '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/moreh-college-logo.png" alt="Moreh College">' +
+      '</div><img class="ma-v2-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png" alt="Moreh Academy campus"></section>';
     $('view').innerHTML =
-      '<div class="ma-admin-v2">'+hero+
+      '<div class="ma-admin-v2">'+masthead+hero+
       '<section class="ma-v2-kpis">'+cards+'</section>'+
+      '<section class="ma-v2-secondary">'+secondaryCards+'</section>'+
       '<section class="ma-v2-analytics">'+
         '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Enrollment by Grade Level</h3><small>Active school year</small></div><div class="ma-v2-bars">'+bars+'</div></div>'+
         '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Application Status</h3><small>'+nfmt(statusTotal)+' records</small></div>'+
           '<div class="ma-v2-status"><div class="ma-v2-donut" style="background:conic-gradient('+donut+')"><div class="ma-v2-donut-label"><strong>'+nfmt(statusTotal)+'</strong><small>Records</small></div></div><div class="ma-v2-legend">'+legend+'</div></div></div>'+
 
       '</section>'+
+      '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Registration Trend</h3><small>Last 14 days</small></div><div id="dxtrend"><div class="aemp">Loading trend&hellip;</div></div></section>'+
+      '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>School Calendar &amp; Upcoming Events</h3></div><div class="ma-v2-events"><div id="ma-dash-calendar"><div class="aemp">Loading calendar&hellip;</div></div><div id="ma-dash-upcoming"><div class="aemp">Loading events&hellip;</div></div></div></section>'+
       '<section class="ma-v2-bottom">'+
         '<div class="ma-v2-panel"><div id="dxatt">'+dxSkel('Needs Attention')+'</div></div>'+
-        '<div class="ma-v2-panel">'+actCard()+'</div>'+
+        '<div class="ma-v2-panel">'+activityCard()+'</div>'+
         '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Quick Actions</h3></div>'+quick+'</div>'+
       '</section></div>';
 
-    renderAct();
+    loadRecentActivity();
+    dashCalLoad();
     let X = null, H = null, pending = 2;
     const finish = () => {
       if (--pending) return;
