@@ -161,3 +161,70 @@ function getPublicHistoryPhoto(id) {
     return ok(uri);
   } catch (e) { return fail(e); }
 }
+
+/* ---------- Editable public homepage hero settings ---------- */
+const PUBLIC_HERO_KEY_ = 'pubhome_hero';
+const PUBLIC_HERO_DEFAULTS_ = {
+  headline:'Welcome to Moreh Academy',
+  subheadline:'School of Righteousness and Excellence.',
+  description:'Welcome to Moreh Academy. School of Righteousness and Excellence.',
+  primaryText:'Enroll Now!',
+  primaryUrl:'?page=create-account',
+  secondaryText:'Discover Moreh Academy',
+  secondaryUrl:'?page=about',
+  images:[
+    'https://drive.google.com/thumbnail?id=138oALvviA236UvUnJZR62TVqask4gmWQ&sz=w2000',
+    'https://drive.google.com/thumbnail?id=1GodLs1Umo_qPFwt7PRJIYenfsUsNeJkD&sz=w2000',
+    'https://drive.google.com/thumbnail?id=1iW7wmwTgy38RS7g7cccbA-hCBCcd38Xf&sz=w2000'
+  ]
+};
+function publicHeroImage_(value, fallback) {
+  const s=String(value||'').trim();
+  if (!s) return fallback;
+  if (/^https:\/\/drive\.google\.com\/thumbnail\?id=[A-Za-z0-9_-]+(?:&[^"'<> ]*)?$/i.test(s)) return s.slice(0,1000);
+  if (/^https:\/\/lh3\.googleusercontent\.com\/[A-Za-z0-9_./?=&%-]+$/i.test(s)) return s.slice(0,1000);
+  throw new Error('Hero images must use a Google Drive thumbnail or Google-hosted image URL.');
+}
+function publicHeroClean_(input) {
+  input=input&&typeof input==='object'?input:{};
+  const clean=(key,max,fallback)=>String(input[key]==null?fallback:input[key]).replace(/[\u0000-\u001f]/g,' ').trim().slice(0,max);
+  const url=(key,fallback)=>{
+    const s=String(input[key]==null?fallback:input[key]).trim().slice(0,1000);
+    if (/^https:\/\//i.test(s) || /^\?page=[A-Za-z0-9_-]+$/.test(s) || /^\/[A-Za-z0-9/_-]*$/.test(s)) return s;
+    throw new Error('Use a secure https link or an internal ?page= link for homepage buttons.');
+  };
+  const imgs=Array.isArray(input.images)?input.images:[];
+  return {
+    headline:clean('headline',100,PUBLIC_HERO_DEFAULTS_.headline),
+    subheadline:clean('subheadline',140,PUBLIC_HERO_DEFAULTS_.subheadline),
+    description:clean('description',280,PUBLIC_HERO_DEFAULTS_.description),
+    primaryText:clean('primaryText',40,PUBLIC_HERO_DEFAULTS_.primaryText),
+    primaryUrl:url('primaryUrl',PUBLIC_HERO_DEFAULTS_.primaryUrl),
+    secondaryText:clean('secondaryText',50,PUBLIC_HERO_DEFAULTS_.secondaryText),
+    secondaryUrl:url('secondaryUrl',PUBLIC_HERO_DEFAULTS_.secondaryUrl),
+    images:[0,1,2].map(i=>publicHeroImage_(imgs[i],PUBLIC_HERO_DEFAULTS_.images[i]))
+  };
+}
+/** PUBLIC. Only non-sensitive public homepage presentation settings are returned. */
+function getHomepageHero() {
+  try {
+    const b=blockRow_(PUBLIC_HERO_KEY_);
+    if (!b.row) return ok(PUBLIC_HERO_DEFAULTS_);
+    const raw=String(b.sh.getRange(b.row,2).getValue()||'');
+    if (!raw) return ok(PUBLIC_HERO_DEFAULTS_);
+    return ok(publicHeroClean_(JSON.parse(raw)));
+  } catch(e) { return fail(e); }
+}
+/** OWNER ONLY. Saves homepage hero text, CTA links and three approved image URLs. */
+function saveHomepageHero(token, input) {
+  const lock=LockService.getScriptLock();
+  try {
+    lock.waitLock(20000);
+    const u=owner_(token), clean=publicHeroClean_(input), b=blockRow_(PUBLIC_HERO_KEY_);
+    put_(b.sh,b.row||(b.sh.getLastRow()+1),1,[[PUBLIC_HERO_KEY_,JSON.stringify(clean)]]);
+    audit_(u,'content.save',PUBLIC_HERO_KEY_,'Homepage hero text, links and images');
+    return ok(clean,'Homepage hero settings saved.');
+  } catch(e) { return fail(e); }
+  finally { try { lock.releaseLock(); } catch(_) {} }
+}
+
