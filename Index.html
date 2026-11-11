@@ -1494,7 +1494,7 @@ function boot(){try{boot0()}catch(e){$('app').classList.remove('hidden');toast('
 function boot0(){const u=S.user;$('role').textContent=A()?'Admin':'Student';$('who').textContent=u.FullName||u.Username;$('uname').textContent=tc(u.FullName||u.Username);$('urole').textContent=A()?ROLEN(u.Clearance):'Student';setAv();topInit();
 renderNav(menuFor());document.querySelector('[data-act=out]').innerHTML=I.out+'Sign out';if(u.MustChange==='1'){S.pe=true;nav('me');toast('Please set a new password to continue.','warn')}else{nav(OFC()?'fl':'home');if(!OFC())loadNotifs()}idleReset()}
 
-function nav(id){$('dd').classList.add('hidden');$('np').classList.add('hidden');document.querySelectorAll('#nav .nav').forEach(b=>b.classList.toggle('on',b.dataset.v===id));const hit=document.querySelector('#nav .sub[data-v="'+id+'"]'),hg=hit&&hit.closest('.ng');if(hg){document.querySelectorAll('#nav .ng').forEach(x=>{x.classList.toggle('open',x===hg);x.querySelector('.ngh').classList.toggle('has',x===hg)})}$('side').classList.remove('open');({home,adm,rep,me:profile,sp:stuProfile,rq:stuReq,pp:privacyPage,ev:eventsPage,um:usersPage,set:settingsPage,sch:schPage,tf:tuitionPage,fl:flagsPage,gd:guidePage,about:()=>contentPage('about'),cluster:()=>contentPage('cluster'),handbook:()=>contentPage('handbook'),facilities:()=>contentPage('facilities'),faq:()=>contentPage('faq'),ia:idArtPage,ce:careerPage,ac:acadPage})[id]()}
+function nav(id){$('dd').classList.add('hidden');$('np').classList.add('hidden');document.querySelectorAll('#nav .nav').forEach(b=>b.classList.toggle('on',b.dataset.v===id));const hit=document.querySelector('#nav .sub[data-v="'+id+'"]'),hg=hit&&hit.closest('.ng');if(hg){document.querySelectorAll('#nav .ng').forEach(x=>{x.classList.toggle('open',x===hg);x.querySelector('.ngh').classList.toggle('has',x===hg)})}$('side').classList.remove('open');({home,adm,rep,me:profile,sp:stuProfile,rq:stuReq,pp:privacyPage,ev:eventsPage,um:usersPage,set:settingsPage,sch:schPage,tf:tuitionPage,fl:flagsPage,gd:guidePage,about:()=>contentPage('about'),cluster:()=>contentPage('cluster'),handbook:()=>contentPage('handbook'),facilities:()=>contentPage('facilities'),faq:()=>contentPage('faq'),ia:idArtPage,ce:careerPage,ac:acadPage,webm:websiteManagementPage})[id]()}
 
 const csvCell=c=>{let s=String(c==null?'':c);if(/^[=+\-@\t\r]/.test(s))s="'"+s;else if(/^(0\d+|\d{11,})$/.test(s))return '="'+s+'"';return '"'+s.split('"').join('""')+'"'};
 const act={out:()=>{clearInterval(CD);if($('idm'))$('idm').remove();try{google.script.run.logout(S.token)}catch(e){}S.token=null;$('app').classList.add('hidden');const m=document.createElement('div');m.className='mod';m.innerHTML='<div style="max-width:430px;padding:32px;text-align:center"><h3 style="color:var(--navy);margin-bottom:8px">You have been signed out</h3><p style="color:var(--mut)">For your security, please refresh the page before signing in again.</p><div><button class="btn" onclick="location.reload()" style="margin-top:8px">Refresh page</button></div></div>';document.body.appendChild(m)},
@@ -6660,6 +6660,81 @@ schRender = function () {
 
 
 
+
+/* ---------- Centralized Website Management (main administrator only) ---------- */
+const WEB_BLOCKS=[
+  ['Homepage','pubhome','Homepage content block'],
+  ['About','pubabout','About Moreh Academy'],
+  ['Admissions','pubadmissions','Admissions overview'],
+  ['Academics','pubacademics','Academic programs'],
+  ['Campus','pubcampus','Campus and student life'],
+  ['Forms','pubforms','Forms and downloads'],
+  ['News','pubnews','News and updates'],
+  ['Contact','pubcontact','Contact information'],
+  ['About · Values','pub_about_values','Core values section'],
+  ['About · History','pub_about_history','Institutional history section'],
+  ['About · Leadership','pub_about_leadership','Leadership section'],
+  ['Admissions · Enrollment','pub_adm_enrollment','Enrollment information'],
+  ['Admissions · Requirements','pub_adm_requirements','Requirements information'],
+  ['Admissions · Scholarships','pub_adm_scholarships','Scholarship information'],
+  ['Admissions · FAQs','pub_adm_faq','Admissions questions'],
+  ['Academics · Kindergarten','pub_acad_kindergarten','Kindergarten page'],
+  ['Academics · Elementary','pub_acad_elementary','Elementary page'],
+  ['Academics · Junior High','pub_acad_junior_high','Junior High page'],
+  ['Academics · Senior High','pub_acad_senior_high','Senior High page'],
+  ['Academics · College','pub_acad_college','College page'],
+  ['Campus · Organizations','pub_campus_organizations','Organizations section'],
+  ['Campus · Events','pub_campus_events','Campus events section'],
+  ['Campus · Sports','pub_campus_sports','Sports section'],
+  ['Campus · Clubs','pub_campus_clubs','Clubs section'],
+  ['Campus · Facilities','pub_campus_facilities','Facilities section'],
+  ['Forms · TLC','pub_forms_tlc','TLC form information'],
+  ['Forms · Consent','pub_forms_consent','Consent form information'],
+  ['News · Announcements','pub_news_announcements','Public announcements'],
+  ['News · Latest','pub_news_latest','Latest news section'],
+  ['News · Events','pub_news_events','Public events section'],
+  ['News · Enrollment','pub_news_enrollment','Enrollment news section'],
+  ['News · Achievements','pub_news_achievements','Achievements section']
+];
+function websiteManagementPage(){
+  if(!SYS()){toast('Website Management is restricted to the main administrator.','warn');return nav('home');}
+  head('Website Management','Manage approved public-facing content and media.');
+  const blocks=WEB_BLOCKS.map(x=>'<button class="ma-web-block" data-act="webedit" data-v="'+x[1]+'"><b>'+esc(x[0])+'</b><small>'+esc(x[2])+'</small><span>Edit content →</span></button>').join('');
+  $('view').innerHTML='<div class="ma-web-page"><div class="ma-web-warning"><b>Publishing notice</b><p>Saving a content block updates the content used by the public website. The current system does not provide a separate draft or publish stage. Review changes carefully before saving.</p></div>'+
+    '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Homepage Content</h3><small>Editable content block</small></div>'+blocks.slice(0,blocks.indexOf('</button>')+9)+'</section>'+
+    '<section class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Page Content</h3><small>Public page sections</small></div><div class="ma-web-grid">'+blocks.slice(blocks.indexOf('</button>')+9)+'</div></section>'+
+    '<section class="ma-web-grid">'+
+    '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Media Library</h3></div><p>Open the existing campus and Senior High gallery collections to manage their photos and captions.</p><button class="btn alt" data-act="webmedia">Open Gallery Collections</button></div>'+
+    '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Announcements &amp; Events</h3></div><p>Manage public announcements and school events using the existing Campus Bulletin.</p><button class="btn alt" data-act="webevents">Manage Announcements &amp; Events</button></div>'+
+    '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Preview Website</h3></div><p>Open the public website in a separate tab to review the currently published content.</p><button class="btn" data-act="webpreview">Preview Public Website</button></div></section>'+
+    '<p class="ma-web-note">Note: The public homepage hero images, institutional logos, navigation, and fixed layout are currently managed in the homepage source. They are not edited by these text-block controls.</p></div>';
+}
+function websiteBlockEditor(key){
+  if(!SYS())return toast('Not allowed.','warn');
+  const item=WEB_BLOCKS.find(x=>x[1]===key);if(!item)return toast('Unknown website section.','warn');
+  head(item[0],'Edit public website content');
+  call('getBlock',[T(),key],r=>{
+    S.webEdit={key:key,title:item[0],html:r.data||''};
+    $('view').innerHTML='<div class="ma-web-editor"><div class="ma-web-warning"><b>Public content warning</b><p>Saving immediately updates the public content block. There is no draft or approval stage.</p></div><div class="sbar"><button class="btn" data-act="websave">Save &amp; Publish</button><button class="btn alt" data-act="webcancel">Back to Website Management</button></div><div class="card pv pve pvs" id="webbody" contenteditable="true">'+cleanHtml(S.webEdit.html)+'</div></div>';
+  });
+}
+function websiteMediaPage(){
+  if(!SYS())return toast('Not allowed.','warn');
+  head('Media Library','Existing managed photo galleries');
+  $('view').innerHTML='<div class="ma-web-grid"><div class="ma-v2-panel"><h3>Facilities &amp; Campus Tour</h3><p>Manage photos currently assigned to the facilities gallery.</p><button class="btn" data-act="webgallery" data-v="facilities">Open Facilities Gallery</button></div><div class="ma-v2-panel"><h3>Senior High Cluster Guide</h3><p>Manage photos currently assigned to the Senior High gallery.</p><button class="btn" data-act="webgallery" data-v="cluster">Open Senior High Gallery</button></div></div><p class="ma-web-note">This view reuses the existing gallery collections. It is not yet a complete Drive-wide media browser.</p>';
+}
+act.webedit=k=>websiteBlockEditor(k);
+act.webmedia=()=>websiteMediaPage();
+act.webgallery=k=>{if(!SYS())return toast('Not allowed.','warn');contentPage(k)};
+act.webevents=()=>nav('ev');
+act.webcancel=()=>websiteManagementPage();
+act.websave=()=>{
+  if(!SYS()||!S.webEdit)return toast('Not allowed.','warn');
+  if(!confirm('This save will update the public website content immediately. Continue?'))return;
+  call('saveBlock',[T(),S.webEdit.key,$('webbody').innerHTML],r=>{S.webEdit.html=r.data;toast('Content saved and published.');websiteBlockEditor(S.webEdit.key)});
+};
+act.webpreview=()=>google.script.run.withSuccessHandler(url=>{if(url)window.open(url,'_blank','noopener')}).withFailureHandler(e=>toast(e.message||'Could not open the website.',false)).getHomeUrl();
+
 /* ---------- Dashboard activity, registration trend, and calendar ---------- */
 function loadRecentActivity(){
   const el=$('ract'); if(!el)return;
@@ -6737,6 +6812,7 @@ homeAdmin = function () {
       '.ma-v2-secondary .gk{min-height:78px;background:#f8fafc;border:1px solid #dce5f3;box-shadow:none;color:#142d5c;padding:12px 16px}' +
       '.ma-v2-secondary .gkt,.ma-v2-secondary .gkv,.ma-v2-secondary .gkd{color:#142d5c}.ma-v2-secondary .gkv{font-size:23px}' +
       '.ma-v2-activity{display:grid;grid-template-columns:9px minmax(0,1fr);gap:9px;position:relative;padding:7px 0;border-bottom:1px solid #edf1f7}' +
+      '.ma-web-page{display:grid;gap:14px}.ma-web-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ma-web-block{display:flex;flex-direction:column;align-items:flex-start;gap:5px;width:100%;padding:12px;border:1px solid #dce7f7;border-radius:10px;background:#f8fbff;text-align:left;cursor:pointer;color:#183568}.ma-web-block small{color:#64748b}.ma-web-block span{font-size:11px;color:#0f42c0;font-weight:700}.ma-web-warning{padding:13px 16px;border:1px solid #f3d4a4;border-left:4px solid #e79b37;border-radius:9px;background:#fffaf1;color:#694b1d}.ma-web-warning p,.ma-web-note{margin:5px 0 0;font-size:12px;line-height:1.6}.ma-web-note{color:#64748b}.ma-web-editor{display:grid;gap:12px}' +
       '.ma-v2-activity-dot{width:8px;height:8px;margin-top:5px;border-radius:50%;background:#1c63c7}.ma-v2-activity b{display:block;color:#183568;font-size:12px;text-transform:capitalize}.ma-v2-activity small{display:block;color:#64748b;font-size:10px}.ma-v2-activity time{grid-column:2;color:#94a3b8;font-size:10px}' +
       '.ma-v2-trendbars{height:112px;display:grid;grid-template-columns:repeat(14,minmax(0,1fr));align-items:end;gap:5px;padding:8px 0 0;border-bottom:1px solid #e2e8f0}' +
       '.ma-v2-trendbars>div{height:100%;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:3px;min-width:0}.ma-v2-trendbars b{font-size:9px;color:#52627d}.ma-v2-trendbars i{display:block;width:70%;max-width:18px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#4b91f5,#1453bd)}.ma-v2-trendbars small{height:11px;font-size:8px;color:#8290a5}' +
@@ -6780,7 +6856,7 @@ homeAdmin = function () {
       '.ma-v2-quick button:hover{background:#eaf2ff;border-color:#b8cff5}.ma-v2-quick .ao{width:28px;height:28px}' +
       '.ma-v2-bottom .alist{display:grid;gap:6px}.ma-v2-bottom .ai{padding:7px 2px;border-bottom:1px solid #edf1f7}' +
       '@media(max-width:1180px){.ma-v2-bottom{grid-template-columns:1fr 1fr}.ma-v2-bottom>:last-child{grid-column:1/-1}}' +
-      '@media(max-width:760px){.ma-v2-masthead{grid-template-columns:1fr}.ma-v2-logos img{height:52px}.ma-v2-campus{height:110px}.ma-v2-hero{min-height:145px;padding:20px}.ma-v2-kpis{grid-template-columns:1fr 1fr;gap:9px}.ma-v2-secondary{gap:9px}.ma-v2-analytics,.ma-v2-bottom,.ma-v2-events{grid-template-columns:1fr}.ma-v2-bottom>:last-child{grid-column:auto}.ma-v2-status{gap:10px}.ma-v2-donut{width:125px;height:125px}}';
+      '@media(max-width:760px){.ma-v2-masthead{grid-template-columns:1fr}.ma-v2-logos img{height:52px}.ma-v2-campus{height:110px}.ma-v2-hero{min-height:145px;padding:20px}.ma-v2-kpis{grid-template-columns:1fr 1fr;gap:9px}.ma-v2-secondary{gap:9px}.ma-v2-analytics,.ma-v2-bottom,.ma-v2-events,.ma-web-grid{grid-template-columns:1fr}.ma-v2-bottom>:last-child{grid-column:auto}.ma-v2-status{gap:10px}.ma-v2-donut{width:125px;height:125px}}';
     document.head.appendChild(style);
   }
 
