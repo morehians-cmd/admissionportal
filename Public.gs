@@ -11,6 +11,14 @@
 *****************************************************************************/
 const PUB_GALLERY_PAGE = 'facilities', PUB_GALLERY_MAX = 5, PUB_EVENTS_MAX = 3;
 
+/** Internal: expire today's cached public homepage feed after relevant content changes. */
+function invalidatePublicContentCache_() {
+  try {
+    const today = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyy-MM-dd');
+    CacheService.getScriptCache().remove('pubc_v1_' + today);
+  } catch (_) {}
+}
+
 /** PUBLIC. Everything the homepage needs in one call (cached 5 minutes). */
 function getPublicContent() {
   try {
