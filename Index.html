@@ -6690,8 +6690,18 @@ homeAdmin = function () {
       .ma-v2-masthead-motto{margin:8px 0 0;text-align:center;color:#17366d;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
       .ma-v2-masthead-campus{width:100%;height:94px;object-fit:cover;object-position:center 45%;border-radius:10px}
       .ma-v2-hero{min-height:150px;padding:25px 30px;border-radius:13px}.ma-v2-hero h2{font-size:clamp(24px,2.2vw,32px)}.ma-v2-hero p{font-size:14px;max-width:620px}
-      .ma-v2-analytics{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+      .ma-v2-analytics{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(240px,.95fr)}
       .ma-v2-panel{border:1px solid #dce5f3;border-radius:13px;box-shadow:0 3px 12px #102c5c0a}
+      .ma-v2-kpis .gk{min-height:112px;border:1px solid transparent;border-radius:13px;box-shadow:none;color:#142d5c;padding:16px 17px}
+      .ma-v2-kpis .gk.k1{background:#e5efff;border-color:#c9dcff}
+      .ma-v2-kpis .gk.k2{background:#fff0df;border-color:#ffdbb5}
+      .ma-v2-kpis .gk.k3{background:#e0f6ec;border-color:#bce8d0}
+      .ma-v2-kpis .gk.k4{background:#eee9ff;border-color:#d9ceff}
+      .ma-v2-kpis .gk .gkt,.ma-v2-kpis .gk .gkv,.ma-v2-kpis .gk .gkd{color:#142d5c}
+      .ma-v2-kpis .gk .gkt i{background:#ffffffa8;color:#1d4ed8;border-radius:11px}
+      @media(max-width:1180px){.ma-v2-analytics{grid-template-columns:1fr 1fr}.ma-v2-campus{grid-column:1/-1}.ma-v2-campus img{height:155px}}
+      @media(max-width:760px){.ma-v2-analytics{grid-template-columns:1fr}.ma-v2-campus{grid-column:auto}}
+
       .ma-v2-bottom>.ma-v2-panel{border:1px solid #dce5f3}
       body.ma-admin-mockup .ftr{padding:16px 4px 0;color:#64748b}body.ma-admin-mockup .ftr a{color:#2456a8}
       @media(max-width:900px){body.ma-admin-mockup #main{padding:14px 16px 96px}.ma-v2-masthead{grid-template-columns:1fr;gap:10px}.ma-v2-masthead-campus{height:100px}.ma-v2-masthead-logos img{height:54px}}
@@ -6756,9 +6766,10 @@ homeAdmin = function () {
     const quickBtn = (cl,ic,label,action,value) =>
       '<button type="button" data-act="'+action+'"'+(value?' data-v="'+value+'"':'')+'><span class="ao '+cl+'">'+ic+'</span><span>'+label+'</span></button>';
     const quick = '<div class="ma-v2-quick">' +
-      quickBtn('c1',I.adm,'Register Student','quick') +
-      quickBtn('c2',I.search,'Find Learner','nav','adm') +
-      (FULL() ? quickBtn('c4',I.rep,'View Reports','nav','rep') : quickBtn('c4',I.cal,'Campus Bulletin','nav','ev')) +
+      quickBtn('c1',I.adm,'Add Applicant','quick') +
+      quickBtn('c2',I.rep,'View Reports','nav','rep') +
+      quickBtn('c3',I.users,'Manage Students','nav','adm') +
+      (SYS() ? quickBtn('c4',I.cal,'Settings','nav','set') : quickBtn('c4',I.help,'Help Center','nav','faq')) +
       '</div>';
 
     const brand =
@@ -6781,6 +6792,7 @@ homeAdmin = function () {
         '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Enrollment by Grade Level</h3><small>Active school year</small></div><div class="ma-v2-bars">'+bars+'</div></div>'+
         '<div class="ma-v2-panel"><div class="ma-v2-panelhead"><h3>Application Status</h3><small>'+nfmt(statusTotal)+' records</small></div>'+
           '<div class="ma-v2-status"><div class="ma-v2-donut" style="background:conic-gradient('+donut+')"><div class="ma-v2-donut-label"><strong>'+nfmt(statusTotal)+'</strong><small>Records</small></div></div><div class="ma-v2-legend">'+legend+'</div></div></div>'+
+        '<div class="ma-v2-panel ma-v2-campus"><img src="'+campus+'" alt="Moreh Academy campus"><div class="ma-v2-campus-caption"><b>Moreh Academy</b><span>A Community of Excellence</span></div></div>'+
       '</section>'+
       '<section class="ma-v2-bottom">'+
         '<div class="ma-v2-panel"><div id="dxatt">'+dxSkel('Needs Attention')+'</div></div>'+
