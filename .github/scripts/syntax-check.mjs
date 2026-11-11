@@ -35,6 +35,8 @@ if (serverFiles.length) {
 }
 
 const browserBlocks = [];
+let indexHtmlSource = "";
+let scriptHtmlBlocks = [];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   const blocks = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)];
