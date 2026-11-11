@@ -602,6 +602,7 @@ function saveEvent(token, e) {
     const ids = sh.getLastRow()<2 ? [] : sh.getRange(2,1,sh.getLastRow()-1,1).getValues().flat().map(String), i = ids.indexOf(rec.EventID);
     put_(sh, i<0?sh.getLastRow()+1:i+2, 1, [EVCOLS.map(c=>rec[c])]);
     audit_(u, i<0?'event.create':'event.update', rec.EventID, rec.Title);
+    invalidatePublicContentCache_();
     return ok(rec, 'Event saved');
   } catch(err) { return fail(err); } finally { try { lock.releaseLock(); } catch(_) {} }
 }
