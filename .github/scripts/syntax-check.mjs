@@ -34,11 +34,12 @@ if (serverFiles.length) {
   parse("ALL .gs FILES (shared Apps Script global scope)", combined);
 }
 
-const browserBlocks = [];
+const indexInlineBlocks = [];
 let indexHtmlSource = "";
 let scriptHtmlBlocks = [];
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
+  if (path.basename(file) === "Index.html") indexHtmlSource = html;
   const blocks = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)];
   const inline = [];
   for (let index = 0; index < blocks.length; index++) {
@@ -53,9 +54,17 @@ for (const file of htmlFiles) {
     parse(path.relative(root, file) + " inline script " + index, code);
     inline.push("// " + path.relative(root, file) + " script " + index + "\n" + code);
   }
-  if (["Index.html", "Script.html"].includes(path.basename(file))) browserBlocks.push(...inline);
+  if (path.basename(file) === "Index.html") indexInlineBlocks.push(...inline);
+  if (path.basename(file) === "Script.html") scriptHtmlBlocks = inline;
 }
-if (browserBlocks.length) parse("Index.html + Script.html (combined browser global scope)", browserBlocks.join("\n;\n"));
+
+// Script.html shares the portal's browser scope only if Index.html explicitly includes it.
+if (/include\s*\(\s*['"]Script['"]\s*\)/.test(indexHtmlSource)) {
+  indexInlineBlocks.push(...scriptHtmlBlocks);
+}
+if (indexInlineBlocks.length) {
+  parse("Index.html (combined actual browser global scope)", indexInlineBlocks.join("\n;\n"));
+}
 
 console.log("JavaScript syntax checks passed: " + passed.length);
 for (const label of passed) console.log("PASS " + label);
