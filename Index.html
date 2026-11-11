@@ -6918,11 +6918,11 @@ homeAdmin = function () {
       '<section class="ma-v2-hero"><div><h2>'+greeting+', '+esc(adminName)+'!</h2>' +
       '<p>Welcome to the Moreh Academy Administration Portal. Here is your current enrollment overview.</p></div></section>';
 
-    const masthead = '<section class="ma-v2-masthead"><div><div class="ma-v2-logos">' +
+    const masthead = '<section class="ma-v2-masthead"><div class="ma-v2-logos"> +
       '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/mgic-logo.png" alt="Moreh Global Innovative College">' +
       '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/moreh-academy-logo.png" alt="Moreh Academy">' +
       '<img src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/moreh-college-logo.png" alt="Moreh College">' +
-      '</div><div class="ma-v2-motto">LEARN · GROW · EXCEL</div></div><img class="ma-v2-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png" alt="Moreh Academy campus"></section>';
+      '</div><img class="ma-v2-campus" src="https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/Moreh%20College%20Under%20Blue%20Skies%20(2).png" alt="Moreh Academy campus"><div class="ma-v2-motto">LEARN · GROW · EXCEL</div></section>';
     $('view').innerHTML =
       '<div class="ma-admin-v2">'+masthead+hero+
       '<section class="ma-v2-kpis">'+cards+'</section>'+
