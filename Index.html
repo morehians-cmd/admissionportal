@@ -6659,7 +6659,7 @@ homeAdmin = function () {
       '.ma-v2-bottom #dxatt>.card,.ma-v2-bottom #ract{margin:0}' +
       '.ma-v2-bottom #dxatt>.card,.ma-v2-bottom .card{margin:0;padding:0;border:0;box-shadow:none;border-radius:0}' +
       '.ma-v2-bottom .ch{margin-bottom:9px}.ma-v2-bottom .ch h3{font-size:15px}' +
-      '.ma-v2-quick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}' +
+      '.ma-v2-quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}' +
       '.ma-v2-quick button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:88px;padding:10px 6px;border:1px solid #dce7f7;border-radius:10px;background:#f4f8ff;color:#183568;font-size:11px;font-weight:700;text-align:center;cursor:pointer}' +
       '.ma-v2-quick button:hover{background:#eaf2ff;border-color:#b8cff5}.ma-v2-quick .ao{width:28px;height:28px}' +
       '.ma-v2-bottom .alist{display:grid;gap:6px}.ma-v2-bottom .ai{padding:7px 2px;border-bottom:1px solid #edf1f7}' +
@@ -6676,7 +6676,7 @@ homeAdmin = function () {
       body.ma-admin-mockup #side{background:linear-gradient(180deg,#102b62,#081a40);border-right:1px solid #18396f}
       body.ma-admin-mockup #side .brand{padding:20px 18px 18px}
       body.ma-admin-mockup #side .brand img{width:48px;height:48px;object-fit:contain;background:#fff;padding:4px}
-      body.ma-admin-mockup #side .brand b{font-size:15px;letter-spacing:.01em;text-transform:none}
+      body.ma-admin-mockup #side .brand b{font-size:15px;letter-spacing:.01em;text-transform:none}body.ma-admin-mockup .ma-v2-brand-sub{display:block;color:#b9c6e6;font-size:11px;letter-spacing:.02em;margin-top:2px}
       body.ma-admin-mockup #nav>.nav,body.ma-admin-mockup #nav .ngh,body.ma-admin-mockup #nres>.nav{margin:2px 10px;width:calc(100% - 20px);border-radius:9px;padding:11px 12px}
       body.ma-admin-mockup .nav.on,body.ma-admin-mockup .ngh.has,body.ma-admin-mockup .ng.fly>.ngh{background:#245bc4;color:#fff;box-shadow:0 5px 14px #061a4566}
       body.ma-admin-mockup .nav.sub{margin:0;width:100%;border-radius:0;padding-left:18px}
@@ -6705,13 +6705,17 @@ homeAdmin = function () {
       .ma-v2-bottom>.ma-v2-panel{border:1px solid #dce5f3}
       body.ma-admin-mockup .ftr{padding:16px 4px 0;color:#64748b}body.ma-admin-mockup .ftr a{color:#2456a8}
       @media(max-width:900px){body.ma-admin-mockup #main{padding:14px 16px 96px}.ma-v2-masthead{grid-template-columns:1fr;gap:10px}.ma-v2-masthead-campus{height:100px}.ma-v2-masthead-logos img{height:54px}}
-      @media(max-width:600px){.ma-v2-masthead{padding:12px}.ma-v2-masthead-logos{gap:7px}.ma-v2-masthead-logos img{height:44px}.ma-v2-masthead-logos img+img{padding-left:7px}.ma-v2-masthead-motto{font-size:10px;letter-spacing:.1em}.ma-v2-hero{padding:20px;min-height:138px}.ma-v2-kpis{grid-template-columns:1fr 1fr}}
+      @media(max-width:760px){.ma-v2-quick{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.ma-v2-masthead{padding:12px}.ma-v2-masthead-logos{gap:7px}.ma-v2-masthead-logos img{height:44px}.ma-v2-masthead-logos img+img{padding-left:7px}.ma-v2-masthead-motto{font-size:10px;letter-spacing:.1em}.ma-v2-hero{padding:20px;min-height:138px}.ma-v2-kpis{grid-template-columns:1fr 1fr}}
     `; document.head.appendChild(shellStyle);
   }
   document.body.classList.add('ma-admin-mockup');
   const shellBase='https://raw.githubusercontent.com/morehians-cmd/admissionportal/feature/public-homepage-redesign/';
   const sideLogo=document.querySelector('#side .brand img'),mobileLogo=document.querySelector('#main .tlogo');
   if(sideLogo)sideLogo.src=shellBase+'moreh-academy-logo.png';
+  const sideBrandText=document.querySelector('#side .brand>div');
+  if(sideBrandText&&!sideBrandText.querySelector('.ma-v2-brand-sub')){
+    const sub=document.createElement('small');sub.className='ma-v2-brand-sub';sub.textContent='Admission Portal';sideBrandText.appendChild(sub);
+  }
   if(mobileLogo)mobileLogo.src=shellBase+'moreh-academy-logo.png';
   const mainTop=document.querySelector('#main .top');
   if(mainTop&&!document.querySelector('#main .ma-v2-masthead')){
