@@ -779,7 +779,17 @@ html[data-theme=dark] .ma-portal-masthead{background:linear-gradient(100deg,#101
 html[data-theme=dark] #main .top p{color:#a9b7d6}
 @media(max-width:1050px){#main{padding:14px 16px 32px}.ma-portal-masthead{grid-template-columns:1fr}.ma-portal-campus{height:100px}}
 @media(max-width:640px){#main{padding:10px 10px 88px}.ma-portal-masthead{padding:10px;gap:8px}.ma-portal-logos{gap:4px}.ma-portal-logo{flex-direction:column;text-align:center;gap:4px;padding:3px}.ma-portal-logo+.ma-portal-logo{padding-left:5px}.ma-portal-logo img{width:40px;height:42px;flex-basis:42px}.ma-portal-logo span{font-size:10px}.ma-portal-slogan{font-size:14px;text-align:center;margin-left:0}.ma-portal-campus{height:82px}#main .top{gap:8px;padding:9px}}
-</style></head>.
+</style>
+<style id="ma-dashboard-layout-correction">
+/* Let the authenticated workspace fill all space beside the sidebar. */
+#app{width:100%;min-width:0}
+#main{flex:1 1 0;width:0;min-width:0;max-width:none}
+#view{width:100%;min-width:0;max-width:none}
+.ma-redesign-dashboard{width:100%;max-width:none;min-width:0}
+/* The redesigned dashboard has its own institutional masthead and campus hero. */
+#main:has(.ma-redesign-dashboard)>.ma-portal-masthead{display:none!important}
+</style>
+</head>.
   It only restyles. No JS, no DOM ids, no data-act / data-k hooks, no backend call is touched.
   Everything is inside @media screen, so printed forms, slips, ID cards and reports are unchanged.
 ============================================================ -->
